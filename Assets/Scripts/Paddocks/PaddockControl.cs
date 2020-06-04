@@ -13,16 +13,36 @@ public class PaddockControl : MonoBehaviour
 
 
     Game game;
+
+    [SerializeField]
+    GameObject paddockUI;
+    bool showPaddockUI = false;
+
+    GameObject UICanvas;
     // Start is called before the first frame update
     void Start()
     {
         game = GameObject.Find("Game").GetComponent<Game>();
+        UICanvas = GameObject.Find("GameUI");
+
+        //Show the paddock stats on the game canvas
+        paddockUI = Instantiate(paddockUI);
+        paddockUI.transform.parent = UICanvas.transform;
+        paddockUI.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(showPaddockUI)
+        {
+            paddockUI.SetActive(true);
+            paddockUI.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + 10, Input.mousePosition.z);
+        }
+        else
+        {
+            paddockUI.SetActive(false);
+        }
     }
 
     public void setTiles(EnvironmentTile[,] t, int w, int h)
@@ -55,6 +75,20 @@ public class PaddockControl : MonoBehaviour
             returnTiles();
             Destroy(this.transform.parent.parent.gameObject);
             game.setDeleting(false);
+            Destroy(paddockUI);
         }
+    }
+
+    private void OnMouseOver()
+    {
+        if(!game.getDeleting())
+        {
+            showPaddockUI = true;
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        showPaddockUI = false;
     }
 }

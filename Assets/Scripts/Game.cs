@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class Game : MonoBehaviour
     bool creatingPaddocks = false;
     EnvironmentTile standIn;
     bool deletePaddocks = false;
+
+    EnvironmentTile lastTile;
+    EnvironmentTile startingTile;
+
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -35,19 +40,22 @@ public class Game : MonoBehaviour
     private void Update()
     {
         // Check to see if the player has clicked a tile and if they have, try to find a path to that 
-        // tile. If we find a path then the character will move along it to the clicked tile. 
-        if(Input.GetMouseButtonDown(0))
+        // tile. If we find a path then the character will move along it to the clicked tile.
+
+        //List<EnvironmentTile> route = mMap.Solve(mCharacter.CurrentPosition, tile);
+        //mCharacter.GoTo(route);
+
+
+        Ray screenClick = MainCamera.ScreenPointToRay(Input.mousePosition);
+        int hits = Physics.RaycastNonAlloc(screenClick, mRaycastHits);
+
+        if (Input.GetMouseButtonDown(0))
         {
-            Ray screenClick = MainCamera.ScreenPointToRay(Input.mousePosition);
-            int hits = Physics.RaycastNonAlloc(screenClick, mRaycastHits);
-            if( hits > 0)
+            if (hits > 0)
             {
                 EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
                 if (tile != null)
                 {
-                    //List<EnvironmentTile> route = mMap.Solve(mCharacter.CurrentPosition, tile);
-                    //mCharacter.GoTo(route);
-
                     //If the selection for creating paddocks has been selected (button)
                     if (creatingPaddocks)
                     {
@@ -56,6 +64,7 @@ public class Game : MonoBehaviour
                         if (clicks == 0)
                         {
                             paddock.setStartingTile(tile);
+                            startingTile = tile;
                         }
                         //Second click equals the end tile
                         else if (clicks == 1)
@@ -63,13 +72,25 @@ public class Game : MonoBehaviour
                             paddock.setEndTile(tile);
                             creatingPaddocks = false;
                             clicks = -1;
+                            startingTile = null;
                         }
-                        Debug.Log("Clicks:" + clicks);
                     }
                 }
             }
         }
-        if(Input.GetMouseButtonDown(1))
+        if (creatingPaddocks && paddock.getStartingTile() != null && startingTile == paddock.getStartingTile())
+        {
+            if (hits > 0)
+            {
+                EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
+                if (tile != null && tile != lastTile)
+                {
+                    paddock.calculatePaddockCost(tile);
+                    lastTile = tile;
+                }
+            }
+        }
+        if (Input.GetMouseButtonDown(1))
         {
             clicks = -1;
             creatingPaddocks = false;

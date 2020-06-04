@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PaddockCreation : MonoBehaviour
 {
@@ -48,10 +49,15 @@ public class PaddockCreation : MonoBehaviour
     GameObject paddockParent;
     GameObject pParent;
 
+    [SerializeField]
+    Text paddockCost;
+
+    [SerializeField]
+    Color[] grassColor;
     // Start is called before the first frame update
     void Start()
     {
-
+        paddockCost.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -60,6 +66,7 @@ public class PaddockCreation : MonoBehaviour
         
     }
 
+    //Get the entire map
     public void setMap(EnvironmentTile[][] m, Vector2 mSize)
     {
         mMap = m;
@@ -69,13 +76,80 @@ public class PaddockCreation : MonoBehaviour
     {
         startTile = s;
     }
-
+    public EnvironmentTile getStartingTile()
+    {
+        return startTile;
+    }
     public void setEndTile(EnvironmentTile e)
     {
         endTile = e;
         calculatePaddockSize();
     }
 
+    public void calculatePaddockCost(EnvironmentTile t)
+    {
+        width = (int)t.transform.position.x - (int)startTile.transform.position.x;
+        height = (int)t.transform.position.z - (int)startTile.transform.position.z;
+
+        width /= 10;
+        height /= 10;
+
+        width += 1;
+        height += 1;
+
+        paddockCost.gameObject.SetActive(true);
+        paddockCost.gameObject.transform.position = Input.mousePosition;
+        paddockCost.text = "£" + ((width * height) * 2).ToString();
+
+        for (int y = 0; y < mapSize.x; y++)
+        {
+            for (int k = 0; k < mapSize.y; k++)
+            {
+                if (mMap[y][k] == startTile)
+                {
+                    xPos = y;
+                    zPos = k;
+                }
+            }
+        }
+
+        widthTile = xPos + width;
+        heightTile = zPos + height;
+
+        int x = 0;
+        int z = 0;
+        int standIn = 0;
+        paddock = new EnvironmentTile[widthTile, heightTile];
+
+        for (int i = xPos; i < (int)widthTile; i++)
+        {
+            for (int j = zPos; j < (int)heightTile; j++)
+            {
+                paddock[x, z] = mMap[i][j];
+                Material[] grass = paddock[x, z].GetComponent<MeshRenderer>().materials;
+                grass[1].color = Color.green;
+                paddock[x, z].GetComponent<MeshRenderer>().materials = grass;
+                z++;
+                standIn = z;
+            }
+            x++;
+            z = 0;
+        }
+
+        for (int i = 0; i < mapSize.x; i++)
+        {
+            for (int j = 0; j < mapSize.y; j++)
+            {
+                if (i < xPos || i > xPos + width || j < zPos || j > zPos + height)
+                {
+                    Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
+                    mat[1].color = grassColor[0];
+                    mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+                }
+            }
+        }
+    
+    }
     void calculatePaddockSize()
     { 
         createdPaddock.Clear();
@@ -150,6 +224,7 @@ public class PaddockCreation : MonoBehaviour
                 z = 0;
 
                 allPaddocks.Add(createdPaddock);
+                paddockCost.gameObject.SetActive(false);
             }
         }
     }
@@ -157,7 +232,6 @@ public class PaddockCreation : MonoBehaviour
     void generateFences(EnvironmentTile[,] tiles, int width, int height)
     {
         pParent = Instantiate(paddockParent);
-
 
         //Delete Obstacles within the paddock
         for (int i =0; i < width; i++)
@@ -244,6 +318,14 @@ public class PaddockCreation : MonoBehaviour
             }
         }
 
-        Debug.Log("Paddock Cost: " + (width * height) * 2);
+        for (int i = 0; i < mapSize.x; i++)
+        {
+            for (int j = 0; j < mapSize.y; j++)
+            {
+                Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
+                mat[1].color = grassColor[0];
+                mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+            }
+        }
     }
 }

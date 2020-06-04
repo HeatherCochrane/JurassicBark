@@ -96,6 +96,8 @@ MonoBehaviour:
   grassColor:
   - {r: 0.3529412, g: 0.7686275, b: 0.7137255, a: 1}
   - {r: 0.3529412, g: 0.7686275, b: 0.7137255, a: 1}
+  paddockUI: {fileID: 7993822664075727241, guid: 47e2c8cb2bac61648915ae50ef267c05,
+    type: 3}
 --- !u!65 &4551594371910835914
 BoxCollider:
   m_ObjectHideFlags: 0
