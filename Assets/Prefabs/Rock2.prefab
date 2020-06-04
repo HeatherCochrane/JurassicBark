@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8574744746682825124}
   - component: {fileID: 2721042246968722781}
   - component: {fileID: 6878312587856686978}
+  - component: {fileID: -7564378963292590135}
   m_Layer: 0
   m_Name: Rock2
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,6 +57,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -93,6 +95,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81c1a74f97fbca4a81350fa9f3bdddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &-7564378963292590135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4467504367627727233}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.5, z: 10}
+  m_Center: {x: 5, y: 1.25, z: 5}
 --- !u!1001 &2391374354944958040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,11 +115,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 838965123134653330}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: d441e8ec54ba31e4e861a4399fe3dcb4,
-        type: 3}
-      propertyPath: m_Name
-      value: rock_large2
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d441e8ec54ba31e4e861a4399fe3dcb4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -159,6 +169,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d441e8ec54ba31e4e861a4399fe3dcb4,
+        type: 3}
+      propertyPath: m_Name
+      value: rock_large2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d441e8ec54ba31e4e861a4399fe3dcb4, type: 3}

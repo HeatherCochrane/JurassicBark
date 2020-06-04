@@ -98,6 +98,10 @@ MonoBehaviour:
   - {r: 0.3529412, g: 0.7686275, b: 0.7137255, a: 1}
   paddockUI: {fileID: 7993822664075727241, guid: 47e2c8cb2bac61648915ae50ef267c05,
     type: 3}
+  foodBowl: {fileID: 2766484955131164744, guid: a0d4b9e52347ea04da50120c093de654,
+    type: 3}
+  waterBowl: {fileID: 701579302331262685, guid: 64475590b591daa46aa3b420a01aabf9,
+    type: 3}
 --- !u!65 &4551594371910835914
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -215,7 +219,7 @@ GameObject:
   - component: {fileID: 7983891309413328005}
   m_Layer: 0
   m_Name: CornerTarget
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,6 +253,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FencePieceH
+      objectReference: {fileID: 0}
+    - target: {fileID: 15628963816892800, guid: c641161f67eacd645b8b324f5bc2811b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7419190587824504095, guid: c641161f67eacd645b8b324f5bc2811b,
         type: 3}
@@ -324,6 +333,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FencePieceH (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 15628963816892800, guid: c641161f67eacd645b8b324f5bc2811b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7419190587824504095, guid: c641161f67eacd645b8b324f5bc2811b,
         type: 3}

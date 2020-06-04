@@ -19,6 +19,16 @@ public class PaddockControl : MonoBehaviour
     bool showPaddockUI = false;
 
     GameObject UICanvas;
+
+    bool hasFoodBowl { get; set; }
+    bool hasWaterBowl { get; set; }
+
+    [SerializeField]
+    GameObject foodBowl;
+    [SerializeField]
+    GameObject waterBowl;
+
+    GameObject bowl;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +75,8 @@ public class PaddockControl : MonoBehaviour
                 Material[] mat = tiles[i, j].GetComponent<MeshRenderer>().materials;
                 mat[1].color = grassColor[Random.Range(0, 1)];
                 tiles[i, j].GetComponent<MeshRenderer>().materials = mat;
+
+                tiles[i, j].transform.parent = GameObject.Find("Environment").transform;
             }
         }
     }
@@ -73,15 +85,12 @@ public class PaddockControl : MonoBehaviour
         if (game.getDeleting())
         {
             returnTiles();
+
             Destroy(this.transform.parent.parent.gameObject);
             game.setDeleting(false);
             Destroy(paddockUI);
         }
-    }
-
-    private void OnMouseOver()
-    {
-        if(!game.getDeleting())
+        else if (!game.getDeleting())
         {
             showPaddockUI = true;
         }
@@ -90,5 +99,23 @@ public class PaddockControl : MonoBehaviour
     private void OnMouseExit()
     {
         showPaddockUI = false;
+    }
+
+    public void placeFoodBowl(EnvironmentTile pos)
+    {
+        bowl = Instantiate(foodBowl);
+       
+       bowl.transform.position = new Vector3(pos.Position.x, pos.Position.y, pos.Position.z);
+        
+        game.setPlacingFood(false);
+    }
+
+    public void placeWaterBowl(EnvironmentTile pos)
+    {
+        bowl = Instantiate(waterBowl);
+
+        bowl.transform.position = new Vector3(pos.Position.x, pos.Position.y, pos.Position.z);
+
+        game.setPlacingWater(false);
     }
 }

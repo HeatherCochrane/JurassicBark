@@ -15,9 +15,7 @@ public class DogHandler : MonoBehaviour
 
     float space = 2f;
     void Start()
-    {
-
-            spawnDogs();
+    { 
         
     }
 
@@ -37,5 +35,15 @@ public class DogHandler : MonoBehaviour
 
             space += 2f;
         }
+    }
+
+    public void spawnDog(Vector3 pos, Transform parent)
+    {
+        dog = Instantiate(dogObject);
+        dog.transform.position = pos;
+
+        dog.transform.parent = parent;
+
+        dogs.Add(dog);
     }
 }

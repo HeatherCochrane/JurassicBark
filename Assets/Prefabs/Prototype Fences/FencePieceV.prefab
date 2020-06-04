@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1208017605464025460}
   m_Layer: 0
   m_Name: FencePieceV
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -22,12 +22,24 @@ public class Game : MonoBehaviour
     PaddockCreation paddock;
 
     int clicks = - 1;
-    bool creatingPaddocks = false;
+
     EnvironmentTile standIn;
-    bool deletePaddocks = false;
+
 
     EnvironmentTile lastTile;
     EnvironmentTile startingTile;
+
+    [SerializeField]
+    DogHandler dogHandle;
+
+    bool creatingPaddocks = false;
+
+    bool deletePaddocks = false;
+
+    bool placeDogs = false;
+
+    bool placeWaterBowl = false;
+    bool placeFoodBowl = false;
 
     void Start()
     {
@@ -74,6 +86,30 @@ public class Game : MonoBehaviour
                             clicks = -1;
                             startingTile = null;
                         }
+                    }
+
+                    if (tile.isPaddock)
+                    {
+                        if (placeFoodBowl)
+                        {
+                            Transform parent = tile.transform.parent;
+                            parent.GetComponentInChildren<PaddockControl>().placeFoodBowl(tile);
+                            placeFoodBowl = false;
+                        }
+                        else if (placeWaterBowl)
+                        {
+                            Transform parent = tile.transform.parent;
+                            parent.GetComponentInChildren<PaddockControl>().placeWaterBowl(tile);
+                            placeWaterBowl = false;
+                        }
+                        else
+                        {
+                            dogHandle.spawnDog(new Vector3(tile.transform.position.x, tile.transform.position.y + 3, tile.transform.position.z), tile.transform.parent);
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("SPACE NOT VALID");
                     }
                 }
             }
@@ -127,6 +163,17 @@ public class Game : MonoBehaviour
     {
         deletePaddocks = set;
     }
+
+    public void setPlacingFood(bool set)
+    {
+        placeFoodBowl = set;
+    }
+
+    public void setPlacingWater(bool set)
+    {
+        placeWaterBowl = set;
+    }
+
     public bool getDeleting()
     {
         return deletePaddocks;

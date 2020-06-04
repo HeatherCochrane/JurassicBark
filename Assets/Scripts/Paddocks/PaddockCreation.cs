@@ -244,8 +244,8 @@ public class PaddockCreation : MonoBehaviour
                     tiles[i, j].IsAccessible = true;
 
                 }
-
                 tiles[i, j].isPaddock = true;
+                tiles[i, j].transform.parent = pParent.transform;
             }
         }
 

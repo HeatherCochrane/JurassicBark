@@ -29,6 +29,10 @@ public class Environment : MonoBehaviour
         mToBeTested = new List<EnvironmentTile>();
     }
 
+    public Vector2 getMapSize()
+    {
+        return Size;
+    }
     private void OnDrawGizmos()
     {
         // Draw the environment nodes and connections if we have them

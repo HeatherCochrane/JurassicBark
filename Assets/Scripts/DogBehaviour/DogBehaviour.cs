@@ -7,7 +7,7 @@ public class DogBehaviour : MonoBehaviour
 
     // Start is called before the first frame update
 
-    float turnRate = 2.5f;
+    float turnRate = 6f;
     bool collidingWithWall = false;
 
     bool collidingWithDog = false;
@@ -16,6 +16,10 @@ public class DogBehaviour : MonoBehaviour
 
     bool stop = false;
     int stoppingTime = 0;
+
+    float hungerLevel = 0;
+    float thirstLevel = 0;
+    float happinessLevel = 0;
 
     void Start()
     {
@@ -33,22 +37,9 @@ public class DogBehaviour : MonoBehaviour
     {
         if (!stop)
         {
-            movement();
+
         }
     }
-    void movement()
-    {
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
-
-        if (Physics.Raycast(transform.position, fwd, 5) || collidingWithWall || collidingWithDog)
-        {
-            print("There is something in front of the object!");
-            transform.eulerAngles += new Vector3(transform.eulerAngles.x, turnRate, transform.eulerAngles.z);
-        }
-
-        transform.position += fwd / 10;
-    }
-
 
     void timer()
     {
@@ -62,6 +53,29 @@ public class DogBehaviour : MonoBehaviour
         }
 
         Invoke("timer", stoppingTime);
+    }
+
+    void decideNextAction()
+    {
+        int ran = Random.Range(1, 4);
+
+        switch(ran)
+        {
+            //Walk around
+            case 1:
+                break;
+            //Go for food
+            case 2:
+                break;
+            //Go for water
+            case 3:
+                break;
+            //Take a nap
+            case 4:
+                break;
+            default:
+                break;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
