@@ -1287,7 +1287,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.287084, y: -0, z: -0, w: 0.9579054}
-  m_LocalPosition: {x: -97.63, y: 100, z: -212.6}
+  m_LocalPosition: {x: -200, y: 100, z: -300}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2412,7 +2412,7 @@ MonoBehaviour:
   - {fileID: 10103160160458647, guid: aa373cc3cd8cfa7418126bd0b9a47880, type: 3}
   - {fileID: 8392035395846825301, guid: 4c0f70225ccee9c4eb8b566b0124f754, type: 3}
   - {fileID: 428312736237616533, guid: b2937a6c300c0624a8fb7c65bf8b21b3, type: 3}
-  Size: {x: 30, y: 20}
+  Size: {x: 50, y: 40}
   AccessiblePercentage: 0.85
   paddock: {fileID: 2116099837}
 --- !u!4 &2083344931

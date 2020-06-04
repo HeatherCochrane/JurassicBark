@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PaddockControl : MonoBehaviour
 {
@@ -29,6 +30,12 @@ public class PaddockControl : MonoBehaviour
     GameObject waterBowl;
 
     GameObject bowl;
+
+    [SerializeField]
+    List<GameObject> dogsInPaddock = new List<GameObject>();
+    int overallHappiness = 0;
+    int overallHunger = 0;
+    int overallThirst = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -117,5 +124,40 @@ public class PaddockControl : MonoBehaviour
         bowl.transform.position = new Vector3(pos.Position.x, pos.Position.y, pos.Position.z);
 
         game.setPlacingWater(false);
+    }
+
+    void updatePaddockInfo()
+    {
+        //Reset values
+        overallHappiness = 0;
+        overallHunger = 0;
+        overallThirst = 0;
+
+        //First child handles the number of dogs within the paddock
+        paddockUI.transform.GetChild(0).GetComponent<Text>().text = "Number of dogs: " + dogsInPaddock.Count.ToString();
+
+
+        //Second child handles happiness
+        for (int i = 0; i < dogsInPaddock.Count; i++)
+        {
+            overallHappiness += dogsInPaddock[i].GetComponentInChildren<DogBehaviour>().getHappiness();
+            overallHunger += dogsInPaddock[i].GetComponentInChildren<DogBehaviour>().getHunger();
+            overallThirst += dogsInPaddock[i].GetComponentInChildren<DogBehaviour>().getThirst();
+        }
+
+        overallHappiness = overallThirst / dogsInPaddock.Count;
+        overallHunger = overallHunger / dogsInPaddock.Count;
+        overallThirst = overallThirst / dogsInPaddock.Count;
+
+        paddockUI.transform.GetChild(1).GetComponent<Text>().text = "Overall Happiness: " + overallHappiness.ToString();
+        paddockUI.transform.GetChild(2).GetComponent<Text>().text = "Overall Hunger: " + overallHunger.ToString();
+        paddockUI.transform.GetChild(3).GetComponent<Text>().text = "Overall Thirst: " + overallThirst.ToString();
+
+    }
+    public void addDog(GameObject d, EnvironmentTile current)
+    {
+        d.GetComponent<DogBehaviour>().givePaddockSize(tiles, width, height, current);
+        dogsInPaddock.Add(d);
+        updatePaddockInfo();
     }
 }

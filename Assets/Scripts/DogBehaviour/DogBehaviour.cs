@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DogBehaviour : MonoBehaviour
+public class DogBehaviour : Character
 { 
 
     // Start is called before the first frame update
@@ -12,18 +12,23 @@ public class DogBehaviour : MonoBehaviour
 
     bool collidingWithDog = false;
 
-    Rigidbody rb;
 
     bool stop = false;
     int stoppingTime = 0;
 
-    float hungerLevel = 0;
-    float thirstLevel = 0;
-    float happinessLevel = 0;
+    int hungerLevel = 100;
+    int thirstLevel = 100;
+    int happinessLevel = 100;
 
+    Environment mMap;
+
+    EnvironmentTile[,] paddock;
+    int width = 0;
+    int height = 0;
     void Start()
     {
-        stoppingTime = Random.Range(5, 15);
+        mMap = GameObject.Find("Environment").GetComponent<Environment>();
+        stoppingTime = Random.Range(5, 10);
         timer();
     }
 
@@ -35,24 +40,27 @@ public class DogBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!stop)
-        {
-
-        }
+       
     }
 
+    public void givePaddockSize(EnvironmentTile[,] p, int w, int h, EnvironmentTile current)
+    {
+        paddock = p;
+        width = w;
+        height = h;
+        this.CurrentPosition = current;
+    }
     void timer()
     {
-        if(stop)
-        {
-            stop = false;
-        }
-        else
-        {
-            stop = true;
-        }
-
+        decideNextAction();
         Invoke("timer", stoppingTime);
+    }
+
+    void moveDog()
+    {
+        EnvironmentTile tile = paddock[Random.Range(0, width), Random.Range(0, height)];
+        List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, tile);
+        this.GoTo(route);
     }
 
     void decideNextAction()
@@ -62,7 +70,7 @@ public class DogBehaviour : MonoBehaviour
         switch(ran)
         {
             //Walk around
-            case 1:
+            case 1: moveDog();
                 break;
             //Go for food
             case 2:
@@ -73,10 +81,26 @@ public class DogBehaviour : MonoBehaviour
             //Take a nap
             case 4:
                 break;
-            default:
+            default: moveDog();
                 break;
         }
     }
+
+    public int getHappiness()
+    {
+        return happinessLevel;
+    }
+
+    public int getHunger()
+    {
+        return hungerLevel;
+    }
+
+    public int getThirst()
+    {
+        return thirstLevel;
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {

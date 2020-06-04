@@ -37,12 +37,14 @@ public class DogHandler : MonoBehaviour
         }
     }
 
-    public void spawnDog(Vector3 pos, Transform parent)
+    public void spawnDog(Vector3 pos, Transform parent, EnvironmentTile current)
     {
         dog = Instantiate(dogObject);
         dog.transform.position = pos;
 
         dog.transform.parent = parent;
+
+        parent.GetComponentInChildren<PaddockControl>().addDog(dog, current);
 
         dogs.Add(dog);
     }

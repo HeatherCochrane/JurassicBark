@@ -242,7 +242,11 @@ public class Environment : MonoBehaviour
                         {
                             EnvironmentTile neighbour = currentNode.Connections[count];
 
-                            if (!neighbour.Visited && neighbour.IsAccessible)
+                            //if (!neighbour.Visited && neighbour.IsAccessible)
+                            //{
+                            //    mToBeTested.Add(neighbour);
+                            //}
+                            if(!neighbour.Visited && neighbour.isPaddock)
                             {
                                 mToBeTested.Add(neighbour);
                             }

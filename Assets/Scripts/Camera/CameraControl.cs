@@ -13,7 +13,7 @@ public class CameraControl : MonoBehaviour
 
 	Vector3 pointerPosition;
 
-	float speed = 30.0f;
+	float speed = 50.0f;
 
 	bool moveCamera = false;
 
@@ -43,8 +43,8 @@ public class CameraControl : MonoBehaviour
 		miny = -map.getMapSize().y * 5;
 		maxy = map.getMapSize().y * 5;
 
-		minz = -map.getMapSize().x * 11;
-		maxz = -map.getMapSize().x + 5;
+		minz = -map.getMapSize().x * 6;
+		maxz = -map.getMapSize().x + 100;
 
 		moveCamera = false;
 
