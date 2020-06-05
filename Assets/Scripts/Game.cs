@@ -102,7 +102,7 @@ public class Game : MonoBehaviour
                             parent.GetComponentInChildren<PaddockControl>().placeWaterBowl(tile);
                             placeWaterBowl = false;
                         }
-                        else if(!tile.hasFence)
+                        else if(!tile.hasFence && placeDogs)
                         {
                             dogHandle.spawnDog(new Vector3(tile.transform.position.x, tile.transform.position.y + 3, tile.transform.position.z), tile.transform.parent, tile);
                         }
@@ -128,8 +128,7 @@ public class Game : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            clicks = -1;
-            creatingPaddocks = false;
+            stopAllActions();
         }
     }
 
@@ -155,9 +154,9 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void setCreatingPaddocks()
+    public void setCreatingPaddocks(bool set)
     {
-        creatingPaddocks = true;
+        creatingPaddocks = set;
     }
     public void setDeleting(bool set)
     {
@@ -174,6 +173,11 @@ public class Game : MonoBehaviour
         placeWaterBowl = set;
     }
 
+    public void setPlacingDogs(bool set)
+    {
+        placeDogs = set;
+    }
+
     public bool getDeleting()
     {
         return deletePaddocks;
@@ -183,6 +187,14 @@ public class Game : MonoBehaviour
         mMap.GenerateWorld();
     }
 
+    public void stopAllActions()
+    {
+        clicks = -1;
+        creatingPaddocks = false;
+        placeWaterBowl = false;
+        placeFoodBowl = false;
+        placeDogs = false;
+    }
     public void Exit()
     {
 #if !UNITY_EDITOR

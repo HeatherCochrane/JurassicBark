@@ -11,6 +11,9 @@ public class UIHandler : MonoBehaviour
 
     [SerializeField]
     GameObject shopParent;
+
+    [SerializeField]
+    GameObject gameUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,7 @@ public class UIHandler : MonoBehaviour
         }
 
         setShops(false);
+        setGameUI(false);
     }
 
     // Update is called once per frame
@@ -46,5 +50,10 @@ public class UIHandler : MonoBehaviour
     public void setShops(bool set)
     {
         shopParent.SetActive(set);
+    }
+
+    public void setGameUI(bool set)
+    {
+        gameUI.SetActive(set);
     }
 }

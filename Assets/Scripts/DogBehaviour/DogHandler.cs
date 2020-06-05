@@ -6,11 +6,11 @@ public class DogHandler : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField]
     GameObject dogObject;
 
     GameObject dog;
 
+    GameObject boughtDog;
     List<GameObject> dogs = new List<GameObject>();
 
     float space = 2f;
@@ -25,27 +25,23 @@ public class DogHandler : MonoBehaviour
         
     }
 
-    void spawnDogs()
+    public void spawnDog(Vector3 pos, Transform parent, EnvironmentTile current)
     {
-        for (int i = 0; i < 14; i++)
+        if (dogObject != null)
         {
             dog = Instantiate(dogObject);
-            dog.transform.position += new Vector3(0, 0, space);
-            dogs.Add(dog);
+            dog.transform.position = pos;
 
-            space += 2f;
+            dog.transform.parent = parent;
+
+            parent.GetComponentInChildren<PaddockControl>().addDog(dog, current);
+
+            dogs.Add(dog);
         }
     }
 
-    public void spawnDog(Vector3 pos, Transform parent, EnvironmentTile current)
+    public void buyDogType(GameObject d)
     {
-        dog = Instantiate(dogObject);
-        dog.transform.position = pos;
-
-        dog.transform.parent = parent;
-
-        parent.GetComponentInChildren<PaddockControl>().addDog(dog, current);
-
-        dogs.Add(dog);
+        dogObject = d;
     }
 }
