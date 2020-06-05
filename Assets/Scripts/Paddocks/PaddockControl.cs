@@ -36,11 +36,14 @@ public class PaddockControl : MonoBehaviour
     int overallHappiness = 0;
     int overallHunger = 0;
     int overallThirst = 0;
+
+    Inventory inventory;
     // Start is called before the first frame update
     void Start()
     {
         game = GameObject.Find("Game").GetComponent<Game>();
         UICanvas = GameObject.Find("GameUI");
+        inventory = GameObject.Find("InventoryUI").GetComponent<Inventory>();
 
         //Show the paddock stats on the game canvas
         paddockUI = Instantiate(paddockUI);
@@ -92,6 +95,23 @@ public class PaddockControl : MonoBehaviour
         if (game.getDeleting())
         {
             returnTiles();
+
+            
+            if (dogsInPaddock.Count > 0)
+            {
+                for (int i = 0; i < dogsInPaddock.Count; i++)
+                {
+                    if (!inventory.isDogInventoryFull())
+                    {
+                        inventory.storeDog(dogsInPaddock[i]);
+                    }
+                    else
+                    {
+                        Debug.Log("INVENTORY NOW FULL");
+                        break;
+                    }
+                }
+            }
 
             Destroy(this.transform.parent.parent.gameObject);
             game.setDeleting(false);

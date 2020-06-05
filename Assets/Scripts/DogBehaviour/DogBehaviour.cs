@@ -25,9 +25,13 @@ public class DogBehaviour : Character
     EnvironmentTile[,] paddock;
     int width = 0;
     int height = 0;
+
+    Inventory inventory;
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
+        inventory = GameObject.Find("InventoryUI").GetComponent<Inventory>();
+
         stoppingTime = Random.Range(5, 10);
         timer();
     }
@@ -123,6 +127,19 @@ public class DogBehaviour : Character
         if (collision.transform.tag == "Dog")
         {
             collidingWithDog = false;
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if (!inventory.isDogInventoryFull())
+        {
+            inventory.storeDog(this.gameObject);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Debug.Log("INVENTORY FULL");
         }
     }
 }
