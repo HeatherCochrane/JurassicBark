@@ -246,7 +246,7 @@ public class Environment : MonoBehaviour
                             //{
                             //    mToBeTested.Add(neighbour);
                             //}
-                            if(!neighbour.Visited && neighbour.isPaddock)
+                            if(!neighbour.Visited && neighbour.isPaddock && neighbour.IsAccessible)
                             {
                                 mToBeTested.Add(neighbour);
                             }

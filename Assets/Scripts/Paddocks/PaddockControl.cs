@@ -132,8 +132,10 @@ public class PaddockControl : MonoBehaviour
     {
         bowl = Instantiate(foodBowl);
        
-       bowl.transform.position = new Vector3(pos.Position.x, pos.Position.y, pos.Position.z);
-        
+        bowl.transform.position = new Vector3(pos.Position.x, pos.Position.y, pos.Position.z);
+
+        pos.IsAccessible = false;
+
         game.setPlacingFood(false);
     }
 
@@ -142,6 +144,8 @@ public class PaddockControl : MonoBehaviour
         bowl = Instantiate(waterBowl);
 
         bowl.transform.position = new Vector3(pos.Position.x, pos.Position.y, pos.Position.z);
+
+        pos.IsAccessible = false;
 
         game.setPlacingWater(false);
     }

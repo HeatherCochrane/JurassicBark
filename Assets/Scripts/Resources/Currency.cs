@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class Currency : MonoBehaviour
 {
+    [SerializeField]
+    int playerCurrency = 100;
+
+    [SerializeField]
+    UIHandler UIHandler;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        UIHandler.updateCurrency(playerCurrency);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void subtractMoney(int cost)
+    {
+        playerCurrency -= cost;
+        UIHandler.updateCurrency(playerCurrency);
+    }
+
+    public void addMoney(int cost)
+    {
+        playerCurrency += cost;
+        UIHandler.updateCurrency(playerCurrency);
+
     }
 }

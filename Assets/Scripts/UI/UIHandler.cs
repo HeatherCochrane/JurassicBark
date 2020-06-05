@@ -1,11 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 //USE THIS SCRIPT TO HANDLE SWITCHING BETWEEN SHOP MENUS, MAIN MENU ETC
 public class UIHandler : MonoBehaviour
 {
+    [System.Serializable]
+    struct items
+    {
+        [SerializeField]
+        public Sprite picture;
+        [SerializeField]
+        public string cost;
+    }
+    GameObject newItem;
+
     [SerializeField]
     List<GameObject> shopScreens = new List<GameObject>();
 
@@ -14,6 +25,20 @@ public class UIHandler : MonoBehaviour
 
     [SerializeField]
     GameObject gameUI;
+
+    [SerializeField]
+    Text playerCurrency;
+
+
+    [SerializeField]
+    List<items> dogScreen = new List<items>();
+
+    [SerializeField]
+    List<items> fenceScreen = new List<items>();
+
+    [SerializeField]
+    List<items> decorationsScreen = new List<items>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +49,26 @@ public class UIHandler : MonoBehaviour
 
         setShops(false);
         setGameUI(false);
+        setConstantUI(false);
+
+        populateShopScreens(dogScreen, 0);
+        populateShopScreens(fenceScreen, 1);
+        populateShopScreens(decorationsScreen, 2);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void populateShopScreens(List<items> list, int child)
+    {
+        for(int i =0; i < shopScreens[child].transform.childCount; i++)
+        {
+            shopScreens[child].transform.GetChild(i).GetComponent<Image>().sprite = list[i].picture;
+            shopScreens[child].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = list[i].cost;
+        }
     }
 
     public void changeShopScreen(GameObject screen)
@@ -47,6 +86,10 @@ public class UIHandler : MonoBehaviour
         }
     }
 
+    public void updateCurrency(int currency)
+    {
+        playerCurrency.text = "£" + currency.ToString();
+    }
     public void setShops(bool set)
     {
         shopParent.SetActive(set);
@@ -55,5 +98,10 @@ public class UIHandler : MonoBehaviour
     public void setGameUI(bool set)
     {
         gameUI.SetActive(set);
+    }
+
+    public void setConstantUI(bool set)
+    {
+        playerCurrency.gameObject.SetActive(set);
     }
 }

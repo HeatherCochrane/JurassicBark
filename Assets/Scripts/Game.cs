@@ -194,6 +194,8 @@ public class Game : MonoBehaviour
         placeWaterBowl = false;
         placeFoodBowl = false;
         placeDogs = false;
+
+        paddock.cancelCreation();
     }
     public void Exit()
     {

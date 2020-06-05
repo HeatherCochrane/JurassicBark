@@ -101,6 +101,11 @@ public class PaddockCreation : MonoBehaviour
         paddockCost.gameObject.transform.position = Input.mousePosition;
         paddockCost.text = "£" + ((width * height) * 2).ToString();
 
+        if(width < 0 || height < 0)
+        {
+            paddockCost.text = "INVALID";
+        }
+
         for (int y = 0; y < mapSize.x; y++)
         {
             for (int k = 0; k < mapSize.y; k++)
@@ -163,7 +168,7 @@ public class PaddockCreation : MonoBehaviour
         width += 1;
         height += 1;
 
-        if (width > 1 && height > 1)
+        if (width > 2 && height > 2)
         {
             for (int y = 0; y < mapSize.x; y++)
             {
@@ -224,9 +229,14 @@ public class PaddockCreation : MonoBehaviour
                 z = 0;
 
                 allPaddocks.Add(createdPaddock);
-                paddockCost.gameObject.SetActive(false);
             }
         }
+        else
+        {
+            cancelCreation();
+        }
+
+        paddockCost.gameObject.SetActive(false);
     }
 
     void generateFences(EnvironmentTile[,] tiles, int width, int height)
@@ -327,5 +337,24 @@ public class PaddockCreation : MonoBehaviour
                 mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
             }
         }
+
+
+    }
+
+    public void cancelCreation()
+    {
+        paddockCost.gameObject.SetActive(false);
+        for (int i = 0; i < mapSize.x; i++)
+        {
+            for (int j = 0; j < mapSize.y; j++)
+            {
+                Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
+                mat[1].color = grassColor[0];
+                mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+            }
+        }
+
+        startTile = null;
+        endTile = null;
     }
 }
