@@ -13,8 +13,13 @@ public class UIHandler : MonoBehaviour
         [SerializeField]
         public Sprite picture;
         [SerializeField]
-        public string cost;
+        public int cost;
+        [SerializeField]
+        public GameObject obj;
+        [SerializeField]
+        public List<GameObject> pieces;
     }
+    
     GameObject newItem;
 
     [SerializeField]
@@ -71,7 +76,7 @@ public class UIHandler : MonoBehaviour
         for(int i =0; i < shopScreens[child].transform.childCount; i++)
         {
             shopScreens[child].transform.GetChild(i).GetComponent<Image>().sprite = list[i].picture;
-            shopScreens[child].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = list[i].cost;
+            shopScreens[child].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "£" + list[i].cost.ToString();
         }
     }
 
@@ -107,5 +112,28 @@ public class UIHandler : MonoBehaviour
     public void setConstantUI(bool set)
     {
         playerCurrency.gameObject.SetActive(set);
+    }
+
+   public int getDogCost(GameObject d)
+    {
+        for(int i =0; i < dogScreen.Count; i++)
+        {
+            if(dogScreen[i].obj == d)
+            {
+                return dogScreen[i].cost;
+            }
+        }
+
+        return 10;
+    }
+
+    public GameObject getDog(int button)
+    {
+        return dogScreen[button].obj;
+    }
+
+    public List<GameObject> getFencePieces(int button)
+    {
+        return fenceScreen[button].pieces;
     }
 }

@@ -14,9 +14,16 @@ public class DogHandler : MonoBehaviour
     List<GameObject> dogs = new List<GameObject>();
 
     float space = 2f;
+
+    int cost = 0;
+
+    [SerializeField]
+    Currency currency;
+
+    UIHandler UIhandler;
     void Start()
-    { 
-        
+    {
+        UIhandler = GameObject.Find("UIHandler").GetComponent<UIHandler>();
     }
 
     // Update is called once per frame
@@ -27,7 +34,7 @@ public class DogHandler : MonoBehaviour
 
     public void spawnDog(Vector3 pos, Transform parent, EnvironmentTile current)
     {
-        if (dogObject != null)
+        if (dogObject != null && currency.sufficientFunds(cost))
         {
             dog = Instantiate(dogObject);
             dog.transform.position = pos;
@@ -37,11 +44,13 @@ public class DogHandler : MonoBehaviour
             parent.GetComponentInChildren<PaddockControl>().addDog(dog, current);
 
             dogs.Add(dog);
+            currency.subtractMoney(cost);
         }
     }
 
-    public void buyDogType(GameObject d)
+    public void buyDogType(int num)
     {
-        dogObject = d;
+        dogObject = UIhandler.getDog(num);
+        cost = UIhandler.getDogCost(dogObject);
     }
 }

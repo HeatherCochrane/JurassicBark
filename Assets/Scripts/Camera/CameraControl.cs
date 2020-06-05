@@ -30,6 +30,7 @@ public class CameraControl : MonoBehaviour
 	float miny = 0;
 	float maxy = 0;
 
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -54,7 +55,6 @@ public class CameraControl : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
 		if (moveCamera)
 		{
 			if (Input.mousePosition.x >= Screen.width - 10)
@@ -81,7 +81,6 @@ public class CameraControl : MonoBehaviour
 			mainCam.transform.position = new Vector3(Mathf.Clamp(mainCam.transform.position.x, minx, maxx), Mathf.Clamp(mainCam.transform.position.y, miny, maxy), Mathf.Clamp(mainCam.transform.position.z, minz, maxz));
 		}
 	}
-
 
 	public void setCamera(bool set)
 	{

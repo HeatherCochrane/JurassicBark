@@ -83,6 +83,7 @@ public class PaddockControl : MonoBehaviour
             {
                 tiles[i, j].isPaddock = false;
                 tiles[i, j].hasFence = false;
+                tiles[i, j].IsAccessible = true;
 
                 tiles[i, j].transform.parent = GameObject.Find("Environment").transform;
             }

@@ -102,9 +102,9 @@ public class Game : MonoBehaviour
                             parent.GetComponentInChildren<PaddockControl>().placeWaterBowl(tile);
                             placeWaterBowl = false;
                         }
-                        else if(!tile.hasFence && placeDogs)
+                        else if(placeDogs && tile.IsAccessible)
                         {
-                            dogHandle.spawnDog(new Vector3(tile.transform.position.x, tile.transform.position.y + 3, tile.transform.position.z), tile.transform.parent, tile);
+                            dogHandle.spawnDog(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z+ 5), tile.transform.parent, tile);
                         }
                     }
                 }

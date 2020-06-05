@@ -62,6 +62,12 @@ public class PaddockCreation : MonoBehaviour
     Currency currency;
 
     Color temp;
+
+    [SerializeField]
+    UIHandler UIhandler;
+    List<GameObject> fenceSet = new List<GameObject>();
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -284,24 +290,24 @@ public class PaddockCreation : MonoBehaviour
         }
 
         //Spawn corner pieces first
-        fencePiece = Instantiate(cornerPiece);
+        fencePiece = Instantiate(fenceSet[0]);
         fencePiece.transform.position = new Vector3(tiles[0, height - 1].transform.position.x, tiles[0, height - 1].transform.position.y, tiles[0, height - 1].transform.position.z);
         fencePiece.transform.parent = pParent.transform;
         tiles[0, height - 1].hasFence = true;
 
-        fencePiece = Instantiate(cornerPiece);
+        fencePiece = Instantiate(fenceSet[0]);
         fencePiece.transform.position = new Vector3(tiles[width - 1, height - 1].transform.position.x, tiles[width - 1, height - 1].transform.position.y, tiles[width - 1, height - 1].transform.position.z + 10);
         fencePiece.transform.Rotate(new Vector3(0, 1, 0), 90);
         fencePiece.transform.parent = pParent.transform;
         tiles[width - 1, height - 1].hasFence = true;
 
-        fencePiece = Instantiate(cornerPiece);
+        fencePiece = Instantiate(fenceSet[0]);
         fencePiece.transform.position = new Vector3(tiles[width - 1, 0].transform.position.x + 10, tiles[width - 1, 0].transform.position.y, tiles[width - 1, 0].transform.position.z + 10);
         fencePiece.transform.Rotate(new Vector3(0, 1, 0), 180);
         fencePiece.transform.parent = pParent.transform;
         tiles[width - 1, 0].hasFence = true;
 
-        fencePiece = Instantiate(cornerTarget);
+        fencePiece = Instantiate(fenceSet[1]);
         fencePiece.transform.position = new Vector3(tiles[0, 0].transform.position.x + 10, tiles[0, 0].transform.position.y, tiles[0, 0].transform.position.z);
         fencePiece.transform.Rotate(new Vector3(0, 1, 0), 270);
         fencePiece.transform.parent = pParent.transform;
@@ -316,7 +322,7 @@ public class PaddockCreation : MonoBehaviour
             if (!tiles[0, i].hasFence)
             {
                 //tiles[0, i].transform.position = new Vector3(tiles[0, i].transform.position.x, tiles[0, i].transform.position.y + 1, tiles[0, i].transform.position.z);
-                fencePiece = Instantiate(fenceH);
+                fencePiece = Instantiate(fenceSet[2]);
                 fencePiece.transform.position = new Vector3(tiles[0, i].transform.position.x, tiles[0, i].transform.position.y + 3, tiles[0, i].transform.position.z + 5);
                 fencePiece.transform.parent = pParent.transform;
                 tiles[0, i].hasFence = true;
@@ -324,7 +330,7 @@ public class PaddockCreation : MonoBehaviour
             if (!tiles[width - 1, i].hasFence)
             {
                 //tiles[width - 1, i].transform.position = new Vector3(tiles[width - 1, i].transform.position.x, tiles[width - 1, i].transform.position.y + 1, tiles[width - 1, i].transform.position.z);
-                fencePiece = Instantiate(fenceH);
+                fencePiece = Instantiate(fenceSet[2]);
                 fencePiece.transform.position = new Vector3(tiles[width - 1, i].transform.position.x + 10, tiles[width - 1, i].transform.position.y + 3, tiles[width - 1, i].transform.position.z + 5);
                 fencePiece.transform.parent = pParent.transform;
                 tiles[width - 1, i].hasFence = true;
@@ -337,7 +343,7 @@ public class PaddockCreation : MonoBehaviour
             if (!tiles[i, 0].hasFence)
             {
                 //tiles[i, 0].transform.position = new Vector3(tiles[i, 0].transform.position.x, tiles[i, 0].transform.position.y + 1, tiles[i, 0].transform.position.z);
-                fencePiece = Instantiate(fenceV);
+                fencePiece = Instantiate(fenceSet[3]);
                 fencePiece.transform.position = new Vector3(tiles[i, 0].transform.position.x + 5, tiles[i, 0].transform.position.y + 3, tiles[i, 0].transform.position.z);
                 fencePiece.transform.parent = pParent.transform;
                 tiles[i, 0].hasFence = true;
@@ -345,7 +351,7 @@ public class PaddockCreation : MonoBehaviour
             if (!tiles[i, height - 1].hasFence)
             {
                 //tiles[i, height - 1].transform.position = new Vector3(tiles[i, height - 1].transform.position.x, tiles[i, height - 1].transform.position.y + 1, tiles[i, height - 1].transform.position.z);
-                fencePiece = Instantiate(fenceV);
+                fencePiece = Instantiate(fenceSet[3]);
                 fencePiece.transform.position = new Vector3(tiles[i, height - 1].transform.position.x + 5, tiles[i, height - 1].transform.position.y + 3, tiles[i, height - 1].transform.position.z + 10);
                 fencePiece.transform.parent = pParent.transform;
                 tiles[i, height - 1].hasFence = true;
@@ -386,5 +392,10 @@ public class PaddockCreation : MonoBehaviour
     public void setFenceCost(int set)
     {
         fenceCost = set;
+    }
+
+    public void setFencePieces(int button)
+    {
+        fenceSet = UIhandler.getFencePieces(button);
     }
 }
