@@ -4,7 +4,26 @@ using UnityEngine;
 
 public class DogBehaviour : Character
 { 
+    IEnumerator decreaseStats()
+    {
+        Debug.Log("Started");
 
+        while (true)
+        {
+            if (hungerLevel > -1)
+            {
+                hungerLevel -= 10;
+            }
+            if(thirstLevel > -1)
+            {
+                thirstLevel -= 10;
+            }
+            paddockHandler.updatePaddockInfo();
+            yield return new WaitForSeconds(10);
+        }
+
+ 
+    }
     // Start is called before the first frame update
 
     float turnRate = 6f;
@@ -16,8 +35,11 @@ public class DogBehaviour : Character
     bool stop = false;
     int stoppingTime = 0;
 
-    int hungerLevel = 100;
-    int thirstLevel = 100;
+    [Range(0, 100)]
+    int hungerLevel = 40;
+    [Range(0, 100)]
+    int thirstLevel = 80;
+    [Range(0, 100)]
     int happinessLevel = 100;
 
     Environment mMap;
@@ -29,13 +51,15 @@ public class DogBehaviour : Character
     Inventory inventory;
 
     PaddockControl paddockHandler;
+
+    EnvironmentTile goalTile;
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
         inventory = GameObject.Find("InventoryUI").GetComponent<Inventory>();
-
-        stoppingTime = Random.Range(5, 10);
         timer();
+
+        StartCoroutine("decreaseStats");
     }
 
     // Update is called once per frame
@@ -46,7 +70,7 @@ public class DogBehaviour : Character
 
     private void FixedUpdate()
     {
-       
+        this.CurrentPosition.IsAccessible = false;
     }
 
     public void givePaddockControl(GameObject p)
@@ -63,7 +87,7 @@ public class DogBehaviour : Character
     void timer()
     {
         decideNextAction();
-        Invoke("timer", stoppingTime);
+        Invoke("timer", Random.Range(6, 12));
     }
 
     void moveDog()
@@ -73,27 +97,84 @@ public class DogBehaviour : Character
         this.GoTo(route);
     }
 
+    void getWater()
+    {
+        for(int i =0; i < width; i++)
+        {
+            for(int j =0; j < height; j++)
+            {
+                if(paddock[i, j].hasWaterBowl)
+                {
+                    goalTile = paddock[i, j];
+                }
+            }
+        }
+        if (goalTile != null)
+        {
+            List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile);
+            this.GoTo(route);
+            Invoke("drinkWater", 5);
+        }
+        else
+        {
+            moveDog();
+        }
+        
+    }
+
+    void getFood()
+    {
+        Debug.Log("Go look for food");
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                if (paddock[i, j].hasFoodBowl)
+                {
+                    goalTile = paddock[i, j];
+                }
+            }
+        }
+        if (goalTile != null)
+        {
+            List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile);
+            this.GoTo(route);
+            Invoke("eatFood", 5);
+        }
+        else
+        {
+            moveDog();
+        }
+
+    }
     void decideNextAction()
     {
-        int ran = Random.Range(1, 4);
 
-        switch(ran)
+        if(hungerLevel < 60)
         {
-            //Walk around
-            case 1: moveDog();
-                break;
-            //Go for food
-            case 2:
-                break;
-            //Go for water
-            case 3:
-                break;
-            //Take a nap
-            case 4:
-                break;
-            default: moveDog();
-                break;
+            getFood();
         }
+        else if(thirstLevel < 60)
+        {
+            getWater();
+        }
+        else
+        {
+            int rand = Random.Range(1, 3);
+
+            switch(rand)
+            {
+                case 1: moveDog();
+                    break;
+                case 2: getFood();
+                    break;
+                case 3: getWater();
+                    break;
+                default: moveDog();
+                    break;
+            }
+        }     
     }
 
     public int getHappiness()
@@ -148,5 +229,33 @@ public class DogBehaviour : Character
         {
             Debug.Log("INVENTORY FULL");
         }
+    }
+
+    void eatFood()
+    {
+        hungerLevel += 20;
+        if(hungerLevel >= 100)
+        {
+            hungerLevel = 100;
+        }
+        else if(hungerLevel <= 0)
+        {
+            hungerLevel = 0;
+        }
+        paddockHandler.updatePaddockInfo();
+    }
+
+    void drinkWater()
+    {
+        thirstLevel += 20;
+        if(thirstLevel >= 100)
+        {
+            thirstLevel = 100;
+        }
+        else if(thirstLevel <= 0)
+        {
+            thirstLevel = 0;
+        }
+        paddockHandler.updatePaddockInfo();
     }
 }

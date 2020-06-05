@@ -39,6 +39,11 @@ public class Character : MonoBehaviour
                 Vector3 next = route[count].Position;
                 yield return DoMove(position, next);
                 CurrentPosition = route[count];
+                route[count].IsAccessible = false;
+                if (route[count] != route[0])
+                {
+                    route[count - 1].IsAccessible = true;
+                }
                 position = next;
             }
         }

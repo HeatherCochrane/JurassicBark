@@ -41,6 +41,9 @@ public class Game : MonoBehaviour
     bool placeWaterBowl = false;
     bool placeFoodBowl = false;
 
+    [SerializeField]
+    PaddockCreation paddockCreation;
+
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -93,18 +96,22 @@ public class Game : MonoBehaviour
                         if (placeFoodBowl)
                         {
                             Transform parent = tile.transform.parent;
-                            parent.GetComponentInChildren<PaddockControl>().placeFoodBowl(tile);
+                            paddockCreation.placeFoodBowl(tile, parent);
                             placeFoodBowl = false;
                         }
                         else if (placeWaterBowl)
                         {
+                            
                             Transform parent = tile.transform.parent;
-                            parent.GetComponentInChildren<PaddockControl>().placeWaterBowl(tile);
+                            paddockCreation.placeWaterBowl(tile, parent);
                             placeWaterBowl = false;
                         }
                         else if(placeDogs && tile.IsAccessible)
                         {
-                            dogHandle.spawnDog(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z+ 5), tile.transform.parent, tile);
+                            if (tile.transform.parent.GetComponentInChildren<PaddockControl>().canPlaceDog())
+                            {
+                                dogHandle.spawnDog(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile.transform.parent, tile);
+                            }
                         }
                     }
                 }

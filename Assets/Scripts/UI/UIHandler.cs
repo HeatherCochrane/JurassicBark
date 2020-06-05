@@ -114,19 +114,24 @@ public class UIHandler : MonoBehaviour
         playerCurrency.gameObject.SetActive(set);
     }
 
-   public int getDogCost(GameObject d)
+   public int getDogCost(int button)
     {
-        for(int i =0; i < dogScreen.Count; i++)
-        {
-            if(dogScreen[i].obj == d)
-            {
-                return dogScreen[i].cost;
-            }
-        }
-
-        return 10;
+        return dogScreen[button].cost;
     }
 
+    public int getFenceCost(int button)
+    {
+        return fenceScreen[button].cost;
+    }
+    public int getItemCost(int button)
+    {
+        return paddockItemsScreen[button].cost;
+    }
+
+    public GameObject getItem(int button)
+    {
+        return paddockItemsScreen[button].obj;
+    }
     public GameObject getDog(int button)
     {
         return dogScreen[button].obj;

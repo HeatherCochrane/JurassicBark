@@ -40,6 +40,9 @@ public class PaddockControl : MonoBehaviour
     Inventory inventory;
 
     PaddockCreation paddockMap;
+
+    int maxDogCount = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +76,9 @@ public class PaddockControl : MonoBehaviour
         tiles = t;
         width = w;
         height = h;
+        
+        maxDogCount = (width + height) / 2;
+
     }
 
     void returnTiles()
@@ -84,7 +90,8 @@ public class PaddockControl : MonoBehaviour
                 tiles[i, j].isPaddock = false;
                 tiles[i, j].hasFence = false;
                 tiles[i, j].IsAccessible = true;
-
+                tiles[i, j].hasFoodBowl = false;
+                tiles[i, j].hasWaterBowl = false;
                 tiles[i, j].transform.parent = GameObject.Find("Environment").transform;
             }
         }
@@ -129,29 +136,8 @@ public class PaddockControl : MonoBehaviour
         showPaddockUI = false;
     }
 
-    public void placeFoodBowl(EnvironmentTile pos)
-    {
-        bowl = Instantiate(foodBowl);
-       
-        bowl.transform.position = new Vector3(pos.Position.x, pos.Position.y, pos.Position.z);
 
-        pos.IsAccessible = false;
-
-        game.setPlacingFood(false);
-    }
-
-    public void placeWaterBowl(EnvironmentTile pos)
-    {
-        bowl = Instantiate(waterBowl);
-
-        bowl.transform.position = new Vector3(pos.Position.x, pos.Position.y, pos.Position.z);
-
-        pos.IsAccessible = false;
-
-        game.setPlacingWater(false);
-    }
-
-    void updatePaddockInfo()
+    public void updatePaddockInfo()
     {
         
         //Reset values
@@ -196,4 +182,17 @@ public class PaddockControl : MonoBehaviour
         updatePaddockInfo();
         Debug.Log(dogsInPaddock.Count);
     }
+
+    public bool canPlaceDog()
+    {
+        if(dogsInPaddock.Count == maxDogCount)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
 }

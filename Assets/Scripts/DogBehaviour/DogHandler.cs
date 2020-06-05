@@ -51,6 +51,6 @@ public class DogHandler : MonoBehaviour
     public void buyDogType(int num)
     {
         dogObject = UIhandler.getDog(num);
-        cost = UIhandler.getDogCost(dogObject);
+        cost = UIhandler.getDogCost(num);
     }
 }

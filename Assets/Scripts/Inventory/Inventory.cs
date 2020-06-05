@@ -35,6 +35,8 @@ public class Inventory : MonoBehaviour
 
     [SerializeField]
     GameObject inventoryDetails;
+
+    bool inventoryToggle = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,10 +51,19 @@ public class Inventory : MonoBehaviour
         
     }
 
-    public void showInventory(bool set)
+    public void showInventory()
     {
-        inventoryParent.SetActive(set);
-        inventoryDetails.SetActive(set);
+       if(inventoryToggle)
+        {
+            inventoryToggle = false;
+        }
+        else
+        {
+            inventoryToggle = true;
+        }
+
+        inventoryParent.SetActive(inventoryToggle);
+        inventoryDetails.SetActive(inventoryToggle);
     }
 
     public bool isDogInventoryFull()

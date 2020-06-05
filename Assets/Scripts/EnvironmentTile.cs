@@ -13,4 +13,6 @@ public class EnvironmentTile : MonoBehaviour
     public bool IsAccessible { get; set; }
     public bool isPaddock { get; set; }
     public bool hasFence { get; set; }
+    public bool hasWaterBowl { get; set;}
+    public bool hasFoodBowl { get; set; }
 }
