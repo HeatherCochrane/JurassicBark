@@ -38,12 +38,15 @@ public class PaddockControl : MonoBehaviour
     int overallThirst = 0;
 
     Inventory inventory;
+
+    PaddockCreation paddockMap;
     // Start is called before the first frame update
     void Start()
     {
         game = GameObject.Find("Game").GetComponent<Game>();
         UICanvas = GameObject.Find("GameUI");
         inventory = GameObject.Find("InventoryUI").GetComponent<Inventory>();
+        paddockMap = GameObject.Find("PaddockHandler").GetComponent<PaddockCreation>();
 
         //Show the paddock stats on the game canvas
         paddockUI = Instantiate(paddockUI);
@@ -81,14 +84,11 @@ public class PaddockControl : MonoBehaviour
                 tiles[i, j].isPaddock = false;
                 tiles[i, j].hasFence = false;
 
-                //Set color of tiles back to one of the two original colours
-                Material[] mat = tiles[i, j].GetComponent<MeshRenderer>().materials;
-                mat[1].color = grassColor[Random.Range(0, 1)];
-                tiles[i, j].GetComponent<MeshRenderer>().materials = mat;
-
                 tiles[i, j].transform.parent = GameObject.Find("Environment").transform;
             }
         }
+
+        paddockMap.setMapColour();
     }
     private void OnMouseDown()
     {
@@ -152,6 +152,7 @@ public class PaddockControl : MonoBehaviour
 
     void updatePaddockInfo()
     {
+        
         //Reset values
         overallHappiness = 0;
         overallHunger = 0;
@@ -160,18 +161,20 @@ public class PaddockControl : MonoBehaviour
         //First child handles the number of dogs within the paddock
         paddockUI.transform.GetChild(0).GetComponent<Text>().text = "Number of dogs: " + dogsInPaddock.Count.ToString();
 
-
-        //Second child handles happiness
-        for (int i = 0; i < dogsInPaddock.Count; i++)
+        if (dogsInPaddock.Count > 0)
         {
-            overallHappiness += dogsInPaddock[i].GetComponentInChildren<DogBehaviour>().getHappiness();
-            overallHunger += dogsInPaddock[i].GetComponentInChildren<DogBehaviour>().getHunger();
-            overallThirst += dogsInPaddock[i].GetComponentInChildren<DogBehaviour>().getThirst();
-        }
+            //Second child handles happiness
+            for (int i = 0; i < dogsInPaddock.Count; i++)
+            {
+                overallHappiness += dogsInPaddock[i].GetComponentInChildren<DogBehaviour>().getHappiness();
+                overallHunger += dogsInPaddock[i].GetComponentInChildren<DogBehaviour>().getHunger();
+                overallThirst += dogsInPaddock[i].GetComponentInChildren<DogBehaviour>().getThirst();
+            }
 
-        overallHappiness = overallThirst / dogsInPaddock.Count;
-        overallHunger = overallHunger / dogsInPaddock.Count;
-        overallThirst = overallThirst / dogsInPaddock.Count;
+            overallHappiness = overallThirst / dogsInPaddock.Count;
+            overallHunger = overallHunger / dogsInPaddock.Count;
+            overallThirst = overallThirst / dogsInPaddock.Count;
+        }
 
         paddockUI.transform.GetChild(1).GetComponent<Text>().text = "Overall Happiness: " + overallHappiness.ToString();
         paddockUI.transform.GetChild(2).GetComponent<Text>().text = "Overall Hunger: " + overallHunger.ToString();
@@ -181,7 +184,15 @@ public class PaddockControl : MonoBehaviour
     public void addDog(GameObject d, EnvironmentTile current)
     {
         d.GetComponent<DogBehaviour>().givePaddockSize(tiles, width, height, current);
+        d.GetComponent<DogBehaviour>().givePaddockControl(this.gameObject);
         dogsInPaddock.Add(d);
         updatePaddockInfo();
+    }
+
+    public void removeDog(GameObject d)
+    {
+        dogsInPaddock.Remove(d);
+        updatePaddockInfo();
+        Debug.Log(dogsInPaddock.Count);
     }
 }

@@ -34,4 +34,16 @@ public class Currency : MonoBehaviour
         UIHandler.updateCurrency(playerCurrency);
 
     }
+
+    public bool sufficientFunds(int cost)
+    {
+        if(playerCurrency - cost > -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

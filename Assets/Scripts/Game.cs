@@ -107,10 +107,6 @@ public class Game : MonoBehaviour
                             dogHandle.spawnDog(new Vector3(tile.transform.position.x, tile.transform.position.y + 3, tile.transform.position.z), tile.transform.parent, tile);
                         }
                     }
-                    else
-                    {
-                        Debug.Log("SPACE NOT VALID");
-                    }
                 }
             }
         }

@@ -39,6 +39,9 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     List<items> decorationsScreen = new List<items>();
 
+    [SerializeField]
+    List<items> paddockItemsScreen = new List<items>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +57,7 @@ public class UIHandler : MonoBehaviour
         populateShopScreens(dogScreen, 0);
         populateShopScreens(fenceScreen, 1);
         populateShopScreens(decorationsScreen, 2);
+        populateShopScreens(paddockItemsScreen, 3);
     }
 
     // Update is called once per frame

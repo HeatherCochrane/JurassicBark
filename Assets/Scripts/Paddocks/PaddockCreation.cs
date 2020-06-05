@@ -54,6 +54,14 @@ public class PaddockCreation : MonoBehaviour
 
     [SerializeField]
     Color[] grassColor;
+
+    int fenceCost = 0;
+    int finalPaddockCost = 0;
+
+    [SerializeField]
+    Currency currency;
+
+    Color temp;
     // Start is called before the first frame update
     void Start()
     {
@@ -99,7 +107,7 @@ public class PaddockCreation : MonoBehaviour
 
         paddockCost.gameObject.SetActive(true);
         paddockCost.gameObject.transform.position = Input.mousePosition;
-        paddockCost.text = "£" + ((width * height) * 2).ToString();
+        paddockCost.text = "£" + ((width * height) * fenceCost).ToString();
 
         if(width < 0 || height < 0)
         {
@@ -132,7 +140,11 @@ public class PaddockCreation : MonoBehaviour
             {
                 paddock[x, z] = mMap[i][j];
                 Material[] grass = paddock[x, z].GetComponent<MeshRenderer>().materials;
-                grass[1].color = Color.green;
+
+                temp = paddock[x, z].GetComponent<MeshRenderer>().material.color;
+                temp.r -= 0.5f;
+                grass[1].color = temp;
+
                 paddock[x, z].GetComponent<MeshRenderer>().materials = grass;
                 z++;
                 standIn = z;
@@ -148,7 +160,11 @@ public class PaddockCreation : MonoBehaviour
                 if (i < xPos || i > xPos + width || j < zPos || j > zPos + height)
                 {
                     Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
-                    mat[1].color = grassColor[0];
+
+                    temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
+                    temp.r = 0.6f;
+                    mat[1].color = temp;
+
                     mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
                 }
             }
@@ -168,7 +184,9 @@ public class PaddockCreation : MonoBehaviour
         width += 1;
         height += 1;
 
-        if (width > 2 && height > 2)
+        finalPaddockCost = (width * height) * fenceCost;
+
+        if (width >= 2 && height >= 2 && currency.sufficientFunds(finalPaddockCost)) 
         {
             for (int y = 0; y < mapSize.x; y++)
             {
@@ -213,7 +231,11 @@ public class PaddockCreation : MonoBehaviour
                         mMap[i][j].isPaddock = true;
                         paddock[x, z] = mMap[i][j];
                         Material[] grass = paddock[x, z].GetComponent<MeshRenderer>().materials;
-                        grass[1].color = Color.green;
+
+                        temp = paddock[x, z].GetComponent<MeshRenderer>().material.color;
+                        temp.r -= 0.5f;
+                        grass[1].color = temp;
+
                         paddock[x, z].GetComponent<MeshRenderer>().materials = grass;
                         createdPaddock.Add(mMap[i][j]);
                         z++;
@@ -229,6 +251,8 @@ public class PaddockCreation : MonoBehaviour
                 z = 0;
 
                 allPaddocks.Add(createdPaddock);
+                currency.subtractMoney(finalPaddockCost);
+
             }
         }
         else
@@ -328,33 +352,39 @@ public class PaddockCreation : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < mapSize.x; i++)
-        {
-            for (int j = 0; j < mapSize.y; j++)
-            {
-                Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
-                mat[1].color = grassColor[0];
-                mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
-            }
-        }
-
+        setMapColour();
 
     }
 
     public void cancelCreation()
     {
         paddockCost.gameObject.SetActive(false);
-        for (int i = 0; i < mapSize.x; i++)
+        setMapColour();
+
+        startTile = null;
+        endTile = null;
+    }
+
+    public void setMapColour()
+    {
+        for(int i = 0; i < mapSize.x; i++)
         {
             for (int j = 0; j < mapSize.y; j++)
             {
                 Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
-                mat[1].color = grassColor[0];
+
+                temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
+                temp.r = 0.6f;
+                mat[1].color = temp;
+
                 mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
             }
         }
 
-        startTile = null;
-        endTile = null;
+    }
+
+    public void setFenceCost(int set)
+    {
+        fenceCost = set;
     }
 }

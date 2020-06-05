@@ -27,6 +27,8 @@ public class DogBehaviour : Character
     int height = 0;
 
     Inventory inventory;
+
+    PaddockControl paddockHandler;
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
@@ -47,6 +49,10 @@ public class DogBehaviour : Character
        
     }
 
+    public void givePaddockControl(GameObject p)
+    {
+        paddockHandler = p.GetComponent<PaddockControl>();
+    }
     public void givePaddockSize(EnvironmentTile[,] p, int w, int h, EnvironmentTile current)
     {
         paddock = p;
@@ -135,6 +141,7 @@ public class DogBehaviour : Character
         if (!inventory.isDogInventoryFull())
         {
             inventory.storeDog(this.gameObject);
+            paddockHandler.removeDog(this.gameObject);
             Destroy(this.gameObject);
         }
         else
