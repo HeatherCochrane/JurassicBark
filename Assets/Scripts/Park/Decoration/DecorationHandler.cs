@@ -44,4 +44,9 @@ public class DecorationHandler : MonoBehaviour
         standIn = UIHandler.getDecoration(button);
         cost = UIHandler.getDecorationCost(button);
     }
+
+    public GameObject getStandIn(int button)
+    {
+        return UIHandler.getDecoration(button);
+    }
 }

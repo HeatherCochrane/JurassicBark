@@ -261,7 +261,7 @@ public class Environment : MonoBehaviour
 
                             if (characterType == 0)
                             {
-                                if (!neighbour.Visited && neighbour.IsAccessible)
+                                if (!neighbour.Visited && neighbour.IsAccessible && !neighbour.isPaddock)
                                 {
                                     mToBeTested.Add(neighbour);
                                 }

@@ -26,6 +26,16 @@ public class DogHandler : MonoBehaviour
     GameObject dogProfile;
     [SerializeField]
     GameObject dogStats;
+
+    [SerializeField]
+    List<string> personalities = new List<string>();
+
+    [SerializeField]
+    List<string> genders = new List<string>();
+
+    string personality;
+    string gender;
+    int age = 0;
     void Start()
     {
         UIhandler = GameObject.Find("UIHandler").GetComponent<UIHandler>();
@@ -50,6 +60,13 @@ public class DogHandler : MonoBehaviour
 
             parent.GetComponentInChildren<PaddockControl>().addDog(dog, current);
             dog.GetComponent<DogBehaviour>().giveProfile(dogProfile, dogStats);
+
+            age = Random.Range(1, 4);
+            personality = personalities[Random.Range(0, personalities.Count)];
+            gender = genders[Random.Range(0, genders.Count)];
+
+            dog.GetComponent<DogBehaviour>().giveDogInfo(gender, personality, age);
+
             dogs.Add(dog);
             currency.subtractMoney(cost);
         }
@@ -59,5 +76,15 @@ public class DogHandler : MonoBehaviour
     {
         dogObject = UIhandler.getDog(num);
         cost = UIhandler.getDogCost(num);
+    }
+
+    public GameObject getStandIn(int button)
+    {
+        return UIhandler.getDog(button);
+    }
+
+    public void setDogProfile(bool set)
+    {
+        dogProfile.SetActive(set);
     }
 }

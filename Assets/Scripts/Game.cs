@@ -53,11 +53,18 @@ public class Game : MonoBehaviour
     DecorationHandler decoration;
 
     bool rayOnButton = false;
+
+    GameObject standInObject;
+    int standInButton = 0;
+
+    [SerializeField]
+    Color[] standInColours;
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
         mMap = GetComponentInChildren<Environment>();
-       // mCharacter = Instantiate(Character, transform); 
+        // mCharacter = Instantiate(Character, transform); 
+        rayOnButton = true;
         ShowMenu(true);
     }
 
@@ -74,90 +81,92 @@ public class Game : MonoBehaviour
             Ray screenClick = MainCamera.ScreenPointToRay(Input.mousePosition);
             int hits = Physics.RaycastNonAlloc(screenClick, mRaycastHits);
 
-            if (Input.GetMouseButtonDown(0))
+            EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
+            if (tile != null)
             {
-                if (hits > 0)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
-                    if (tile != null)
+
+                    //If the selection for creating paddocks has been selected (button)
+                    if (creatingPaddocks)
                     {
-                        //If the selection for creating paddocks has been selected (button)
-                        if (creatingPaddocks)
+                        clicks += 1;
+                        //First clicks equals the starting tile
+                        if (clicks == 0)
                         {
-                            clicks += 1;
-                            //First clicks equals the starting tile
-                            if (clicks == 0)
-                            {
-                                paddock.setStartingTile(tile);
-                                startingTile = tile;
-                            }
-                            //Second click equals the end tile
-                            else if (clicks == 1)
-                            {
-                                paddock.setEndTile(tile);
-                                creatingPaddocks = false;
-                                clicks = -1;
-                                startingTile = null;
-                            }
+                            paddock.setStartingTile(tile);
+                            startingTile = tile;
                         }
-                        else if (placePath)
+                        //Second click equals the end tile
+                        else if (clicks == 1)
                         {
-                            clicks += 1;
-                            //First clicks equals the starting tile
-                            if (clicks == 0)
-                            {
-                                pathHandler.setStartingTile(tile);
-                                startingTile = tile;
-                            }
-                            //Second click equals the end tile
-                            else if (clicks == 1)
-                            {
-                                pathHandler.setEndTile(tile);
-                                placePath = false;
-                                clicks = -1;
-                                startingTile = null;
-                            }
+                            paddock.setEndTile(tile);
+                            creatingPaddocks = false;
+                            clicks = -1;
+                            startingTile = null;
                         }
-                        else if (placingDeco)
+                    }
+                    else if (placePath)
+                    {
+                        clicks += 1;
+                        //First clicks equals the starting tile
+                        if (clicks == 0)
                         {
-                            if (!tile.isPath && tile.IsAccessible)
-                            {
-                                decoration.spawnDecoration(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile);
-                                placingDeco = false;
-                            }
+                            pathHandler.setStartingTile(tile);
+                            startingTile = tile;
                         }
+                        //Second click equals the end tile
+                        else if (clicks == 1)
+                        {
+                            pathHandler.setEndTile(tile);
+                            placePath = false;
+                            clicks = -1;
+                            startingTile = null;
+                        }
+                    }
+                    else if (placingDeco)
+                    {
+                        if (!tile.isPath && tile.IsAccessible)
+                        {
+                            decoration.spawnDecoration(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile);
+                        }
+                    }
 
-                        if (tile.isPaddock)
+                    if (tile.isPaddock)
+                    {
+                        if (placeFoodBowl)
                         {
-                            if (placeFoodBowl)
-                            {
-                                Transform parent = tile.transform.parent;
-                                paddockCreation.placeFoodBowl(tile, parent);
-                                placeFoodBowl = false;
-                            }
-                            else if (placeWaterBowl)
-                            {
+                            Transform parent = tile.transform.parent;
+                            paddockCreation.placeFoodBowl(tile, parent);
+                        }
+                        else if (placeWaterBowl)
+                        {
 
-                                Transform parent = tile.transform.parent;
-                                paddockCreation.placeWaterBowl(tile, parent);
-                                placeWaterBowl = false;
-                            }
-                            else if (placeDogs && tile.IsAccessible)
+                            Transform parent = tile.transform.parent;
+                            paddockCreation.placeWaterBowl(tile, parent);
+                        }
+                        else if (placeDogs && tile.IsAccessible)
+                        {
+                            if (tile.transform.parent.GetComponentInChildren<PaddockControl>().canPlaceDog())
                             {
-                                if (tile.transform.parent.GetComponentInChildren<PaddockControl>().canPlaceDog())
-                                {
-                                    dogHandle.spawnDog(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile.transform.parent, tile);
-                                }
+                                dogHandle.spawnDog(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile.transform.parent, tile);
                             }
                         }
                     }
+
                 }
+
+                if(standInObject != null)
+                {
+                    standInObject.transform.position = new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5);
+                }
+
             }
+
             if (creatingPaddocks && paddock.getStartingTile() != null && startingTile == paddock.getStartingTile())
             {
                 if (hits > 0)
                 {
-                    EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
                     if (tile != null && tile != lastTile)
                     {
                         paddock.calculatePaddockCost(tile);
@@ -169,7 +178,6 @@ public class Game : MonoBehaviour
             {
                 if (hits > 0)
                 {
-                    EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
                     if (tile != null && tile != lastTile)
                     {
                         pathHandler.calculatePathCost(tile);
@@ -261,6 +269,11 @@ public class Game : MonoBehaviour
         placePath = false;
         placingDeco = false;
 
+        if(standInObject != null)
+        {
+            Destroy(standInObject);
+        }
+
         paddock.cancelCreation();
         pathHandler.cancelCreation();
     }
@@ -275,6 +288,32 @@ public class Game : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void setStandInButton(int button)
+    {
+        standInButton = button;
+    }
+    public void getStandIn(int type)
+    {
+        switch(type)
+        {
+            //Dogs
+            case 1: standInObject = Instantiate(dogHandle.getStandIn(standInButton));
+                Destroy(standInObject.GetComponent<DogBehaviour>());
+                break;
+            //Decorations
+            case 2: standInObject = Instantiate(decoration.getStandIn(standInButton));
+                break;
+        }
+
+        Material[] standIns = standInObject.GetComponent<MeshRenderer>().materials;
+        for (int i = 0; i < standIns.Length; i++)
+        {
+            standIns[i].color= standInColours[i];
+        }
+
+        standInObject.GetComponent<MeshRenderer>().materials = standIns;
     }
     public void Exit()
     {

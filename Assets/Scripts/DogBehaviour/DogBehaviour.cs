@@ -68,6 +68,7 @@ public class DogBehaviour : Character
 
     Game game;
 
+
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
@@ -111,18 +112,14 @@ public class DogBehaviour : Character
         width = w;
         height = h;
         this.CurrentPosition = current;
-        generateDogInfo();
     }
 
-    void generateDogInfo()
+    public void giveDogInfo(string gender, string personality, int age)
     {
-        int num = Random.Range(1, 4);
-        dog.age = num;
+        dog.age = age;
 
-        string gender = "Fuck gender";
         dog.gender = gender;
 
-        string personality = "Happy af";
         dog.personality = personality;
 
         dog.hungerLevel = hungerLevel;
@@ -324,17 +321,19 @@ public class DogBehaviour : Character
         //    Debug.Log("INVENTORY FULL");
         //}
 
-        profile.SetActive(true);
+        if (!game.doingAction())
+        {
+            profile.SetActive(true);
 
-        profile.transform.GetChild(0).GetComponent<Text>().text = dog.gender;
-        profile.transform.GetChild(1).GetComponent<Text>().text = dog.age.ToString();
-        profile.transform.GetChild(2).GetComponent<Text>().text = dog.personality;
+            profile.transform.GetChild(1).GetComponent<Text>().text = "Gender: " + dog.gender;
+            profile.transform.GetChild(2).GetComponent<Text>().text = "Age: " + dog.age.ToString();
+            profile.transform.GetChild(3).GetComponent<Text>().text = "Personality: " + dog.personality;
+        }
 
     }
 
     private void OnMouseExit()
     {
-        profile.SetActive(false);
         stats.SetActive(false);
     }
 }
