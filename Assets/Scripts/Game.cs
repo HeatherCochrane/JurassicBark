@@ -47,6 +47,10 @@ public class Game : MonoBehaviour
     bool placePath = false;
     [SerializeField]
     PathHandler pathHandler;
+
+    bool placingDeco = false;
+    [SerializeField]
+    DecorationHandler decoration;
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -109,6 +113,14 @@ public class Game : MonoBehaviour
                             placePath = false;
                             clicks = -1;
                             startingTile = null;
+                        }
+                    }
+                    else if(placingDeco)
+                    {
+                        if(!tile.isPath && tile.IsAccessible)
+                        {
+                            decoration.spawnDecoration(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile);
+                            placingDeco = false;
                         }
                     }
 
@@ -218,6 +230,10 @@ public class Game : MonoBehaviour
     {
         placePath = set;
     }
+    public void setPlacingDeco(bool set)
+    {
+        placingDeco = set;
+    }
     public bool getDeleting()
     {
         return deletePaddocks;
@@ -235,6 +251,7 @@ public class Game : MonoBehaviour
         placeFoodBowl = false;
         placeDogs = false;
         placePath = false;
+        placingDeco = false;
 
         paddock.cancelCreation();
         pathHandler.cancelCreation();

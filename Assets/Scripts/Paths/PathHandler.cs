@@ -217,7 +217,7 @@ public class PathHandler : MonoBehaviour
                         grass[1] = pathType;
 
                         path[x, z].GetComponent<MeshRenderer>().materials = grass;
-                        path[x, z].GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(0.01f, 0.01f);
+                        path[x, z].GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(1, 1);
                         createdPath.Add(mMap[i][j]);
                         z++;
                         standIn = z;

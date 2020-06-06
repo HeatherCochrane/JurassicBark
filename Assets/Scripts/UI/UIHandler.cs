@@ -139,6 +139,11 @@ public class UIHandler : MonoBehaviour
         return pathItemsScreen[button].cost;
     }
 
+    public int getDecorationCost(int button)
+    {
+        return decorationsScreen[button].cost;
+    }
+
     public GameObject getItem(int button)
     {
         return paddockItemsScreen[button].obj;
@@ -156,5 +161,10 @@ public class UIHandler : MonoBehaviour
     public Material getPathType(int button)
     {
         return pathItemsScreen[button].mat;
+    }
+
+    public GameObject getDecoration(int button)
+    {
+        return decorationsScreen[button].obj;
     }
 }

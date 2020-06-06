@@ -554,8 +554,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 809585156}
-        m_MethodName: showInventory
+      - m_Target: {fileID: 963194229}
+        m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -563,10 +563,21 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 963194229}
-        m_MethodName: setCamera
+      - m_Target: {fileID: 1716821176}
+        m_MethodName: getDecoration
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 896303071}
+        m_MethodName: setPlacingDeco
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1198,8 +1209,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 809585156}
-        m_MethodName: showInventory
+      - m_Target: {fileID: 963194229}
+        m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1207,10 +1218,21 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 963194229}
-        m_MethodName: setCamera
+      - m_Target: {fileID: 1716821176}
+        m_MethodName: getDecoration
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 896303071}
+        m_MethodName: setPlacingDeco
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2608,19 +2630,19 @@ MonoBehaviour:
     cost: 10
     obj: {fileID: 0}
     pieces:
-    - {fileID: 5139081396082097481, guid: c418be0f55a724d43b8787c80344aa89, type: 3}
-    - {fileID: 8681582984989976511, guid: 8ed2d024edb00214da13f31607ff0282, type: 3}
-    - {fileID: 15628963816892800, guid: c641161f67eacd645b8b324f5bc2811b, type: 3}
-    - {fileID: 6794408073001093346, guid: 8b976555125aff145a9eeb799ed4ef24, type: 3}
+    - {fileID: 6373112119470676357, guid: 38ed524640f8ac94fbe09e6bd72c1d10, type: 3}
+    - {fileID: 4369547045811033493, guid: 5e4e1ad0864076d4c820300ca5cf7c41, type: 3}
+    - {fileID: 3778367982531189526, guid: 27d2b698579f5254c8b94e8075991e89, type: 3}
+    - {fileID: 2539980940662398497, guid: 8eb784ce01240494195e12a4f855cc80, type: 3}
     mat: {fileID: 0}
   - picture: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     cost: 20
     obj: {fileID: 0}
     pieces:
-    - {fileID: 980883916043031971, guid: 0976e5830515bb04c9ffc5d1a9a73573, type: 3}
-    - {fileID: 5808643965948810142, guid: eb326d41de913fe499a9cb87471e6f9b, type: 3}
-    - {fileID: 8489176739070400564, guid: 842520f97885eb34ba5876934d4b0f8c, type: 3}
-    - {fileID: 1181707592362888731, guid: 9868ee70cf62e2d46b7bf01890bffad2, type: 3}
+    - {fileID: 6155099127539265575, guid: 623154fdb43d6f24d87af5694a9eb5b3, type: 3}
+    - {fileID: 4781561278410742559, guid: 1e3c889ee7b2cfa4cbbd2506d7ddca59, type: 3}
+    - {fileID: 2773488061858756456, guid: 5b0f97ad9aa03fb4f947688f714f8d3d, type: 3}
+    - {fileID: 3731186335587112628, guid: 4771f3f1a10af654786c8a619528ab65, type: 3}
     mat: {fileID: 0}
   - picture: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     cost: 0
@@ -2644,13 +2666,13 @@ MonoBehaviour:
     mat: {fileID: 0}
   decorationsScreen:
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
-    cost: 0
-    obj: {fileID: 0}
+    cost: 5
+    obj: {fileID: -927199367670048503, guid: 25a9f89ddfea5e546aa52748c8b9a949, type: 3}
     pieces: []
     mat: {fileID: 0}
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
-    cost: 0
-    obj: {fileID: 0}
+    cost: 10
+    obj: {fileID: -927199367670048503, guid: 50364cf639ed6b0409490cf1c6bd3f53, type: 3}
     pieces: []
     mat: {fileID: 0}
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
@@ -2884,8 +2906,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 809585156}
-        m_MethodName: showInventory
+      - m_Target: {fileID: 963194229}
+        m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2893,10 +2915,21 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 963194229}
-        m_MethodName: setCamera
+      - m_Target: {fileID: 1716821176}
+        m_MethodName: getDecoration
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 896303071}
+        m_MethodName: setPlacingDeco
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4640,6 +4673,7 @@ MonoBehaviour:
   dogHandle: {fileID: 448926564}
   paddockCreation: {fileID: 2116099837}
   pathHandler: {fileID: 1473132419}
+  decoration: {fileID: 1716821176}
 --- !u!4 &896303072
 Transform:
   m_ObjectHideFlags: 0
@@ -4660,6 +4694,7 @@ Transform:
   - {fileID: 972362447}
   - {fileID: 561634765}
   - {fileID: 2116099838}
+  - {fileID: 1716821175}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4767,8 +4802,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 809585156}
-        m_MethodName: showInventory
+      - m_Target: {fileID: 963194229}
+        m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4776,10 +4811,21 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 963194229}
-        m_MethodName: setCamera
+      - m_Target: {fileID: 1716821176}
+        m_MethodName: getDecoration
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 896303071}
+        m_MethodName: setPlacingDeco
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5765,8 +5811,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 809585156}
-        m_MethodName: showInventory
+      - m_Target: {fileID: 963194229}
+        m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5774,10 +5820,21 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 963194229}
-        m_MethodName: setCamera
+      - m_Target: {fileID: 1716821176}
+        m_MethodName: getDecoration
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 896303071}
+        m_MethodName: setPlacingDeco
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7180,6 +7237,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696376801}
   m_CullTransparentMesh: 0
+--- !u!1 &1716821174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1716821175}
+  - component: {fileID: 1716821176}
+  m_Layer: 0
+  m_Name: DecorationsHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1716821175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716821174}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -196.65878, y: 29.224955, z: -237.13985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 896303072}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1716821176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716821174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d33dc9414476648b34ca3bb9239a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIHandler: {fileID: 538645414}
 --- !u!1 &1733279907
 GameObject:
   m_ObjectHideFlags: 0
@@ -8023,8 +8124,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 809585156}
-        m_MethodName: showInventory
+      - m_Target: {fileID: 963194229}
+        m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8032,10 +8133,21 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 963194229}
-        m_MethodName: setCamera
+      - m_Target: {fileID: 1716821176}
+        m_MethodName: getDecoration
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 896303071}
+        m_MethodName: setPlacingDeco
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
