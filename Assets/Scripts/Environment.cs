@@ -26,6 +26,8 @@ public class Environment : MonoBehaviour
     [SerializeField]
     PathHandler pathHandler;
 
+    [SerializeField]
+    VisitorHandler visitorHandler;
     private void Awake()
     {
         mAll = new List<EnvironmentTile>();
@@ -35,6 +37,11 @@ public class Environment : MonoBehaviour
     public Vector2 getMapSize()
     {
         return Size;
+    }
+
+    public EnvironmentTile[][] getMap()
+    {
+        return mMap;
     }
     private void OnDrawGizmos()
     {
@@ -121,6 +128,7 @@ public class Environment : MonoBehaviour
 
         paddock.setMap(mMap, Size);
         pathHandler.setMap(mMap, Size);
+        visitorHandler.setSpawnPoint(Start);
     }
 
     private void SetupConnections()
@@ -196,7 +204,7 @@ public class Environment : MonoBehaviour
         }
     }
 
-    public List<EnvironmentTile> Solve(EnvironmentTile begin, EnvironmentTile destination)
+    public List<EnvironmentTile> Solve(EnvironmentTile begin, EnvironmentTile destination, int characterType)
     {
         List<EnvironmentTile> result = null;
         if (begin != null && destination != null)
@@ -250,9 +258,29 @@ public class Environment : MonoBehaviour
                             //{
                             //    mToBeTested.Add(neighbour);
                             //}
-                            if(!neighbour.Visited && neighbour.isPaddock && neighbour.IsAccessible)
+
+                            if (characterType == 0)
                             {
-                                mToBeTested.Add(neighbour);
+                                if (!neighbour.Visited && neighbour.IsAccessible)
+                                {
+                                    mToBeTested.Add(neighbour);
+                                }
+                            }
+                            //Visitors
+                            else if (characterType == 1)
+                            {
+                                if (!neighbour.Visited && neighbour.isPath && neighbour.IsAccessible)
+                                {
+                                    mToBeTested.Add(neighbour);
+                                }
+                            }
+                            //Dogs
+                            else if (characterType == 2)
+                            {
+                                if (!neighbour.Visited && neighbour.isPaddock && neighbour.IsAccessible)
+                                {
+                                    mToBeTested.Add(neighbour);
+                                }
                             }
 
                             // Calculate the local goal of this location from our current location and 

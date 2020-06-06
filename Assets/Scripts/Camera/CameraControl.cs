@@ -37,7 +37,6 @@ public class CameraControl : MonoBehaviour
 		game = GameObject.Find("Game").GetComponent<Game>();
 		map = GameObject.Find("Environment").GetComponent<Environment>();
 
-
 		minx = -map.getMapSize().x * 5;
 		maxx = map.getMapSize().x * 5;
 

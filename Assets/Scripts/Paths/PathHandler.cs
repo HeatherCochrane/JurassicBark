@@ -19,8 +19,8 @@ public class PathHandler : MonoBehaviour
     int xPos = 0;
     int zPos = 0;
 
-    List<List<EnvironmentTile>> paths = new List<List<EnvironmentTile>>();
-    List<EnvironmentTile> createdPath = new List<EnvironmentTile>();
+    
+    public List<EnvironmentTile> createdPath = new List<EnvironmentTile>();
 
     int widthTile = 0;
     int heightTile = 0;
@@ -37,6 +37,9 @@ public class PathHandler : MonoBehaviour
     UIHandler UIhandler;
 
     int buttonPressed = 0;
+
+    [SerializeField]
+    VisitorHandler visitorHandler;
     // Start is called before the first frame update
     void Start()
     {
@@ -153,7 +156,7 @@ public class PathHandler : MonoBehaviour
     }
     void calculatePathSize()
     {
-        createdPath.Clear();
+        //createdPath.Clear();
 
         width = (int)endTile.transform.position.x - (int)startTile.transform.position.x;
         height = (int)endTile.transform.position.z - (int)startTile.transform.position.z;
@@ -227,12 +230,10 @@ public class PathHandler : MonoBehaviour
                 }
                 x = 0;
                 z = 0;
-
-                paths.Add(createdPath);
                 //currency.subtractMoney(finalPaddockCost);
             }
 
-                            setMapColour();
+             setMapColour();
             //paddockCost.gameObject.SetActive(false);
         }
         else
@@ -288,5 +289,10 @@ public class PathHandler : MonoBehaviour
     {
         pathTypeCost = UIhandler.getPathCost(button);
         buttonPressed = button;
+    }
+
+    public List<EnvironmentTile> getAllPaths()
+    {
+        return createdPath;
     }
 }

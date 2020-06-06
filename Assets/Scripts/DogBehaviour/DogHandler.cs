@@ -21,9 +21,16 @@ public class DogHandler : MonoBehaviour
     Currency currency;
 
     UIHandler UIhandler;
+
+    [SerializeField]
+    GameObject dogProfile;
+    [SerializeField]
+    GameObject dogStats;
     void Start()
     {
         UIhandler = GameObject.Find("UIHandler").GetComponent<UIHandler>();
+        dogProfile.SetActive(false);
+        dogStats.SetActive(false);
     }
 
     // Update is called once per frame
@@ -42,7 +49,7 @@ public class DogHandler : MonoBehaviour
             dog.transform.parent = parent;
 
             parent.GetComponentInChildren<PaddockControl>().addDog(dog, current);
-
+            dog.GetComponent<DogBehaviour>().giveProfile(dogProfile, dogStats);
             dogs.Add(dog);
             currency.subtractMoney(cost);
         }

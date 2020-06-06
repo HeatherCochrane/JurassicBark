@@ -1,9 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class DogBehaviour : Character
 { 
+
+    struct Dog
+    {
+        public int hungerLevel;
+        public int thirstLevel;
+        public int happinessLevel;
+        public string gender;
+        public int age;
+        public string personality;
+    }
+
     IEnumerator decreaseStats()
     {
         Debug.Log("Started");
@@ -19,12 +30,15 @@ public class DogBehaviour : Character
                 thirstLevel -= 10;
             }
             paddockHandler.updatePaddockInfo();
+            updateStats();
             yield return new WaitForSeconds(10);
         }
 
  
     }
-    // Start is called before the first frame update
+
+    Dog dog;
+
 
     bool stop = false;
     int stoppingTime = 0;
@@ -47,21 +61,41 @@ public class DogBehaviour : Character
     PaddockControl paddockHandler;
 
     EnvironmentTile goalTile;
+
+
+    GameObject profile;
+    GameObject stats;
+
+    Game game;
+
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
         inventory = GameObject.Find("InventoryUI").GetComponent<Inventory>();
+        game = GameObject.Find("Game").GetComponent<Game>();
         timer();
 
+        profile.SetActive(false);
+        stats.SetActive(false);
+
+        updateStats();
         StartCoroutine("decreaseStats");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (stats.activeSelf)
+        {
+            stats.transform.position = Input.mousePosition;
+        }
     }
 
+    public void giveProfile(GameObject prof, GameObject s)
+    {
+        profile = prof;
+        stats = s;
+    }
     private void FixedUpdate()
     {
         this.CurrentPosition.IsAccessible = false;
@@ -77,6 +111,24 @@ public class DogBehaviour : Character
         width = w;
         height = h;
         this.CurrentPosition = current;
+        generateDogInfo();
+    }
+
+    void generateDogInfo()
+    {
+        int num = Random.Range(1, 4);
+        dog.age = num;
+
+        string gender = "Fuck gender";
+        dog.gender = gender;
+
+        string personality = "Happy af";
+        dog.personality = personality;
+
+        dog.hungerLevel = hungerLevel;
+        dog.thirstLevel = thirstLevel;
+        dog.happinessLevel = happinessLevel;
+        
     }
     void timer()
     {
@@ -87,7 +139,7 @@ public class DogBehaviour : Character
     void moveDog()
     {
         EnvironmentTile tile = paddock[Random.Range(0, width), Random.Range(0, height)];
-        List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, tile);
+        List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, tile, 2);
         this.GoTo(route);
     }
 
@@ -107,7 +159,7 @@ public class DogBehaviour : Character
         {
             if (goalTile.IsAccessible)
             {
-                List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile);
+                List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
                 this.GoTo(route);
                 goalTile.IsAccessible = false;
                 Invoke("drinkWater", 5);
@@ -117,7 +169,11 @@ public class DogBehaviour : Character
                 moveDog();
             }
         }
-        
+        else if (dog.hungerLevel < 60)
+        {
+            getFood();
+        }
+
     }
 
     void getFood()
@@ -138,8 +194,9 @@ public class DogBehaviour : Character
         {
             if (goalTile.IsAccessible)
             {
-                List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile);
+                List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
                 this.GoTo(route);
+                
                 goalTile.IsAccessible = false;
                 Invoke("eatFood", 5);
             }
@@ -148,16 +205,19 @@ public class DogBehaviour : Character
                 moveDog();
             }
         }
+        else if(dog.thirstLevel < 60)
+        {
+            getWater();
+        }
 
     }
     void decideNextAction()
     {
-
-        if(hungerLevel < 60)
+        if(dog.hungerLevel < 60)
         {
             getFood();
         }
-        else if(thirstLevel < 60)
+        else if(dog.thirstLevel < 60)
         {
             getWater();
         }
@@ -181,36 +241,23 @@ public class DogBehaviour : Character
 
     public int getHappiness()
     {
-        return happinessLevel;
+        return dog.happinessLevel;
     }
 
     public int getHunger()
     {
-        return hungerLevel;
+        return dog.hungerLevel;
     }
 
     public int getThirst()
     {
-        return thirstLevel;
+        return dog.thirstLevel;
     }
 
-    private void OnMouseDown()
-    {
-        if (!inventory.isDogInventoryFull())
-        {
-            inventory.storeDog(this.gameObject);
-            paddockHandler.removeDog(this.gameObject);
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Debug.Log("INVENTORY FULL");
-        }
-    }
 
     void eatFood()
     {
-        hungerLevel += 20;
+        hungerLevel += 30;
         if(hungerLevel >= 100)
         {
             hungerLevel = 100;
@@ -219,12 +266,15 @@ public class DogBehaviour : Character
         {
             hungerLevel = 0;
         }
+        dog.hungerLevel = hungerLevel;
         paddockHandler.updatePaddockInfo();
+        updateStats();
     }
 
     void drinkWater()
     {
-        thirstLevel += 20;
+        thirstLevel += 30;
+
         if(thirstLevel >= 100)
         {
             thirstLevel = 100;
@@ -233,6 +283,58 @@ public class DogBehaviour : Character
         {
             thirstLevel = 0;
         }
+
+        dog.thirstLevel = thirstLevel;
         paddockHandler.updatePaddockInfo();
+        updateStats();
+    }
+
+    void calculateHappiness()
+    {
+        happinessLevel = dog.hungerLevel +dog.thirstLevel / 2;
+        dog.happinessLevel = happinessLevel;
+    }
+    void updateStats()
+    {
+        //First child is only text
+        calculateHappiness();
+        stats.transform.GetChild(1).GetComponent<Slider>().value = dog.hungerLevel;
+        stats.transform.GetChild(2).GetComponent<Slider>().value = dog.thirstLevel;
+        stats.transform.GetChild(3).GetComponent<Slider>().value = dog.happinessLevel;
+    }
+    private void OnMouseEnter()
+    {
+        if (!game.doingAction())
+        {
+            stats.SetActive(true);
+            updateStats();
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        //if (!inventory.isDogInventoryFull())
+        //{
+        //    inventory.storeDog(this.gameObject);
+        //    paddockHandler.removeDog(this.gameObject);
+        //    Destroy(this.gameObject);
+        //}
+        //else
+        //{
+        //    Debug.Log("INVENTORY FULL");
+        //}
+
+        profile.SetActive(true);
+
+        profile.transform.GetChild(0).GetComponent<Text>().text = dog.gender;
+        profile.transform.GetChild(1).GetComponent<Text>().text = dog.age.ToString();
+        profile.transform.GetChild(2).GetComponent<Text>().text = dog.personality;
+
+    }
+
+    private void OnMouseExit()
+    {
+        profile.SetActive(false);
+        stats.SetActive(false);
     }
 }

@@ -66,6 +66,7 @@ public class UIHandler : MonoBehaviour
         setGameUI(false);
         setConstantUI(false);
 
+
         populateShopScreens(dogScreen, 0);
         populateShopScreens(fenceScreen, 1);
         populateShopScreens(decorationsScreen, 2);

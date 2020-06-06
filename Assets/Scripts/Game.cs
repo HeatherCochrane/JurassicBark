@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour
 {
     [SerializeField] private Camera MainCamera;
-    [SerializeField] private Character Character;
+    //[SerializeField] private Character Character;
     [SerializeField] private Canvas Menu;
     [SerializeField] private Canvas Hud;
     [SerializeField] private Transform CharacterStart;
 
     private RaycastHit[] mRaycastHits;
-    private Character mCharacter;
+    //private Character mCharacter;
     private Environment mMap;
 
     private readonly int NumberOfRaycastHits = 1;
@@ -57,7 +57,7 @@ public class Game : MonoBehaviour
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
         mMap = GetComponentInChildren<Environment>();
-        mCharacter = Instantiate(Character, transform); 
+       // mCharacter = Instantiate(Character, transform); 
         ShowMenu(true);
     }
 
@@ -193,15 +193,15 @@ public class Game : MonoBehaviour
 
             if( show )
             {
-                mCharacter.transform.position = CharacterStart.position;
-                mCharacter.transform.rotation = CharacterStart.rotation;
+               // mCharacter.transform.position = CharacterStart.position;
+                //mCharacter.transform.rotation = CharacterStart.rotation;
                 mMap.CleanUpWorld();
             }
             else
             {
-                mCharacter.transform.position = mMap.Start.Position;
-                mCharacter.transform.rotation = Quaternion.identity;
-                mCharacter.CurrentPosition = mMap.Start;
+                //mCharacter.transform.position = mMap.Start.Position;
+                //mCharacter.transform.rotation = Quaternion.identity;
+                //mCharacter.CurrentPosition = mMap.Start;
             }
         }
     }
@@ -263,6 +263,18 @@ public class Game : MonoBehaviour
 
         paddock.cancelCreation();
         pathHandler.cancelCreation();
+    }
+
+    public bool doingAction()
+    {
+        if(creatingPaddocks || placeWaterBowl || placeFoodBowl || placeDogs || placePath || placingDeco)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public void Exit()
     {
