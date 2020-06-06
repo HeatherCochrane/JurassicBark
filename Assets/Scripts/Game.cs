@@ -51,6 +51,8 @@ public class Game : MonoBehaviour
     bool placingDeco = false;
     [SerializeField]
     DecorationHandler decoration;
+
+    bool rayOnButton = false;
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -67,110 +69,112 @@ public class Game : MonoBehaviour
         //List<EnvironmentTile> route = mMap.Solve(mCharacter.CurrentPosition, tile);
         //mCharacter.GoTo(route);
 
-
-        Ray screenClick = MainCamera.ScreenPointToRay(Input.mousePosition);
-        int hits = Physics.RaycastNonAlloc(screenClick, mRaycastHits);
-
-        if (Input.GetMouseButtonDown(0))
+        if (!rayOnButton)
         {
-            if (hits > 0)
-            {
-                EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
-                if (tile != null)
-                {
-                    //If the selection for creating paddocks has been selected (button)
-                    if (creatingPaddocks)
-                    {
-                        clicks += 1;
-                        //First clicks equals the starting tile
-                        if (clicks == 0)
-                        {
-                            paddock.setStartingTile(tile);
-                            startingTile = tile;
-                        }
-                        //Second click equals the end tile
-                        else if (clicks == 1)
-                        {
-                            paddock.setEndTile(tile);
-                            creatingPaddocks = false;
-                            clicks = -1;
-                            startingTile = null;
-                        }
-                    }
-                    else if(placePath)
-                    {
-                        clicks += 1;
-                        //First clicks equals the starting tile
-                        if (clicks == 0)
-                        {
-                            pathHandler.setStartingTile(tile);
-                            startingTile = tile;
-                        }
-                        //Second click equals the end tile
-                        else if (clicks == 1)
-                        {
-                            pathHandler.setEndTile(tile);
-                            placePath = false;
-                            clicks = -1;
-                            startingTile = null;
-                        }
-                    }
-                    else if(placingDeco)
-                    {
-                        if(!tile.isPath && tile.IsAccessible)
-                        {
-                            decoration.spawnDecoration(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile);
-                            placingDeco = false;
-                        }
-                    }
+            Ray screenClick = MainCamera.ScreenPointToRay(Input.mousePosition);
+            int hits = Physics.RaycastNonAlloc(screenClick, mRaycastHits);
 
-                    if (tile.isPaddock)
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (hits > 0)
+                {
+                    EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
+                    if (tile != null)
                     {
-                        if (placeFoodBowl)
+                        //If the selection for creating paddocks has been selected (button)
+                        if (creatingPaddocks)
                         {
-                            Transform parent = tile.transform.parent;
-                            paddockCreation.placeFoodBowl(tile, parent);
-                            placeFoodBowl = false;
-                        }
-                        else if (placeWaterBowl)
-                        {
-                            
-                            Transform parent = tile.transform.parent;
-                            paddockCreation.placeWaterBowl(tile, parent);
-                            placeWaterBowl = false;
-                        }
-                        else if(placeDogs && tile.IsAccessible)
-                        {
-                            if (tile.transform.parent.GetComponentInChildren<PaddockControl>().canPlaceDog())
+                            clicks += 1;
+                            //First clicks equals the starting tile
+                            if (clicks == 0)
                             {
-                                dogHandle.spawnDog(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile.transform.parent, tile);
+                                paddock.setStartingTile(tile);
+                                startingTile = tile;
+                            }
+                            //Second click equals the end tile
+                            else if (clicks == 1)
+                            {
+                                paddock.setEndTile(tile);
+                                creatingPaddocks = false;
+                                clicks = -1;
+                                startingTile = null;
+                            }
+                        }
+                        else if (placePath)
+                        {
+                            clicks += 1;
+                            //First clicks equals the starting tile
+                            if (clicks == 0)
+                            {
+                                pathHandler.setStartingTile(tile);
+                                startingTile = tile;
+                            }
+                            //Second click equals the end tile
+                            else if (clicks == 1)
+                            {
+                                pathHandler.setEndTile(tile);
+                                placePath = false;
+                                clicks = -1;
+                                startingTile = null;
+                            }
+                        }
+                        else if (placingDeco)
+                        {
+                            if (!tile.isPath && tile.IsAccessible)
+                            {
+                                decoration.spawnDecoration(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile);
+                                placingDeco = false;
+                            }
+                        }
+
+                        if (tile.isPaddock)
+                        {
+                            if (placeFoodBowl)
+                            {
+                                Transform parent = tile.transform.parent;
+                                paddockCreation.placeFoodBowl(tile, parent);
+                                placeFoodBowl = false;
+                            }
+                            else if (placeWaterBowl)
+                            {
+
+                                Transform parent = tile.transform.parent;
+                                paddockCreation.placeWaterBowl(tile, parent);
+                                placeWaterBowl = false;
+                            }
+                            else if (placeDogs && tile.IsAccessible)
+                            {
+                                if (tile.transform.parent.GetComponentInChildren<PaddockControl>().canPlaceDog())
+                                {
+                                    dogHandle.spawnDog(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile.transform.parent, tile);
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        if (creatingPaddocks && paddock.getStartingTile() != null && startingTile == paddock.getStartingTile())
-        {
-            if (hits > 0)
+            if (creatingPaddocks && paddock.getStartingTile() != null && startingTile == paddock.getStartingTile())
             {
-                EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
-                if (tile != null && tile != lastTile)
+                if (hits > 0)
                 {
-                    paddock.calculatePaddockCost(tile);
-                    lastTile = tile;
+                    EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
+                    if (tile != null && tile != lastTile)
+                    {
+                        paddock.calculatePaddockCost(tile);
+                        lastTile = tile;
+                    }
                 }
             }
-        }
-        else if(placePath && pathHandler.getStartingTile() != null && startingTile == pathHandler.getStartingTile())
-        {
-            if (hits > 0)
+            else if (placePath && pathHandler.getStartingTile() != null && startingTile == pathHandler.getStartingTile())
             {
-                EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
-                if (tile != null && tile != lastTile)
+                if (hits > 0)
                 {
-                    pathHandler.calculatePathCost(tile);
-                    lastTile = tile;
+                    EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
+                    if (tile != null && tile != lastTile)
+                    {
+                        pathHandler.calculatePathCost(tile);
+                        lastTile = tile;
+                    }
                 }
             }
         }
@@ -243,6 +247,10 @@ public class Game : MonoBehaviour
         mMap.GenerateWorld();
     }
 
+    public void setRayOnButton(bool set)
+    {
+        rayOnButton = set;
+    }
     public void stopAllActions()
     {
         clicks = -1;

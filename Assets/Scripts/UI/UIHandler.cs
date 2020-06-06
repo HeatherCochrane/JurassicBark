@@ -36,6 +36,8 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     Text playerCurrency;
 
+    [SerializeField]
+    Game game;
 
     [SerializeField]
     List<items> dogScreen = new List<items>();
@@ -108,6 +110,7 @@ public class UIHandler : MonoBehaviour
     public void setShops(bool set)
     {
         shopParent.SetActive(set);
+        game.setRayOnButton(set);
     }
 
     public void setGameUI(bool set)
