@@ -27,12 +27,13 @@ public class DecorationHandler : MonoBehaviour
         
     }
 
-    public void spawnDecoration(Vector3 pos, EnvironmentTile p)
+    public void spawnDecoration(Vector3 pos, EnvironmentTile p, Vector3 r)
     {
         if (currency.sufficientFunds(cost))
         {
             deco = Instantiate(standIn);
             deco.transform.position = pos;
+            deco.transform.Rotate(r);
             deco.transform.SetParent(p.transform);
             decorations.Add(deco);
             p.IsAccessible = false;

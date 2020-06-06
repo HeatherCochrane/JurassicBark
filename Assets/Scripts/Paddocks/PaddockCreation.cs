@@ -155,7 +155,7 @@ public class PaddockCreation : MonoBehaviour
                 Material[] grass = paddock[x, z].GetComponent<MeshRenderer>().materials;
 
                 temp = paddock[x, z].GetComponent<MeshRenderer>().material.color;
-                temp.r -= 0.5f;
+                temp.r -= 0.8f;
                 grass[1].color = temp;
 
                 paddock[x, z].GetComponent<MeshRenderer>().materials = grass;
@@ -249,7 +249,7 @@ public class PaddockCreation : MonoBehaviour
                         Material[] grass = paddock[x, z].GetComponent<MeshRenderer>().materials;
 
                         temp = paddock[x, z].GetComponent<MeshRenderer>().material.color;
-                        temp.r -= 0.5f;
+                        temp.r -= 0.8f;
                         grass[1].color = temp;
 
                         paddock[x, z].GetComponent<MeshRenderer>().materials = grass;
