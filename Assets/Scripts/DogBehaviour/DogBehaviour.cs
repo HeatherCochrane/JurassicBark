@@ -135,6 +135,7 @@ public class DogBehaviour : Character
 
     void moveDog()
     {
+        this.CurrentPosition.IsAccessible = true;
         EnvironmentTile tile = paddock[Random.Range(0, width), Random.Range(0, height)];
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, tile, 2);
         this.GoTo(route);
@@ -156,6 +157,7 @@ public class DogBehaviour : Character
         {
             if (goalTile.IsAccessible)
             {
+                this.CurrentPosition.IsAccessible = true;
                 List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
                 this.GoTo(route);
                 goalTile.IsAccessible = false;
@@ -191,6 +193,7 @@ public class DogBehaviour : Character
         {
             if (goalTile.IsAccessible)
             {
+                this.CurrentPosition.IsAccessible = true;
                 List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
                 this.GoTo(route);
                 

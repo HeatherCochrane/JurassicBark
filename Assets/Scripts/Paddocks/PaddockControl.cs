@@ -123,7 +123,6 @@ public class PaddockControl : MonoBehaviour
             }
 
             Destroy(this.transform.parent.parent.gameObject);
-            game.setDeleting(false);
             Destroy(paddockUI);
         }
         else if (!game.getDeleting())

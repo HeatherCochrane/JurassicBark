@@ -28,6 +28,9 @@ public class Environment : MonoBehaviour
 
     [SerializeField]
     VisitorHandler visitorHandler;
+
+    [SerializeField]
+    Game game;
     private void Awake()
     {
         mAll = new List<EnvironmentTile>();
@@ -128,7 +131,8 @@ public class Environment : MonoBehaviour
 
         paddock.setMap(mMap, Size);
         pathHandler.setMap(mMap, Size);
-        visitorHandler.setSpawnPoint(Start);
+        visitorHandler.setSpawnPoint(mMap[halfWidth][0]);
+        game.checkSpawnTile(mMap[halfWidth][0]);
     }
 
     private void SetupConnections()

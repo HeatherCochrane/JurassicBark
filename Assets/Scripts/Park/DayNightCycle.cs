@@ -17,8 +17,6 @@ public class DayNightCycle : MonoBehaviour
 			t += Time.deltaTime / 2;
 			yield return new WaitForEndOfFrame(); // So that I return something at least.
 		}
-
-		StartCoroutine("dayTimer");	
 	}
 
 
@@ -59,6 +57,7 @@ public class DayNightCycle : MonoBehaviour
 		StopAllCoroutines();
 		visitorHandler.parkOpen();
 		StartCoroutine(UpdateLightColor(new Color32(56, 24, 77, 1), new Color32(255, 255, 255, 1)));
+		StartCoroutine("dayTimer");
 		skip.SetActive(false);
 	}
 

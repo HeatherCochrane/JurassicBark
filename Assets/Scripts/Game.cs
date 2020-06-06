@@ -34,7 +34,7 @@ public class Game : MonoBehaviour
 
     bool creatingPaddocks = false;
 
-    bool deletePaddocks = false;
+    bool deleteObjects = false;
 
     bool placeDogs = false;
 
@@ -63,7 +63,7 @@ public class Game : MonoBehaviour
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
         mMap = GetComponentInChildren<Environment>();
-        // mCharacter = Instantiate(Character, transform); 
+        // mCharacter = Instantiate(Character, transform);
         rayOnButton = true;
         ShowMenu(true);
     }
@@ -131,6 +131,18 @@ public class Game : MonoBehaviour
                             decoration.spawnDecoration(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile, standInObject.transform.eulerAngles);
                         }
                     }
+                    else if(deleteObjects)
+                    {
+                        if(tile.transform.childCount > 0)
+                        {
+                            Destroy(tile.transform.GetChild(0).gameObject);
+
+                            if(!tile.IsAccessible)
+                            {
+                                tile.IsAccessible = true;
+                            }
+                        }
+                    }
 
                     if (tile.isPaddock)
                     {
@@ -162,7 +174,7 @@ public class Game : MonoBehaviour
                 }
                 if(Input.GetMouseButtonDown(2))
                 {
-                    standInObject.transform.Rotate(0, 90, 0);
+                    standInObject.transform.Rotate(0, 45, 0);
                 }
 
             }
@@ -224,7 +236,7 @@ public class Game : MonoBehaviour
     }
     public void setDeleting(bool set)
     {
-        deletePaddocks = set;
+        deleteObjects = set;
     }
 
     public void setPlacingFood(bool set)
@@ -252,7 +264,7 @@ public class Game : MonoBehaviour
     }
     public bool getDeleting()
     {
-        return deletePaddocks;
+        return deleteObjects;
     }
     public void Generate()
     {
@@ -272,6 +284,7 @@ public class Game : MonoBehaviour
         placeDogs = false;
         placePath = false;
         placingDeco = false;
+        deleteObjects = false;
 
         if(standInObject != null)
         {
@@ -349,6 +362,15 @@ public class Game : MonoBehaviour
         for (int i = 0; i < standInObject.GetComponent<MeshRenderer>().materials.Length; i++)
         {
             standInObject.GetComponent<MeshRenderer>().materials[i].color = standInColours[i];
+        }
+    }
+
+    public void checkSpawnTile(EnvironmentTile m)
+    {
+
+        if (!m.IsAccessible)
+        {
+            Destroy(m.transform.GetChild(0).gameObject);
         }
     }
     public void Exit()

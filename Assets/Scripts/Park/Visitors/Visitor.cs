@@ -31,7 +31,7 @@ public class Visitor : Character
     // Update is called once per frame
     void Update()
     {
-        if(leavingPark && this.CurrentPosition == map[0][0])
+        if(leavingPark && this.CurrentPosition == map[(int)mMap.getMapSize().x / 2][0])
         {
             Destroy(this.gameObject);
         }

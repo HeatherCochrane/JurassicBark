@@ -43,7 +43,7 @@ public class CameraControl : MonoBehaviour
 		miny = -map.getMapSize().y * 5;
 		maxy = map.getMapSize().y * 5;
 
-		minz = -map.getMapSize().x * 6;
+		minz = -map.getMapSize().x * 7;
 		maxz = -map.getMapSize().x + 100;
 
 		moveCamera = false;
