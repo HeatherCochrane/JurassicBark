@@ -307,13 +307,45 @@ public class Game : MonoBehaviour
                 break;
         }
 
-        Material[] standIns = standInObject.GetComponent<MeshRenderer>().materials;
-        for (int i = 0; i < standIns.Length; i++)
+        if(standInObject.transform.childCount > 0)
         {
-            standIns[i].color= standInColours[i];
+            changeChildColours();
+        }
+        else
+        {
+            changeColours();
         }
 
-        standInObject.GetComponent<MeshRenderer>().materials = standIns;
+    }
+
+    void changeChildColours()
+    {
+        List<Material> standIns = new List<Material>();
+
+        for (int i = 0; i < standInObject.transform.childCount; i++)
+        {
+            standIns.Add(standInObject.transform.GetChild(i).GetComponent<MeshRenderer>().materials[0]);
+        }
+
+        for (int i = 0; i < standInObject.transform.childCount; i++)
+        {
+            standInObject.transform.GetChild(i).GetComponent<MeshRenderer>().materials[0].color = standInColours[i];
+        }
+    }
+
+    void changeColours()
+    {
+        List<Material> standIns = new List<Material>();
+
+        for (int i = 0; i < standInObject.GetComponent<MeshRenderer>().materials.Length; i++)
+        {
+            standIns.Add(standInObject.GetComponent<MeshRenderer>().materials[i]);
+        }
+
+        for (int i = 0; i < standInObject.GetComponent<MeshRenderer>().materials.Length; i++)
+        {
+            standInObject.GetComponent<MeshRenderer>().materials[i].color = standInColours[i];
+        }
     }
     public void Exit()
     {
