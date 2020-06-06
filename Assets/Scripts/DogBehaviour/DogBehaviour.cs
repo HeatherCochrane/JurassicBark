@@ -149,7 +149,7 @@ public class DogBehaviour : Character
         {
             for(int j =0; j < height; j++)
             {
-                if(paddock[i, j].hasWaterBowl)
+                if(paddock[i, j].hasWaterBowl && paddock[i,j].IsAccessible)
                 {
                     goalTile = paddock[i, j];
                 }
@@ -164,14 +164,14 @@ public class DogBehaviour : Character
                 goalTile.IsAccessible = false;
                 Invoke("drinkWater", 5);
             }
-            else
+            else if(dog.hungerLevel < 60)
             {
-                moveDog();
+                getFood();
             }
         }
-        else if (dog.hungerLevel < 60)
+        else 
         {
-            getFood();
+            moveDog();
         }
 
     }
@@ -184,7 +184,7 @@ public class DogBehaviour : Character
         {
             for (int j = 0; j < height; j++)
             {
-                if (paddock[i, j].hasFoodBowl)
+                if (paddock[i, j].hasFoodBowl && paddock[i, j].IsAccessible)
                 {
                     goalTile = paddock[i, j];
                 }
@@ -200,14 +200,14 @@ public class DogBehaviour : Character
                 goalTile.IsAccessible = false;
                 Invoke("eatFood", 5);
             }
-            else
+            else if(dog.thirstLevel < 60)
             {
-                moveDog();
+                getWater();
             }
         }
-        else if(dog.thirstLevel < 60)
+        else 
         {
-            getWater();
+            moveDog();
         }
 
     }
