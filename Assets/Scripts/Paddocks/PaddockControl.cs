@@ -53,7 +53,7 @@ public class PaddockControl : MonoBehaviour
 
         //Show the paddock stats on the game canvas
         paddockUI = Instantiate(paddockUI);
-        paddockUI.transform.parent = UICanvas.transform;
+        paddockUI.transform.SetParent(UICanvas.transform);
         paddockUI.SetActive(false);
     }
 

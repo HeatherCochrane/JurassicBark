@@ -23,6 +23,9 @@ public class Environment : MonoBehaviour
     [SerializeField]
     PaddockCreation paddock;
 
+    [SerializeField]
+    PathHandler pathHandler;
+
     private void Awake()
     {
         mAll = new List<EnvironmentTile>();
@@ -117,6 +120,7 @@ public class Environment : MonoBehaviour
         }
 
         paddock.setMap(mMap, Size);
+        pathHandler.setMap(mMap, Size);
     }
 
     private void SetupConnections()

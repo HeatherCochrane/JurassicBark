@@ -26,12 +26,6 @@ public class DogBehaviour : Character
     }
     // Start is called before the first frame update
 
-    float turnRate = 6f;
-    bool collidingWithWall = false;
-
-    bool collidingWithDog = false;
-
-
     bool stop = false;
     int stoppingTime = 0;
 
@@ -111,13 +105,17 @@ public class DogBehaviour : Character
         }
         if (goalTile != null)
         {
-            List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile);
-            this.GoTo(route);
-            Invoke("drinkWater", 5);
-        }
-        else
-        {
-            moveDog();
+            if (goalTile.IsAccessible)
+            {
+                List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile);
+                this.GoTo(route);
+                goalTile.IsAccessible = false;
+                Invoke("drinkWater", 5);
+            }
+            else
+            {
+                moveDog();
+            }
         }
         
     }
@@ -138,13 +136,17 @@ public class DogBehaviour : Character
         }
         if (goalTile != null)
         {
-            List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile);
-            this.GoTo(route);
-            Invoke("eatFood", 5);
-        }
-        else
-        {
-            moveDog();
+            if (goalTile.IsAccessible)
+            {
+                List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile);
+                this.GoTo(route);
+                goalTile.IsAccessible = false;
+                Invoke("eatFood", 5);
+            }
+            else
+            {
+                moveDog();
+            }
         }
 
     }
@@ -190,31 +192,6 @@ public class DogBehaviour : Character
     public int getThirst()
     {
         return thirstLevel;
-    }
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.transform.tag == "Border")
-        {
-            collidingWithWall = true;
-        }
-        if (collision.transform.tag == "Dog")
-        {
-            collidingWithDog = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.transform.tag == "Border")
-        {
-            collidingWithWall = false;
-        }
-        if (collision.transform.tag == "Dog")
-        {
-            collidingWithDog = false;
-        }
     }
 
     private void OnMouseDown()

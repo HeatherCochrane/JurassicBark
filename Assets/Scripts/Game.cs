@@ -44,6 +44,9 @@ public class Game : MonoBehaviour
     [SerializeField]
     PaddockCreation paddockCreation;
 
+    bool placePath = false;
+    [SerializeField]
+    PathHandler pathHandler;
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -90,6 +93,24 @@ public class Game : MonoBehaviour
                             startingTile = null;
                         }
                     }
+                    else if(placePath)
+                    {
+                        clicks += 1;
+                        //First clicks equals the starting tile
+                        if (clicks == 0)
+                        {
+                            pathHandler.setStartingTile(tile);
+                            startingTile = tile;
+                        }
+                        //Second click equals the end tile
+                        else if (clicks == 1)
+                        {
+                            pathHandler.setEndTile(tile);
+                            placePath = false;
+                            clicks = -1;
+                            startingTile = null;
+                        }
+                    }
 
                     if (tile.isPaddock)
                     {
@@ -125,6 +146,18 @@ public class Game : MonoBehaviour
                 if (tile != null && tile != lastTile)
                 {
                     paddock.calculatePaddockCost(tile);
+                    lastTile = tile;
+                }
+            }
+        }
+        else if(placePath && pathHandler.getStartingTile() != null && startingTile == pathHandler.getStartingTile())
+        {
+            if (hits > 0)
+            {
+                EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
+                if (tile != null && tile != lastTile)
+                {
+                    pathHandler.calculatePathCost(tile);
                     lastTile = tile;
                 }
             }
@@ -181,6 +214,10 @@ public class Game : MonoBehaviour
         placeDogs = set;
     }
 
+    public void setPlacingPaths(bool set)
+    {
+        placePath = set;
+    }
     public bool getDeleting()
     {
         return deletePaddocks;
@@ -197,8 +234,10 @@ public class Game : MonoBehaviour
         placeWaterBowl = false;
         placeFoodBowl = false;
         placeDogs = false;
+        placePath = false;
 
         paddock.cancelCreation();
+        pathHandler.cancelCreation();
     }
     public void Exit()
     {

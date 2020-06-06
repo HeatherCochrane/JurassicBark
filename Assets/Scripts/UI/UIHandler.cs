@@ -18,6 +18,8 @@ public class UIHandler : MonoBehaviour
         public GameObject obj;
         [SerializeField]
         public List<GameObject> pieces;
+        [SerializeField]
+        public Material mat;
     }
     
     GameObject newItem;
@@ -47,6 +49,9 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     List<items> paddockItemsScreen = new List<items>();
 
+    [SerializeField]
+    List<items> pathItemsScreen = new List<items>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +68,7 @@ public class UIHandler : MonoBehaviour
         populateShopScreens(fenceScreen, 1);
         populateShopScreens(decorationsScreen, 2);
         populateShopScreens(paddockItemsScreen, 3);
+        populateShopScreens(pathItemsScreen, 4);
     }
 
     // Update is called once per frame
@@ -128,6 +134,11 @@ public class UIHandler : MonoBehaviour
         return paddockItemsScreen[button].cost;
     }
 
+    public int getPathCost(int button)
+    {
+        return pathItemsScreen[button].cost;
+    }
+
     public GameObject getItem(int button)
     {
         return paddockItemsScreen[button].obj;
@@ -140,5 +151,10 @@ public class UIHandler : MonoBehaviour
     public List<GameObject> getFencePieces(int button)
     {
         return fenceScreen[button].pieces;
+    }
+
+    public Material getPathType(int button)
+    {
+        return pathItemsScreen[button].mat;
     }
 }

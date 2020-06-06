@@ -172,13 +172,16 @@ public class PaddockCreation : MonoBehaviour
             {
                 if (i < xPos || i > xPos + width || j < zPos || j > zPos + height)
                 {
-                    Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
+                    if (!mMap[i][j].isPath)
+                    {
+                        Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 
-                    temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
-                    temp.r = 0.6f;
-                    mat[1].color = temp;
+                        temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
+                        temp.r = 0.6f;
+                        mat[1].color = temp;
 
-                    mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+                        mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+                    }
                 }
             }
         }
@@ -223,7 +226,7 @@ public class PaddockCreation : MonoBehaviour
             {
                 for (int j = zPos; j < (int)heightTile; j++)
                 {
-                    if(mMap[i][j].isPaddock)
+                    if(mMap[i][j].isPaddock || mMap[i][j].isPath)
                     {
                         intersectingPaddock = true;
                     }
@@ -298,24 +301,24 @@ public class PaddockCreation : MonoBehaviour
 
         //Spawn corner pieces first
         fencePiece = Instantiate(fenceSet[0]);
-        fencePiece.transform.position = new Vector3(tiles[0, height - 1].transform.position.x, tiles[0, height - 1].transform.position.y, tiles[0, height - 1].transform.position.z);
+        fencePiece.transform.position = new Vector3(tiles[0, height - 1].transform.position.x, tiles[0, height - 1].transform.position.y + 3, tiles[0, height - 1].transform.position.z);
         fencePiece.transform.parent = pParent.transform;
         tiles[0, height - 1].hasFence = true;
 
         fencePiece = Instantiate(fenceSet[0]);
-        fencePiece.transform.position = new Vector3(tiles[width - 1, height - 1].transform.position.x, tiles[width - 1, height - 1].transform.position.y, tiles[width - 1, height - 1].transform.position.z + 10);
+        fencePiece.transform.position = new Vector3(tiles[width - 1, height - 1].transform.position.x, tiles[width - 1, height - 1].transform.position.y + 3, tiles[width - 1, height - 1].transform.position.z + 10);
         fencePiece.transform.Rotate(new Vector3(0, 1, 0), 90);
         fencePiece.transform.parent = pParent.transform;
         tiles[width - 1, height - 1].hasFence = true;
 
         fencePiece = Instantiate(fenceSet[0]);
-        fencePiece.transform.position = new Vector3(tiles[width - 1, 0].transform.position.x + 10, tiles[width - 1, 0].transform.position.y, tiles[width - 1, 0].transform.position.z + 10);
+        fencePiece.transform.position = new Vector3(tiles[width - 1, 0].transform.position.x + 10, tiles[width - 1, 0].transform.position.y + 3, tiles[width - 1, 0].transform.position.z + 10);
         fencePiece.transform.Rotate(new Vector3(0, 1, 0), 180);
         fencePiece.transform.parent = pParent.transform;
         tiles[width - 1, 0].hasFence = true;
 
         fencePiece = Instantiate(fenceSet[1]);
-        fencePiece.transform.position = new Vector3(tiles[0, 0].transform.position.x + 10, tiles[0, 0].transform.position.y, tiles[0, 0].transform.position.z);
+        fencePiece.transform.position = new Vector3(tiles[0, 0].transform.position.x + 10, tiles[0, 0].transform.position.y + 3, tiles[0, 0].transform.position.z);
         fencePiece.transform.Rotate(new Vector3(0, 1, 0), 270);
         fencePiece.transform.parent = pParent.transform;
         fencePiece.GetComponentInChildren<PaddockControl>().setTiles(tiles, width, height);
@@ -384,13 +387,26 @@ public class PaddockCreation : MonoBehaviour
         {
             for (int j = 0; j < mapSize.y; j++)
             {
-                Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
+                if (!mMap[i][j].isPath)
+                {
+                    Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 
-                temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
-                temp.r = 0.6f;
-                mat[1].color = temp;
+                    temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
+                    temp.r = 0.6f;
+                    mat[1].color = temp;
 
-                mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+                    mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+                }
+                else
+                {
+                    Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
+
+                    temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
+                    temp = Color.white;
+                    mat[1].color = temp;
+
+                    mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+                }
             }
         }
 

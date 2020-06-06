@@ -1,0 +1,292 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PathHandler : MonoBehaviour
+{
+
+    EnvironmentTile[][] mMap;
+
+    EnvironmentTile startTile;
+    EnvironmentTile endTile;
+
+    Vector2 mapSize;
+
+    int width = 0;
+    int height = 0;
+
+    int xPos = 0;
+    int zPos = 0;
+
+    List<List<EnvironmentTile>> paths = new List<List<EnvironmentTile>>();
+    List<EnvironmentTile> createdPath = new List<EnvironmentTile>();
+
+    int widthTile = 0;
+    int heightTile = 0;
+
+    EnvironmentTile[,] path;
+    Color temp;
+    Material pathType;
+
+    [SerializeField]
+    Text pathCost;
+    int pathTypeCost = 0;
+
+    [SerializeField]
+    UIHandler UIhandler;
+
+    int buttonPressed = 0;
+    // Start is called before the first frame update
+    void Start()
+    {
+        pathCost.gameObject.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void setMap(EnvironmentTile[][] map, Vector2 s)
+    {
+        mMap = map;
+        mapSize = s;
+    }
+
+    public void setStartingTile(EnvironmentTile s)
+    {
+        startTile = s;
+    }
+
+    public EnvironmentTile getStartingTile()
+    {
+        return startTile;
+    }
+
+    public void setEndTile(EnvironmentTile e)
+    {
+        endTile = e;
+        calculatePathSize();
+    }
+    public void calculatePathCost(EnvironmentTile t)
+    {
+        pathCost.gameObject.SetActive(true);
+
+        width = (int)t.transform.position.x - (int)startTile.transform.position.x;
+        height = (int)t.transform.position.z - (int)startTile.transform.position.z;
+
+        width /= 10;
+        height /= 10;
+
+        width += 1;
+        height += 1;
+
+        pathCost.gameObject.SetActive(true);
+        pathCost.gameObject.transform.position = Input.mousePosition;
+        pathCost.text = "£" + ((width * height) * pathTypeCost).ToString();
+
+        if (width < 0 || height < 0)
+        {
+            pathCost.text = "INVALID";
+        }
+
+        for (int y = 0; y < mapSize.x; y++)
+        {
+            for (int k = 0; k < mapSize.y; k++)
+            {
+                if (mMap[y][k] == startTile)
+                {
+                    xPos = y;
+                    zPos = k;
+                }
+            }
+        }
+
+        widthTile = xPos + width;
+        heightTile = zPos + height;
+
+        int x = 0;
+        int z = 0;
+        int standIn = 0;
+        path = new EnvironmentTile[widthTile, heightTile];
+
+        for (int i = xPos; i < (int)widthTile; i++)
+        {
+            for (int j = zPos; j < (int)heightTile; j++)
+            {
+                path[x, z] = mMap[i][j];
+                Material[] grass = path[x, z].GetComponent<MeshRenderer>().materials;
+
+                temp = path[x, z].GetComponent<MeshRenderer>().material.color;
+                temp.r -= 0.5f;
+                grass[1].color = temp;
+
+                path[x, z].GetComponent<MeshRenderer>().materials = grass;
+                z++;
+                standIn = z;
+            }
+            x++;
+            z = 0;
+        }
+
+        for (int i = 0; i < mapSize.x; i++)
+        {
+            for (int j = 0; j < mapSize.y; j++)
+            {
+                if (i < xPos || i > xPos + width || j < zPos || j > zPos + height)
+                {
+                    if (!mMap[i][j].isPath)
+                    {
+                        Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
+
+                        temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
+                        temp.r = 0.6f;
+                        mat[1].color = temp;
+
+                        mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+                    }
+                }
+            }
+        }
+    }
+    void calculatePathSize()
+    {
+        createdPath.Clear();
+
+        width = (int)endTile.transform.position.x - (int)startTile.transform.position.x;
+        height = (int)endTile.transform.position.z - (int)startTile.transform.position.z;
+
+        width /= 10;
+        height /= 10;
+
+        width += 1;
+        height += 1;
+
+        //finalPaddockCost = (width * height) * fenceCost;
+
+        if (width >= 1 && height >= 1)// && currency.sufficientFunds(finalPaddockCost))
+        {
+            for (int y = 0; y < mapSize.x; y++)
+            {
+                for (int k = 0; k < mapSize.y; k++)
+                {
+                    if (mMap[y][k] == startTile)
+                    {
+                        xPos = y;
+                        zPos = k;
+                    }
+                }
+            }
+
+            widthTile = xPos + width;
+            heightTile = zPos + height;
+
+            //Should the paddock be drawn within another paddock, this loop with set the bool to true and the paddock will not be created
+            bool intersectingPaddock = false;
+
+            for (int i = xPos; i < (int)widthTile; i++)
+            {
+                for (int j = zPos; j < (int)heightTile; j++)
+                {
+                    if (mMap[i][j].isPaddock)
+                    {
+                        intersectingPaddock = true;
+                    }
+                }
+            }
+
+            if (!intersectingPaddock)
+            {
+                int x = 0;
+                int z = 0;
+                int standIn = 0;
+                path = new EnvironmentTile[widthTile, heightTile];
+
+                for (int i = xPos; i < (int)widthTile; i++)
+                {
+                    for (int j = zPos; j < (int)heightTile; j++)
+                    {
+                        mMap[i][j].isPath = true;
+                        path[x, z] = mMap[i][j];
+                        Material[] grass = path[x, z].GetComponent<MeshRenderer>().materials;
+
+                        pathType = path[x, z].GetComponent<MeshRenderer>().material;
+                        pathType = UIhandler.getPathType(buttonPressed);
+                        grass[1] = pathType;
+
+                        path[x, z].GetComponent<MeshRenderer>().materials = grass;
+                        path[x, z].GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(0.01f, 0.01f);
+                        createdPath.Add(mMap[i][j]);
+                        z++;
+                        standIn = z;
+                    }
+                    x++;
+                    z = 0;
+                }
+                x = 0;
+                z = 0;
+
+                paths.Add(createdPath);
+                //currency.subtractMoney(finalPaddockCost);
+            }
+
+                            setMapColour();
+            //paddockCost.gameObject.SetActive(false);
+        }
+        else
+        {
+            cancelCreation();
+        }
+
+        pathCost.gameObject.SetActive(false);
+    }
+
+    public void cancelCreation()
+    {
+        //paddockCost.gameObject.SetActive(false);
+        setMapColour();
+
+        startTile = null;
+        endTile = null;
+        pathCost.gameObject.SetActive(false);
+    }
+
+    public void setMapColour()
+    {
+        for (int i = 0; i < mapSize.x; i++)
+        {
+            for (int j = 0; j < mapSize.y; j++)
+            {
+                if (!mMap[i][j].isPath)
+                {
+                    Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
+
+                    temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
+                    temp.r = 0.6f;
+                    mat[1].color = temp;
+
+                    mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+                }
+                else
+                {
+                    Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
+
+                    temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
+                    temp = Color.white;
+                    mat[1].color = temp;
+
+                    mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+                }
+            }
+        }
+
+    }
+
+    public void setPathType(int button)
+    {
+        pathTypeCost = UIhandler.getPathCost(button);
+        buttonPressed = button;
+    }
+}

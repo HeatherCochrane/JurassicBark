@@ -17,13 +17,34 @@ public class DayNightCycle : MonoBehaviour
 			t += Time.deltaTime / 2;
 			yield return new WaitForEndOfFrame(); // So that I return something at least.
 		}
+
+		StartCoroutine("dayTimer");	
 	}
 
+
+	IEnumerator dayTimer()
+	{
+		float dayLength = 0;
+		float totalTime = 200;
+
+		while(dayLength <= totalTime)
+		{
+			dayLength += Time.deltaTime;
+
+			yield return null;
+		}
+
+		closePark();
+		nightCycle();
+	}
+
+	[SerializeField]
+	GameObject skip;
 
 	// Start is called before the first frame update
 	void Start()
     {
-
+		skip.SetActive(false);
 	}
 
     // Update is called once per frame
@@ -34,17 +55,31 @@ public class DayNightCycle : MonoBehaviour
 
 	public void dayCycle()
 	{
+		StopAllCoroutines();
+		openPark();
 		StartCoroutine(UpdateLightColor(new Color32(56, 24, 77, 1), new Color32(255, 255, 255, 1)));
+		skip.SetActive(false);
 	}
 
 	public void nightCycle()
 	{
-		StartCoroutine(UpdateLightColor(new Color32(255, 255, 255, 1), new Color32(56, 24, 77, 1)));	
+		StopAllCoroutines();
+		StartCoroutine(UpdateLightColor(new Color32(255, 255, 255, 1), new Color32(56, 24, 77, 1)));
+		Invoke("showSkipButton", 3);
 	}
 
-	public void nextDay()
+	public void showSkipButton()
 	{
-		StartCoroutine(UpdateLightColor(new Color32(255, 255, 255, 1), new Color32(56, 24, 77, 1)));
-		Invoke("dayCycle", 3);
+		skip.SetActive(true);
+	}
+
+	void openPark()
+	{
+
+	}
+
+	void closePark()
+	{
+
 	}
 }
