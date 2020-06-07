@@ -172,7 +172,7 @@ public class PaddockCreation : MonoBehaviour
             {
                 if (i < xPos || i > xPos + width || j < zPos || j > zPos + height)
                 {
-                    if (!mMap[i][j].isPath)
+                    if (!mMap[i][j].isPath && !mMap[i][j].isEntrance)
                     {
                         Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 
@@ -202,73 +202,83 @@ public class PaddockCreation : MonoBehaviour
 
         finalPaddockCost = (width * height) * fenceCost;
 
-        if (width >= 2 && height >= 2 && currency.sufficientFunds(finalPaddockCost)) 
+        if (currency.sufficientFunds(finalPaddockCost))
         {
-            for (int y = 0; y < mapSize.x; y++)
+            
+
+            if (width >= 2 && height >= 2 && currency.sufficientFunds(finalPaddockCost))
             {
-                for (int k = 0; k < mapSize.y; k++)
+                for (int y = 0; y < mapSize.x; y++)
                 {
-                    if (mMap[y][k] == startTile)
+                    for (int k = 0; k < mapSize.y; k++)
                     {
-                        xPos = y;
-                        zPos = k;
+                        if (mMap[y][k] == startTile)
+                        {
+                            xPos = y;
+                            zPos = k;
+                        }
                     }
                 }
-            }
 
-            widthTile = xPos + width;
-            heightTile = zPos + height;
+                widthTile = xPos + width;
+                heightTile = zPos + height;
 
-            //Should the paddock be drawn within another paddock, this loop with set the bool to true and the paddock will not be created
-            bool intersectingPaddock = false;
-
-            for (int i = xPos; i < (int)widthTile; i++)
-            {
-                for (int j = zPos; j < (int)heightTile; j++)
-                {
-                    if(mMap[i][j].isPaddock || mMap[i][j].isPath)
-                    {
-                        intersectingPaddock = true;
-                    }
-                }
-            }
-
-            if (!intersectingPaddock)
-            {
-                int x = 0;
-                int z = 0;
-                int standIn = 0;
-                paddock = new EnvironmentTile[widthTile, heightTile];
+                //Should the paddock be drawn within another paddock, this loop with set the bool to true and the paddock will not be created
+                bool intersectingPaddock = false;
 
                 for (int i = xPos; i < (int)widthTile; i++)
                 {
                     for (int j = zPos; j < (int)heightTile; j++)
                     {
-                        mMap[i][j].isPaddock = true;
-                        paddock[x, z] = mMap[i][j];
-                        Material[] grass = paddock[x, z].GetComponent<MeshRenderer>().materials;
-
-                        temp = paddock[x, z].GetComponent<MeshRenderer>().material.color;
-                        temp.r -= 0.8f;
-                        grass[1].color = temp;
-
-                        paddock[x, z].GetComponent<MeshRenderer>().materials = grass;
-                        createdPaddock.Add(mMap[i][j]);
-                        z++;
-                        standIn = z;
+                        if (mMap[i][j].isPaddock || mMap[i][j].isPath || mMap[i][j].isEntrance)
+                        {
+                            intersectingPaddock = true;
+                        }
                     }
-                    x++;
-                    z = 0;
                 }
 
-                //Fill paddock tiles
-                generateFences(paddock, x, standIn);
-                x = 0;
-                z = 0;
+                if (!intersectingPaddock)
+                {
+                    int x = 0;
+                    int z = 0;
+                    int standIn = 0;
+                    paddock = new EnvironmentTile[widthTile, heightTile];
 
-                allPaddocks.Add(createdPaddock);
-                currency.subtractMoney(finalPaddockCost);
+                    for (int i = xPos; i < (int)widthTile; i++)
+                    {
+                        for (int j = zPos; j < (int)heightTile; j++)
+                        {
+                            mMap[i][j].isPaddock = true;
+                            paddock[x, z] = mMap[i][j];
+                            Material[] grass = paddock[x, z].GetComponent<MeshRenderer>().materials;
 
+                            temp = paddock[x, z].GetComponent<MeshRenderer>().material.color;
+                            temp.r -= 0.8f;
+                            grass[1].color = temp;
+
+                            paddock[x, z].GetComponent<MeshRenderer>().materials = grass;
+                            createdPaddock.Add(mMap[i][j]);
+                            z++;
+                            standIn = z;
+                        }
+                        x++;
+                        z = 0;
+                    }
+
+                    //Fill paddock tiles
+                    generateFences(paddock, x, standIn);
+                    x = 0;
+                    z = 0;
+
+                    allPaddocks.Add(createdPaddock);
+
+                    currency.subtractMoney(finalPaddockCost);
+
+                }
+                else
+                {
+                    cancelCreation();
+                }
             }
         }
         else
@@ -387,7 +397,7 @@ public class PaddockCreation : MonoBehaviour
         {
             for (int j = 0; j < mapSize.y; j++)
             {
-                if (!mMap[i][j].isPath)
+                if (!mMap[i][j].isPath && !mMap[i][j].isEntrance)
                 {
                     Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 

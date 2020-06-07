@@ -5,7 +5,7 @@ using UnityEngine;
 public class Currency : MonoBehaviour
 {
     [SerializeField]
-    int playerCurrency = 1000000;
+    int playerCurrency = 10000;
 
     [SerializeField]
     UIHandler UIHandler;

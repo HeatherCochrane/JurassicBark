@@ -86,7 +86,6 @@ public class Game : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-
                     //If the selection for creating paddocks has been selected (button)
                     if (creatingPaddocks)
                     {

@@ -40,6 +40,8 @@ public class DecorationHandler : MonoBehaviour
             deco.transform.SetParent(p.transform);
             decorations.Add(deco);
             p.IsAccessible = false;
+
+            currency.subtractMoney(cost);
         }
     }
 

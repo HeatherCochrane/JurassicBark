@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PathHandler : MonoBehaviour
 {
+    [SerializeField]
+    Environment environment;
 
     EnvironmentTile[][] mMap;
 
@@ -44,6 +46,7 @@ public class PathHandler : MonoBehaviour
     void Start()
     {
         pathCost.gameObject.SetActive(false);
+        createdPath = environment.getEntrance();
     }
 
     // Update is called once per frame
@@ -140,7 +143,7 @@ public class PathHandler : MonoBehaviour
             {
                 if (i < xPos || i > xPos + width || j < zPos || j > zPos + height)
                 {
-                    if (!mMap[i][j].isPath)
+                    if (!mMap[i][j].isPath && !mMap[i][j].isEntrance)
                     {
                         Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 
@@ -193,7 +196,7 @@ public class PathHandler : MonoBehaviour
             {
                 for (int j = zPos; j < (int)heightTile; j++)
                 {
-                    if (mMap[i][j].isPaddock)
+                    if (mMap[i][j].isPaddock || mMap[i][j].isEntrance)
                     {
                         intersectingPaddock = true;
                     }
@@ -232,8 +235,10 @@ public class PathHandler : MonoBehaviour
                 z = 0;
                 //currency.subtractMoney(finalPaddockCost);
             }
-
-             setMapColour();
+            else
+            {
+                cancelCreation();
+            }
             //paddockCost.gameObject.SetActive(false);
         }
         else
@@ -260,7 +265,7 @@ public class PathHandler : MonoBehaviour
         {
             for (int j = 0; j < mapSize.y; j++)
             {
-                if (!mMap[i][j].isPath)
+                if (!mMap[i][j].isPath && !mMap[i][j].isEntrance)
                 {
                     Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 

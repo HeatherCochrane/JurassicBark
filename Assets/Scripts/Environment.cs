@@ -31,6 +31,11 @@ public class Environment : MonoBehaviour
 
     [SerializeField]
     Game game;
+
+    [SerializeField]
+    Material[] entranceMat;
+
+    List<EnvironmentTile> entranceTiles = new List<EnvironmentTile>();
     private void Awake()
     {
         mAll = new List<EnvironmentTile>();
@@ -133,8 +138,36 @@ public class Environment : MonoBehaviour
         pathHandler.setMap(mMap, Size);
         visitorHandler.setSpawnPoint(mMap[halfWidth][0]);
         game.checkSpawnTile(mMap[halfWidth][0]);
+
+        setEntrance(halfWidth);
     }
 
+    void setEntrance(int w)
+    {
+        w -= 2;
+
+        for(int i = 0; i < 3; i++)
+        {
+            for (int j = w; j < w + 5; j++)
+            {
+                mMap[j][i].isEntrance = true;
+
+                Material[] grass = mMap[j][i].GetComponent<MeshRenderer>().materials;
+
+                Material temp = entranceMat[0];
+                grass[1] = temp;
+
+                mMap[j][i].GetComponent<MeshRenderer>().materials = grass;
+
+                entranceTiles.Add(mMap[j][i]);
+            }
+        }
+    }
+
+    public List<EnvironmentTile> getEntrance()
+    {
+        return entranceTiles;
+    }
     private void SetupConnections()
     {
         // Currently we are only setting up connections between adjacnt nodes
@@ -273,7 +306,7 @@ public class Environment : MonoBehaviour
                             //Visitors
                             else if (characterType == 1)
                             {
-                                if (!neighbour.Visited && neighbour.isPath && neighbour.IsAccessible)
+                                if (!neighbour.Visited && neighbour.isPath && neighbour.IsAccessible || neighbour.isEntrance)
                                 {
                                     mToBeTested.Add(neighbour);
                                 }
