@@ -3160,12 +3160,12 @@ MonoBehaviour:
   dogScreen:
   - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     cost: 5
-    obj: {fileID: 617883161285503001, guid: 7da06bb53518b704298f7b068a265f98, type: 3}
+    obj: {fileID: 4613610612049812497, guid: ee5317f4548933f408b81e619d08bcf7, type: 3}
     pieces: []
     mat: {fileID: 0}
   - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     cost: 10
-    obj: {fileID: 7146477161884881454, guid: 81f0238e731c7eb47a363213b259830d, type: 3}
+    obj: {fileID: 5876223314115240943, guid: 7b99a8be0e9b90a40a56acc3507ca2a5, type: 3}
     pieces: []
     mat: {fileID: 0}
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}

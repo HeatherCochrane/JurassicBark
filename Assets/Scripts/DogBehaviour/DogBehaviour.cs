@@ -17,8 +17,6 @@ public class DogBehaviour : Character
 
     IEnumerator decreaseStats()
     {
-        Debug.Log("Started");
-
         while (true)
         {
             if (hungerLevel > -1)
@@ -39,6 +37,7 @@ public class DogBehaviour : Character
 
     Dog dog;
 
+    Animator animator;
 
     bool stop = false;
     int stoppingTime = 0;
@@ -68,12 +67,14 @@ public class DogBehaviour : Character
 
     Game game;
 
+    string previousAnim;
 
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
         inventory = GameObject.Find("InventoryUI").GetComponent<Inventory>();
         game = GameObject.Find("Game").GetComponent<Game>();
+        animator = this.GetComponent<Animator>();
         timer();
 
         profile.SetActive(false);
@@ -81,6 +82,7 @@ public class DogBehaviour : Character
 
         updateStats();
         StartCoroutine("decreaseStats");
+
     }
 
     // Update is called once per frame
@@ -89,6 +91,10 @@ public class DogBehaviour : Character
         if (stats.activeSelf)
         {
             stats.transform.position = Input.mousePosition;
+        }
+        if (!this.getIfMoving() && "NewIdle" != previousAnim)
+        {
+            changeAnimation("NewIdle");
         }
     }
 
@@ -139,6 +145,7 @@ public class DogBehaviour : Character
         EnvironmentTile tile = paddock[Random.Range(0, width), Random.Range(0, height)];
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, tile, 2);
         this.GoTo(route);
+        changeAnimation("NewWalk");
     }
 
     void getWater()
@@ -177,8 +184,6 @@ public class DogBehaviour : Character
 
     void getFood()
     {
-        Debug.Log("Go look for food");
-
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
@@ -338,5 +343,14 @@ public class DogBehaviour : Character
     private void OnMouseExit()
     {
         stats.SetActive(false);
+    }
+
+    void changeAnimation(string Anim)
+    {
+
+        Debug.Log("Called");
+        animator.Play(Anim);
+        previousAnim = Anim;
+
     }
 }

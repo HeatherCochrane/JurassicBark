@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
 
     public EnvironmentTile CurrentPosition { get; set; }
 
+    bool currentlyMoving = false;
     private IEnumerator DoMove(Vector3 position, Vector3 destination)
     {
         // Move between the two specified positions over the specified amount of time
@@ -33,6 +34,7 @@ public class Character : MonoBehaviour
         // Move through each tile in the given route
         if (route != null)
         {
+            currentlyMoving = true;
             Vector3 position = CurrentPosition.Position;
             for (int count = 0; count < route.Count; ++count)
             {
@@ -47,13 +49,22 @@ public class Character : MonoBehaviour
                 position = next;
             }
         }
+       
+            currentlyMoving = false;
+        
     }
 
     public void GoTo(List<EnvironmentTile> route)
     {
         // Clear all coroutines before starting the new route so 
         // that clicks can interupt any current route animation
+        currentlyMoving = false;
         StopAllCoroutines();
         StartCoroutine(DoGoTo(route));
+    }
+
+    public bool getIfMoving()
+    {
+        return currentlyMoving;
     }
 }

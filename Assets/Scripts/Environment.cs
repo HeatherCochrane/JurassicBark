@@ -159,6 +159,11 @@ public class Environment : MonoBehaviour
 
                 mMap[j][i].GetComponent<MeshRenderer>().materials = grass;
 
+
+                if(!mMap[j][i].IsAccessible)
+                {
+                    Destroy(mMap[j][i].transform.GetChild(0).gameObject);
+                }
                 entranceTiles.Add(mMap[j][i]);
             }
         }

@@ -323,14 +323,14 @@ public class Game : MonoBehaviour
                 break;
         }
 
-        if(standInObject.transform.childCount > 0)
-        {
-            changeChildColours();
-        }
-        else
-        {
-            changeColours();
-        }
+        //if(standInObject.transform.childCount > 0)
+        //{
+        //    changeChildColours();
+        //}
+        //else
+        //{
+        //    changeColours();
+        //}
 
     }
 
@@ -340,12 +340,19 @@ public class Game : MonoBehaviour
 
         for (int i = 0; i < standInObject.transform.childCount; i++)
         {
-            standIns.Add(standInObject.transform.GetChild(i).GetComponent<MeshRenderer>().materials[0]);
+            Debug.Log("Loop");
+            if (standIn.transform.GetChild(i).tag == "Model")
+            {
+                standIns.Add(standInObject.transform.GetChild(i).GetComponent<SkinnedMeshRenderer>().materials[0]);
+            }
         }
 
         for (int i = 0; i < standInObject.transform.childCount; i++)
-        {
-            standInObject.transform.GetChild(i).GetComponent<MeshRenderer>().materials[0].color = standInColours[i];
+        { 
+            if (standIn.transform.GetChild(i).tag == "Model")
+            {
+                standInObject.transform.GetChild(i).GetComponent<SkinnedMeshRenderer>().materials[0].color = standInColours[i];
+            }
         }
     }
 
