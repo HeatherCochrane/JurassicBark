@@ -36,6 +36,14 @@ public class Environment : MonoBehaviour
     Material[] entranceMat;
 
     List<EnvironmentTile> entranceTiles = new List<EnvironmentTile>();
+
+    [SerializeField]
+    GameObject archway;
+
+    GameObject spawner;
+
+    [SerializeField]
+    CameraControl camera;
     private void Awake()
     {
         mAll = new List<EnvironmentTile>();
@@ -140,6 +148,10 @@ public class Environment : MonoBehaviour
         game.checkSpawnTile(mMap[halfWidth][0]);
 
         setEntrance(halfWidth);
+
+
+        //Give Camera the clamped values
+        camera.setClampValues(mMap[0][0].transform.position.x, mMap[0][0].transform.position.z, mMap[49][0].transform.position.x, mMap[25][39].transform.position.z);
     }
 
     void setEntrance(int w)
@@ -164,8 +176,18 @@ public class Environment : MonoBehaviour
                 {
                     Destroy(mMap[j][i].transform.GetChild(0).gameObject);
                 }
+
                 entranceTiles.Add(mMap[j][i]);
             }
+        }
+
+        //Spawn Front entrance
+        spawner = Instantiate(archway);
+        spawner.transform.position = new Vector3(entranceTiles[2].transform.position.x + 5, entranceTiles[2].transform.position.y + 3, entranceTiles[2].transform.position.z + 5);
+
+        for(int i = w; i < w + 5; i++)
+        {
+            mMap[i][0].IsAccessible = false;
         }
     }
 
@@ -311,7 +333,7 @@ public class Environment : MonoBehaviour
                             //Visitors
                             else if (characterType == 1)
                             {
-                                if (!neighbour.Visited && neighbour.isPath && neighbour.IsAccessible || neighbour.isEntrance)
+                                if (!neighbour.Visited && neighbour.isPath && neighbour.IsAccessible || neighbour.isEntrance && neighbour.IsAccessible)
                                 {
                                     mToBeTested.Add(neighbour);
                                 }

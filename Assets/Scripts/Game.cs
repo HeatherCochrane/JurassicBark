@@ -171,7 +171,7 @@ public class Game : MonoBehaviour
                 {
                     standInObject.transform.position = new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5);
                 }
-                if(Input.GetMouseButtonDown(2))
+                if(Input.GetMouseButtonDown(2) && standInObject != null)
                 {
                     standInObject.transform.Rotate(0, 45, 0);
                 }
