@@ -71,7 +71,18 @@ public class CameraControl : MonoBehaviour
 				mainCam.transform.position = transform.position - Camera.main.transform.forward * speed * Time.deltaTime;
 				mainCam.transform.position = new Vector3(mainCam.transform.position.x, 110, mainCam.transform.position.z);
 			}
-		
+
+			if (Input.GetAxis("Horizontal") > 0)
+			{
+				mainCam.transform.position = transform.position + Camera.main.transform.right * speed * Time.deltaTime;
+				mainCam.transform.position = new Vector3(mainCam.transform.position.x, 110, mainCam.transform.position.z);
+			}
+			else if (Input.GetAxis("Horizontal") < 0)
+			{
+				mainCam.transform.position = transform.position - Camera.main.transform.right * speed * Time.deltaTime;
+				mainCam.transform.position = new Vector3(mainCam.transform.position.x, 110, mainCam.transform.position.z);
+			}
+
 			mainCam.fieldOfView += Input.mouseScrollDelta.y * -0.5f;
 
 			mainCam.fieldOfView = Mathf.Clamp(mainCam.fieldOfView, camFOVmin, camFOVmax);
@@ -93,10 +104,10 @@ public class CameraControl : MonoBehaviour
 
 	public void setClampValues(float miX, float miZ, float maX, float maZ)
 	{
-		minx = miX;
-		minz = miZ;
-		maxx = maX;
-		maxz = maZ;
+		minx = miX - 10;
+		minz = miZ - 10;
+		maxx = maX + 10;
+		maxz = maZ + 10;
 
 	}
 }
