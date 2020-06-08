@@ -120,7 +120,7 @@ public class PaddockCreation : MonoBehaviour
 
         paddockCost.gameObject.SetActive(true);
         paddockCost.gameObject.transform.position = Input.mousePosition;
-        paddockCost.text = "£" + ((width * height) * fenceCost).ToString();
+        paddockCost.text = "£" + ((width * height) * fenceCost).ToString() + " " + width + "X" + height;
 
         if(width < 0 || height < 0)
         {

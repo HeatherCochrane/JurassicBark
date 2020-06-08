@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 91516528661051797}
   - component: {fileID: 4917813157230187154}
   - component: {fileID: 4917813157230187153}
+  - component: {fileID: 1955955697457137646}
   m_Layer: 0
   m_Name: Sheppard
   m_TagString: Untagged
@@ -281,6 +282,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SingleNodeMoveTime: 0.5
+--- !u!65 &1955955697457137646
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971743951542406022}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5.6204286, z: 10.677542}
+  m_Center: {x: 0, y: 2.3102143, z: -0.7057829}
 --- !u!1 &4141443020327125497
 GameObject:
   m_ObjectHideFlags: 0

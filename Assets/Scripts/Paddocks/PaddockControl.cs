@@ -43,6 +43,10 @@ public class PaddockControl : MonoBehaviour
 
     int maxDogCount = 0;
 
+    public bool hasWater{ get; set; }
+    public bool hasFood { get; set; }
+
+
 
     // Start is called before the first frame update
     void Start()

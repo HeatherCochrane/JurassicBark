@@ -616,6 +616,7 @@ GameObject:
   - component: {fileID: 5579966089228874404}
   - component: {fileID: 579470487658158525}
   - component: {fileID: 579470487658158524}
+  - component: {fileID: 3057147576722921409}
   m_Layer: 0
   m_Name: Sharpay
   m_TagString: Untagged
@@ -672,3 +673,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SingleNodeMoveTime: 0.5
+--- !u!65 &3057147576722921409
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8875288924648407223}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5.409754, z: 6.3078976}
+  m_Center: {x: 0, y: 2.204877, z: -0.4255209}

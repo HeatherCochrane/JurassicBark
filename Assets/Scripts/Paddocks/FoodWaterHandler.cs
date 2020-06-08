@@ -14,6 +14,8 @@ public class FoodWaterHandler : MonoBehaviour
     Currency currency;
 
     GameObject item;
+
+    int b = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,15 @@ public class FoodWaterHandler : MonoBehaviour
             item.transform.parent = p.transform;
 
 
+            Transform control = p.transform.parent;
+            if (b == 0)
+            {
+                control.GetComponentInChildren<PaddockControl>().hasFood = true;
+            }
+            else
+            {
+                control.GetComponentInChildren<PaddockControl>().hasWater = true;
+            }
             currency.subtractMoney(cost);
 
         }
@@ -46,6 +57,7 @@ public class FoodWaterHandler : MonoBehaviour
     {
         standIn = UIHandle.getPaddockItems(button);
         cost = UIHandle.getPaddockItemsCost(button);
+        b = button;
     }
     public GameObject getStandIn(int button)
     {

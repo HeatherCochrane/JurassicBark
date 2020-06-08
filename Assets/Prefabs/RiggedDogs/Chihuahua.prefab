@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 2433310930061378926}
   - component: {fileID: 7259362419128659579}
   - component: {fileID: 7259362419128659578}
+  - component: {fileID: 4965956314245348117}
   m_Layer: 0
   m_Name: Chihuahua
   m_TagString: Untagged
@@ -207,6 +208,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SingleNodeMoveTime: 0.5
+--- !u!65 &4965956314245348117
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702222940515645309}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4068089, y: 6.0248547, z: 6.632714}
+  m_Center: {x: -0.20340443, y: 2.5124273, z: -0.7523558}
 --- !u!1 &1871429084829449474
 GameObject:
   m_ObjectHideFlags: 0

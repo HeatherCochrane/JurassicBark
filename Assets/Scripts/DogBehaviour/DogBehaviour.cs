@@ -69,6 +69,8 @@ public class DogBehaviour : Character
 
     string previousAnim;
 
+    bool doingAction = false;
+
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
@@ -91,7 +93,7 @@ public class DogBehaviour : Character
         {
             stats.transform.position = Input.mousePosition;
         }
-        if (!this.getIfMoving())
+        if (!this.getIfMoving() && !doingAction)
         {
             changeAnimation("IdleTest");
         }
@@ -217,25 +219,31 @@ public class DogBehaviour : Character
     }
     void decideNextAction()
     {
-        if(dog.hungerLevel < 60)
+        doingAction = false;
+
+        if(dog.hungerLevel < 60 && paddockHandler.hasFood)
         {
             getFood();
         }
-        else if(dog.thirstLevel < 60)
+        else if(dog.thirstLevel < 60 && paddockHandler.hasWater)
         {
             getWater();
         }
         else
         {
-            int rand = Random.Range(1, 3);
+            int rand = Random.Range(1, 4);
 
             switch(rand)
             {
                 case 1: moveDog();
                     break;
-                case 2: getFood();
+                case 2: doRandomAction();
+                    doingAction = true;
                     break;
-                case 3: getWater();
+                case 3: moveDog();
+                    break;
+                case 4: doRandomAction();
+                    doingAction = true;
                     break;
                 default: moveDog();
                     break;
@@ -243,6 +251,35 @@ public class DogBehaviour : Character
         }     
     }
 
+    void doRandomAction()
+    {        
+        int random = Random.Range(1, 4);
+
+        switch(random)
+        {
+            case 1:
+                changeAnimation("Look");
+                Invoke("stopAction", 3);
+                break;
+            case 2:
+                changeAnimation("Wiggle");
+                Invoke("stopAction", 3);
+                break;
+            case 3:
+                changeAnimation("Look");
+                Invoke("stopAction", 3);
+                break;
+            case 4: changeAnimation("Wiggle");
+                Invoke("stopAction", 3);
+                break;
+
+        }
+    }
+
+    void stopAction()
+    {
+        doingAction = false;
+    }
     public int getHappiness()
     {
         return dog.happinessLevel;

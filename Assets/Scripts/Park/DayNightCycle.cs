@@ -23,7 +23,7 @@ public class DayNightCycle : MonoBehaviour
 	IEnumerator dayTimer()
 	{
 		float dayLength = 0;
-		float totalTime = 20;
+		float totalTime = 200;
 
 		while(dayLength <= totalTime)
 		{

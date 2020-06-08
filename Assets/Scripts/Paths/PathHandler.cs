@@ -91,7 +91,7 @@ public class PathHandler : MonoBehaviour
 
         pathCost.gameObject.SetActive(true);
         pathCost.gameObject.transform.position = Input.mousePosition;
-        pathCost.text = "£" + ((width * height) * pathTypeCost).ToString();
+        pathCost.text = "£" + ((width * height) * pathTypeCost).ToString() + " " + width + "X" + height;
 
         if (width < 0 || height < 0)
         {
