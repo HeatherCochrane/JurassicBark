@@ -148,6 +148,15 @@ public class UIHandler : MonoBehaviour
         return decorationsScreen[button].cost;
     }
 
+    public int getPaddockItemsCost(int button)
+    {
+        return paddockItemsScreen[button].cost;
+    }
+
+    public GameObject getPaddockItems(int button)
+    {
+        return paddockItemsScreen[button].obj;
+    }
     public GameObject getItem(int button)
     {
         return paddockItemsScreen[button].obj;

@@ -1954,6 +1954,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344080949}
   m_CullTransparentMesh: 0
+--- !u!1 &348101302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 348101304}
+  - component: {fileID: 348101303}
+  m_Layer: 0
+  m_Name: FoodWaterHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &348101303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348101302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42fb84010bc367f4d9dac20026377200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIHandle: {fileID: 538645414}
+  currency: {fileID: 972362448}
+--- !u!4 &348101304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348101302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 896303072}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &361077833
 GameObject:
   m_ObjectHideFlags: 0
@@ -3274,7 +3319,7 @@ MonoBehaviour:
     cost: 5
     obj: {fileID: 0}
     pieces: []
-    mat: {fileID: 2100000, guid: 7c908f31a2f548c4da2d17fc90e9022e, type: 2}
+    mat: {fileID: 2100000, guid: 59d58f1940f12374ba44481560eca868, type: 2}
   - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     cost: 10
     obj: {fileID: 0}
@@ -4500,7 +4545,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &706353136
 GameObject:
@@ -5051,7 +5096,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &782314694
 GameObject:
@@ -5788,6 +5833,7 @@ MonoBehaviour:
   - {r: 0.51366144, g: 0.9150943, b: 0.73482656, a: 1}
   - {r: 0.51366144, g: 0.9150943, b: 0.73482656, a: 1}
   - {r: 0.51366144, g: 0.9150943, b: 0.73482656, a: 1}
+  foodWaterHandle: {fileID: 348101303}
 --- !u!4 &896303072
 Transform:
   m_ObjectHideFlags: 0
@@ -5810,8 +5856,9 @@ Transform:
   - {fileID: 2116099838}
   - {fileID: 1716821175}
   - {fileID: 1218815162}
+  - {fileID: 348101304}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &948473990
 GameObject:
@@ -6040,7 +6087,7 @@ RectTransform:
   m_Children:
   - {fileID: 538645413}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6955,7 +7002,7 @@ RectTransform:
   - {fileID: 1791055703}
   - {fileID: 1372535159}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8664,17 +8711,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 809585156}
-        m_MethodName: showInventory
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 963194229}
         m_MethodName: setCamera
         m_Mode: 6
@@ -8687,7 +8723,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 896303071}
-        m_MethodName: setPlacingWater
+        m_MethodName: setPlacingPaddockItem
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8697,13 +8733,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2116099837}
-        m_MethodName: setItemCost
+      - m_Target: {fileID: 348101303}
+        m_MethodName: getItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 896303071}
+        m_MethodName: setStandInButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 896303071}
+        m_MethodName: getStandIn
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -8825,6 +8883,85 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
   m_VerticalFit: 1
+--- !u!1001 &1670640181
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5663808847459478297, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.407853
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663808847459478297, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.127199
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663808847459478297, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.0093
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663808847459478297, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663808847459478297, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663808847459478297, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663808847459478297, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663808847459478297, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663808847459478297, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663808847459478297, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663808847459478297, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6349296971701527149, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_Name
+      value: Plain 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6349296971701527149, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896933682577895597, guid: 4f89dc5847e72574cb4160f035f2d2e0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 59d58f1940f12374ba44481560eca868, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4f89dc5847e72574cb4160f035f2d2e0, type: 3}
 --- !u!1 &1672629845
 GameObject:
   m_ObjectHideFlags: 0
@@ -9621,17 +9758,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 809585156}
-        m_MethodName: showInventory
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 963194229}
         m_MethodName: setCamera
         m_Mode: 6
@@ -9644,7 +9770,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 896303071}
-        m_MethodName: setPlacingFood
+        m_MethodName: setPlacingPaddockItem
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9654,8 +9780,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2116099837}
-        m_MethodName: setItemCost
+      - m_Target: {fileID: 896303071}
+        m_MethodName: setStandInButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9665,13 +9791,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2116099836}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 348101303}
+        m_MethodName: getItem
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 896303071}
+        m_MethodName: getStandIn
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -11325,7 +11462,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2044774655
 GameObject:
@@ -11789,7 +11926,7 @@ MonoBehaviour:
   visitorHandler: {fileID: 1218815163}
   game: {fileID: 896303071}
   entranceMat:
-  - {fileID: 2100000, guid: a17a9a74b9da4594190eca604b62cbcd, type: 2}
+  - {fileID: 2100000, guid: 59d58f1940f12374ba44481560eca868, type: 2}
   archway: {fileID: 967242302848362117, guid: 1699d51cb251e01478b29ba75ff109d7, type: 3}
   camera: {fileID: 963194229}
 --- !u!4 &2083344931
@@ -12293,7 +12430,7 @@ RectTransform:
   m_Children:
   - {fileID: 1601968963}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

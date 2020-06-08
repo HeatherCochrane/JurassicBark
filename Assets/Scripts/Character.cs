@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] private float SingleNodeMoveTime = 0.5f;
+    [SerializeField] private float SingleNodeMoveTime = 0.1f;
 
     public EnvironmentTile CurrentPosition { get; set; }
 

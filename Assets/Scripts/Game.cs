@@ -38,8 +38,7 @@ public class Game : MonoBehaviour
 
     bool placeDogs = false;
 
-    bool placeWaterBowl = false;
-    bool placeFoodBowl = false;
+    bool placePaddockItem = false;
 
     [SerializeField]
     PaddockCreation paddockCreation;
@@ -59,6 +58,9 @@ public class Game : MonoBehaviour
 
     [SerializeField]
     Color[] standInColours;
+
+    [SerializeField]
+    FoodWaterHandler foodWaterHandle;
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -145,16 +147,10 @@ public class Game : MonoBehaviour
 
                     if (tile.isPaddock)
                     {
-                        if (placeFoodBowl)
+                        if (placePaddockItem)
                         {
                             Transform parent = tile.transform.parent;
-                            paddockCreation.placeFoodBowl(tile, parent);
-                        }
-                        else if (placeWaterBowl)
-                        {
-
-                            Transform parent = tile.transform.parent;
-                            paddockCreation.placeWaterBowl(tile, parent);
+                            foodWaterHandle.spawnItem(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile, standInObject.transform.eulerAngles);
                         }
                         else if (placeDogs && tile.IsAccessible)
                         {
@@ -238,14 +234,9 @@ public class Game : MonoBehaviour
         deleteObjects = set;
     }
 
-    public void setPlacingFood(bool set)
+    public void setPlacingPaddockItem(bool set)
     {
-        placeFoodBowl = set;
-    }
-
-    public void setPlacingWater(bool set)
-    {
-        placeWaterBowl = set;
+        placePaddockItem = set;
     }
 
     public void setPlacingDogs(bool set)
@@ -278,8 +269,7 @@ public class Game : MonoBehaviour
     {
         clicks = -1;
         creatingPaddocks = false;
-        placeWaterBowl = false;
-        placeFoodBowl = false;
+        placePaddockItem= false;
         placeDogs = false;
         placePath = false;
         placingDeco = false;
@@ -296,7 +286,7 @@ public class Game : MonoBehaviour
 
     public bool doingAction()
     {
-        if(creatingPaddocks || placeWaterBowl || placeFoodBowl || placeDogs || placePath || placingDeco)
+        if(creatingPaddocks || placePaddockItem || placeDogs || placePath || placingDeco)
         {
             return true;
         }
@@ -320,6 +310,8 @@ public class Game : MonoBehaviour
                 break;
             //Decorations
             case 2: standInObject = Instantiate(decoration.getStandIn(standInButton));
+                break;
+            case 3: standInObject = Instantiate(foodWaterHandle.getStandIn(standInButton));
                 break;
         }
 

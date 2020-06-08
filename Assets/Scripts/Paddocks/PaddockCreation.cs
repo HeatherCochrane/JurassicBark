@@ -70,7 +70,7 @@ public class PaddockCreation : MonoBehaviour
 
     int itemCost = 0;
     GameObject item;
-    GameObject bowl;
+
 
     [SerializeField]
     Game game;
@@ -427,36 +427,6 @@ public class PaddockCreation : MonoBehaviour
         fenceSet = UIhandler.getFencePieces(button);
         fenceCost = UIhandler.getFenceCost(button);
     }
-
-    public void placeFoodBowl(EnvironmentTile pos, Transform parent)
-    {
-        if (currency.sufficientFunds(itemCost))
-        {
-            bowl = Instantiate(item);
-
-            bowl.transform.position = new Vector3(pos.Position.x, pos.Position.y, pos.Position.z);
-
-            bowl.transform.parent = parent.transform;
-            pos.hasFoodBowl = true;
-        }
-        game.setPlacingFood(false);
-
-    }
-
-    public void placeWaterBowl(EnvironmentTile pos, Transform parent)
-    {
-        if (currency.sufficientFunds(itemCost))
-        {
-            bowl = Instantiate(item);
-
-            bowl.transform.position = new Vector3(pos.Position.x, pos.Position.y, pos.Position.z);
-
-            bowl.transform.parent = parent.transform;
-            pos.hasWaterBowl = true;
-        }
-        game.setPlacingWater(false);
-    }
-
 
     public void setItemCost(int button)
     {
