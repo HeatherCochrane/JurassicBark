@@ -151,16 +151,19 @@ public class PaddockCreation : MonoBehaviour
         {
             for (int j = zPos; j < (int)heightTile; j++)
             {
-                paddock[x, z] = mMap[i][j];
-                Material[] grass = paddock[x, z].GetComponent<MeshRenderer>().materials;
+                if (!mMap[i][j].isPath && !mMap[i][j].isEntrance && !mMap[i][j].hasPaint)
+                {
+                    paddock[x, z] = mMap[i][j];
+                    Material[] grass = paddock[x, z].GetComponent<MeshRenderer>().materials;
 
-                temp = paddock[x, z].GetComponent<MeshRenderer>().material.color;
-                temp.r -= 0.8f;
-                grass[1].color = temp;
+                    temp = paddock[x, z].GetComponent<MeshRenderer>().material.color;
+                    temp.r -= 0.8f;
+                    grass[1].color = temp;
 
-                paddock[x, z].GetComponent<MeshRenderer>().materials = grass;
-                z++;
-                standIn = z;
+                    paddock[x, z].GetComponent<MeshRenderer>().materials = grass;
+                    z++;
+                    standIn = z;
+                }
             }
             x++;
             z = 0;
@@ -172,7 +175,7 @@ public class PaddockCreation : MonoBehaviour
             {
                 if (i < xPos || i > xPos + width || j < zPos || j > zPos + height)
                 {
-                    if (!mMap[i][j].isPath && !mMap[i][j].isEntrance)
+                    if (!mMap[i][j].isPath && !mMap[i][j].isEntrance && !mMap[i][j].hasPaint)
                     {
                         Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 
@@ -397,7 +400,7 @@ public class PaddockCreation : MonoBehaviour
         {
             for (int j = 0; j < mapSize.y; j++)
             {
-                if (!mMap[i][j].isPath && !mMap[i][j].isEntrance)
+                if (!mMap[i][j].isPath && !mMap[i][j].isEntrance && !mMap[i][j].hasPaint)
                 {
                     Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 
@@ -407,16 +410,16 @@ public class PaddockCreation : MonoBehaviour
 
                     mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
                 }
-                else
-                {
-                    Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
+                //else
+                //{
+                //    Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 
-                    temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
-                    temp = Color.white;
-                    mat[1].color = temp;
+                //    temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
+                //    temp = Color.white;
+                //    mat[1].color = temp;
 
-                    mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
-                }
+                //    mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+                //}
             }
         }
 

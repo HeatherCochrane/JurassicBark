@@ -61,6 +61,12 @@ public class Game : MonoBehaviour
 
     [SerializeField]
     FoodWaterHandler foodWaterHandle;
+
+    [SerializeField]
+    TerrainPainting painting;
+
+    bool isPainting = false;
+
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -86,6 +92,14 @@ public class Game : MonoBehaviour
             EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
             if (tile != null)
             {
+                if(Input.GetMouseButton(0))
+                {
+                    if (isPainting)
+                    {
+                        painting.paintTile(tile);
+                    }
+                }
+
                 if (Input.GetMouseButtonDown(0))
                 {
                     //If the selection for creating paddocks has been selected (button)
@@ -144,7 +158,7 @@ public class Game : MonoBehaviour
                             }
                         }
                     }
-
+                   
                     if (tile.isPaddock)
                     {
                         if (placePaddockItem)
@@ -163,7 +177,7 @@ public class Game : MonoBehaviour
 
                 }
 
-                if(standInObject != null)
+                if (standInObject != null)
                 {
                     standInObject.transform.position = new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5);
                 }
@@ -225,6 +239,10 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void setPaintingTerrain(bool set)
+    {
+        isPainting = true;
+    }
     public void setCreatingPaddocks(bool set)
     {
         creatingPaddocks = set;
@@ -274,8 +292,9 @@ public class Game : MonoBehaviour
         placePath = false;
         placingDeco = false;
         deleteObjects = false;
+        isPainting = false;
 
-        if(standInObject != null)
+        if (standInObject != null)
         {
             Destroy(standInObject);
         }

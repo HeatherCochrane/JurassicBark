@@ -17,4 +17,14 @@ public class EnvironmentTile : MonoBehaviour
     public bool hasFoodBowl { get; set; }
     public bool isPath { get; set; }
     public bool isEntrance { get; set; }
+
+
+    //Terrain Painting
+
+    public bool isDirt { get; set; }
+    public bool isSand { get; set; }
+    public bool isLightGrass { get; set; }
+    public bool isDarkGrass { get; set; }
+
+    public bool hasPaint { get; set; }
 }
