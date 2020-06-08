@@ -69,12 +69,15 @@ public class DogBehaviour : Character
 
     string previousAnim;
 
+    Animator faceAnimator;
+
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
         inventory = GameObject.Find("InventoryUI").GetComponent<Inventory>();
         game = GameObject.Find("Game").GetComponent<Game>();
         animator = this.GetComponent<Animator>();
+        faceAnimator = this.GetComponentInChildren<Animator>();
         timer();
 
         profile.SetActive(false);
@@ -82,7 +85,6 @@ public class DogBehaviour : Character
 
         updateStats();
         StartCoroutine("decreaseStats");
-
     }
 
     // Update is called once per frame
@@ -92,9 +94,10 @@ public class DogBehaviour : Character
         {
             stats.transform.position = Input.mousePosition;
         }
-        if (!this.getIfMoving() && "NewIdle" != previousAnim)
+        if (!this.getIfMoving())
         {
-            changeAnimation("NewIdle");
+            changeAnimation("Idle");
+            changeFaceAnimation("Blink");
         }
     }
 
@@ -145,7 +148,7 @@ public class DogBehaviour : Character
         EnvironmentTile tile = paddock[Random.Range(0, width), Random.Range(0, height)];
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, tile, 2);
         this.GoTo(route);
-        changeAnimation("NewWalk");
+        changeAnimation("Walk");
     }
 
     void getWater()
@@ -347,10 +350,11 @@ public class DogBehaviour : Character
 
     void changeAnimation(string Anim)
     {
-
-        Debug.Log("Called");
         animator.Play(Anim);
-        previousAnim = Anim;
+    }
 
+    void changeFaceAnimation(string face)
+    {
+        faceAnimator.Play(face);
     }
 }

@@ -51,33 +51,24 @@ public class CameraControl : MonoBehaviour
 	{
 		if (moveCamera)
 		{
-
-			if (Input.GetMouseButton(0))
-			{
-				transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * s, -Input.GetAxis("Mouse X") * s, 0));
-				X = transform.rotation.eulerAngles.x;
-				Y = transform.rotation.eulerAngles.y;
-				transform.rotation = Quaternion.Euler(X, Y, transform.rotation.z);
-			}
-
 			
-			if (Input.GetAxis("Vertical") > 0)
+			if (Input.mousePosition.y >= Screen.height - 10)
 			{
 				mainCam.transform.position = transform.position + Camera.main.transform.forward * speed * Time.deltaTime;
 				mainCam.transform.position = new Vector3(mainCam.transform.position.x, 110, mainCam.transform.position.z);
 			}
-			else if (Input.GetAxis("Vertical") < 0)
+			else if (Input.mousePosition.y <= 0)
 			{
 				mainCam.transform.position = transform.position - Camera.main.transform.forward * speed * Time.deltaTime;
 				mainCam.transform.position = new Vector3(mainCam.transform.position.x, 110, mainCam.transform.position.z);
 			}
 
-			if (Input.GetAxis("Horizontal") > 0)
+			if (Input.mousePosition.x >= Screen.width - 10)
 			{
 				mainCam.transform.position = transform.position + Camera.main.transform.right * speed * Time.deltaTime;
 				mainCam.transform.position = new Vector3(mainCam.transform.position.x, 110, mainCam.transform.position.z);
 			}
-			else if (Input.GetAxis("Horizontal") < 0)
+			else if (Input.mousePosition.x <= -0)
 			{
 				mainCam.transform.position = transform.position - Camera.main.transform.right * speed * Time.deltaTime;
 				mainCam.transform.position = new Vector3(mainCam.transform.position.x, 110, mainCam.transform.position.z);
@@ -104,10 +95,10 @@ public class CameraControl : MonoBehaviour
 
 	public void setClampValues(float miX, float miZ, float maX, float maZ)
 	{
-		minx = miX - 10;
-		minz = miZ - 10;
-		maxx = maX + 10;
-		maxz = maZ + 10;
+		minx = miX - 200;
+		minz = miZ - 200;
+		maxx = maX + 200;
+		maxz = maZ + 200;
 
 	}
 }

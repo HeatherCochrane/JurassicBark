@@ -3160,7 +3160,7 @@ MonoBehaviour:
   dogScreen:
   - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     cost: 5
-    obj: {fileID: 4613610612049812497, guid: ee5317f4548933f408b81e619d08bcf7, type: 3}
+    obj: {fileID: 6142034634073107473, guid: 18311c8d98f8975479624adde104c8d9, type: 3}
     pieces: []
     mat: {fileID: 0}
   - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
