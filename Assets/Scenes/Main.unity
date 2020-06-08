@@ -3160,32 +3160,32 @@ MonoBehaviour:
   dogScreen:
   - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     cost: 5
-    obj: {fileID: 6142034634073107473, guid: 18311c8d98f8975479624adde104c8d9, type: 3}
+    obj: {fileID: 3971743951542406022, guid: cb837778fd565be4da705c11baab2fa3, type: 3}
     pieces: []
     mat: {fileID: 0}
   - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     cost: 10
-    obj: {fileID: 5876223314115240943, guid: 7b99a8be0e9b90a40a56acc3507ca2a5, type: 3}
+    obj: {fileID: 8875288924648407223, guid: 6bf7cc85f94a6f24f9168df10c6dce77, type: 3}
     pieces: []
     mat: {fileID: 0}
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 0
-    obj: {fileID: 330788438972811182, guid: a082994051a955c42a3bfd9afbd10801, type: 3}
+    obj: {fileID: 7055908569728876282, guid: 2178bcce7c3550146b6b0c0877c2355c, type: 3}
     pieces: []
     mat: {fileID: 0}
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 0
-    obj: {fileID: 6188532209053212255, guid: 64f740b44d7bd7545a10089de4c7a9f5, type: 3}
+    obj: {fileID: 1702222940515645309, guid: db87ba0037540dc479fcb2bd837bf6be, type: 3}
     pieces: []
     mat: {fileID: 0}
   - picture: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     cost: 0
-    obj: {fileID: 2253888804588725468, guid: d7e8f1798239cca41a6d7804dbbf8418, type: 3}
+    obj: {fileID: 8550689018691712045, guid: 795edcbfa1bbc86488a6c972bbd4baa8, type: 3}
     pieces: []
     mat: {fileID: 0}
   - picture: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     cost: 0
-    obj: {fileID: 7141898606724208761, guid: a34fdbd6ab9d2c84f9f4804ea917e9f0, type: 3}
+    obj: {fileID: 3971743951542406022, guid: cb837778fd565be4da705c11baab2fa3, type: 3}
     pieces: []
     mat: {fileID: 0}
   fenceScreen:

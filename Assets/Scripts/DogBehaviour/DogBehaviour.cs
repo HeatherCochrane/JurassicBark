@@ -69,15 +69,12 @@ public class DogBehaviour : Character
 
     string previousAnim;
 
-    Animator faceAnimator;
-
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
         inventory = GameObject.Find("InventoryUI").GetComponent<Inventory>();
         game = GameObject.Find("Game").GetComponent<Game>();
         animator = this.GetComponent<Animator>();
-        faceAnimator = this.GetComponentInChildren<Animator>();
         timer();
 
         profile.SetActive(false);
@@ -96,8 +93,7 @@ public class DogBehaviour : Character
         }
         if (!this.getIfMoving())
         {
-            changeAnimation("Idle");
-            changeFaceAnimation("Blink");
+            changeAnimation("IdleTest");
         }
     }
 
@@ -148,7 +144,7 @@ public class DogBehaviour : Character
         EnvironmentTile tile = paddock[Random.Range(0, width), Random.Range(0, height)];
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, tile, 2);
         this.GoTo(route);
-        changeAnimation("Walk");
+        changeAnimation("WalkTest");
     }
 
     void getWater()
@@ -351,10 +347,5 @@ public class DogBehaviour : Character
     void changeAnimation(string Anim)
     {
         animator.Play(Anim);
-    }
-
-    void changeFaceAnimation(string face)
-    {
-        faceAnimator.Play(face);
     }
 }
