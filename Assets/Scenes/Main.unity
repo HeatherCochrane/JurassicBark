@@ -3287,31 +3287,43 @@ MonoBehaviour:
     obj: {fileID: 3971743951542406022, guid: cb837778fd565be4da705c11baab2fa3, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 2100000, guid: ae7f1eaca984a2c4380415f20d6c862f, type: 2}
+    terrainAmount: 3
   - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     cost: 10
     obj: {fileID: 8875288924648407223, guid: 6bf7cc85f94a6f24f9168df10c6dce77, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 2100000, guid: 39cf0b85276a8b64da7174711ee66e16, type: 2}
+    terrainAmount: 3
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 0
     obj: {fileID: 7055908569728876282, guid: 2178bcce7c3550146b6b0c0877c2355c, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 0
     obj: {fileID: 1702222940515645309, guid: db87ba0037540dc479fcb2bd837bf6be, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     cost: 0
     obj: {fileID: 8550689018691712045, guid: 795edcbfa1bbc86488a6c972bbd4baa8, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     cost: 0
     obj: {fileID: 3971743951542406022, guid: cb837778fd565be4da705c11baab2fa3, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   fenceScreen:
   - picture: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     cost: 10
@@ -3322,6 +3334,8 @@ MonoBehaviour:
     - {fileID: 3778367982531189526, guid: 27d2b698579f5254c8b94e8075991e89, type: 3}
     - {fileID: 2539980940662398497, guid: 8eb784ce01240494195e12a4f855cc80, type: 3}
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     cost: 20
     obj: {fileID: 0}
@@ -3331,6 +3345,8 @@ MonoBehaviour:
     - {fileID: 8923355208386159311, guid: 5b0f97ad9aa03fb4f947688f714f8d3d, type: 3}
     - {fileID: 4326531903388129399, guid: 4771f3f1a10af654786c8a619528ab65, type: 3}
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     cost: 40
     obj: {fileID: 0}
@@ -3340,74 +3356,102 @@ MonoBehaviour:
     - {fileID: 4792150505531783531, guid: 470f0d64b6d145a4d9f9cdd165258f60, type: 3}
     - {fileID: 2967757145878741390, guid: 270496964423211429d45fa85933d504, type: 3}
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     cost: 0
     obj: {fileID: 0}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     cost: 0
     obj: {fileID: 0}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     cost: 0
     obj: {fileID: 0}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   decorationsScreen:
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 5
     obj: {fileID: -927199367670048503, guid: 25a9f89ddfea5e546aa52748c8b9a949, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 10
     obj: {fileID: -927199367670048503, guid: 50364cf639ed6b0409490cf1c6bd3f53, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 10
     obj: {fileID: -927199367670048503, guid: d441e8ec54ba31e4e861a4399fe3dcb4, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 30
     obj: {fileID: -927199367670048503, guid: 97265ef46ade1d6418060a2711ce4dec, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 20
     obj: {fileID: -927199367670048503, guid: 50e664995bf4ff5448147b6585f33eb9, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 30
     obj: {fileID: -927199367670048503, guid: e9aeb4e10e8a61b45925afb1be2adeee, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   paddockItemsScreen:
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 30
     obj: {fileID: 2766484955131164744, guid: a0d4b9e52347ea04da50120c093de654, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 30
     obj: {fileID: 701579302331262685, guid: 64475590b591daa46aa3b420a01aabf9, type: 3}
     pieces: []
     mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   pathItemsScreen:
   - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     cost: 5
     obj: {fileID: 0}
     pieces: []
     mat: {fileID: 2100000, guid: 59d58f1940f12374ba44481560eca868, type: 2}
+    terrain: {fileID: 0}
+    terrainAmount: 0
   - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     cost: 10
     obj: {fileID: 0}
     pieces: []
     mat: {fileID: 2100000, guid: eb024a78984fcb64aa15133036809098, type: 2}
+    terrain: {fileID: 0}
+    terrainAmount: 0
 --- !u!222 &538645416
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7311,6 +7355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 435b8b80d3aa9d442a3bf6024eda692d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paddock: {fileID: 2116099837}
 --- !u!1 &1167088011
 GameObject:
   m_ObjectHideFlags: 0

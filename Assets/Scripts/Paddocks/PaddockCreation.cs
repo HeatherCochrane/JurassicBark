@@ -30,7 +30,7 @@ public class PaddockCreation : MonoBehaviour
 
     //Keep track of the paddocks within the area
     List<EnvironmentTile> createdPaddock = new List<EnvironmentTile>();
-    List<List<EnvironmentTile>> allPaddocks = new List<List<EnvironmentTile>>();
+    List<GameObject> allPaddocks = new List<GameObject>();
 
     //Fence Objects
     [SerializeField]
@@ -273,7 +273,6 @@ public class PaddockCreation : MonoBehaviour
                     x = 0;
                     z = 0;
 
-                    allPaddocks.Add(createdPaddock);
 
                     currency.subtractMoney(finalPaddockCost);
 
@@ -311,6 +310,8 @@ public class PaddockCreation : MonoBehaviour
                 tiles[i, j].transform.parent = pParent.transform;
             }
         }
+
+        allPaddocks.Add(pParent);
 
         //Spawn corner pieces first
         fencePiece = Instantiate(fenceSet[0]);
@@ -435,5 +436,10 @@ public class PaddockCreation : MonoBehaviour
     {
         itemCost = UIhandler.getItemCost(button);
         item = UIhandler.getItem(button);
+    }
+
+    public List<GameObject> getPaddocks()
+    {
+        return allPaddocks;
     }
 }

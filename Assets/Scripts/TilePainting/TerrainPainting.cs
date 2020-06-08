@@ -7,6 +7,13 @@ public class TerrainPainting : MonoBehaviour
     Material paint;
 
     string biome;
+
+    [SerializeField]
+    PaddockCreation paddock;
+
+    List<GameObject> paddocks = new List<GameObject>();
+
+    List<GameObject> dogs = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -30,22 +37,29 @@ public class TerrainPainting : MonoBehaviour
     }
     public void paintTile(EnvironmentTile t)
     {
+        paddocks = paddock.getPaddocks();
+
         Material[] mats = t.GetComponent<MeshRenderer>().materials;
         mats[1] = paint;
         t.GetComponent<MeshRenderer>().materials = mats;
-
-        switch(biome)
-        {
-            case "Dirt": t.isDirt = true;
-                break;
-            case "Sand": t.isSand = true;
-                break;
-            case "LightGrass": t.isLightGrass = true;
-                break;
-            case "DarkGrass": t.isDarkGrass = true;
-                break;
-        }
+        t.setTerrainPaint(paint.name);
 
         t.hasPaint = true;
+
+        if (paddocks.Count > 0)
+        {
+            for (int i = 0; i < paddocks.Count; i++)
+            {
+                dogs = paddocks[i].GetComponentInChildren<PaddockControl>().getDogs();
+
+                if (dogs.Count > 0)
+                {
+                    for (int j = 0; j < dogs.Count; j++)
+                    {
+                        dogs[i].GetComponent<DogBehaviour>().updateStats();
+                    }
+                }
+            }
+        }
     }
 }

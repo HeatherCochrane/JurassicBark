@@ -36,6 +36,12 @@ public class DogHandler : MonoBehaviour
     string personality;
     string gender;
     int age = 0;
+
+    Material terrain;
+
+    int terrainAmount;
+
+    int but = 0;
     void Start()
     {
         UIhandler = GameObject.Find("UIHandler").GetComponent<UIHandler>();
@@ -46,7 +52,7 @@ public class DogHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void spawnDog(Vector3 pos, Transform parent, EnvironmentTile current)
@@ -67,6 +73,8 @@ public class DogHandler : MonoBehaviour
 
             dog.GetComponent<DogBehaviour>().giveDogInfo(gender, personality, age);
 
+            dog.GetComponent<DogBehaviour>().setTerrain(getTerrain(), getTerrainAmount());
+
             dogs.Add(dog);
             currency.subtractMoney(cost);
         }
@@ -76,6 +84,7 @@ public class DogHandler : MonoBehaviour
     {
         dogObject = UIhandler.getDog(num);
         cost = UIhandler.getDogCost(num);
+        but = num;
     }
 
     public GameObject getStandIn(int button)
@@ -86,5 +95,14 @@ public class DogHandler : MonoBehaviour
     public void setDogProfile(bool set)
     {
         dogProfile.SetActive(set);
+    }
+
+    public Material getTerrain()
+    {
+        return UIhandler.getTerrain(but);
+    }
+    public int getTerrainAmount()
+    {
+        return UIhandler.getTerrainAmount(but);
     }
 }

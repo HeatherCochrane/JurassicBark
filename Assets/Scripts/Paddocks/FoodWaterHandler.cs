@@ -37,16 +37,19 @@ public class FoodWaterHandler : MonoBehaviour
             item.transform.Rotate(r);
             item.transform.parent = p.transform;
 
-
             Transform control = p.transform.parent;
+
             if (b == 0)
             {
                 control.GetComponentInChildren<PaddockControl>().hasFood = true;
+                p.hasFoodBowl = true;
             }
             else
             {
                 control.GetComponentInChildren<PaddockControl>().hasWater = true;
+                p.hasWaterBowl = true;
             }
+
             currency.subtractMoney(cost);
 
         }

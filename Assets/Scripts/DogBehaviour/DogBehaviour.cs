@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class DogBehaviour : Character
 { 
-
     struct Dog
     {
         public int hungerLevel;
@@ -71,6 +70,9 @@ public class DogBehaviour : Character
 
     bool doingAction = false;
 
+    Material terrain;
+    int amount = 0;
+
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
@@ -99,6 +101,11 @@ public class DogBehaviour : Character
         }
     }
 
+    public void setTerrain(Material t, int a)
+    {
+        terrain = t;
+        amount = a;
+    }
     public void giveProfile(GameObject prof, GameObject s)
     {
         profile = prof;
@@ -170,6 +177,7 @@ public class DogBehaviour : Character
                 this.GoTo(route);
                 goalTile.IsAccessible = false;
                 Invoke("drinkWater", 5);
+                changeAnimation("WalkTest");
             }
             else if(dog.hungerLevel < 60)
             {
@@ -205,6 +213,8 @@ public class DogBehaviour : Character
                 
                 goalTile.IsAccessible = false;
                 Invoke("eatFood", 5);
+                changeAnimation("WalkTest");
+
             }
             else if(dog.thirstLevel < 60)
             {
@@ -332,11 +342,37 @@ public class DogBehaviour : Character
 
     void calculateHappiness()
     {
-        happinessLevel = dog.hungerLevel +dog.thirstLevel / 2;
+        int standIn = 0;
+
+        for(int i = 0; i < width; i++)
+        {
+            for(int j =0; j < height; j++)
+            {
+                if(paddock[i, j].getTerrainPaint() == terrain.name)
+                {
+                    standIn += 1;
+                }
+
+            }
+        }
+
+        happinessLevel = dog.hungerLevel + dog.thirstLevel / 2;
+
+        //If terrain needs are met, set the baseline at 70
+        if (standIn >= amount && happinessLevel < 50)
+        {
+            happinessLevel = 50;
+        }
+        else if(happinessLevel >= 50 && standIn < amount)
+        {
+            happinessLevel = 50;
+        }
+
         dog.happinessLevel = happinessLevel;
     }
-    void updateStats()
+    public void updateStats()
     {
+
         //First child is only text
         calculateHappiness();
         stats.transform.GetChild(1).GetComponent<Slider>().value = dog.hungerLevel;

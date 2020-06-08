@@ -20,11 +20,16 @@ public class EnvironmentTile : MonoBehaviour
 
 
     //Terrain Painting
+    string terrainPaint;
 
-    public bool isDirt { get; set; }
-    public bool isSand { get; set; }
-    public bool isLightGrass { get; set; }
-    public bool isDarkGrass { get; set; }
+    public void setTerrainPaint(string p)
+    {
+        terrainPaint = p;
+    }
+    public string getTerrainPaint()
+    {
+        return terrainPaint;
+    }
 
     public bool hasPaint { get; set; }
 }

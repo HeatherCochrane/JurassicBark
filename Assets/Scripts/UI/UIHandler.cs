@@ -20,6 +20,10 @@ public class UIHandler : MonoBehaviour
         public List<GameObject> pieces;
         [SerializeField]
         public Material mat;
+        [SerializeField]
+        public Material terrain;
+        [SerializeField]
+        public int terrainAmount;
     }
     
     GameObject newItem;
@@ -179,5 +183,15 @@ public class UIHandler : MonoBehaviour
     public GameObject getDecoration(int button)
     {
         return decorationsScreen[button].obj;
+    }
+
+    public Material getTerrain(int button)
+    {
+        return dogScreen[button].terrain;
+    }
+
+    public int getTerrainAmount(int button)
+    {
+        return dogScreen[button].terrainAmount;
     }
 }

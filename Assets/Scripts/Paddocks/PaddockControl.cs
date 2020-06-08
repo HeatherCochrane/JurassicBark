@@ -199,4 +199,9 @@ public class PaddockControl : MonoBehaviour
         }
     }
 
+    public List<GameObject> getDogs()
+    {
+        return dogsInPaddock;
+    }
+
 }
