@@ -162,7 +162,7 @@ public class PaddockControl : MonoBehaviour
                 overallThirst += dogsInPaddock[i].GetComponentInChildren<DogBehaviour>().getThirst();
             }
 
-            overallHappiness = overallThirst / dogsInPaddock.Count;
+            overallHappiness = overallHappiness / dogsInPaddock.Count;
             overallHunger = overallHunger / dogsInPaddock.Count;
             overallThirst = overallThirst / dogsInPaddock.Count;
         }

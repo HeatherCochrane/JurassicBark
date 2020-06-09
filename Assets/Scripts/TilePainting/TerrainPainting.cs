@@ -56,7 +56,7 @@ public class TerrainPainting : MonoBehaviour
                 {
                     for (int j = 0; j < dogs.Count; j++)
                     {
-                        dogs[i].GetComponent<DogBehaviour>().updateStats();
+                        dogs[i].GetComponent<DogBehaviour>().checkTiles();
                     }
                 }
             }

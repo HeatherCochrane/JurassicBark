@@ -18,22 +18,51 @@ public class DogBehaviour : Character
     {
         while (true)
         {
-            if (hungerLevel > -1)
+            if (hungerLevel >= 0)
             {
                 hungerLevel -= 10;
             }
-            if(thirstLevel > -1)
+            if(thirstLevel >= 0)
             {
                 thirstLevel -= 10;
             }
-            paddockHandler.updatePaddockInfo();
+
             updateStats();
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(20);
         }
 
  
     }
 
+    IEnumerator happinessTracker()
+    {
+        while(true)
+        {
+            if (dog.thirstLevel >= 60)
+            {
+                changeHappiness(10);
+                Debug.Log("Add");
+            }
+            else if (dog.thirstLevel < 60)
+            {
+                changeHappiness(-10);
+                Debug.Log("Take");
+            }
+            if (dog.hungerLevel >= 60)
+            {
+                changeHappiness(10);
+                Debug.Log("Add");
+            }
+            else if (dog.hungerLevel < 60)
+            {
+                changeHappiness(-10);
+                Debug.Log("Take");
+            }
+
+            updateStats();
+            yield return new WaitForSeconds(10);
+        }
+    }
     Dog dog;
 
     Animator animator;
@@ -42,11 +71,11 @@ public class DogBehaviour : Character
     int stoppingTime = 0;
 
     [Range(0, 100)]
-    int hungerLevel = 40;
+    int hungerLevel = 60;
     [Range(0, 100)]
-    int thirstLevel = 80;
+    int thirstLevel = 60;
     [Range(0, 100)]
-    int happinessLevel = 100;
+    int happinessLevel = 60;
 
     Environment mMap;
 
@@ -86,6 +115,7 @@ public class DogBehaviour : Character
 
         updateStats();
         StartCoroutine("decreaseStats");
+        StartCoroutine("happinessTracker");
     }
 
     // Update is called once per frame
@@ -120,6 +150,7 @@ public class DogBehaviour : Character
     {
         paddockHandler = p.GetComponent<PaddockControl>();
     }
+
     public void givePaddockSize(EnvironmentTile[,] p, int w, int h, EnvironmentTile current)
     {
         paddock = p;
@@ -158,11 +189,11 @@ public class DogBehaviour : Character
 
     void getWater()
     {
-        for(int i =0; i < width; i++)
+        for (int i = 0; i < width; i++)
         {
-            for(int j =0; j < height; j++)
+            for (int j = 0; j < height; j++)
             {
-                if(paddock[i, j].hasWaterBowl && paddock[i,j].IsAccessible)
+                if (paddock[i, j].hasWaterBowl && paddock[i, j].IsAccessible)
                 {
                     goalTile = paddock[i, j];
                 }
@@ -170,21 +201,20 @@ public class DogBehaviour : Character
         }
         if (goalTile != null)
         {
-            if (goalTile.IsAccessible)
-            {
-                this.CurrentPosition.IsAccessible = true;
-                List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
-                this.GoTo(route);
-                goalTile.IsAccessible = false;
-                Invoke("drinkWater", 5);
-                changeAnimation("WalkTest");
-            }
-            else if(dog.hungerLevel < 60)
-            {
-                getFood();
-            }
+
+            this.CurrentPosition.IsAccessible = true;
+            List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
+            this.GoTo(route);
+            goalTile.IsAccessible = false;
+            Invoke("drinkWater", 5);
+            changeAnimation("WalkTest");
+
         }
-        else 
+        else if (dog.hungerLevel < 60)
+        {
+            getFood();
+        }
+        else
         {
             moveDog();
         }
@@ -205,23 +235,22 @@ public class DogBehaviour : Character
         }
         if (goalTile != null)
         {
-            if (goalTile.IsAccessible)
-            {
-                this.CurrentPosition.IsAccessible = true;
-                List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
-                this.GoTo(route);
-                
-                goalTile.IsAccessible = false;
-                Invoke("eatFood", 5);
-                changeAnimation("WalkTest");
+            this.CurrentPosition.IsAccessible = true;
+            List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
+            this.GoTo(route);
 
-            }
-            else if(dog.thirstLevel < 60)
-            {
-                getWater();
-            }
+            goalTile.IsAccessible = false;
+            Invoke("eatFood", 5);
+            changeAnimation("WalkTest");
+
+
+
         }
-        else 
+        else if (dog.thirstLevel < 60)
+        {
+            getWater();
+        }
+        else
         {
             moveDog();
         }
@@ -231,11 +260,11 @@ public class DogBehaviour : Character
     {
         doingAction = false;
 
-        if(dog.hungerLevel < 60 && paddockHandler.hasFood)
+        if(dog.hungerLevel < 100 && paddockHandler.hasFood)
         {
             getFood();
         }
-        else if(dog.thirstLevel < 60 && paddockHandler.hasWater)
+        else if(dog.thirstLevel < 100 && paddockHandler.hasWater)
         {
             getWater();
         }
@@ -309,6 +338,7 @@ public class DogBehaviour : Character
     void eatFood()
     {
         hungerLevel += 30;
+
         if(hungerLevel >= 100)
         {
             hungerLevel = 100;
@@ -317,8 +347,9 @@ public class DogBehaviour : Character
         {
             hungerLevel = 0;
         }
+
         dog.hungerLevel = hungerLevel;
-        paddockHandler.updatePaddockInfo();
+        changeHappiness(10);
         updateStats();
     }
 
@@ -326,55 +357,91 @@ public class DogBehaviour : Character
     {
         thirstLevel += 30;
 
-        if(thirstLevel >= 100)
+        if (thirstLevel >= 100)
         {
             thirstLevel = 100;
         }
-        else if(thirstLevel <= 0)
+        else if (thirstLevel <= 0)
         {
             thirstLevel = 0;
         }
 
         dog.thirstLevel = thirstLevel;
-        paddockHandler.updatePaddockInfo();
+        changeHappiness(10);
         updateStats();
     }
 
-    void calculateHappiness()
+    void changeHappiness(int c)
     {
         int standIn = 0;
 
-        for(int i = 0; i < width; i++)
+        for (int i = 0; i < width; i++)
         {
-            for(int j =0; j < height; j++)
+            for (int j = 0; j < height; j++)
             {
-                if(paddock[i, j].getTerrainPaint() == terrain.name)
+                if (paddock[i, j].getTerrainPaint() == terrain.name)
                 {
                     standIn += 1;
                 }
-
             }
         }
 
-        happinessLevel = dog.hungerLevel + dog.thirstLevel / 2;
+        happinessLevel += c;
 
-        //If terrain needs are met, set the baseline at 70
-        if (standIn >= amount && happinessLevel < 50)
+        dog.happinessLevel = happinessLevel;
+
+        //If terrain needs are met, set the baseline at 60
+        if (standIn >= amount)
         {
-            happinessLevel = 50;
+            dog.happinessLevel = Mathf.Clamp(dog.happinessLevel, 60, 100);
         }
-        else if(happinessLevel >= 50 && standIn < amount)
+        else
         {
-            happinessLevel = 50;
+            dog.happinessLevel = Mathf.Clamp(dog.happinessLevel, 0, 70);
+        }
+
+        paddockHandler.updatePaddockInfo();
+
+        Debug.Log("Dog Happiness: " + dog.happinessLevel);
+
+    }
+
+    public void checkTiles()
+    {
+        int standIn = 0;
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                if (paddock[i, j].getTerrainPaint() == terrain.name)
+                {
+                    standIn += 1;
+                }
+            }
         }
 
         dog.happinessLevel = happinessLevel;
+
+        //If terrain needs are met, set the baseline at 60
+        if (standIn >= amount)
+        {
+            dog.happinessLevel = Mathf.Clamp(dog.happinessLevel, 70, 100);
+        }
+        else
+        {
+            dog.happinessLevel = Mathf.Clamp(dog.happinessLevel, 0, 70);
+        }
+
+        paddockHandler.updatePaddockInfo();
+
+        Debug.Log("Dog Happiness: " + dog.happinessLevel);
+
     }
+
     public void updateStats()
     {
-
         //First child is only text
-        calculateHappiness();
         stats.transform.GetChild(1).GetComponent<Slider>().value = dog.hungerLevel;
         stats.transform.GetChild(2).GetComponent<Slider>().value = dog.thirstLevel;
         stats.transform.GetChild(3).GetComponent<Slider>().value = dog.happinessLevel;
