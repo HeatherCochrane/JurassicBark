@@ -381,7 +381,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1582397351}
         m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
@@ -946,7 +946,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1582397351}
         m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
@@ -2182,7 +2182,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1582397351}
         m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
@@ -2998,7 +2998,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1582397351}
         m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
@@ -4952,6 +4952,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1582397351}
+        m_MethodName: setFollowTransform
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &723832666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5898,7 +5909,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1582397351}
         m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
@@ -6765,7 +6776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 200, z: -200}
+  m_LocalPosition: {x: 0, y: 300, z: -300}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1582397350}
@@ -7340,6 +7351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 435b8b80d3aa9d442a3bf6024eda692d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paddocksHandler: {fileID: 0}
   paddock: {fileID: 2116099837}
 --- !u!1 &1167088011
 GameObject:
@@ -7780,7 +7792,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1582397351}
         m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
@@ -9063,6 +9075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d72c48d9b0f6ef45b66e1b7e9be5337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followTransform: {fileID: 0}
   cameraTransform: {fileID: 963194228}
   normalSpeed: 0.5
   fastSpeed: 3
@@ -10909,7 +10922,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1582397351}
         m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
@@ -11349,7 +11362,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1582397351}
         m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
@@ -13283,7 +13296,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1582397351}
         m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
@@ -13417,7 +13430,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1582397351}
         m_MethodName: setCamera
         m_Mode: 6
         m_Arguments:
@@ -13481,6 +13494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 0
   height: 0
+  allPaddocks: []
   fenceH: {fileID: 15628963816892800, guid: c641161f67eacd645b8b324f5bc2811b, type: 3}
   fenceV: {fileID: 6794408073001093346, guid: 8b976555125aff145a9eeb799ed4ef24, type: 3}
   cornerPiece: {fileID: 5139081396082097481, guid: c418be0f55a724d43b8787c80344aa89,

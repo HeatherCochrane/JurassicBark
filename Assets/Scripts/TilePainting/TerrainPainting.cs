@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TerrainPainting : MonoBehaviour
 {
+    [SerializeField]
+    PaddockCreation paddocksHandler;
     Material paint;
 
     string biome;
@@ -12,6 +14,7 @@ public class TerrainPainting : MonoBehaviour
     PaddockCreation paddock;
 
     List<GameObject> paddocks = new List<GameObject>();
+
 
     List<GameObject> dogs = new List<GameObject>();
     // Start is called before the first frame update
@@ -46,13 +49,13 @@ public class TerrainPainting : MonoBehaviour
 
         t.hasPaint = true;
 
-        if (paddocks.Count > 0)
+        if (paddocks != null && paddocks.Count > 0)
         {
             for (int i = 0; i < paddocks.Count; i++)
             {
                 dogs = paddocks[i].GetComponentInChildren<PaddockControl>().getDogs();
 
-                if (dogs.Count > 0)
+                if (dogs != null && dogs.Count > 0)
                 {
                     for (int j = 0; j < dogs.Count; j++)
                     {

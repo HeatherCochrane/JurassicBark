@@ -126,6 +126,7 @@ public class PaddockControl : MonoBehaviour
                 }
             }
 
+            paddockMap.removePaddock(this.transform.parent.parent.gameObject);
             Destroy(this.transform.parent.parent.gameObject);
             Destroy(paddockUI);
         }

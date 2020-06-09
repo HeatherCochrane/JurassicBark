@@ -30,6 +30,8 @@ public class PaddockCreation : MonoBehaviour
 
     //Keep track of the paddocks within the area
     List<EnvironmentTile> createdPaddock = new List<EnvironmentTile>();
+
+    [SerializeField]
     List<GameObject> allPaddocks = new List<GameObject>();
 
     //Fence Objects
@@ -96,6 +98,20 @@ public class PaddockCreation : MonoBehaviour
     public void setStartingTile(EnvironmentTile s)
     {
         startTile = s;
+
+        //loop through and get the starting tile
+        for (int y = 0; y < mapSize.x; y++)
+        {
+            for (int k = 0; k < mapSize.y; k++)
+            {
+                if (mMap[y][k] == startTile)
+                {
+                    xPos = y;
+                    zPos = k;
+                }
+            }
+        }
+
     }
     public EnvironmentTile getStartingTile()
     {
@@ -107,6 +123,131 @@ public class PaddockCreation : MonoBehaviour
         calculatePaddockSize();
     }
 
+    public void createFenceLine(EnvironmentTile t)
+    {
+        int currentX = 0;
+        int currentZ = 0;
+
+        //loop through and get the starting tile
+        for (int y = 0; y < mapSize.x; y++)
+        {
+            for (int k = 0; k < mapSize.y; k++)
+            {
+                if (mMap[y][k] == t)
+                {
+                    currentX = y;
+                    currentZ = k;
+                }
+            }
+        }
+
+        //Make it so that the line is only drawn along one axis
+
+        int width = xPos - currentX;
+        int height = zPos - currentZ;
+
+        bool up = false;
+        bool right = false;
+
+        //Get the direction the line is going in
+        if (currentX < xPos)
+        {
+            right = false;
+        }
+        else
+        {
+            right = true;
+        }
+        if (currentZ < zPos)
+        {
+            up = false;
+        }
+        else
+        {
+            up = true;
+        }
+
+        width *= -1;
+        height *= -1;
+
+        //Which axis to move on
+        int dir = Mathf.Max(width, height);
+
+        if (dir == width)
+        {
+            if (right)
+            {
+                if (currentX + width <= mapSize.x)
+                {
+                    for (int i = currentX; i < currentX + width; i++)
+                    {
+                        Material[] grass = mMap[i][zPos].GetComponent<MeshRenderer>().materials;
+
+                        temp = mMap[i][zPos].GetComponent<MeshRenderer>().material.color;
+                        temp.r -= 0.8f;
+                        grass[1].color = temp;
+
+                        mMap[i][zPos].GetComponent<MeshRenderer>().materials = grass;
+                    }
+                }
+            }
+            else
+            {
+                if (currentX >= mapSize.x)
+                {
+                    {
+                        for (int i = xPos; i > currentX; i--)
+                        {
+                            Material[] grass = mMap[i][zPos].GetComponent<MeshRenderer>().materials;
+
+                            temp = mMap[i][zPos].GetComponent<MeshRenderer>().material.color;
+                            temp.r -= 0.8f;
+                            grass[1].color = temp;
+
+                            mMap[i][zPos].GetComponent<MeshRenderer>().materials = grass;
+                        }
+                    }
+                }
+            }
+        }
+        if (dir == height)
+        {
+            if (up)
+            {
+                if (currentZ + height <= mapSize.y)
+                {
+                    for (int i = currentZ; i < currentZ + height; i++)
+                    {
+                        Material[] grass = mMap[xPos][i].GetComponent<MeshRenderer>().materials;
+
+                        temp = mMap[xPos][i].GetComponent<MeshRenderer>().material.color;
+                        temp.r -= 0.8f;
+                        grass[1].color = temp;
+
+                        mMap[xPos][i].GetComponent<MeshRenderer>().materials = grass;
+                    }
+                }
+            }
+            else
+            {
+                if (currentZ >= mapSize.y)
+                {
+                    for (int i = zPos; i > currentZ; i--)
+                    {
+                        Material[] grass = mMap[xPos][i].GetComponent<MeshRenderer>().materials;
+
+                        temp = mMap[xPos][i].GetComponent<MeshRenderer>().material.color;
+                        temp.r -= 0.8f;
+                        grass[1].color = temp;
+
+                        mMap[xPos][i].GetComponent<MeshRenderer>().materials = grass;
+                    }
+                }
+            }
+        }
+    }
+
+    
     public void calculatePaddockCost(EnvironmentTile t)
     {
         width = (int)t.transform.position.x - (int)startTile.transform.position.x;
@@ -207,8 +348,6 @@ public class PaddockCreation : MonoBehaviour
 
         if (currency.sufficientFunds(finalPaddockCost))
         {
-            
-
             if (width >= 2 && height >= 2 && currency.sufficientFunds(finalPaddockCost))
             {
                 for (int y = 0; y < mapSize.x; y++)
@@ -441,5 +580,16 @@ public class PaddockCreation : MonoBehaviour
     public List<GameObject> getPaddocks()
     {
         return allPaddocks;
+    }
+
+    public void removePaddock(GameObject p)
+    {
+        for(int i =0; i < allPaddocks.Count; i++)
+        {
+            if(allPaddocks[i] == p)
+            {
+                allPaddocks.RemoveAt(i);
+            }
+        }
     }
 }

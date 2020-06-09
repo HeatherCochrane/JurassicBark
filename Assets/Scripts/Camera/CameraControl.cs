@@ -50,54 +50,35 @@ public class CameraControl : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (followTransform != null)
+		if (moveCamera)
 		{
-			transform.position = followTransform.position;
-		}
-		else
-		{
-			HandleMovementInput();
-		}
+			if (followTransform != null)
+			{
+				transform.position = followTransform.position;
+			}
+			else
+			{
+				HandleMovementInput();
+			}
 
-		if(Input.GetKeyDown(KeyCode.Escape))
-		{
-			followTransform = null;
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				followTransform = null;
+			}
+
+			HandleZoom();
 		}
 		
-		//if (moveCamera)
-		//{
-			
-		//	if (Input.mousePosition.y >= Screen.height - 10)
-		//	{
-		//		cameraRig.transform.position = transform.position + cameraRig.transform.forward * speed * Time.deltaTime;
-		//		cameraRig.transform.position = new Vector3(mainCam.transform.position.x, 110, mainCam.transform.position.z);
-		//	}
-		//	else if (Input.mousePosition.y <= 0)
-		//	{
-		//		cameraRig.transform.position = transform.position - cameraRig.transform.forward * speed * Time.deltaTime;
-		//		cameraRig.transform.position = new Vector3(mainCam.transform.position.x, 110, mainCam.transform.position.z);
-		//	}
-
-		//	if (Input.mousePosition.x >= Screen.width - 10)
-		//	{
-		//		cameraRig.transform.position = transform.position + Camera.main.transform.right * speed * Time.deltaTime;
-		//		cameraRig.transform.position = new Vector3(mainCam.transform.position.x, 110, mainCam.transform.position.z);
-		//	}
-		//	else if (Input.mousePosition.x <= -0)
-		//	{
-		//		cameraRig.transform.position = transform.position - Camera.main.transform.right * speed * Time.deltaTime;
-		//		cameraRig.transform.position = new Vector3(mainCam.transform.position.x, 110, mainCam.transform.position.z);
-		//	}
-
-		//	mainCam.fieldOfView += Input.mouseScrollDelta.y * -0.5f;
-
-		//	mainCam.fieldOfView = Mathf.Clamp(mainCam.fieldOfView, camFOVmin, camFOVmax);
-		//	cameraRig.transform.position = new Vector3(Mathf.Clamp(mainCam.transform.position.x, minx, maxx), Mathf.Clamp(mainCam.transform.position.y, miny, maxy), Mathf.Clamp(mainCam.transform.position.z, minz, maxz));
-
-		//	cameraRig.transform.position = new Vector3(transform.position.x, 50, transform.position.z);
-		//}
 	}
 
+	void HandleZoom()
+	{
+
+		newZoom += Input.mouseScrollDelta.y * zoomAmount;
+
+		newZoom = new Vector3(newZoom.x, Mathf.Clamp(newZoom.y, 60, 660), Mathf.Clamp(newZoom.z, -660, -60));
+		cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+	}
 	void HandleMovementInput()
 	{
 		if(Input.GetKey(KeyCode.LeftShift))
@@ -139,9 +120,6 @@ public class CameraControl : MonoBehaviour
 
 		//transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
 
-		newZoom += Input.mouseScrollDelta.y * zoomAmount;
-
-		cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
 	}
 
 	void rotatingCamera()
@@ -160,5 +138,10 @@ public class CameraControl : MonoBehaviour
 		//maxx = maX;
 		//maxz = maZ;
 
+	}
+
+	public void setFollowTransform()
+	{
+		followTransform = null;
 	}
 }
