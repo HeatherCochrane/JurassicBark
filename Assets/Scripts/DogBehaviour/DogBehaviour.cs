@@ -18,13 +18,15 @@ public class DogBehaviour : Character
     {
         while (true)
         {
-            if (hungerLevel >= 0)
+            if (dog.hungerLevel >= 0)
             {
                 hungerLevel -= 10;
+                dog.hungerLevel = hungerLevel;
             }
-            if(thirstLevel >= 0)
+            if(dog.thirstLevel >= 0)
             {
                 thirstLevel -= 10;
+                dog.thirstLevel = thirstLevel;
             }
 
             updateStats();
@@ -43,7 +45,7 @@ public class DogBehaviour : Character
                 changeHappiness(10);
                 Debug.Log("Add");
             }
-            else if (dog.thirstLevel < 60)
+            else if (dog.thirstLevel < 100)
             {
                 changeHappiness(-10);
                 Debug.Log("Take");
@@ -53,7 +55,7 @@ public class DogBehaviour : Character
                 changeHappiness(10);
                 Debug.Log("Add");
             }
-            else if (dog.hungerLevel < 60)
+            else if (dog.hungerLevel < 100)
             {
                 changeHappiness(-10);
                 Debug.Log("Take");
@@ -189,39 +191,17 @@ public class DogBehaviour : Character
 
     void getWater()
     {
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (paddock[i, j].hasWaterBowl && paddock[i, j].IsAccessible)
-                {
-                    goalTile = paddock[i, j];
-                }
-            }
-        }
-        if (goalTile != null)
-        {
 
-            this.CurrentPosition.IsAccessible = true;
-            List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
-            this.GoTo(route);
-            goalTile.IsAccessible = false;
-            Invoke("drinkWater", 5);
-            changeAnimation("WalkTest");
-
-        }
-        else if (dog.hungerLevel < 60)
-        {
-            getFood();
-        }
-        else
-        {
-            moveDog();
-        }
+        this.CurrentPosition.IsAccessible = true;
+        List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
+        this.GoTo(route);
+        goalTile.IsAccessible = false;
+        Invoke("drinkWater", 5);
+        changeAnimation("WalkTest");
 
     }
 
-    void getFood()
+    bool canGetFood()
     {
         for (int i = 0; i < width; i++)
         {
@@ -233,38 +213,59 @@ public class DogBehaviour : Character
                 }
             }
         }
-        if (goalTile != null)
+
+        if(goalTile != null)
         {
-            this.CurrentPosition.IsAccessible = true;
-            List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
-            this.GoTo(route);
-
-            goalTile.IsAccessible = false;
-            Invoke("eatFood", 5);
-            changeAnimation("WalkTest");
-
-
-
-        }
-        else if (dog.thirstLevel < 60)
-        {
-            getWater();
+            return true;
         }
         else
         {
-            moveDog();
+            return false;
+        }
+    }
+
+    bool canGetWater()
+    {
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                if (paddock[i, j].hasWaterBowl && paddock[i, j].IsAccessible)
+                {
+                    goalTile = paddock[i, j];
+                }
+            }
         }
 
+        if (goalTile != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
+    void getFood()
+    {
+        this.CurrentPosition.IsAccessible = true;
+        List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
+        this.GoTo(route);
+
+        goalTile.IsAccessible = false;
+        Invoke("eatFood", 5);
+        changeAnimation("WalkTest");
+    }
+
     void decideNextAction()
     {
         doingAction = false;
 
-        if(dog.hungerLevel < 100 && paddockHandler.hasFood)
-        {
+        if(dog.hungerLevel < 100 && paddockHandler.hasFood && canGetFood())
+        { 
             getFood();
         }
-        else if(dog.thirstLevel < 100 && paddockHandler.hasWater)
+        else if(dog.thirstLevel < 100 && paddockHandler.hasWater && canGetWater())
         {
             getWater();
         }
@@ -349,7 +350,7 @@ public class DogBehaviour : Character
         }
 
         dog.hungerLevel = hungerLevel;
-        changeHappiness(10);
+        changeHappiness(20);
         updateStats();
     }
 
@@ -367,7 +368,7 @@ public class DogBehaviour : Character
         }
 
         dog.thirstLevel = thirstLevel;
-        changeHappiness(10);
+        changeHappiness(20);
         updateStats();
     }
 
