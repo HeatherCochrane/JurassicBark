@@ -213,7 +213,6 @@ public class DogBehaviour : Character
                 }
             }
         }
-
         if(goalTile != null)
         {
             return true;
@@ -236,7 +235,6 @@ public class DogBehaviour : Character
                 }
             }
         }
-
         if (goalTile != null)
         {
             return true;
@@ -471,6 +469,8 @@ public class DogBehaviour : Character
 
         if (!game.doingAction())
         {
+            CameraControl.instance.followTransform = transform;
+
             profile.SetActive(true);
 
             profile.transform.GetChild(1).GetComponent<Text>().text = "Gender: " + dog.gender;
