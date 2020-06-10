@@ -72,6 +72,8 @@ public class Game : MonoBehaviour
     [SerializeField]
     ShopHandler shopHandler;
 
+    [SerializeField]
+    GameObject timeButton;
     bool speedUpTime = false;
     void Start()
     {
@@ -428,10 +430,12 @@ public class Game : MonoBehaviour
     {
         if(speedUpTime)
         {
+            timeButton.GetComponent<Image>().color = Color.white;
             speedUpTime = false;
         }
         else
         {
+            timeButton.GetComponent<Image>().color = Color.grey;
             speedUpTime = true;
         }
     }
