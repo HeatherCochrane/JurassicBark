@@ -149,7 +149,6 @@ public class Environment : MonoBehaviour
 
         setEntrance(halfWidth);
 
-
         //Give Camera the clamped values
         //camera.setClampValues(mMap[0][0].transform.position.x, mMap[0][0].transform.position.z, mMap[49][0].transform.position.x, mMap[25][39].transform.position.z);
     }

@@ -426,8 +426,6 @@ public class DogBehaviour : Character
 
         paddockHandler.updatePaddockInfo();
 
-        Debug.Log("Dog Happiness: " + dog.happinessLevel);
-
     }
 
     public void updateStats()

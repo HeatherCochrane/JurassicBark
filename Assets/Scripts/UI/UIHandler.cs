@@ -69,7 +69,9 @@ public class UIHandler : MonoBehaviour
             shopScreens[i].SetActive(false);
         }
 
-        setShops(false);
+        shopParent.SetActive(false);
+        game.setRayOnButton(false);
+
         setGameUI(false);
         setConstantUI(false);
 
@@ -80,12 +82,30 @@ public class UIHandler : MonoBehaviour
         populateShopScreens(paddockItemsScreen, 3);
         populateShopScreens(pathItemsScreen, 4);
         populateShopScreens(shopItemScreen, 5);
+
+        pauseMenus[0].SetActive(false);
+        pauseMenus[1].SetActive(false);
+
     }
+
+
+    [SerializeField]
+    AudioManager audioManager;
+
+    [SerializeField]
+    List<GameObject> pauseMenus = new List<GameObject>();
+
+    [SerializeField]
+    CameraControl camera;
+
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseGame();
+        }
     }
 
     void populateShopScreens(List<items> list, int child)
@@ -110,6 +130,8 @@ public class UIHandler : MonoBehaviour
                 shopScreens[i].SetActive(false);
             }
         }
+
+        audioManager.playOpen();
     }
 
     public void updateCurrency(int currency)
@@ -120,6 +142,15 @@ public class UIHandler : MonoBehaviour
     {
         shopParent.SetActive(set);
         game.setRayOnButton(set);
+
+        if (set)
+        {
+            audioManager.playOpen();
+        }
+        else
+        {
+            audioManager.playClose();
+        }
     }
 
     public void setGameUI(bool set)
@@ -206,5 +237,45 @@ public class UIHandler : MonoBehaviour
     public int getTerrainAmount(int button)
     {
         return dogScreen[button].terrainAmount;
+    }
+
+    public void pauseGame()
+    {
+        pauseMenus[0].SetActive(true);
+        camera.setCamera(false);
+
+        gameUI.SetActive(false);
+    }
+
+    public void changePauseMenu(GameObject c)
+    {
+        for(int i =0; i < pauseMenus.Count; i++)
+        {
+            if(pauseMenus[i] == c)
+            {
+                pauseMenus[i].SetActive(true);
+            }
+            else
+            {
+                pauseMenus[i].SetActive(false);
+            }
+        }
+    }
+
+    public void closeMenu()
+    {
+        for (int i = 0; i < pauseMenus.Count; i++)
+        {
+            pauseMenus[i].SetActive(false);
+        }
+
+        camera.setCamera(true);
+        Time.timeScale = 1;
+        gameUI.SetActive(true);
+    }
+    
+    public void closeGame()
+    {
+        Application.Quit();
     }
 }

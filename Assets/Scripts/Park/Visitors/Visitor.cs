@@ -53,7 +53,8 @@ public class Visitor : Character
             {
                 Debug.Log("NO PATHS FOUND");
             }
-            Invoke("movement", Random.Range(5, 10));
+
+            Invoke("movement", Random.Range(5, 10) / Time.timeScale);
         }
     }
 

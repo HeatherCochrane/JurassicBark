@@ -73,6 +73,11 @@ public class Game : MonoBehaviour
     ShopHandler shopHandler;
 
     bool speedUpTime = false;
+
+    [SerializeField]
+    GameObject pauseMenu;
+
+
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -80,6 +85,7 @@ public class Game : MonoBehaviour
         // mCharacter = Instantiate(Character, transform);
         rayOnButton = true;
         ShowMenu(true);
+        pauseMenu.SetActive(false);
     }
 
     private void Update()
@@ -98,8 +104,6 @@ public class Game : MonoBehaviour
         {
             Time.timeScale = 1;
         }
-
-       
 
         if (!rayOnButton)
         {
@@ -325,6 +329,8 @@ public class Game : MonoBehaviour
         isPainting = false;
         placingShop = false;
 
+        CameraControl.instance.followTransform = null;
+
         if (standInObject != null)
         {
             Destroy(standInObject);
@@ -435,6 +441,7 @@ public class Game : MonoBehaviour
             speedUpTime = true;
         }
     }
+
     public void checkSpawnTile(EnvironmentTile m)
     {
 
