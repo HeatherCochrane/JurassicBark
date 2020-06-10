@@ -26,11 +26,6 @@ public class CameraControl : MonoBehaviour
 	Vector3 newZoom;
 
 
-
-
-
-
-
 	//Environment map;
 	Game game;
 	bool moveCamera = false;
@@ -129,6 +124,7 @@ public class CameraControl : MonoBehaviour
 	public void setCamera(bool set)
 	{
 		moveCamera = set;
+		game.setMoveCamera(set);
 	}
 
 	public void setClampValues(float miX, float miZ, float maX, float maZ)

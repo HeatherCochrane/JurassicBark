@@ -58,6 +58,9 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     List<items> pathItemsScreen = new List<items>();
 
+    [SerializeField]
+    List<items> shopItemScreen = new List<items>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +79,7 @@ public class UIHandler : MonoBehaviour
         populateShopScreens(decorationsScreen, 2);
         populateShopScreens(paddockItemsScreen, 3);
         populateShopScreens(pathItemsScreen, 4);
+        populateShopScreens(shopItemScreen, 5);
     }
 
     // Update is called once per frame
@@ -157,6 +161,15 @@ public class UIHandler : MonoBehaviour
         return paddockItemsScreen[button].cost;
     }
 
+    public int getShopCost(int button)
+    {
+        return shopItemScreen[button].cost;
+    }
+
+    public GameObject getShopItem(int button)
+    {
+        return shopItemScreen[button].obj;
+    }
     public GameObject getPaddockItems(int button)
     {
         return paddockItemsScreen[button].obj;

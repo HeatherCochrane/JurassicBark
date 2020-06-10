@@ -33,7 +33,6 @@ public class DogBehaviour : Character
             yield return new WaitForSeconds(20);
         }
 
- 
     }
 
     IEnumerator happinessTracker()
@@ -43,22 +42,18 @@ public class DogBehaviour : Character
             if (dog.thirstLevel >= 60)
             {
                 changeHappiness(10);
-                Debug.Log("Add");
             }
             else if (dog.thirstLevel < 100)
             {
                 changeHappiness(-10);
-                Debug.Log("Take");
             }
             if (dog.hungerLevel >= 60)
             {
                 changeHappiness(10);
-                Debug.Log("Add");
             }
             else if (dog.hungerLevel < 100)
             {
                 changeHappiness(-10);
-                Debug.Log("Take");
             }
 
             updateStats();
@@ -177,7 +172,7 @@ public class DogBehaviour : Character
     void timer()
     {
         decideNextAction();
-        Invoke("timer", Random.Range(6, 12));
+        Invoke("timer", Random.Range(7, 9));
     }
 
     void moveDog()
@@ -191,14 +186,19 @@ public class DogBehaviour : Character
 
     void getWater()
     {
-
         this.CurrentPosition.IsAccessible = true;
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
         this.GoTo(route);
-        goalTile.IsAccessible = false;
         Invoke("drinkWater", 5);
         changeAnimation("WalkTest");
-
+    }
+    void getFood()
+    {
+        this.CurrentPosition.IsAccessible = true;
+        List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
+        this.GoTo(route);
+        Invoke("eatFood", 5);
+        changeAnimation("WalkTest");
     }
 
     bool canGetFood()
@@ -213,6 +213,7 @@ public class DogBehaviour : Character
                 }
             }
         }
+
         if(goalTile != null)
         {
             return true;
@@ -235,6 +236,7 @@ public class DogBehaviour : Character
                 }
             }
         }
+
         if (goalTile != null)
         {
             return true;
@@ -244,19 +246,11 @@ public class DogBehaviour : Character
             return false;
         }
     }
-    void getFood()
-    {
-        this.CurrentPosition.IsAccessible = true;
-        List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
-        this.GoTo(route);
 
-        goalTile.IsAccessible = false;
-        Invoke("eatFood", 5);
-        changeAnimation("WalkTest");
-    }
 
     void decideNextAction()
     {
+        this.CurrentPosition.IsAccessible = true;
         doingAction = false;
 
         if(dog.hungerLevel < 100 && paddockHandler.hasFood && canGetFood())
@@ -401,8 +395,6 @@ public class DogBehaviour : Character
 
         paddockHandler.updatePaddockInfo();
 
-        Debug.Log("Dog Happiness: " + dog.happinessLevel);
-
     }
 
     public void checkTiles()
@@ -467,7 +459,7 @@ public class DogBehaviour : Character
         //    Debug.Log("INVENTORY FULL");
         //}
 
-        if (!game.doingAction())
+        if (!game.doingAction() && game.getMoveCamera())
         {
             CameraControl.instance.followTransform = transform;
 

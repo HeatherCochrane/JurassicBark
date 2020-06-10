@@ -8,7 +8,7 @@ public class Game : MonoBehaviour
 {
     [SerializeField] private Camera MainCamera;
     //[SerializeField] private Character Character;
-    [SerializeField] private Canvas Menu;
+    [SerializeField] private GameObject Menu;
     [SerializeField] private Canvas Hud;
     [SerializeField] private Transform CharacterStart;
 
@@ -66,7 +66,11 @@ public class Game : MonoBehaviour
     TerrainPainting painting;
 
     bool isPainting = false;
+    bool placingShop = false;
+    bool moveCamera = false;
 
+    [SerializeField]
+    ShopHandler shopHandler;
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -146,13 +150,20 @@ public class Game : MonoBehaviour
                             decoration.spawnDecoration(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile, standInObject.transform.eulerAngles);
                         }
                     }
-                    else if(deleteObjects)
+                    else if (placingShop)
                     {
-                        if(tile.transform.childCount > 0)
+                        if (!tile.isPath && tile.IsAccessible)
+                        {
+                            shopHandler.spawnShop(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile, standInObject.transform.eulerAngles, standInButton);
+                        }
+                    }
+                    else if (deleteObjects)
+                    {
+                        if (tile.transform.childCount > 0)
                         {
                             Destroy(tile.transform.GetChild(0).gameObject);
 
-                            if(!tile.IsAccessible)
+                            if (!tile.IsAccessible)
                             {
                                 tile.IsAccessible = true;
                             }
@@ -179,7 +190,9 @@ public class Game : MonoBehaviour
 
                 if (standInObject != null)
                 {
-                    standInObject.transform.position = new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5);
+                   
+                        standInObject.transform.position = new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5);
+                    
                 }
                 if(Input.GetMouseButtonDown(2) && standInObject != null)
                 {
@@ -221,7 +234,7 @@ public class Game : MonoBehaviour
     {
         if (Menu != null && Hud != null)
         {
-            Menu.enabled = show;
+            Menu.SetActive(show);
             Hud.enabled = !show;
 
             if( show )
@@ -252,6 +265,10 @@ public class Game : MonoBehaviour
         deleteObjects = set;
     }
 
+    public void setPlacingShop(bool set)
+    {
+        placingShop = set;
+    }
     public void setPlacingPaddockItem(bool set)
     {
         placePaddockItem = set;
@@ -293,6 +310,7 @@ public class Game : MonoBehaviour
         placingDeco = false;
         deleteObjects = false;
         isPainting = false;
+        placingShop = false;
 
         if (standInObject != null)
         {
@@ -305,7 +323,7 @@ public class Game : MonoBehaviour
 
     public bool doingAction()
     {
-        if(creatingPaddocks || placePaddockItem || placeDogs || placePath || placingDeco)
+        if(creatingPaddocks || placePaddockItem || placeDogs || placePath || placingDeco || placingShop)
         {
             return true;
         }
@@ -331,6 +349,8 @@ public class Game : MonoBehaviour
             case 2: standInObject = Instantiate(decoration.getStandIn(standInButton));
                 break;
             case 3: standInObject = Instantiate(foodWaterHandle.getStandIn(standInButton));
+                break;
+            case 4: standInObject = Instantiate(shopHandler.getStandIn(standInButton));
                 break;
         }
 
@@ -382,6 +402,14 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void setMoveCamera(bool set)
+    {
+        moveCamera = set;
+    }
+    public bool getMoveCamera()
+    {
+        return moveCamera;
+    }
     public void checkSpawnTile(EnvironmentTile m)
     {
 

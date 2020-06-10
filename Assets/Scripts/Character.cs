@@ -50,7 +50,12 @@ public class Character : MonoBehaviour
             }
         }
        
-            currentlyMoving = false;
+        currentlyMoving = false;
+
+        if(this.CurrentPosition.hasFoodBowl || this.CurrentPosition.hasWaterBowl)
+        {
+            this.CurrentPosition.GetComponentInChildren<FoodWater>().removePiece();
+        }
         
     }
 
