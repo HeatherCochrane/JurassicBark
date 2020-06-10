@@ -58,6 +58,8 @@ public class ShopHandler : MonoBehaviour
             {
                 shop.GetComponent<Shop>().setProductCost(20);
             }
+
+            shop.GetComponentInChildren<ParticleSystem>().Play();
         }
     }
 

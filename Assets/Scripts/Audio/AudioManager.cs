@@ -5,10 +5,24 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]
+    AudioSource money;
+
+    [SerializeField]
     List<AudioClip> popClips = new List<AudioClip>();
 
     [SerializeField]
     AudioSource source;
+
+    [SerializeField]
+    AudioClip paddockCreation;
+
+    [SerializeField]
+    AudioClip pathCreation;
+
+    [SerializeField]
+    AudioClip moneyOut;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -40,10 +54,43 @@ public class AudioManager : MonoBehaviour
 
     public void playClose()
     {
-
         source.Stop();
         source.clip = popClips[2];
         source.loop = false;
         source.Play();
+    }
+
+    public void playWood()
+    {
+        source.Stop();
+        source.clip = paddockCreation;
+        source.loop = false;
+
+        source.pitch = Random.Range(1, 1.5f);
+
+        source.Play();
+
+        cashSpent();
+    }
+
+    public void playStone()
+    {
+        source.Stop();
+        
+        source.clip = pathCreation;
+        source.loop = false;
+
+        source.pitch = Random.Range(1, 1.2f);
+        source.Play();
+
+        cashSpent();
+    }
+
+    public void cashSpent()
+    {
+        money.Stop();
+        money.clip = moneyOut;
+        money.loop = false;
+        money.Play();
     }
 }

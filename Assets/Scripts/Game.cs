@@ -77,7 +77,8 @@ public class Game : MonoBehaviour
     [SerializeField]
     GameObject pauseMenu;
 
-
+    [SerializeField]
+    AudioManager audioManager;
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -140,6 +141,7 @@ public class Game : MonoBehaviour
                             creatingPaddocks = false;
                             clicks = -1;
                             startingTile = null;
+                            audioManager.playWood();
                         }
                     }
                     else if (placePath)
@@ -158,6 +160,7 @@ public class Game : MonoBehaviour
                             placePath = false;
                             clicks = -1;
                             startingTile = null;
+                            audioManager.playStone();
                         }
                     }
                     else if (placingDeco)
@@ -165,6 +168,7 @@ public class Game : MonoBehaviour
                         if (!tile.isPath && tile.IsAccessible)
                         {
                             decoration.spawnDecoration(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile, standInObject.transform.eulerAngles);
+                            audioManager.playStone();
                         }
                     }
                     else if (placingShop)
@@ -172,6 +176,7 @@ public class Game : MonoBehaviour
                         if (!tile.isPath && tile.IsAccessible)
                         {
                             shopHandler.spawnShop(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile, standInObject.transform.eulerAngles, standInButton);
+                            audioManager.playWood();
                         }
                     }
                     else if (deleteObjects)
@@ -193,6 +198,7 @@ public class Game : MonoBehaviour
                         {
                             Transform parent = tile.transform.parent;
                             foodWaterHandle.spawnItem(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile, standInObject.transform.eulerAngles);
+                            audioManager.playWood();
                         }
                         else if (placeDogs && tile.IsAccessible)
                         {
