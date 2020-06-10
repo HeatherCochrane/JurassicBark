@@ -22,6 +22,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     AudioClip moneyOut;
 
+    [SerializeField]
+    List<AudioClip> dogBarks = new List<AudioClip>();
+
+    [SerializeField]
+    AudioClip income;
+
+    [SerializeField]
+    AudioClip destroy;
     
     // Start is called before the first frame update
     void Start()
@@ -92,5 +100,39 @@ public class AudioManager : MonoBehaviour
         money.clip = moneyOut;
         money.loop = false;
         money.Play();
+    }
+
+    public void playDogBark()
+    {
+        source.Stop();
+
+        source.clip = dogBarks[Random.Range(0, dogBarks.Count)];
+        source.loop = false;
+
+        source.pitch = Random.Range(1, 1.2f);
+        source.Play();
+
+        cashSpent();
+    }
+
+    public void playIncomeGained()
+    {
+        money.Stop();
+        money.clip = income;
+        money.loop = false;
+        money.Play();
+    }
+
+    public void playDestroy()
+    {
+        source.Stop();
+        source.clip = destroy;
+        source.loop = false;
+
+        source.pitch = Random.Range(1, 1.2f);
+
+        source.Play();
+
+        cashSpent();
     }
 }

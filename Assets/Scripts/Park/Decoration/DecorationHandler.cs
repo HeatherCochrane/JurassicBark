@@ -42,6 +42,8 @@ public class DecorationHandler : MonoBehaviour
             p.IsAccessible = false;
 
             currency.subtractMoney(cost);
+
+            deco.GetComponentInChildren<ParticleSystem>().Play();
         }
     }
 

@@ -184,6 +184,7 @@ public class Game : MonoBehaviour
                         if (tile.transform.childCount > 0)
                         {
                             Destroy(tile.transform.GetChild(0).gameObject);
+                            audioManager.playDestroy();
 
                             if (!tile.IsAccessible)
                             {

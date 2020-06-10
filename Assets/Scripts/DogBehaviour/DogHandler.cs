@@ -42,6 +42,9 @@ public class DogHandler : MonoBehaviour
     int terrainAmount;
 
     int but = 0;
+
+    [SerializeField]
+    AudioManager audioManager;
     void Start()
     {
         UIhandler = GameObject.Find("UIHandler").GetComponent<UIHandler>();
@@ -77,6 +80,8 @@ public class DogHandler : MonoBehaviour
 
             dogs.Add(dog);
             currency.subtractMoney(cost);
+
+            audioManager.playDogBark();
         }
     }
 

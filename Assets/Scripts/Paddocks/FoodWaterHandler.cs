@@ -52,6 +52,8 @@ public class FoodWaterHandler : MonoBehaviour
 
             currency.subtractMoney(cost);
 
+            item.GetComponentInChildren<ParticleSystem>().Play();
+
         }
 
     }

@@ -47,7 +47,7 @@ public class PaddockControl : MonoBehaviour
     public bool hasFood { get; set; }
 
 
-
+    AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +55,7 @@ public class PaddockControl : MonoBehaviour
         UICanvas = GameObject.Find("GameUI");
         inventory = GameObject.Find("InventoryUI").GetComponent<Inventory>();
         paddockMap = GameObject.Find("PaddockHandler").GetComponent<PaddockCreation>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         //Show the paddock stats on the game canvas
         paddockUI = Instantiate(paddockUI);
@@ -127,8 +128,10 @@ public class PaddockControl : MonoBehaviour
             }
 
             paddockMap.removePaddock(this.transform.parent.parent.gameObject);
-            Destroy(this.transform.parent.parent.gameObject);
+            audioManager.playDestroy();
             Destroy(paddockUI);
+            Destroy(this.transform.parent.parent.gameObject);
+
         }
         else if (!game.getDeleting())
         {

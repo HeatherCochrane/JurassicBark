@@ -12,10 +12,12 @@ public class Shop : MonoBehaviour
 
     int cost = 0;
 
+    AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
         currency = GameObject.Find("CurrencyHandler").GetComponent<Currency>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,7 @@ public class Shop : MonoBehaviour
         {
             currency.addMoney(cost);
             previous = other.gameObject;
+            audioManager.playIncomeGained();
         }
 
     }
