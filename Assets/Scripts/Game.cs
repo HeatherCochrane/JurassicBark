@@ -71,6 +71,8 @@ public class Game : MonoBehaviour
 
     [SerializeField]
     ShopHandler shopHandler;
+
+    bool speedUpTime = false;
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -87,6 +89,17 @@ public class Game : MonoBehaviour
 
         //List<EnvironmentTile> route = mMap.Solve(mCharacter.CurrentPosition, tile);
         //mCharacter.GoTo(route);
+
+        if(speedUpTime)
+        {
+            Time.timeScale = 2;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
+       
 
         if (!rayOnButton)
         {
@@ -409,6 +422,18 @@ public class Game : MonoBehaviour
     public bool getMoveCamera()
     {
         return moveCamera;
+    }
+
+    public void setSpeedUp()
+    {
+        if(speedUpTime)
+        {
+            speedUpTime = false;
+        }
+        else
+        {
+            speedUpTime = true;
+        }
     }
     public void checkSpawnTile(EnvironmentTile m)
     {

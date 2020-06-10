@@ -172,7 +172,7 @@ public class DogBehaviour : Character
     void timer()
     {
         decideNextAction();
-        Invoke("timer", Random.Range(7, 9));
+        Invoke("timer", Random.Range(7, 9) / Time.timeScale);
     }
 
     void moveDog()
@@ -189,7 +189,7 @@ public class DogBehaviour : Character
         this.CurrentPosition.IsAccessible = true;
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
         this.GoTo(route);
-        Invoke("drinkWater", 5);
+        Invoke("drinkWater", 5 / Time.timeScale);
         changeAnimation("WalkTest");
     }
     void getFood()
@@ -197,7 +197,7 @@ public class DogBehaviour : Character
         this.CurrentPosition.IsAccessible = true;
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
         this.GoTo(route);
-        Invoke("eatFood", 5);
+        Invoke("eatFood", 5 / Time.timeScale);
         changeAnimation("WalkTest");
     }
 
@@ -291,18 +291,18 @@ public class DogBehaviour : Character
         {
             case 1:
                 changeAnimation("Look");
-                Invoke("stopAction", 3);
+                Invoke("stopAction", 3 / Time.timeScale);
                 break;
             case 2:
                 changeAnimation("Wiggle");
-                Invoke("stopAction", 3);
+                Invoke("stopAction", 3 / Time.timeScale);
                 break;
             case 3:
                 changeAnimation("Look");
-                Invoke("stopAction", 3);
+                Invoke("stopAction", 3 / Time.timeScale);
                 break;
             case 4: changeAnimation("Wiggle");
-                Invoke("stopAction", 3);
+                Invoke("stopAction", 3 / Time.timeScale);
                 break;
 
         }
