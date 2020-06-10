@@ -29,6 +29,7 @@ public class CameraControl : MonoBehaviour
 	//Environment map;
 	Game game;
 	bool moveCamera = false;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -43,7 +44,7 @@ public class CameraControl : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
 	{
 		if (moveCamera)
 		{
@@ -102,7 +103,33 @@ public class CameraControl : MonoBehaviour
 			newPosition += (transform.right * -movementSpeed);
 		}
 
+		//transform.position = new Vector3(Mathf.Clamp(transform.position.x, -200, 200), transform.position.y, transform.position.z);
+
 		transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
+
+		if (transform.position.x > 250)
+		{
+			newPosition = new Vector3(250, transform.position.y, transform.position.z);
+			transform.position = new Vector3(250, transform.position.y, transform.position.z);
+		}
+		else if(transform.position.x < -250)
+		{
+			newPosition = new Vector3(-250, transform.position.y, transform.position.z);
+			transform.position = new Vector3(-250, transform.position.y, transform.position.z);
+		}
+
+		if (transform.position.z > 250)
+		{
+			newPosition = new Vector3(transform.position.x, transform.position.y, 250);
+			transform.position = new Vector3(transform.position.x, transform.position.y, 250);
+		}
+		else if (transform.position.z < -250)
+		{
+			newPosition = new Vector3(transform.position.x, transform.position.y, -250);
+			transform.position = new Vector3(transform.position.x, transform.position.y, -250);
+		}
+
+
 
 		//if(Input.GetKey(KeyCode.Q))
 		//{
@@ -114,6 +141,8 @@ public class CameraControl : MonoBehaviour
 		//}
 
 		//transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
+
+
 
 	}
 
@@ -127,17 +156,17 @@ public class CameraControl : MonoBehaviour
 		game.setMoveCamera(set);
 	}
 
-	public void setClampValues(float miX, float miZ, float maX, float maZ)
-	{
-		//minx = miX;
-		//minz = miZ;
-		//maxx = maX;
-		//maxz = maZ;
-
-	}
-
 	public void setFollowTransform()
 	{
 		followTransform = null;
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if(other.gameObject.tag == "Border")
+		{
+			Debug.Log("STOP");
+
+		}
 	}
 }
