@@ -292,7 +292,7 @@ public class PaddockCreation : MonoBehaviour
         {
             for (int j = zPos; j < (int)heightTile; j++)
             {
-                if (!mMap[i][j].isPath && !mMap[i][j].isEntrance && !mMap[i][j].hasPaint)
+                if (!mMap[i][j].isPath  && !mMap[i][j].hasPaint)
                 {
                     paddock[x, z] = mMap[i][j];
                     Material[] grass = paddock[x, z].GetComponent<MeshRenderer>().materials;
@@ -316,7 +316,7 @@ public class PaddockCreation : MonoBehaviour
             {
                 if (i < xPos || i > xPos + width || j < zPos || j > zPos + height)
                 {
-                    if (!mMap[i][j].isPath && !mMap[i][j].isEntrance && !mMap[i][j].hasPaint)
+                    if (!mMap[i][j].isPath  && !mMap[i][j].hasPaint)
                     {
                         Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 
@@ -372,7 +372,7 @@ public class PaddockCreation : MonoBehaviour
                 {
                     for (int j = zPos; j < (int)heightTile; j++)
                     {
-                        if (mMap[i][j].isPaddock || mMap[i][j].isPath || mMap[i][j].isEntrance)
+                        if (mMap[i][j].isPaddock || mMap[i][j].isPath)
                         {
                             intersectingPaddock = true;
                         }
@@ -439,7 +439,7 @@ public class PaddockCreation : MonoBehaviour
         {
             for(int j =0; j < height; j++)
             {
-                if(!tiles[i, j].IsAccessible)
+                if(!tiles[i, j].IsAccessible && tiles[i, j].transform.childCount > 0)
                 {
                     Destroy(tiles[i, j].transform.GetChild(0).gameObject);
                     tiles[i, j].IsAccessible = true;
@@ -553,7 +553,7 @@ public class PaddockCreation : MonoBehaviour
         {
             for (int j = 0; j < mapSize.y; j++)
             {
-                if (!mMap[i][j].isPath && !mMap[i][j].isEntrance && !mMap[i][j].hasPaint)
+                if (!mMap[i][j].isPath  && !mMap[i][j].hasPaint)
                 {
                     Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 

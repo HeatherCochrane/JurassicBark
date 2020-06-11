@@ -122,7 +122,7 @@ public class PathHandler : MonoBehaviour
         {
             for (int j = zPos; j < (int)heightTile; j++)
             {
-                if (!mMap[i][j].isPath && !mMap[i][j].isEntrance && !mMap[i][j].hasPaint)
+                if (!mMap[i][j].isPath  && !mMap[i][j].hasPaint)
                 {
                     path[x, z] = mMap[i][j];
                     Material[] grass = path[x, z].GetComponent<MeshRenderer>().materials;
@@ -146,7 +146,7 @@ public class PathHandler : MonoBehaviour
             {
                 if (i < xPos || i > xPos + width || j < zPos || j > zPos + height)
                 {
-                    if (!mMap[i][j].isPath && !mMap[i][j].isEntrance && !mMap[i][j].hasPaint)
+                    if (!mMap[i][j].isPath && !mMap[i][j].hasPaint)
                     {
                         Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 
@@ -199,7 +199,7 @@ public class PathHandler : MonoBehaviour
             {
                 for (int j = zPos; j < (int)heightTile; j++)
                 {
-                    if (mMap[i][j].isPaddock || mMap[i][j].isEntrance)
+                    if (mMap[i][j].isPaddock)
                     {
                         intersectingPaddock = true;
                     }
@@ -268,7 +268,7 @@ public class PathHandler : MonoBehaviour
         {
             for (int j = 0; j < mapSize.y; j++)
             {
-                if (!mMap[i][j].isPath && !mMap[i][j].isEntrance && !mMap[i][j].hasPaint)
+                if (!mMap[i][j].isPath && !mMap[i][j].hasPaint)
                 {
                     Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 

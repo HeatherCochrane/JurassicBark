@@ -160,33 +160,30 @@ public class Environment : MonoBehaviour
         {
             for (int j = w; j < w + 5; j++)
             {
-                mMap[j][i].isEntrance = true;
-
                 Material[] grass = mMap[j][i].GetComponent<MeshRenderer>().materials;
 
                 Material temp = entranceMat[0];
                 grass[1] = temp;
 
                 mMap[j][i].GetComponent<MeshRenderer>().materials = grass;
-
+                mMap[j][i].isPath = true;
 
                 if(!mMap[j][i].IsAccessible)
                 {
                     Destroy(mMap[j][i].transform.GetChild(0).gameObject);
                 }
 
-                entranceTiles.Add(mMap[j][i]);
+                if (i > 0)
+                {
+                    entranceTiles.Add(mMap[j][i]);
+                }
             }
         }
 
         //Spawn Front entrance
         spawner = Instantiate(archway);
-        spawner.transform.position = new Vector3(entranceTiles[2].transform.position.x + 5, entranceTiles[2].transform.position.y + 3, entranceTiles[2].transform.position.z + 5);
+        spawner.transform.position = new Vector3(entranceTiles[2].transform.position.x + 5, entranceTiles[2].transform.position.y + 3, entranceTiles[2].transform.position.z - 5);
 
-        for(int i = w; i < w + 5; i++)
-        {
-            mMap[i][0].IsAccessible = false;
-        }
     }
 
     public List<EnvironmentTile> getEntrance()
@@ -331,7 +328,7 @@ public class Environment : MonoBehaviour
                             //Visitors
                             else if (characterType == 1)
                             {
-                                if (!neighbour.Visited && neighbour.isPath && neighbour.IsAccessible || neighbour.isEntrance && neighbour.IsAccessible)
+                                if (!neighbour.Visited && neighbour.isPath && neighbour.IsAccessible)
                                 {
                                     mToBeTested.Add(neighbour);
                                 }

@@ -16,6 +16,8 @@ public class FoodWaterHandler : MonoBehaviour
     GameObject item;
 
     int b = 0;
+
+    int max = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +52,7 @@ public class FoodWaterHandler : MonoBehaviour
                 p.hasWaterBowl = true;
             }
 
+            item.GetComponent<FoodWater>().setMax(max);
             currency.subtractMoney(cost);
 
             item.GetComponentInChildren<ParticleSystem>().Play();
@@ -62,6 +65,7 @@ public class FoodWaterHandler : MonoBehaviour
     {
         standIn = UIHandle.getPaddockItems(button);
         cost = UIHandle.getPaddockItemsCost(button);
+        max = UIHandle.getDurability(button);
         b = button;
     }
     public GameObject getStandIn(int button)

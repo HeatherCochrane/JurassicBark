@@ -24,6 +24,8 @@ public class UIHandler : MonoBehaviour
         public Material terrain;
         [SerializeField]
         public int terrainAmount;
+        [SerializeField]
+        public int durability;
     }
     
     GameObject newItem;
@@ -239,6 +241,10 @@ public class UIHandler : MonoBehaviour
         return dogScreen[button].terrainAmount;
     }
 
+    public int getDurability(int button)
+    {
+        return paddockItemsScreen[button].durability;
+    }
     public void pauseGame()
     {
         pauseMenus[0].SetActive(true);

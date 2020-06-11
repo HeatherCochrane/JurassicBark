@@ -47,7 +47,7 @@ public class Visitor : Character
             {
                 EnvironmentTile goalTile = paths[Random.Range(0, paths.Count)];
                 List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 1);
-                this.GoTo(route);
+                this.GoTo(route, -1);
             }
             else
             {
@@ -67,7 +67,7 @@ public class Visitor : Character
     {
         EnvironmentTile goal = t;
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goal, 0);
-        this.GoTo(route);
+        this.GoTo(route, -1);
     }
 
     public void kill()

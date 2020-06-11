@@ -68,11 +68,11 @@ public class DogBehaviour : Character
     int stoppingTime = 0;
 
     [Range(0, 100)]
-    int hungerLevel = 60;
+    int hungerLevel = 70;
     [Range(0, 100)]
-    int thirstLevel = 60;
+    int thirstLevel = 70;
     [Range(0, 100)]
-    int happinessLevel = 60;
+    int happinessLevel = 70;
 
     Environment mMap;
 
@@ -180,7 +180,7 @@ public class DogBehaviour : Character
         this.CurrentPosition.IsAccessible = true;
         EnvironmentTile tile = paddock[Random.Range(0, width), Random.Range(0, height)];
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, tile, 2);
-        this.GoTo(route);
+        this.GoTo(route, -1);
         changeAnimation("WalkTest");
     }
 
@@ -188,16 +188,14 @@ public class DogBehaviour : Character
     {
         this.CurrentPosition.IsAccessible = true;
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
-        this.GoTo(route);
-        Invoke("drinkWater", 5 / Time.timeScale);
+        this.GoTo(route, 0);
         changeAnimation("WalkTest");
     }
     void getFood()
     {
         this.CurrentPosition.IsAccessible = true;
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
-        this.GoTo(route);
-        Invoke("eatFood", 5 / Time.timeScale);
+        this.GoTo(route, 1);
         changeAnimation("WalkTest");
     }
 
@@ -328,7 +326,7 @@ public class DogBehaviour : Character
     }
 
 
-    void eatFood()
+    public void eatFood()
     {
         hungerLevel += 30;
 
@@ -346,7 +344,7 @@ public class DogBehaviour : Character
         updateStats();
     }
 
-    void drinkWater()
+    public void drinkWater()
     {
         thirstLevel += 30;
 

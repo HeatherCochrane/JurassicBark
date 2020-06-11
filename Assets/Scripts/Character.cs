@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
     public EnvironmentTile CurrentPosition { get; set; }
 
     bool currentlyMoving = false;
+    int foodWater = 0;
     private IEnumerator DoMove(Vector3 position, Vector3 destination)
     {
         // Move between the two specified positions over the specified amount of time
@@ -31,6 +32,8 @@ public class Character : MonoBehaviour
 
     private IEnumerator DoGoTo(List<EnvironmentTile> route)
     {
+        int takeCount = 0;
+
         // Move through each tile in the given route
         if (route != null)
         {
@@ -48,21 +51,33 @@ public class Character : MonoBehaviour
                 }
                 position = next;
             }
+
         }
        
         currentlyMoving = false;
 
-        if(this.CurrentPosition.hasFoodBowl || this.CurrentPosition.hasWaterBowl)
+        if (this.CurrentPosition.hasFoodBowl || this.CurrentPosition.hasWaterBowl && takeCount == 0)
         {
+            if(foodWater == 0)
+            {
+                this.GetComponent<DogBehaviour>().drinkWater();
+            }
+            else if(foodWater == 1)
+            {
+                this.GetComponent<DogBehaviour>().eatFood();
+            }
+            Debug.Log("Taken resource");
             this.CurrentPosition.GetComponentInChildren<FoodWater>().removePiece();
+            takeCount += 1;
         }
-        
+
     }
 
-    public void GoTo(List<EnvironmentTile> route)
+    public void GoTo(List<EnvironmentTile> route, int fW)
     {
         // Clear all coroutines before starting the new route so 
         // that clicks can interupt any current route animation
+        foodWater = fW;
         currentlyMoving = false;
         StopAllCoroutines();
         StartCoroutine(DoGoTo(route));

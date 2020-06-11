@@ -17,10 +17,13 @@ public class FoodWater : MonoBehaviour
         
     }
 
+    public void setMax(int m)
+    {
+        max = m;
+    }
+
     public void removePiece()
     {
-        Debug.Log("Called");
-
         max -= 1;
         if(max <= 0)
         {

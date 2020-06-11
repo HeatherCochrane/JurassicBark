@@ -79,14 +79,22 @@ public class Game : MonoBehaviour
 
     [SerializeField]
     AudioManager audioManager;
+
+    [SerializeField]
+    GameObject terrainPalette;
+    bool showTerrainPaints = false;
+
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
         mMap = GetComponentInChildren<Environment>();
         // mCharacter = Instantiate(Character, transform);
+
+
         rayOnButton = true;
         ShowMenu(true);
         pauseMenu.SetActive(false);
+        terrainPalette.SetActive(false);
     }
 
     private void Update()
@@ -335,6 +343,7 @@ public class Game : MonoBehaviour
         deleteObjects = false;
         isPainting = false;
         placingShop = false;
+        showTerrainPaints = false;
 
         CameraControl.instance.followTransform = null;
 
@@ -345,6 +354,8 @@ public class Game : MonoBehaviour
 
         paddock.cancelCreation();
         pathHandler.cancelCreation();
+
+        terrainPalette.SetActive(false);
     }
 
     public bool doingAction()
@@ -449,6 +460,19 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void togglePaints()
+    {
+        if(showTerrainPaints)
+        {
+            showTerrainPaints = false;
+            terrainPalette.SetActive(false);
+        }
+        else
+        {
+            showTerrainPaints = true;
+            terrainPalette.SetActive(true);
+        }
+    }
     public void checkSpawnTile(EnvironmentTile m)
     {
 
