@@ -14,7 +14,7 @@ public class Environment : MonoBehaviour
     private List<EnvironmentTile> mToBeTested;
     private List<EnvironmentTile> mLastSolution;
 
-    private readonly Vector3 NodeSize = Vector3.one * 9.0f; 
+    private readonly Vector3 NodeSize = Vector3.one * 9.0f;
     private const float TileSize = 10.0f;
     private const float TileHeight = 2.5f;
 
@@ -50,6 +50,20 @@ public class Environment : MonoBehaviour
         mToBeTested = new List<EnvironmentTile>();
     }
 
+    private void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Save();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Load();
+        }
+    }
+
     public Vector2 getMapSize()
     {
         return Size;
@@ -79,13 +93,13 @@ public class Environment : MonoBehaviour
 
                     // Use different colours to represent the state of the nodes
                     Color c = Color.white;
-                    if ( !mMap[x][y].IsAccessible )
+                    if (!mMap[x][y].IsAccessible)
                     {
                         c = Color.red;
                     }
                     else
                     {
-                        if(mLastSolution != null && mLastSolution.Contains( mMap[x][y] ))
+                        if (mLastSolution != null && mLastSolution.Contains(mMap[x][y]))
                         {
                             c = Color.green;
                         }
@@ -111,25 +125,25 @@ public class Environment : MonoBehaviour
 
         int halfWidth = Size.x / 2;
         int halfHeight = Size.y / 2;
-        Vector3 position = new Vector3( -(halfWidth * TileSize), 0.0f, -(halfHeight * TileSize) );
+        Vector3 position = new Vector3(-(halfWidth * TileSize), 0.0f, -(halfHeight * TileSize));
         bool start = true;
 
-        for ( int x = 0; x < Size.x; ++x)
+        for (int x = 0; x < Size.x; ++x)
         {
             mMap[x] = new EnvironmentTile[Size.y];
-            for ( int y = 0; y < Size.y; ++y)
+            for (int y = 0; y < Size.y; ++y)
             {
                 bool isAccessible = start || Random.value < AccessiblePercentage;
                 List<EnvironmentTile> tiles = isAccessible ? AccessibleTiles : InaccessibleTiles;
                 EnvironmentTile prefab = tiles[Random.Range(0, tiles.Count)];
                 EnvironmentTile tile = Instantiate(prefab, position, Quaternion.identity, transform);
-                tile.Position = new Vector3( position.x + (TileSize / 2), TileHeight, position.z + (TileSize / 2));
+                tile.Position = new Vector3(position.x + (TileSize / 2), TileHeight, position.z + (TileSize / 2));
                 tile.IsAccessible = isAccessible;
                 tile.gameObject.name = string.Format("Tile({0},{1})", x, y);
                 mMap[x][y] = tile;
                 mAll.Add(tile);
 
-                if(start)
+                if (start)
                 {
                     Start = tile;
                 }
@@ -149,14 +163,14 @@ public class Environment : MonoBehaviour
 
         setEntrance(halfWidth);
 
-     
+
     }
 
     void setEntrance(int w)
     {
         w -= 2;
 
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             for (int j = w; j < w + 5; j++)
             {
@@ -168,7 +182,7 @@ public class Environment : MonoBehaviour
                 mMap[j][i].GetComponent<MeshRenderer>().materials = grass;
                 mMap[j][i].isPath = true;
 
-                if(!mMap[j][i].IsAccessible)
+                if (!mMap[j][i].IsAccessible)
                 {
                     Destroy(mMap[j][i].transform.GetChild(0).gameObject);
                 }
@@ -275,7 +289,7 @@ public class Environment : MonoBehaviour
                 // Set all the state to its starting values
                 mToBeTested.Clear();
 
-                for( int count = 0; count < mAll.Count; ++count )
+                for (int count = 0; count < mAll.Count; ++count)
                 {
                     mAll[count].Parent = null;
                     mAll[count].Global = float.MaxValue;
@@ -391,5 +405,19 @@ public class Environment : MonoBehaviour
         mLastSolution = result;
 
         return result;
+    }
+
+
+    public void Load()
+    {
+        SaveGame.Load();
+        
+        Instantiate(SaveGame.Instance.map);
+    }
+
+    public void Save()
+    {
+        SaveGame.Instance.map = this.gameObject;
+        SaveGame.Save();
     }
 }
