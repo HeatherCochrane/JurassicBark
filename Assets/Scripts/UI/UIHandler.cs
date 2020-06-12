@@ -51,6 +51,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     List<items> dogScreen = new List<items>();
 
+
     [SerializeField]
     List<items> fenceScreen = new List<items>();
 
@@ -103,6 +104,8 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     CameraControl camera;
 
+    [SerializeField]
+    Unlocks unlock;
 
     // Update is called once per frame
     void Update()
@@ -141,6 +144,8 @@ public class UIHandler : MonoBehaviour
             if(shopScreens[i] == screen)
             {
                 shopScreens[i].SetActive(true);
+                unlock.setScreen(i);
+
             }
             else
             {
@@ -312,4 +317,5 @@ public class UIHandler : MonoBehaviour
     {
         Application.Quit();
     }
+
 }

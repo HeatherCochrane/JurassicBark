@@ -42,23 +42,22 @@ public class Task : MonoBehaviour
 
     public void doTask()
     {
-        if (pointHandler.sufficientFunds(cost))
+
+        inprogress = true;
+        if (timer < taskLength)
         {
-            inprogress = true;
-            if (timer < taskLength)
-            {
-                timer += 1;
-            }
-            else
-            {
-                this.gameObject.transform.GetChild(3).gameObject.SetActive(true);
-            }
-
-            Debug.Log("Timer: " + timer);
-            this.transform.GetChild(1).GetComponent<Text>().text = "Time: " + timer.ToString();
-
-            Invoke("doTask", 1);
+            timer += 1;
         }
+        else
+        {
+            this.gameObject.transform.GetChild(3).gameObject.SetActive(true);
+        }
+
+        Debug.Log("Timer: " + timer);
+        this.transform.GetChild(1).GetComponent<Text>().text = "Time: " + timer.ToString();
+
+        Invoke("doTask", 1);
+
     }
     public void setTaskTime(int t)
     {

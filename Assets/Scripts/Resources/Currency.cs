@@ -65,7 +65,7 @@ public class Currency : MonoBehaviour
 
     public bool sufficientPoints(int p)
     {
-        if(unlockPoints - p > 0)
+        if(unlockPoints - p > -1)
         {
             return true;
         }
