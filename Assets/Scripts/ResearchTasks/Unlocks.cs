@@ -28,7 +28,7 @@ public class Unlocks : MonoBehaviour
 
     int buttonNumber = 0;
     int screen = 0;
-    int pointsNeeded = 2;
+    int pointsNeeded = 10;
     int currentScreen = 0;
 
     [SerializeField]
@@ -62,6 +62,12 @@ public class Unlocks : MonoBehaviour
         for(int i=0; i < 6; i++)
         {
             unlockButtons.Add(0);
+        }
+
+        for(int j = 0; j < unlockButtonIcons.Count; j++)
+        {
+            unlockButtonIcons[j].transform.GetChild(0).GetComponent<Text>().text = "Cost: " + pointsNeeded.ToString() + " points";
+            pointsNeeded += 10;
         }
     }
 
@@ -121,22 +127,35 @@ public class Unlocks : MonoBehaviour
             {
                 screenButtons[i].GetComponent<Button>().enabled = true;
                 unlockButtonIcons[i].SetActive(false);
+
+                screenButtons[i].transform.GetChild(0).gameObject.SetActive(true);
+                if (screenButtons[i].transform.childCount > 1)
+                {
+                    screenButtons[i].transform.GetChild(1).gameObject.SetActive(true);
+                }
             }
             else
             {
                 screenButtons[i].GetComponent<Button>().enabled = false;
                 unlockButtonIcons[i].SetActive(true);
+
+                screenButtons[i].transform.GetChild(0).gameObject.SetActive(false);
+                if (screenButtons[i].transform.childCount > 1)
+                {
+                    screenButtons[i].transform.GetChild(1).gameObject.SetActive(false);
+                }
             }
         }
     }
     public void checkIfUnlockable()
     {
-        if(points.sufficientPoints(pointsNeeded))
+        int cost = (buttonNumber + 1) * 10;
+        if(points.sufficientPoints(cost))
         {
             Debug.Log("Button to unlock:" + buttonNumber);
             unlockButtons[buttonNumber] = 1;
             unlockButtonIcons[buttonNumber].SetActive(false);
-            points.takePoints(pointsNeeded);
+            points.takePoints(cost);
 
             updateUnlockButtons();
             updateLists();

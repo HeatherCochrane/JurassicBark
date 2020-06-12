@@ -36,6 +36,9 @@ public class ResearchTaskHandler : MonoBehaviour
     GameObject taskPrefab;
 
     Button buttonPressed;
+
+    [SerializeField]
+    GameObject taskButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -83,5 +86,6 @@ public class ResearchTaskHandler : MonoBehaviour
     public void showTasks(bool set)
     {
         taskScreen.SetActive(set);
+        GameObject.Find("ResearchTasksButton").transform.GetChild(1).gameObject.SetActive(false);
     }
 }

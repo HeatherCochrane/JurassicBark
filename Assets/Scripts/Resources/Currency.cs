@@ -10,7 +10,7 @@ public class Currency : MonoBehaviour
     [SerializeField]
     UIHandler UIHandler;
 
-
+    [SerializeField]
     int unlockPoints = 5;
 
     // Start is called before the first frame update

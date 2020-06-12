@@ -67,6 +67,19 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     List<items> shopItemScreen = new List<items>();
 
+    [SerializeField]
+    AudioManager audioManager;
+
+    [SerializeField]
+    List<GameObject> pauseMenus = new List<GameObject>();
+
+    [SerializeField]
+    CameraControl camera;
+
+    [SerializeField]
+    Unlocks unlock;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -93,19 +106,6 @@ public class UIHandler : MonoBehaviour
         pauseMenus[1].SetActive(false);
 
     }
-
-
-    [SerializeField]
-    AudioManager audioManager;
-
-    [SerializeField]
-    List<GameObject> pauseMenus = new List<GameObject>();
-
-    [SerializeField]
-    CameraControl camera;
-
-    [SerializeField]
-    Unlocks unlock;
 
     // Update is called once per frame
     void Update()
@@ -188,6 +188,7 @@ public class UIHandler : MonoBehaviour
     public void setConstantUI(bool set)
     {
         playerCurrency.gameObject.SetActive(set);
+        playerPoints.gameObject.SetActive(set);
     }
 
    public int getDogCost(int button)
