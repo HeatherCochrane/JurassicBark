@@ -43,6 +43,9 @@ public class UIHandler : MonoBehaviour
     Text playerCurrency;
 
     [SerializeField]
+    Text playerPoints;
+
+    [SerializeField]
     Game game;
 
     [SerializeField]
@@ -151,6 +154,11 @@ public class UIHandler : MonoBehaviour
     public void updateCurrency(int currency)
     {
         playerCurrency.text = "£" + currency.ToString();
+    }
+
+    public void updatePoints(int points)
+    {
+        playerPoints.text = "Points: " + points.ToString();
     }
     public void setShops(bool set)
     {

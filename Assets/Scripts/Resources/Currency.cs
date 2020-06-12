@@ -10,10 +10,14 @@ public class Currency : MonoBehaviour
     [SerializeField]
     UIHandler UIHandler;
 
+
+    int unlockPoints = 5;
+
     // Start is called before the first frame update
     void Start()
     {
         UIHandler.updateCurrency(playerCurrency);
+        UIHandler.updatePoints(unlockPoints);
     }
 
     // Update is called once per frame
@@ -38,6 +42,30 @@ public class Currency : MonoBehaviour
     public bool sufficientFunds(int cost)
     {
         if(playerCurrency - cost > -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void addPoints(int p)
+    {
+        unlockPoints += p;
+        UIHandler.updatePoints(unlockPoints);
+    }
+
+    public void takePoints(int p)
+    {
+        unlockPoints -= p;
+        UIHandler.updatePoints(unlockPoints);
+    }
+
+    public bool sufficientPoints(int p)
+    {
+        if(unlockPoints - p > 0)
         {
             return true;
         }
