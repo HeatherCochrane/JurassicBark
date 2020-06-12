@@ -35,13 +35,9 @@ public class PaddockCreation : MonoBehaviour
     List<GameObject> allPaddocks = new List<GameObject>();
 
     //Fence Objects
-    [SerializeField]
     GameObject fenceH;
-    [SerializeField]
     GameObject fenceV;
-    [SerializeField]
     GameObject cornerPiece;
-    [SerializeField]
     GameObject cornerTarget;
     //Stand in fence object - used for instantiating
     GameObject fencePiece;
@@ -428,6 +424,8 @@ public class PaddockCreation : MonoBehaviour
         }
 
         paddockCost.gameObject.SetActive(false);
+
+        
     }
 
     void generateFences(EnvironmentTile[,] tiles, int width, int height)
@@ -533,6 +531,7 @@ public class PaddockCreation : MonoBehaviour
 
             }
         }
+
 
         setMapColour();
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Environment : MonoBehaviour
 {
+
     [SerializeField] private List<EnvironmentTile> AccessibleTiles;
     [SerializeField] private List<EnvironmentTile> InaccessibleTiles;
     [SerializeField] private Vector2Int Size;
@@ -46,22 +47,14 @@ public class Environment : MonoBehaviour
     CameraControl camera;
     private void Awake()
     {
+        Random.InitState(10);
+        
         mAll = new List<EnvironmentTile>();
         mToBeTested = new List<EnvironmentTile>();
     }
 
     private void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Save();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            Load();
-        }
     }
 
     public Vector2 getMapSize()
@@ -150,6 +143,8 @@ public class Environment : MonoBehaviour
 
                 position.z += TileSize;
                 start = false;
+
+
             }
 
             position.x += TileSize;
@@ -405,19 +400,5 @@ public class Environment : MonoBehaviour
         mLastSolution = result;
 
         return result;
-    }
-
-
-    public void Load()
-    {
-        SaveGame.Load();
-        
-        Instantiate(SaveGame.Instance.map);
-    }
-
-    public void Save()
-    {
-        SaveGame.Instance.map = this.gameObject;
-        SaveGame.Save();
     }
 }

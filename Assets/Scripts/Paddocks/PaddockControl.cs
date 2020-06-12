@@ -17,6 +17,7 @@ public class PaddockControl : MonoBehaviour
 
     [SerializeField]
     GameObject paddockUI;
+    GameObject paddockui;
     bool showPaddockUI = false;
 
     GameObject UICanvas;
@@ -58,9 +59,9 @@ public class PaddockControl : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         //Show the paddock stats on the game canvas
-        paddockUI = Instantiate(paddockUI);
-        paddockUI.transform.SetParent(UICanvas.transform);
-        paddockUI.SetActive(false);
+        paddockui = Instantiate(paddockUI);
+        paddockui.transform.SetParent(UICanvas.transform);
+        paddockui.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,12 +69,12 @@ public class PaddockControl : MonoBehaviour
     {
         if(showPaddockUI)
         {
-            paddockUI.SetActive(true);
-            paddockUI.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + 10, Input.mousePosition.z);
+            paddockui.SetActive(true);
+            paddockui.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + 10, Input.mousePosition.z);
         }
         else
         {
-            paddockUI.SetActive(false);
+            paddockui.SetActive(false);
         }
     }
 
@@ -129,7 +130,7 @@ public class PaddockControl : MonoBehaviour
 
             paddockMap.removePaddock(this.transform.parent.parent.gameObject);
             audioManager.playDestroy();
-            Destroy(paddockUI);
+            Destroy(paddockui);
             Destroy(this.transform.parent.parent.gameObject);
 
         }
@@ -154,7 +155,7 @@ public class PaddockControl : MonoBehaviour
         overallThirst = 0;
 
         //First child handles the number of dogs within the paddock
-        paddockUI.transform.GetChild(0).GetComponent<Text>().text = "Number of dogs: " + dogsInPaddock.Count.ToString();
+        paddockui.transform.GetChild(0).GetComponent<Text>().text = "Number of dogs: " + dogsInPaddock.Count.ToString();
 
         if (dogsInPaddock.Count > 0)
         {
@@ -171,9 +172,9 @@ public class PaddockControl : MonoBehaviour
             overallThirst = overallThirst / dogsInPaddock.Count;
         }
 
-        paddockUI.transform.GetChild(1).GetComponent<Text>().text = "Overall Happiness: " + overallHappiness.ToString();
-        paddockUI.transform.GetChild(2).GetComponent<Text>().text = "Overall Hunger: " + overallHunger.ToString();
-        paddockUI.transform.GetChild(3).GetComponent<Text>().text = "Overall Thirst: " + overallThirst.ToString();
+        paddockui.transform.GetChild(1).GetComponent<Text>().text = "Overall Happiness: " + overallHappiness.ToString();
+        paddockui.transform.GetChild(2).GetComponent<Text>().text = "Overall Hunger: " + overallHunger.ToString();
+        paddockui.transform.GetChild(3).GetComponent<Text>().text = "Overall Thirst: " + overallThirst.ToString();
 
     }
     public void addDog(GameObject d, EnvironmentTile current)

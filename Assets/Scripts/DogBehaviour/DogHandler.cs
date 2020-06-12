@@ -67,8 +67,9 @@ public class DogHandler : MonoBehaviour
 
             dog.transform.parent = parent;
 
-            parent.GetComponentInChildren<PaddockControl>().addDog(dog, current);
             dog.GetComponent<DogBehaviour>().giveProfile(dogProfile, dogStats);
+            parent.GetComponentInChildren<PaddockControl>().addDog(dog, current);
+
 
             age = Random.Range(1, 4);
             personality = personalities[Random.Range(0, personalities.Count)];

@@ -87,7 +87,7 @@ public class Game : MonoBehaviour
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
-        mMap = GetComponentInChildren<Environment>();
+        mMap = GameObject.Find("Environment").GetComponent<Environment>();
         // mCharacter = Instantiate(Character, transform);
 
 
@@ -273,13 +273,15 @@ public class Game : MonoBehaviour
             {
                // mCharacter.transform.position = CharacterStart.position;
                 //mCharacter.transform.rotation = CharacterStart.rotation;
-                mMap.CleanUpWorld();
+                //mMap.CleanUpWorld();
+                audioManager.playMenuMusic();
             }
             else
             {
                 //mCharacter.transform.position = mMap.Start.Position;
                 //mCharacter.transform.rotation = Quaternion.identity;
                 //mCharacter.CurrentPosition = mMap.Start;
+                audioManager.stopSecondPlayBack();
             }
         }
     }
@@ -388,17 +390,9 @@ public class Game : MonoBehaviour
             case 3: standInObject = Instantiate(foodWaterHandle.getStandIn(standInButton));
                 break;
             case 4: standInObject = Instantiate(shopHandler.getStandIn(standInButton));
+                Destroy(standInObject.GetComponent<Shop>());
                 break;
         }
-
-        //if(standInObject.transform.childCount > 0)
-        //{
-        //    changeChildColours();
-        //}
-        //else
-        //{
-        //    changeColours();
-        //}
 
     }
 
@@ -476,7 +470,7 @@ public class Game : MonoBehaviour
     public void checkSpawnTile(EnvironmentTile m)
     {
 
-        if (!m.IsAccessible)
+        if (!m.IsAccessible && m.transform.childCount > 0)
         {
             Destroy(m.transform.GetChild(0).gameObject);
         }

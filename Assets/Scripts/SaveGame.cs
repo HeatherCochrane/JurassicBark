@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+
 
 public class SaveGame
 {
@@ -7,7 +9,24 @@ public class SaveGame
     public string PlayerName = "Player";
     public int XP = 0;
     public Vector3 PlayerPosition;
-    public GameObject map;
+    public GameObject fullGame;
+
+
+    //Changed tiles from the original map
+    public struct mapTile
+    {
+        public GameObject parentObj;
+        public GameObject childObj;
+        public bool isAccesible;
+        public bool isPath;
+        public bool isPaddock;
+        public bool hasPaint;
+        public int x;
+        public int y;
+    }
+
+    public List<mapTile> changedTile = new List<mapTile>();
+    public mapTile mapTileStandIn;
 
     private static string _gameDataFileName = "data.json";
 

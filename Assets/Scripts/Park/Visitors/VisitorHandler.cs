@@ -27,7 +27,7 @@ public class VisitorHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnNewVisitor();
+        //spawnNewVisitor();
     }
 
     // Update is called once per frame

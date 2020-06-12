@@ -11,7 +11,7 @@ public class FileManager
     /// <returns>Instance</returns>
     public static T Load<T>(string filename) where T : new()
     {
-        string filePath = Path.Combine("../SaveFile", filename);
+        string filePath = Path.Combine("SaveFile", filename);
         T output;
 
         if (File.Exists(filePath))
@@ -35,7 +35,7 @@ public class FileManager
     /// <param name="content">Model Content</param>
     public static void Save<T>(string filename, T content)
     {
-        string filePath = Path.Combine("../SaveFile", filename);
+        string filePath = Path.Combine("SaveFile", filename);
 
         string dataAsJson = JsonUtility.ToJson(content);
         File.WriteAllText(filePath, dataAsJson);

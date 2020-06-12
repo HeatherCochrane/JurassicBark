@@ -30,7 +30,9 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     AudioClip destroy;
-    
+
+    [SerializeField]
+    AudioClip menuMusic;
     // Start is called before the first frame update
     void Start()
     {
@@ -134,5 +136,24 @@ public class AudioManager : MonoBehaviour
         source.Play();
 
         cashSpent();
+    }
+
+    public void playMenuMusic()
+    {
+        money.Stop();
+        money.clip = menuMusic;
+        money.loop = true;
+        money.Play();
+    }
+
+    public void stopSecondPlayBack()
+    {
+        money.Stop();
+        
+    }
+
+    public void stopFirstPlayBack()
+    {
+        source.Stop();
     }
 }

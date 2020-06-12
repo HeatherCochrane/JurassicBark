@@ -20,17 +20,17 @@ public class DogBehaviour : Character
         {
             if (dog.hungerLevel >= 0)
             {
-                hungerLevel -= 10;
+                hungerLevel -= 20;
                 dog.hungerLevel = hungerLevel;
             }
             if(dog.thirstLevel >= 0)
             {
-                thirstLevel -= 10;
+                thirstLevel -= 20;
                 dog.thirstLevel = thirstLevel;
             }
 
             updateStats();
-            yield return new WaitForSeconds(20);
+            yield return new WaitForSeconds(30);
         }
 
     }
@@ -118,9 +118,12 @@ public class DogBehaviour : Character
     // Update is called once per frame
     void Update()
     {
-        if (stats.activeSelf)
+        if (stats != null)
         {
-            stats.transform.position = Input.mousePosition;
+            if (stats.activeSelf)
+            {
+                stats.transform.position = Input.mousePosition;
+            }
         }
         if (!this.getIfMoving() && !doingAction)
         {
@@ -137,10 +140,6 @@ public class DogBehaviour : Character
     {
         profile = prof;
         stats = s;
-    }
-    private void FixedUpdate()
-    {
-        this.CurrentPosition.IsAccessible = false;
     }
 
     public void givePaddockControl(GameObject p)
@@ -248,7 +247,6 @@ public class DogBehaviour : Character
 
     void decideNextAction()
     {
-        this.CurrentPosition.IsAccessible = true;
         doingAction = false;
 
         if(dog.hungerLevel < 100 && paddockHandler.hasFood && canGetFood())

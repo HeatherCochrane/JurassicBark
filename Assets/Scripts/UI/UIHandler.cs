@@ -112,10 +112,22 @@ public class UIHandler : MonoBehaviour
 
     void populateShopScreens(List<items> list, int child)
     {
-        for(int i =0; i < shopScreens[child].transform.childCount; i++)
+        for (int i =0; i < shopScreens[child].transform.childCount; i++)
         {
             shopScreens[child].transform.GetChild(i).GetComponent<Image>().sprite = list[i].picture;
             shopScreens[child].transform.GetChild(i).GetChild(0).GetComponent<Text>().text = "£" + list[i].cost.ToString();
+
+            if(shopScreens[child].transform.GetChild(i).childCount > 1)
+            {
+                if (child == 0)
+                {
+                    shopScreens[child].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = "Terrain: " + list[i].terrain.name + "Tiles Needed: " + list[i].terrainAmount.ToString();
+                }
+                else if(child == 3)
+                {
+                    shopScreens[child].transform.GetChild(i).GetChild(1).GetComponent<Text>().text = "Durability: " + list[i].durability.ToString();
+                }
+            }
         }
     }
 
@@ -260,6 +272,14 @@ public class UIHandler : MonoBehaviour
             if(pauseMenus[i] == c)
             {
                 pauseMenus[i].SetActive(true);
+
+                if(pauseMenus[i].transform.childCount > 0)
+                {
+                    if(pauseMenus[i].GetComponentInChildren<Scrollbar>())
+                    {
+                        pauseMenus[i].GetComponentInChildren<Scrollbar>().value = 1;
+                    }
+                }
             }
             else
             {
