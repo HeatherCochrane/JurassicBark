@@ -51,7 +51,10 @@ public class Task : MonoBehaviour
         else
         {
             this.gameObject.transform.GetChild(3).gameObject.SetActive(true);
-            GameObject.Find("ResearchTasksButton").transform.GetChild(1).gameObject.SetActive(true);
+            if (GameObject.Find("ResearchTasksButton"))
+            {
+                GameObject.Find("ResearchTasksButton").transform.GetChild(1).gameObject.SetActive(true);
+            }
         }
 
         Debug.Log("Timer: " + timer);
