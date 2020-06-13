@@ -345,8 +345,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.1672547, y: 7.828926, z: 8.074513}
-  m_Center: {x: 0.26070964, y: 3.414463, z: -0.47938204}
+  m_Size: {x: 1.7217224, y: 5.528944, z: 8.074513}
+  m_Center: {x: 0.16232479, y: 3.5311174, z: -0.47938204}
 --- !u!114 &1989148757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,10 +360,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SingleNodeMoveTime: 0.5
-  walk: {fileID: 7400000, guid: ccd793b3d3ed38348a9f3fcdf8a4b6d6, type: 2}
+  walk: {fileID: 7400000, guid: 89bc25c56a88935459f1169f5650d4ee, type: 2}
   idle: {fileID: 7400000, guid: 3734db87d69b00e42b92b3556ba5231b, type: 2}
-  shake: {fileID: 7400000, guid: 61fbb7016783a044eadb35b8a6fdeaf5, type: 2}
-  extra: {fileID: 7400000, guid: ccd793b3d3ed38348a9f3fcdf8a4b6d6, type: 2}
+  shake: {fileID: 7400000, guid: b4f74a24f43698f40a72bb62da97d57b, type: 2}
+  extra: {fileID: 7400000, guid: b4f2a44870c41554d87adf1dc2f6c176, type: 2}
 --- !u!1 &3223315699739057297
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +479,7 @@ SkinnedMeshRenderer:
   - {fileID: 2100000, guid: 91357ed538560a04184e588c99e138ce, type: 2}
   - {fileID: 2100000, guid: fb627d0e8abc1ab429e829e1df082549, type: 2}
   - {fileID: 2100000, guid: e5996b395f555b542b907505e3c7425d, type: 2}
-  - {fileID: 2100000, guid: 2520fb620e596b64684f45bc735ecfcb, type: 2}
+  - {fileID: 2100000, guid: 153b063fb4a8845429beaf5a7d19ac2b, type: 2}
   - {fileID: 2100000, guid: 153b063fb4a8845429beaf5a7d19ac2b, type: 2}
   - {fileID: 2100000, guid: e66411f8cad8b82479411ca16ade5392, type: 2}
   - {fileID: 2100000, guid: f512716612c4c194ebec93250b36d259, type: 2}
@@ -774,7 +774,7 @@ Transform:
   - {fileID: 1202268251868498101}
   m_Father: {fileID: 1474112305769217293}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -72.052, y: 0, z: 0}
 --- !u!1 &7264424068162356937
 GameObject:
   m_ObjectHideFlags: 0
