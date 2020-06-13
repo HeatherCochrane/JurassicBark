@@ -2025,6 +2025,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1051102468}
+        m_MethodName: setScreen
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 538645414}
+        m_MethodName: changeShopScreen
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8890868013566983398}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &250153954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5368,7 +5390,7 @@ MonoBehaviour:
   decorationsScreen:
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 5
-    obj: {fileID: 8803860125663734072, guid: b4218bdff6a19814b9c865362f89f06d, type: 3}
+    obj: {fileID: 9150053344423963988, guid: 0444fa2f3fe62b843974cb3cb7a5d1e0, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 0}
@@ -8073,28 +8095,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 538645414}
-        m_MethodName: changeShopScreen
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8890868013566983398}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1051102468}
-        m_MethodName: setScreen
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &723832666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8387,7 +8387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 391.49997, y: -30.999174}
+  m_AnchoredPosition: {x: 391.49997, y: -30.999224}
   m_SizeDelta: {x: 240, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734676108
@@ -9939,8 +9939,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2144839217}
   m_HandleRect: {fileID: 2144839216}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.5469685
+  m_Value: 0.00000010206521
+  m_Size: 0.49999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11088,6 +11088,8 @@ MonoBehaviour:
   income: {fileID: 8300000, guid: a8e0d6bdd1cd85541a822d56dfcaa918, type: 3}
   destroy: {fileID: 8300000, guid: 4210857b593865f438683152492ebf11, type: 3}
   menuMusic: {fileID: 8300000, guid: 29903f124060d0f40892d9c2ce0e5a0c, type: 3}
+  addedPoints: {fileID: 8300000, guid: 3843ac064c2476c46a039ea2692e2a70, type: 3}
+  unlock: {fileID: 8300000, guid: 3eda496fd025a1145b831e50aa339a82, type: 3}
 --- !u!1 &922541323
 GameObject:
   m_ObjectHideFlags: 0
@@ -11815,6 +11817,7 @@ MonoBehaviour:
   playerCurrency: 10000
   UIHandler: {fileID: 538645414}
   unlockPoints: 50
+  audio: {fileID: 918794514}
 --- !u!224 &976179198 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2783554840513072594, guid: a7f58fd3b7e84e0479c01859c856575a,
@@ -12721,6 +12724,7 @@ MonoBehaviour:
   - {fileID: 891884417}
   unlockButtons: 
   UIhandler: {fileID: 538645414}
+  audio: {fileID: 918794514}
 --- !u!1 &1065368287
 GameObject:
   m_ObjectHideFlags: 0

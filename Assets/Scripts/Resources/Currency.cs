@@ -13,6 +13,8 @@ public class Currency : MonoBehaviour
     [SerializeField]
     int unlockPoints = 5;
 
+    [SerializeField]
+    AudioManager audio;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +57,7 @@ public class Currency : MonoBehaviour
     {
         unlockPoints += p;
         UIHandler.updatePoints(unlockPoints);
+        audio.playPointsGained();
     }
 
     public void takePoints(int p)

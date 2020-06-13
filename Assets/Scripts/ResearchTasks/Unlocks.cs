@@ -50,6 +50,8 @@ public class Unlocks : MonoBehaviour
     List<int> pathUnlocks = new List<int>();
     List<int> shopUnlocks = new List<int>();
 
+    [SerializeField]
+    AudioManager audio;
     void Start()
     {
         setUnlocks(dogUnlocks);
@@ -157,6 +159,7 @@ public class Unlocks : MonoBehaviour
             unlockButtonIcons[buttonNumber].SetActive(false);
             points.takePoints(cost);
 
+            audio.playUnlock();
             updateUnlockButtons();
             updateLists();
         }

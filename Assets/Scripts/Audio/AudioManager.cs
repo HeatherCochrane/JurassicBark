@@ -33,6 +33,12 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     AudioClip menuMusic;
+
+    [SerializeField]
+    AudioClip addedPoints;
+
+    [SerializeField]
+    AudioClip unlock;
     // Start is called before the first frame update
     void Start()
     {
@@ -155,5 +161,24 @@ public class AudioManager : MonoBehaviour
     public void stopFirstPlayBack()
     {
         source.Stop();
+    }
+
+    public void playUnlock()
+    {
+        source.Stop();
+        source.clip = unlock;
+        source.loop = false;
+        source.Play();
+    }
+
+    public void playPointsGained()
+    {
+        money.Stop();
+        money.clip = addedPoints;
+        money.loop = false;
+
+        money.pitch = Random.Range(1, 1.2f);
+
+        money.Play();
     }
 }
