@@ -84,6 +84,11 @@ public class Game : MonoBehaviour
     GameObject terrainPalette;
     bool showTerrainPaints = false;
 
+    [SerializeField]
+    GameObject actionIcon;
+
+    [SerializeField]
+    List<Sprite> actionSprites = new List<Sprite>();
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -95,6 +100,8 @@ public class Game : MonoBehaviour
         ShowMenu(true);
         pauseMenu.SetActive(false);
         terrainPalette.SetActive(false);
+
+        actionIcon.SetActive(false);
     }
 
     private void Update()
@@ -104,7 +111,7 @@ public class Game : MonoBehaviour
 
         //List<EnvironmentTile> route = mMap.Solve(mCharacter.CurrentPosition, tile);
         //mCharacter.GoTo(route);
-
+        
         if(speedUpTime)
         {
             Time.timeScale = 2;
@@ -113,6 +120,9 @@ public class Game : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+
+            actionIcon.transform.position = Input.mousePosition;
+        
 
         if (!rayOnButton)
         {
@@ -289,6 +299,16 @@ public class Game : MonoBehaviour
     public void setPaintingTerrain(bool set)
     {
         isPainting = true;
+
+        if (set)
+        {
+            actionIcon.GetComponent<Image>().sprite = actionSprites[1];
+            actionIcon.SetActive(true);
+        }
+        else
+        {
+            actionIcon.SetActive(false);
+        }
     }
     public void setCreatingPaddocks(bool set)
     {
@@ -297,6 +317,15 @@ public class Game : MonoBehaviour
     public void setDeleting(bool set)
     {
         deleteObjects = set;
+        if(set)
+        {
+            actionIcon.GetComponent<Image>().sprite = actionSprites[0];
+            actionIcon.SetActive(true);
+        }
+        else
+        {
+            actionIcon.SetActive(false);
+        }
     }
 
     public void setPlacingShop(bool set)
@@ -358,6 +387,8 @@ public class Game : MonoBehaviour
         pathHandler.cancelCreation();
 
         terrainPalette.SetActive(false);
+
+        actionIcon.SetActive(false);
     }
 
     public bool doingAction()
