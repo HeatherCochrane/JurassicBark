@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class SaveHandler : MonoBehaviour
 {
-
-    [SerializeField]
-    GameObject fullGame;
-
-    GameObject previousGame;
-
-
     
     // Start is called before the first frame update
     void Start()
@@ -24,33 +17,32 @@ public class SaveHandler : MonoBehaviour
 
     }
 
-    //public void Load()
-    //{
-    //    SaveGame.Load();
+   
+    //Call this function when a tile is changed such as placing deco, removing objects, paddocks, paint etc;
+    public void saveTile(EnvironmentTile t)
+    {
+        if (t.gameObject.transform.childCount > 0)
+        {
+            string[] name = t.gameObject.transform.GetChild(0).name.Split('(');
+            SaveGame.Instance.Tile.childModel = name[0];
+            Debug.Log(name[0]);
+        }
 
-    //    previousGame = fullGame;
+        SaveGame.Instance.Tile.isAccesible = t.IsAccessible;
+        SaveGame.Instance.Tile.isPaddock = t.isPaddock;
+        SaveGame.Instance.Tile.isPath = t.isPath;
+        SaveGame.Instance.Tile.hasPaint = t.hasPaint;
 
-    //    fullGame = Instantiate(SaveGame.Instance.fullGame);
+        string[] pos = t.name.Split(',');
+        SaveGame.Instance.Tile.x = int.Parse(pos[0]);
+        SaveGame.Instance.Tile.y = int.Parse(pos[1]);
 
-    //    string[] Name = fullGame.transform.name.Split('(');
-    //    fullGame.transform.name = Name[0];
+        SaveGame.Instance.Tile.parentMat = t.GetComponent<MeshRenderer>().material;
 
-    //    for (int i =0; i < fullGame.transform.childCount; i++)
-    //    {
-    //        string[] newName = fullGame.transform.GetChild(i).name.Split('(');
-    //        fullGame.transform.GetChild(i).name = newName[0];
-    //        for(int j =0; j < fullGame.transform.GetChild(i).childCount; j++)
-    //        {
-    //            string[] newName1 = fullGame.transform.GetChild(i).GetChild(j).name.Split('(');
-    //            fullGame.transform.GetChild(i).name = newName1[0];
-    //        }
-    //    }
+        SaveGame.Instance.Tile.parentPos = t.transform.position;
 
-    //}
+        SaveGame.Instance.changedTile.Add(SaveGame.Instance.Tile);
 
-    //public void Save()
-    //{
-    //    SaveGame.Instance.fullGame = fullGame;
-    //    SaveGame.Save();
-    //}
+        SaveGame.Save();
+    }
 }

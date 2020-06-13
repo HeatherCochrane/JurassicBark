@@ -132,7 +132,7 @@ public class Environment : MonoBehaviour
                 EnvironmentTile tile = Instantiate(prefab, position, Quaternion.identity, transform);
                 tile.Position = new Vector3(position.x + (TileSize / 2), TileHeight, position.z + (TileSize / 2));
                 tile.IsAccessible = isAccessible;
-                tile.gameObject.name = string.Format("Tile({0},{1})", x, y);
+                tile.gameObject.name = x.ToString() + "," + y.ToString();
                 mMap[x][y] = tile;
                 mAll.Add(tile);
 
@@ -157,8 +157,53 @@ public class Environment : MonoBehaviour
         game.checkSpawnTile(mMap[halfWidth][0]);
 
         setEntrance(halfWidth);
+    }
 
+    public void loadChangedTiles()
+    {
+        Debug.Log("Called");
 
+        GameObject newChild;
+
+        SaveGame.Load();
+
+        for (int i = 0; i < Size.x; i++)
+        {
+            for (int j = 0; j < Size.y; j++)
+            {
+                for (int k = 0; k < SaveGame.Instance.changedTile.Count; k++)
+                {
+                    //Tile currently on equals one of the saved tiles
+                    if (SaveGame.Instance.changedTile[k].x == i && SaveGame.Instance.changedTile[k].y == j)
+                    {
+                        Debug.Log("MATCH FOUND");
+
+                        mMap[i][j].IsAccessible = SaveGame.Instance.changedTile[k].isAccesible;
+                        mMap[i][j].isPaddock = SaveGame.Instance.changedTile[k].isPaddock;
+                        mMap[i][j].isPath = SaveGame.Instance.changedTile[k].isPath;
+                        mMap[i][j].hasPaint = SaveGame.Instance.changedTile[k].hasPaint;
+
+                        mMap[i][j].GetComponent<MeshRenderer>().material = SaveGame.Instance.changedTile[k].parentMat;
+
+                        if (SaveGame.Instance.changedTile[k].childModel != null)
+                        {
+                            Debug.Log(SaveGame.Instance.changedTile[k].childModel);
+
+                            if (mMap[i][j].transform.childCount > 0)
+                            {
+                                Destroy(mMap[i][j].transform.GetChild(0));
+                            }
+
+                            Debug.Log(Resources.Load(SaveGame.Instance.changedTile[k].childModel) as GameObject);
+
+                            newChild = Instantiate(Resources.Load(SaveGame.Instance.changedTile[k].childModel) as GameObject);
+                            newChild.transform.parent = mMap[i][j].gameObject.transform;
+                            newChild.transform.position = new Vector3(mMap[i][j].transform.position.x + 5, mMap[i][j].transform.position.y + 3, mMap[i][j].transform.position.z + 5);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     void setEntrance(int w)
