@@ -100,6 +100,16 @@ public class DogBehaviour : Character
     int amount = 0;
 
     DogHandler dogHandler;
+
+
+    [SerializeField]
+    AnimationClip walk;
+    [SerializeField]
+    AnimationClip idle;
+    [SerializeField]
+    AnimationClip shake;
+    [SerializeField]
+    AnimationClip extra;
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
@@ -135,7 +145,7 @@ public class DogBehaviour : Character
         }
         if (!this.getIfMoving() && !doingAction)
         {
-            changeAnimation("IdleTest");
+            changeAnimation(idle.name);
         }
     }
 
@@ -188,7 +198,7 @@ public class DogBehaviour : Character
         EnvironmentTile tile = paddock[Random.Range(0, width), Random.Range(0, height)];
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, tile, 2);
         this.GoTo(route, -1);
-        changeAnimation("WalkTest");
+        changeAnimation(walk.name);
     }
 
     void getWater()
@@ -196,14 +206,14 @@ public class DogBehaviour : Character
         this.CurrentPosition.IsAccessible = true;
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
         this.GoTo(route, 0);
-        changeAnimation("WalkTest");
+        changeAnimation(walk.name);
     }
     void getFood()
     {
         this.CurrentPosition.IsAccessible = true;
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 2);
         this.GoTo(route, 1);
-        changeAnimation("WalkTest");
+        changeAnimation(walk.name);
     }
 
     bool canGetFood()
@@ -250,7 +260,6 @@ public class DogBehaviour : Character
 
         if (dog.hungerLevel < 100 && canGetFood())
         {
-            Debug.Log("STILL TRYING TO GET FOOD");
             getFood();
         }
         else if(dog.thirstLevel < 100 && canGetWater())
@@ -286,18 +295,18 @@ public class DogBehaviour : Character
         switch(random)
         {
             case 1:
-                changeAnimation("Look");
+                changeAnimation(extra.name);
                 Invoke("stopAction", 3 / Time.timeScale);
                 break;
             case 2:
-                changeAnimation("Wiggle");
+                changeAnimation(shake.name);
                 Invoke("stopAction", 3 / Time.timeScale);
                 break;
             case 3:
-                changeAnimation("Look");
+                changeAnimation(extra.name);
                 Invoke("stopAction", 3 / Time.timeScale);
                 break;
-            case 4: changeAnimation("Wiggle");
+            case 4: changeAnimation(shake.name);
                 Invoke("stopAction", 3 / Time.timeScale);
                 break;
 

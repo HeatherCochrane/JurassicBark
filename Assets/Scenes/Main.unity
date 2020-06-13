@@ -5258,7 +5258,7 @@ MonoBehaviour:
   dogScreen:
   - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     cost: 10
-    obj: {fileID: 3971743951542406022, guid: cb837778fd565be4da705c11baab2fa3, type: 3}
+    obj: {fileID: 3029195321135253949, guid: d7bbe7d11e17a064cb5202ab016c5052, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 2100000, guid: ae7f1eaca984a2c4380415f20d6c862f, type: 2}
@@ -8387,7 +8387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 391.49997, y: -30.999228}
+  m_AnchoredPosition: {x: 391.49997, y: -30.999174}
   m_SizeDelta: {x: 240, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734676108
@@ -9939,8 +9939,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2144839217}
   m_HandleRect: {fileID: 2144839216}
   m_Direction: 2
-  m_Value: 0.00000010206521
-  m_Size: 0.49999994
+  m_Value: 0
+  m_Size: 0.50000006
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
