@@ -86,6 +86,16 @@ public class DogHandler : MonoBehaviour
         }
     }
 
+    public GameObject getProfile()
+    {
+        return dogProfile;
+    }
+
+    public GameObject getStats()
+    {
+        return dogStats;
+    }
+
     public void buyDogType(int num)
     {
         dogObject = UIhandler.getDog(num);

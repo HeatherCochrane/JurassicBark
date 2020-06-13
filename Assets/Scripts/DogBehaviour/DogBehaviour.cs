@@ -99,13 +99,19 @@ public class DogBehaviour : Character
     Material terrain;
     int amount = 0;
 
+    DogHandler dogHandler;
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
         inventory = GameObject.Find("InventoryUI").GetComponent<Inventory>();
         game = GameObject.Find("Game").GetComponent<Game>();
         animator = this.GetComponent<Animator>();
+        dogHandler = GameObject.Find("DogHandler").GetComponent<DogHandler>();
+
         timer();
+
+        profile = dogHandler.getProfile();
+        stats = dogHandler.getStats();
 
         profile.SetActive(false);
         stats.SetActive(false);
@@ -113,6 +119,8 @@ public class DogBehaviour : Character
         updateStats();
         StartCoroutine("decreaseStats");
         StartCoroutine("happinessTracker");
+
+        this.transform.parent = this.CurrentPosition.transform.parent;
     }
 
     // Update is called once per frame
@@ -466,6 +474,10 @@ public class DogBehaviour : Character
 
     }
 
+    public void removeFromPaddock()
+    {
+        paddockHandler.removeDog(this.gameObject);
+    }
     private void OnMouseExit()
     {
         stats.SetActive(false);

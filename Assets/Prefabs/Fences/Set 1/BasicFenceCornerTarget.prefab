@@ -231,6 +231,10 @@ MonoBehaviour:
   waterBowl: {fileID: 701579302331262685, guid: 64475590b591daa46aa3b420a01aabf9,
     type: 3}
   dogsInPaddock: []
+  dogProfile: {fileID: 5686231827625921636, guid: baae6ad864f515a4aa5c4ea9c3e7e564,
+    type: 3}
+  dogStats: {fileID: 1000632142987994968, guid: 9d0065a0b35ad4340a704263b7bb8995,
+    type: 3}
 --- !u!65 &7060863414148686898
 BoxCollider:
   m_ObjectHideFlags: 0
