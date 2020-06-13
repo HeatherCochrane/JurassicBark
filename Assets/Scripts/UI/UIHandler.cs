@@ -79,7 +79,8 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     Unlocks unlock;
 
-
+    [SerializeField]
+    GameObject currencyPoints;
     // Start is called before the first frame update
     void Start()
     {
@@ -104,6 +105,8 @@ public class UIHandler : MonoBehaviour
 
         pauseMenus[0].SetActive(false);
         pauseMenus[1].SetActive(false);
+
+        currencyPoints.SetActive(false);
 
     }
 
@@ -158,12 +161,12 @@ public class UIHandler : MonoBehaviour
 
     public void updateCurrency(int currency)
     {
-        playerCurrency.text = "£" + currency.ToString();
+        playerCurrency.text = "$" + currency.ToString();
     }
 
     public void updatePoints(int points)
     {
-        playerPoints.text = "Points: " + points.ToString();
+        playerPoints.text = points.ToString();
     }
     public void setShops(bool set)
     {
@@ -187,8 +190,7 @@ public class UIHandler : MonoBehaviour
 
     public void setConstantUI(bool set)
     {
-        playerCurrency.gameObject.SetActive(set);
-        playerPoints.gameObject.SetActive(set);
+        currencyPoints.SetActive(set);
     }
 
    public int getDogCost(int button)

@@ -25,11 +25,13 @@ public class FoodWater : MonoBehaviour
     public void removePiece()
     {
         max -= 1;
+
         if(max <= 0)
         {
             this.transform.parent.GetComponent<EnvironmentTile>().IsAccessible = true;
             this.transform.parent.GetComponent<EnvironmentTile>().hasFoodBowl = false;
             this.transform.parent.GetComponent<EnvironmentTile>().hasWaterBowl = false;
+
             Destroy(this.gameObject);
         }
     }

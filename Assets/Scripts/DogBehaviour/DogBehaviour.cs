@@ -215,18 +215,13 @@ public class DogBehaviour : Character
                 if (paddock[i, j].hasFoodBowl && paddock[i, j].IsAccessible)
                 {
                     goalTile = paddock[i, j];
+                    return true;
                 }
             }
         }
 
-        if(goalTile != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return false;
+
     }
 
     bool canGetWater()
@@ -238,30 +233,27 @@ public class DogBehaviour : Character
                 if (paddock[i, j].hasWaterBowl && paddock[i, j].IsAccessible)
                 {
                     goalTile = paddock[i, j];
+                    return true;
                 }
             }
         }
 
-        if (goalTile != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return false;
+
     }
 
 
     void decideNextAction()
     {
         doingAction = false;
+        this.CurrentPosition.IsAccessible = true;
 
-        if(dog.hungerLevel < 100 && paddockHandler.hasFood && canGetFood())
-        { 
+        if (dog.hungerLevel < 100 && canGetFood())
+        {
+            Debug.Log("STILL TRYING TO GET FOOD");
             getFood();
         }
-        else if(dog.thirstLevel < 100 && paddockHandler.hasWater && canGetWater())
+        else if(dog.thirstLevel < 100 && canGetWater())
         {
             getWater();
         }
