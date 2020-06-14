@@ -25,6 +25,9 @@ public class ShopHandler : MonoBehaviour
 
     int x = 0;
     int y = 0;
+
+    [SerializeField]
+    SaveHandler save;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +63,9 @@ public class ShopHandler : MonoBehaviour
             }
 
             shop.GetComponentInChildren<ParticleSystem>().Play();
+
+
+            save.saveTile(t1, false, false);
         }
     }
 

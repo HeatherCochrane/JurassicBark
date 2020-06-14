@@ -176,29 +176,36 @@ public class Environment : MonoBehaviour
                     //Tile currently on equals one of the saved tiles
                     if (SaveGame.Instance.changedTile[k].x == i && SaveGame.Instance.changedTile[k].y == j)
                     {
-                        Debug.Log("MATCH FOUND");
-
                         mMap[i][j].IsAccessible = SaveGame.Instance.changedTile[k].isAccesible;
                         mMap[i][j].isPaddock = SaveGame.Instance.changedTile[k].isPaddock;
                         mMap[i][j].isPath = SaveGame.Instance.changedTile[k].isPath;
                         mMap[i][j].hasPaint = SaveGame.Instance.changedTile[k].hasPaint;
 
-                        mMap[i][j].GetComponent<MeshRenderer>().material = SaveGame.Instance.changedTile[k].parentMat;
-
-                        if (SaveGame.Instance.changedTile[k].childModel != null)
+                        if (SaveGame.Instance.changedTile[k].matChanged)
                         {
-                            Debug.Log(SaveGame.Instance.changedTile[k].childModel);
+                            Material[] mats = mMap[i][j].GetComponent<MeshRenderer>().materials;
+                            Debug.Log(SaveGame.Instance.changedTile[k].parentMat);
 
-                            if (mMap[i][j].transform.childCount > 0)
-                            {
-                                Destroy(mMap[i][j].transform.GetChild(0));
-                            }
+                            Material newMat = Resources.Load(SaveGame.Instance.changedTile[k].parentMat, typeof(Material)) as Material;
+                            Debug.Log(newMat);
+                            mats[1] = newMat;
 
-                            Debug.Log(Resources.Load(SaveGame.Instance.changedTile[k].childModel) as GameObject);
+                            mMap[i][j].GetComponent<MeshRenderer>().materials = mats;
+                            mMap[i][j].setTerrainPaint(SaveGame.Instance.changedTile[k].parentMat);
+                        }
 
+                        if (!SaveGame.Instance.changedTile[k].removeChild && !SaveGame.Instance.changedTile[k].matChanged)
+                        {
                             newChild = Instantiate(Resources.Load(SaveGame.Instance.changedTile[k].childModel) as GameObject);
                             newChild.transform.parent = mMap[i][j].gameObject.transform;
                             newChild.transform.position = new Vector3(mMap[i][j].transform.position.x + 5, mMap[i][j].transform.position.y + 3, mMap[i][j].transform.position.z + 5);
+                        }
+                        else
+                        {
+                            if (mMap[i][j].transform.childCount > 0)
+                            {
+                                Destroy(mMap[i][j].transform.GetChild(0).gameObject);
+                            }
                         }
                     }
                 }

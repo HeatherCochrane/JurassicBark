@@ -19,6 +19,8 @@ public class SaveGame
         [SerializeField]
         public string childModel;
         [SerializeField]
+        public bool removeChild;
+        [SerializeField]
         public bool isAccesible;
         [SerializeField]
         public bool isPath;
@@ -27,15 +29,13 @@ public class SaveGame
         [SerializeField]
         public bool hasPaint;
         [SerializeField]
+        public bool matChanged;
+        [SerializeField]
         public int x;
         [SerializeField]
         public int y;
         [SerializeField]
-        public Material parentMat;
-        [SerializeField]
-        public Vector3 parentPos;
-        [SerializeField]
-        public Vector3 childPos;
+        public string parentMat;
     }
 
     [SerializeField]

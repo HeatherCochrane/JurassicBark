@@ -18,6 +18,9 @@ public class DecorationHandler : MonoBehaviour
 
     [SerializeField]
     Game game;
+
+    [SerializeField]
+    SaveHandler save;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +47,9 @@ public class DecorationHandler : MonoBehaviour
             currency.subtractMoney(cost);
 
             deco.GetComponentInChildren<ParticleSystem>().Play();
+
+
+            save.saveTile(p, false,false);
         }
     }
 

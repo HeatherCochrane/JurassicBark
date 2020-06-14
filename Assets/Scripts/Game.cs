@@ -136,7 +136,7 @@ public class Game : MonoBehaviour
             EnvironmentTile tile = mRaycastHits[0].transform.GetComponent<EnvironmentTile>();
             if (tile != null)
             {
-                if(Input.GetMouseButton(0))
+                if (Input.GetMouseButtonDown(0))
                 {
                     if (isPainting)
                     {
@@ -191,8 +191,6 @@ public class Game : MonoBehaviour
                         {
                             decoration.spawnDecoration(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile, standInObject.transform.eulerAngles);
                             audioManager.playStone();
-
-                            save.saveTile(tile);
                         }
                     }
                     else if (placingShop)
@@ -215,10 +213,10 @@ public class Game : MonoBehaviour
                                 tile.IsAccessible = true;
                             }
 
-                            save.saveTile(tile);
+                            save.saveTile(tile, true, false);
                         }
                     }
-                   
+
                     if (tile.isPaddock)
                     {
                         if (placePaddockItem)
@@ -240,11 +238,11 @@ public class Game : MonoBehaviour
 
                 if (standInObject != null)
                 {
-                   
-                        standInObject.transform.position = new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5);
-                    
+
+                    standInObject.transform.position = new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5);
+
                 }
-                if(Input.GetMouseButtonDown(2) && standInObject != null)
+                if (Input.GetMouseButtonDown(2) && standInObject != null)
                 {
                     standInObject.transform.Rotate(0, 45, 0);
                 }

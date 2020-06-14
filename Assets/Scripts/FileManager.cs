@@ -35,8 +35,6 @@ public class FileManager
     /// <param name="content">Model Content</param>
     public static void Save<T>(string filename, T content)
     {
-        //SaveGame.Instance.changedTile.Clear();
-
         string filePath = Path.Combine("SaveFile", filename);
 
         string dataAsJson = JsonUtility.ToJson(content);

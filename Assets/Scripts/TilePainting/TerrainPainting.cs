@@ -17,6 +17,9 @@ public class TerrainPainting : MonoBehaviour
 
 
     List<GameObject> dogs = new List<GameObject>();
+
+    [SerializeField]
+    SaveHandler save;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,5 +67,7 @@ public class TerrainPainting : MonoBehaviour
                 }
             }
         }
+
+        save.saveTile(t, false, true);
     }
 }
