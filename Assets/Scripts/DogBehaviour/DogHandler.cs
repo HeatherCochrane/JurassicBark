@@ -108,7 +108,7 @@ public class DogHandler : MonoBehaviour
     {
         for(int i =0; i < dogs.Count; i++)
         {
-            save.saveDog(dogs[i], dogs[i].GetComponent<DogBehaviour>().getIdentifier(), dog.GetComponent<DogBehaviour>().CurrentPosition);
+            save.saveDog(dogs[i], dogs[i].GetComponent<DogBehaviour>().getIdentifier(), dogs[i].GetComponent<DogBehaviour>().CurrentPosition);
         }
     }
 }

@@ -233,18 +233,15 @@ public class Environment : MonoBehaviour
         {
             paddock.Clear();
             paddock = new List<GameObject>();
+
             for (int k = 0; k < SaveGame.Instance.allPaddocks[h].paddocks.Count; k++)
-            {
-              
+            {             
                 string[] name = SaveGame.Instance.allPaddocks[h].paddocks[k].name.Split(',');
 
-                Debug.Log(name[0] + " , " + name[1]);
-
                 paddock.Add(mMap[int.Parse(name[0])][int.Parse(name[1])].gameObject);
-                Debug.Log("Looped : " + k);
+
             }
 
-            Debug.Log("H : " + h);
             spawnPaddock(paddock, h);
         }
 
@@ -255,8 +252,6 @@ public class Environment : MonoBehaviour
 
     void spawnPaddock(List<GameObject> p, int paddocks)
     {
-        Debug.Log("Spawn new paddock: " + p.Count);
-
         EnvironmentTile[,] pad = new EnvironmentTile[SaveGame.Instance.allPaddocks[paddocks].paddocks[0].width, SaveGame.Instance.allPaddocks[paddocks].paddocks[0].height];
 
         int space = 0;
@@ -284,7 +279,6 @@ public class Environment : MonoBehaviour
             }
         }
 
-        int pos = 0;
         for (int i = 0; i < p.Count; i++)
         {
             if (p[i].transform.GetComponentInChildren<PaddockControl>())

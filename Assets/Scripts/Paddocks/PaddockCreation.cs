@@ -94,6 +94,7 @@ public class PaddockCreation : MonoBehaviour
         mMap = m;
         mapSize = mSize;
     }
+
     public void setStartingTile(EnvironmentTile s)
     {
         startTile = s;
@@ -311,8 +312,6 @@ public class PaddockCreation : MonoBehaviour
 
     void generateFences(EnvironmentTile[,] tiles, int width, int height)
     {
-        pParent = Instantiate(paddockParent);
-
         //Delete Obstacles within the paddock
         for (int i = 0; i < width; i++)
         {
@@ -326,11 +325,8 @@ public class PaddockCreation : MonoBehaviour
 
                 }
                 tiles[i, j].isPaddock = true;
-                //tiles[i, j].transform.parent = pParent.transform;
             }
         }
-
-        allPaddocks.Add(pParent);
 
         //Spawn corner pieces first
         fencePiece = Instantiate(fenceSet[0]);
@@ -435,7 +431,6 @@ public class PaddockCreation : MonoBehaviour
             for (int j = 0; j < height; j++)
             {
                 tiles[i, j].setControlObject(control);
-
                 save.saveTile(tiles[i, j], false);
             }
         }
@@ -469,16 +464,6 @@ public class PaddockCreation : MonoBehaviour
 
                     mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
                 }
-                //else
-                //{
-                //    Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
-
-                //    temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
-                //    temp = Color.white;
-                //    mat[1].color = temp;
-
-                //    mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
-                //}
             }
         }
 

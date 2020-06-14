@@ -76,8 +76,12 @@ public class DogBehaviour : Character
 
     Environment mMap;
 
+
     EnvironmentTile[,] paddock;
+
+    [SerializeField]
     int width = 0;
+    [SerializeField]
     int height = 0;
 
     Inventory inventory;
@@ -174,7 +178,6 @@ public class DogBehaviour : Character
     {
         paddockHandler = p.GetComponentInChildren<PaddockControl>();
         paddock = p.GetComponentInChildren<PaddockControl>().getTiles();
-
 
         paddockHandler.addLoadedDog(this.gameObject);
     }
