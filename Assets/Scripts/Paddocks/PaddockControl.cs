@@ -54,6 +54,8 @@ public class PaddockControl : MonoBehaviour
     AudioManager audioManager;
 
     GameObject controlObj;
+
+    int paddockIdentifier = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -226,5 +228,24 @@ public class PaddockControl : MonoBehaviour
     public GameObject getControlObject()
     {
         return controlObj;
+    }
+
+    public void setIdentifier(int set)
+    {
+        paddockIdentifier = set;
+    }
+
+    public int getPaddockIdentifier()
+    {
+        return paddockIdentifier;
+    }
+
+    public void setTiles(EnvironmentTile[,] t)
+    {
+        tiles = t;
+    }
+    public EnvironmentTile[,] getTiles()
+    {
+        return tiles;
     }
 }

@@ -360,6 +360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SingleNodeMoveTime: 0.5
+  profile: {fileID: 5202553618496234826, guid: 477577ddf3dbf8647b3b1ca5b2552460, type: 3}
+  stats: {fileID: 4378590201569953169, guid: 3d57a51ad88ac4548881589d4c92b118, type: 3}
   walk: {fileID: 7400000, guid: 89bc25c56a88935459f1169f5650d4ee, type: 2}
   idle: {fileID: 7400000, guid: 3734db87d69b00e42b92b3556ba5231b, type: 2}
   shake: {fileID: 7400000, guid: b4f74a24f43698f40a72bb62da97d57b, type: 2}

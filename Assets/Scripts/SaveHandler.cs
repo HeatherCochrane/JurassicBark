@@ -21,10 +21,14 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Instance.changedTile.Clear();
         SaveGame.Instance.allPaddocks.Clear();
         SaveGame.Instance.paddock.Clear();
+        SaveGame.Instance.dogs.Clear();
 
         SaveGame.Instance.changedTile = new List<SaveGame.mapTile>();
         SaveGame.Instance.allPaddocks = new List<SaveGame.ListWrapper>();
         SaveGame.Instance.paddock = new List<SaveGame.Paddock>();
+        SaveGame.Instance.dogs = new List<SaveGame.dog>();
+
+        identity = 0;
     }
 
     //Call this function when a tile is changed such as placing deco, removing objects, paddocks, paint etc;
@@ -109,6 +113,23 @@ public class SaveHandler : MonoBehaviour
         Debug.Log(SaveGame.Instance.allPaddocks.Count);
 
         Debug.Log("Saved paddock");
+        SaveGame.Save();
+
+        identity += 1;
+    }
+
+    public void saveDog(GameObject dog, int identifier, EnvironmentTile t)
+    {
+        string[] name = dog.name.Split('(');
+        SaveGame.Instance.newDog.breed = name[0];
+        SaveGame.Instance.newDog.paddockIdentifier = identifier;
+
+        SaveGame.Instance.newDog.hunger = dog.GetComponent<DogBehaviour>().getHunger();
+        SaveGame.Instance.newDog.thirst = dog.GetComponent<DogBehaviour>().getThirst();
+        SaveGame.Instance.newDog.happiness = dog.GetComponent<DogBehaviour>().getHappiness();
+        SaveGame.Instance.newDog.tile = t.name;
+        SaveGame.Instance.dogs.Add(SaveGame.Instance.newDog);
+
         SaveGame.Save();
     }
 }

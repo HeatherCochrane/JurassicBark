@@ -227,10 +227,6 @@ public class Environment : MonoBehaviour
 
         SaveGame.Load();
 
-        Debug.Log(SaveGame.Instance.allPaddocks.Count);
-        Debug.Log(SaveGame.Instance.allPaddocks[0].paddocks.Count);
-        Debug.Log(SaveGame.Instance.allPaddocks[1].paddocks.Count);
-
 
         //Cycle through the environment object to find the tiles
         for (int h = 0; h < SaveGame.Instance.allPaddocks.Count; h++)
@@ -251,6 +247,8 @@ public class Environment : MonoBehaviour
             Debug.Log("H : " + h);
             spawnPaddock(paddock, h);
         }
+
+        loadDogs();
     }
 
 
@@ -263,32 +261,69 @@ public class Environment : MonoBehaviour
 
         int space = 0;
 
-        for(int i =0; i < SaveGame.Instance.allPaddocks[paddocks].paddocks[0].width; i++)
+        for (int i = 0; i < SaveGame.Instance.allPaddocks[paddocks].paddocks[0].width; i++)
         {
-            for(int j =0; j < SaveGame.Instance.allPaddocks[paddocks].paddocks[0].height; j++)
+            for (int j = 0; j < SaveGame.Instance.allPaddocks[paddocks].paddocks[0].height; j++)
             {
-                pad[i,j] = p[space].GetComponent<EnvironmentTile>();
+                pad[i, j] = p[space].GetComponent<EnvironmentTile>();
             }
 
         }
 
         Debug.Log(pad.Length);
 
-       for(int i =0; i < p.Count; i++)
+
+        EnvironmentTile[,] paddock = new EnvironmentTile[SaveGame.Instance.allPaddocks[paddocks].paddocks[0].width, SaveGame.Instance.allPaddocks[paddocks].paddocks[0].height];
+        int value = 0;
+        for (int i = 0; i < SaveGame.Instance.allPaddocks[paddocks].paddocks[0].width; i++)
         {
-            if(p[i].transform.GetComponentInChildren<PaddockControl>())
+            for (int j = 0; j < SaveGame.Instance.allPaddocks[paddocks].paddocks[0].height; j++)
+            {
+                paddock[i, j] = p[value].GetComponent<EnvironmentTile>();
+                value += 1;
+            }
+        }
+
+        int pos = 0;
+        for (int i = 0; i < p.Count; i++)
+        {
+            if (p[i].transform.GetComponentInChildren<PaddockControl>())
             {
                 p[i].transform.GetComponentInChildren<PaddockControl>().setTiles(pad, SaveGame.Instance.allPaddocks[paddocks].paddocks[0].width, SaveGame.Instance.allPaddocks[paddocks].paddocks[0].height);
                 p[i].transform.GetComponentInChildren<PaddockControl>().setControlObject(p[i]);
+                p[i].transform.GetComponentInChildren<PaddockControl>().setIdentifier(SaveGame.Instance.allPaddocks[paddocks].paddocks[0].identifier);
 
-                for(int j =0; j < p.Count; j++)
+                p[i].GetComponentInChildren<PaddockControl>().setTiles(paddock);
+
+                for (int j = 0; j < p.Count; j++)
                 {
                     p[j].GetComponent<EnvironmentTile>().setControlObject(p[i]);
+
                 }
             }
         }
     }
 
+    void loadDogs()
+    {
+        for(int i =0; i < SaveGame.Instance.dogs.Count; i++)
+        {
+            GameObject dog = Instantiate(Resources.Load(SaveGame.Instance.dogs[i].breed) as GameObject);
+            dog.GetComponent<DogBehaviour>().setIdentifier(SaveGame.Instance.dogs[i].paddockIdentifier);
+
+            string[] tile = SaveGame.Instance.dogs[i].tile.Split(',');
+            dog.transform.position = new Vector3(mMap[int.Parse(tile[0])][int.Parse(tile[1])].transform.position.x + 5, mMap[int.Parse(tile[0])][int.Parse(tile[1])].transform.position.y + 3, mMap[int.Parse(tile[0])][int.Parse(tile[1])].transform.position.z + 5);
+            dog.GetComponent<DogBehaviour>().CurrentPosition = mMap[int.Parse(tile[0])][int.Parse(tile[1])];
+
+            //set the dogs paddock control
+            dog.GetComponent<DogBehaviour>().givePaddockControl(mMap[int.Parse(tile[0])][int.Parse(tile[1])].getControlObj());
+
+            dog.GetComponent<DogBehaviour>().setHunger(SaveGame.Instance.dogs[i].hunger);
+            dog.GetComponent<DogBehaviour>().setThirst(SaveGame.Instance.dogs[i].thirst);
+            dog.GetComponent<DogBehaviour>().setHappiness(SaveGame.Instance.dogs[i].happiness);
+
+        }
+    }
     void setEntrance(int w)
     {
         w -= 2;

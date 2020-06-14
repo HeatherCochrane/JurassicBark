@@ -23,11 +23,6 @@ public class DogHandler : MonoBehaviour
     UIHandler UIhandler;
 
     [SerializeField]
-    GameObject dogProfile;
-    [SerializeField]
-    GameObject dogStats;
-
-    [SerializeField]
     List<string> personalities = new List<string>();
 
     [SerializeField]
@@ -45,11 +40,13 @@ public class DogHandler : MonoBehaviour
 
     [SerializeField]
     AudioManager audioManager;
+
+    [SerializeField]
+    SaveHandler save;
     void Start()
     {
         UIhandler = GameObject.Find("UIHandler").GetComponent<UIHandler>();
-        dogProfile.SetActive(false);
-        dogStats.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -67,8 +64,8 @@ public class DogHandler : MonoBehaviour
 
             dog.transform.parent = parent;
 
-            dog.GetComponent<DogBehaviour>().giveProfile(dogProfile, dogStats);
             control.GetComponentInChildren<PaddockControl>().addDog(dog, current);
+            dog.GetComponent<DogBehaviour>().setIdentifier(control.GetComponentInChildren<PaddockControl>().getPaddockIdentifier());
 
 
             age = Random.Range(1, 4);
@@ -86,16 +83,6 @@ public class DogHandler : MonoBehaviour
         }
     }
 
-    public GameObject getProfile()
-    {
-        return dogProfile;
-    }
-
-    public GameObject getStats()
-    {
-        return dogStats;
-    }
-
     public void buyDogType(int num)
     {
         dogObject = UIhandler.getDog(num);
@@ -108,11 +95,6 @@ public class DogHandler : MonoBehaviour
         return UIhandler.getDog(button);
     }
 
-    public void setDogProfile(bool set)
-    {
-        dogProfile.SetActive(set);
-    }
-
     public Material getTerrain()
     {
         return UIhandler.getTerrain(but);
@@ -120,5 +102,13 @@ public class DogHandler : MonoBehaviour
     public int getTerrainAmount()
     {
         return UIhandler.getTerrainAmount(but);
+    }
+
+    public void saveDogs()
+    {
+        for(int i =0; i < dogs.Count; i++)
+        {
+            save.saveDog(dogs[i], dogs[i].GetComponent<DogBehaviour>().getIdentifier(), dog.GetComponent<DogBehaviour>().CurrentPosition);
+        }
     }
 }

@@ -66,11 +66,15 @@ public class SaveGame
         [SerializeField]
         public string breed;
         [SerializeField]
-        int hunger;
+        public int hunger;
         [SerializeField]
-        int thirst;
+        public int thirst;
         [SerializeField]
-        int happiness;
+        public int happiness;
+        [SerializeField]
+        public int paddockIdentifier;
+        [SerializeField]
+        public string tile;
     }
 
     [System.Serializable]
@@ -94,6 +98,11 @@ public class SaveGame
     public List<mapTile> changedTile = new List<mapTile>();
     [SerializeField]
     public mapTile Tile;
+
+    [SerializeField]
+    public List<dog> dogs = new List<dog>();
+    [SerializeField]
+    public dog newDog;
 
     private static string _gameDataFileName = "data.json";
 

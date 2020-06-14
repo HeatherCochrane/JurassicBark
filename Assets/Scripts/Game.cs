@@ -203,7 +203,7 @@ public class Game : MonoBehaviour
                     }
                     else if (deleteObjects)
                     {
-                        if (tile.transform.childCount > 0)
+                        if (tile.transform.childCount > 0 && !tile.hasFence)
                         {
                             Destroy(tile.transform.GetChild(0).gameObject);
                             audioManager.playDestroy();

@@ -277,6 +277,8 @@ public class PaddockCreation : MonoBehaviour
                             z++;
                             standIn = z;
 
+
+
                         }
                         x++;
                         z = 0;
@@ -312,11 +314,11 @@ public class PaddockCreation : MonoBehaviour
         pParent = Instantiate(paddockParent);
 
         //Delete Obstacles within the paddock
-        for (int i =0; i < width; i++)
+        for (int i = 0; i < width; i++)
         {
-            for(int j =0; j < height; j++)
+            for (int j = 0; j < height; j++)
             {
-                if(!tiles[i, j].IsAccessible && tiles[i, j].transform.childCount > 0)
+                if (!tiles[i, j].IsAccessible && tiles[i, j].transform.childCount > 0)
                 {
                     Destroy(tiles[i, j].transform.GetChild(0).gameObject);
                     tiles[i, j].IsAccessible = true;
@@ -416,10 +418,24 @@ public class PaddockCreation : MonoBehaviour
 
         save.savePaddock(tiles, width, height);
 
-        for (int i =0; i < width; i++)
+        GameObject control = null;
+        for (int i = 0; i < width; i++)
         {
-           for(int j = 0; j < height; j++)
+            for (int j = 0; j < height; j++)
             {
+                if (tiles[i, j].GetComponentInChildren<PaddockControl>())
+                {
+                    control = tiles[i, j].gameObject;
+                }
+            }
+        }
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                tiles[i, j].setControlObject(control);
+
                 save.saveTile(tiles[i, j], false);
             }
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class DogBehaviour : Character
-{ 
+{
     struct Dog
     {
         public int hungerLevel;
@@ -23,7 +23,7 @@ public class DogBehaviour : Character
                 hungerLevel -= 20;
                 dog.hungerLevel = hungerLevel;
             }
-            if(dog.thirstLevel >= 0)
+            if (dog.thirstLevel >= 0)
             {
                 thirstLevel -= 20;
                 dog.thirstLevel = thirstLevel;
@@ -37,7 +37,7 @@ public class DogBehaviour : Character
 
     IEnumerator happinessTracker()
     {
-        while(true)
+        while (true)
         {
             if (dog.thirstLevel >= 60)
             {
@@ -86,8 +86,9 @@ public class DogBehaviour : Character
 
     EnvironmentTile goalTile;
 
-
+    [SerializeField]
     GameObject profile;
+    [SerializeField]
     GameObject stats;
 
     Game game;
@@ -110,6 +111,8 @@ public class DogBehaviour : Character
     AnimationClip shake;
     [SerializeField]
     AnimationClip extra;
+
+    int paddockIdentifier = 0;
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
@@ -120,8 +123,11 @@ public class DogBehaviour : Character
 
         timer();
 
-        profile = dogHandler.getProfile();
-        stats = dogHandler.getStats();
+        profile = Instantiate(profile);
+        profile.transform.parent = GameObject.Find("GameUI").transform;
+
+        stats = Instantiate(stats);
+        stats.transform.parent = GameObject.Find("GameUI").transform;
 
         profile.SetActive(false);
         stats.SetActive(false);
@@ -160,9 +166,15 @@ public class DogBehaviour : Character
         stats = s;
     }
 
+    public void setPaddock(EnvironmentTile[,] t)
+    {
+        paddock = t;
+    }
     public void givePaddockControl(GameObject p)
     {
-        paddockHandler = p.GetComponent<PaddockControl>();
+        paddockHandler = p.GetComponentInChildren<PaddockControl>();
+        paddock = p.GetComponentInChildren<PaddockControl>().getTiles();
+
     }
 
     public void givePaddockSize(EnvironmentTile[,] p, int w, int h, EnvironmentTile current)
@@ -184,7 +196,7 @@ public class DogBehaviour : Character
         dog.hungerLevel = hungerLevel;
         dog.thirstLevel = thirstLevel;
         dog.happinessLevel = happinessLevel;
-        
+
     }
     void timer()
     {
@@ -262,7 +274,7 @@ public class DogBehaviour : Character
         {
             getFood();
         }
-        else if(dog.thirstLevel < 100 && canGetWater())
+        else if (dog.thirstLevel < 100 && canGetWater())
         {
             getWater();
         }
@@ -270,29 +282,34 @@ public class DogBehaviour : Character
         {
             int rand = Random.Range(1, 4);
 
-            switch(rand)
+            switch (rand)
             {
-                case 1: moveDog();
+                case 1:
+                    moveDog();
                     break;
-                case 2: doRandomAction();
+                case 2:
+                    doRandomAction();
                     doingAction = true;
                     break;
-                case 3: moveDog();
+                case 3:
+                    moveDog();
                     break;
-                case 4: doRandomAction();
+                case 4:
+                    doRandomAction();
                     doingAction = true;
                     break;
-                default: moveDog();
+                default:
+                    moveDog();
                     break;
             }
-        }     
+        }
     }
 
     void doRandomAction()
-    {        
+    {
         int random = Random.Range(1, 4);
 
-        switch(random)
+        switch (random)
         {
             case 1:
                 changeAnimation(extra.name);
@@ -306,7 +323,8 @@ public class DogBehaviour : Character
                 changeAnimation(extra.name);
                 Invoke("stopAction", 3 / Time.timeScale);
                 break;
-            case 4: changeAnimation(shake.name);
+            case 4:
+                changeAnimation(shake.name);
                 Invoke("stopAction", 3 / Time.timeScale);
                 break;
 
@@ -337,11 +355,11 @@ public class DogBehaviour : Character
     {
         hungerLevel += 30;
 
-        if(hungerLevel >= 100)
+        if (hungerLevel >= 100)
         {
             hungerLevel = 100;
         }
-        else if(hungerLevel <= 0)
+        else if (hungerLevel <= 0)
         {
             hungerLevel = 0;
         }
@@ -487,5 +505,35 @@ public class DogBehaviour : Character
     void changeAnimation(string Anim)
     {
         animator.Play(Anim);
+    }
+
+    public void setIdentifier(int set)
+    {
+        paddockIdentifier = set;
+    }
+    public int getIdentifier()
+    {
+        return paddockIdentifier;
+    }
+
+    public void setHunger(int h)
+    {
+        hungerLevel = h;
+        dog.hungerLevel = hungerLevel;
+        updateStats();
+    }
+
+    public void setThirst(int h)
+    {
+        thirstLevel = h;
+        dog.thirstLevel = thirstLevel;
+        updateStats();
+    }
+
+    public void setHappiness(int h)
+    {
+        happinessLevel = h;
+        dog.happinessLevel = happinessLevel;
+        updateStats();
     }
 }
