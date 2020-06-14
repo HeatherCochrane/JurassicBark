@@ -45,6 +45,8 @@ public class Environment : MonoBehaviour
 
     [SerializeField]
     CameraControl camera;
+
+
     private void Awake()
     {
         Random.InitState(10);
