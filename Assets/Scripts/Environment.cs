@@ -310,7 +310,7 @@ public class Environment : MonoBehaviour
             dog.GetComponent<DogBehaviour>().CurrentPosition = mMap[int.Parse(tile[0])][int.Parse(tile[1])];
 
             //set the dogs paddock control
-            dog.GetComponent<DogBehaviour>().givePaddockControl(mMap[int.Parse(tile[0])][int.Parse(tile[1])].getControlObj());
+            dog.GetComponent<DogBehaviour>().givePaddockControl(mMap[int.Parse(tile[0])][int.Parse(tile[1])].getControlObj(), false);
 
             dog.GetComponent<DogBehaviour>().setHunger(SaveGame.Instance.dogs[i].hunger);
             dog.GetComponent<DogBehaviour>().setThirst(SaveGame.Instance.dogs[i].thirst);

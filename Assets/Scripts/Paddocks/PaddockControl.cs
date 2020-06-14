@@ -190,7 +190,7 @@ public class PaddockControl : MonoBehaviour
     public void addDog(GameObject d, EnvironmentTile current)
     {
         d.GetComponent<DogBehaviour>().givePaddockSize(tiles, width, height, current);
-        d.GetComponent<DogBehaviour>().givePaddockControl(this.gameObject);
+        d.GetComponent<DogBehaviour>().givePaddockControl(this.gameObject, true);
         dogsInPaddock.Add(d);
         updatePaddockInfo();
     }
