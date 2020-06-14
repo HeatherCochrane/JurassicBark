@@ -39,8 +39,7 @@ public class FoodWaterHandler : MonoBehaviour
             item.transform.Rotate(r);
             item.transform.parent = p.transform;
 
-            Transform control = p.transform.parent;
-
+            GameObject control = p.getControlObj();
             if (b == 0)
             {
                 control.GetComponentInChildren<PaddockControl>().hasFood = true;

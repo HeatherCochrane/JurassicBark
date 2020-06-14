@@ -175,6 +175,8 @@ public class DogBehaviour : Character
         paddockHandler = p.GetComponentInChildren<PaddockControl>();
         paddock = p.GetComponentInChildren<PaddockControl>().getTiles();
 
+
+        paddockHandler.addLoadedDog(this.gameObject);
     }
 
     public void givePaddockSize(EnvironmentTile[,] p, int w, int h, EnvironmentTile current)

@@ -159,7 +159,6 @@ public class PaddockControl : MonoBehaviour
 
     public void updatePaddockInfo()
     {
-        
         //Reset values
         overallHappiness = 0;
         overallHunger = 0;
@@ -196,6 +195,10 @@ public class PaddockControl : MonoBehaviour
         updatePaddockInfo();
     }
 
+    public void addLoadedDog(GameObject d)
+    {
+        dogsInPaddock.Add(d);
+    }
     public void removeDog(GameObject d)
     {
         dogsInPaddock.Remove(d);
