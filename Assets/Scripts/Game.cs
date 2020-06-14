@@ -213,7 +213,7 @@ public class Game : MonoBehaviour
                                 tile.IsAccessible = true;
                             }
 
-                            save.saveTile(tile, true, false);
+                            save.saveTile(tile,false);
                         }
                     }
 

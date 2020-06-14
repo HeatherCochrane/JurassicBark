@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Environment : MonoBehaviour
@@ -50,7 +49,7 @@ public class Environment : MonoBehaviour
     private void Awake()
     {
         Random.InitState(10);
-        
+
         mAll = new List<EnvironmentTile>();
         mToBeTested = new List<EnvironmentTile>();
     }
@@ -178,10 +177,17 @@ public class Environment : MonoBehaviour
                     //Tile currently on equals one of the saved tiles
                     if (SaveGame.Instance.changedTile[k].x == i && SaveGame.Instance.changedTile[k].y == j)
                     {
+                        if (mMap[i][j].transform.childCount > 0)
+                        {
+                            Destroy(mMap[i][j].transform.GetChild(0).gameObject);
+                        }
+
+
                         mMap[i][j].IsAccessible = SaveGame.Instance.changedTile[k].isAccesible;
                         mMap[i][j].isPaddock = SaveGame.Instance.changedTile[k].isPaddock;
                         mMap[i][j].isPath = SaveGame.Instance.changedTile[k].isPath;
                         mMap[i][j].hasPaint = SaveGame.Instance.changedTile[k].hasPaint;
+                        mMap[i][j].hasFence = SaveGame.Instance.changedTile[k].hasFence;
 
                         if (SaveGame.Instance.changedTile[k].matChanged)
                         {
@@ -196,20 +202,37 @@ public class Environment : MonoBehaviour
                             mMap[i][j].setTerrainPaint(SaveGame.Instance.changedTile[k].parentMat);
                         }
 
-                        if (!SaveGame.Instance.changedTile[k].removeChild && !SaveGame.Instance.changedTile[k].matChanged)
+                        if (SaveGame.Instance.changedTile[k].hasChild)
                         {
                             newChild = Instantiate(Resources.Load(SaveGame.Instance.changedTile[k].childModel) as GameObject);
                             newChild.transform.parent = mMap[i][j].gameObject.transform;
                             newChild.transform.position = new Vector3(mMap[i][j].transform.position.x + 5, mMap[i][j].transform.position.y + 3, mMap[i][j].transform.position.z + 5);
-                        }
-                        else
-                        {
-                            if (mMap[i][j].transform.childCount > 0)
-                            {
-                                Destroy(mMap[i][j].transform.GetChild(0).gameObject);
-                            }
+                            newChild.transform.Rotate(SaveGame.Instance.changedTile[k].rot);
+                            newChild.transform.position = SaveGame.Instance.changedTile[k].childPos;
                         }
                     }
+                }
+            }
+        }
+    }
+
+    public void loadPaddocks()
+    {
+
+        Debug.Log("Called");
+
+        GameObject newChild;
+
+        SaveGame.Load();
+
+        for (int i = 0; i < Size.x; i++)
+        {
+            for (int j = 0; j < Size.y; j++)
+            {
+                for (int k = 0; k < SaveGame.Instance.paddocks.Count; k++)
+                {
+                    GameObject p = Resources.Load(SaveGame.Instance.paddocks[k].parent) as GameObject;
+                    mMap[i][j].transform.parent = Instantiate(p).transform;
                 }
             }
         }

@@ -94,6 +94,11 @@ public class PaddockControl : MonoBehaviour
         {
             for(int j = 0; j < height; j++)
             {
+                if (tiles[i, j].transform.childCount > 0)
+                {
+                    Destroy(tiles[i, j].transform.GetChild(0).gameObject);
+                }
+
                 tiles[i, j].isPaddock = false;
                 tiles[i, j].hasFence = false;
                 tiles[i, j].IsAccessible = true;
@@ -111,7 +116,6 @@ public class PaddockControl : MonoBehaviour
         {
             returnTiles();
 
-            
             if (dogsInPaddock.Count > 0)
             {
                 for (int i = 0; i < dogsInPaddock.Count; i++)

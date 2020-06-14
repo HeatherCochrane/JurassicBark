@@ -68,6 +68,6 @@ public class TerrainPainting : MonoBehaviour
             }
         }
 
-        save.saveTile(t, false, true);
+        save.saveTile(t, true);
     }
 }

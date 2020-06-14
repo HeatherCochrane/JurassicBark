@@ -19,7 +19,7 @@ public class SaveGame
         [SerializeField]
         public string childModel;
         [SerializeField]
-        public bool removeChild;
+        public bool hasChild;
         [SerializeField]
         public bool isAccesible;
         [SerializeField]
@@ -29,6 +29,8 @@ public class SaveGame
         [SerializeField]
         public bool hasPaint;
         [SerializeField]
+        public bool hasFence;
+        [SerializeField]
         public bool matChanged;
         [SerializeField]
         public int x;
@@ -36,7 +38,39 @@ public class SaveGame
         public int y;
         [SerializeField]
         public string parentMat;
+        [SerializeField]
+        public Vector3 rot;
+        [SerializeField]
+        public Vector3 childPos;
     }
+
+    public struct dog
+    {
+        [SerializeField]
+        public string breed;
+        [SerializeField]
+        int hunger;
+        [SerializeField]
+        int thirst;
+        [SerializeField]
+        int happiness;
+    }
+    public struct paddock
+    {
+        [SerializeField]
+        public List<string> tiles;
+        [SerializeField]
+        public List<string> fences;
+        [SerializeField]
+        public string parent;
+        //[SerializeField]
+        //public List<dog> dogs;
+    }
+
+    [SerializeField]
+    public List<paddock> paddocks = new List<paddock>();
+    [SerializeField]
+    public paddock newPaddock;
 
     [SerializeField]
     public List<mapTile> changedTile = new List<mapTile>();
