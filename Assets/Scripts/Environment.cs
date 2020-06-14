@@ -214,26 +214,59 @@ public class Environment : MonoBehaviour
                 }
             }
         }
+
+        loadPaddocks();
     }
 
     public void loadPaddocks()
     {
-
-        Debug.Log("Called");
+        List<EnvironmentTile> paddock = new List<EnvironmentTile>();
 
         GameObject newChild;
 
         SaveGame.Load();
+        int identity = 0;
 
+        Debug.Log(SaveGame.Instance.paddock.Count);
         for (int i = 0; i < Size.x; i++)
         {
             for (int j = 0; j < Size.y; j++)
             {
-                for (int k = 0; k < SaveGame.Instance.paddocks.Count; k++)
+                for (int k = 0; k < SaveGame.Instance.paddock.Count; k++)
                 {
-                    GameObject p = Resources.Load(SaveGame.Instance.paddocks[k].parent) as GameObject;
-                    mMap[i][j].transform.parent = Instantiate(p).transform;
+                    if (i == SaveGame.Instance.paddock[k].x && j == SaveGame.Instance.paddock[k].y)
+                    {
+                        paddock.Add(mMap[i][j]);
+                        Debug.Log(mMap[i][j].gameObject);
+                        spawnPaddock(paddock);
+                    }
                 }
+
+
+            }
+        }
+    }
+
+    void spawnPaddock(List<EnvironmentTile> p)
+    {
+        EnvironmentTile[,] pad = new EnvironmentTile[SaveGame.Instance.paddock[0].width, SaveGame.Instance.paddock[0].height];
+
+        int space = 0;
+        for(int i =0; i < SaveGame.Instance.paddock[0].width; i++)
+        {
+            for(int j =0; j < SaveGame.Instance.paddock[0].height; j++)
+            {
+                pad[i,j] = p[space];
+            }
+
+        }
+
+        Debug.Log("Paddock size " + p.Count);
+       for(int i =0; i < p.Count; i++)
+        {
+            if(p[i].transform.GetComponentInChildren<PaddockControl>())
+            {
+                p[i].transform.GetComponentInChildren<PaddockControl>().setTiles(pad, SaveGame.Instance.paddock[0].width, SaveGame.Instance.paddock[0].height);
             }
         }
     }

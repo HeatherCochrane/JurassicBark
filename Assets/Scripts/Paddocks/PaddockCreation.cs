@@ -414,16 +414,16 @@ public class PaddockCreation : MonoBehaviour
             }
         }
 
-        for(int i =0; i < width; i++)
+        save.savePaddock(tiles, width, height);
+
+        for (int i =0; i < width; i++)
         {
            for(int j = 0; j < height; j++)
             {
-                save.saveTile(mMap[i][j], false);
+                save.saveTile(tiles[i, j], false);
             }
         }
 
-        //save.savePaddock(tiles, width, height, pParent);
-        
 
         setMapColour();
     }

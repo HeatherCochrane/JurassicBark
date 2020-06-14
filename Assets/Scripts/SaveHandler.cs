@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SaveHandler : MonoBehaviour
 {
-    
+    int identity = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +19,12 @@ public class SaveHandler : MonoBehaviour
    public void clearList()
     {
         SaveGame.Instance.changedTile.Clear();
+        SaveGame.Instance.allPaddocks.Clear();
+        SaveGame.Instance.paddock.Clear();
 
         SaveGame.Instance.changedTile = new List<SaveGame.mapTile>();
+        SaveGame.Instance.allPaddocks = new List<List<SaveGame.Paddock>>();
+        SaveGame.Instance.paddock = new List<SaveGame.Paddock>();
     }
 
     //Call this function when a tile is changed such as placing deco, removing objects, paddocks, paint etc;
@@ -33,8 +37,6 @@ public class SaveHandler : MonoBehaviour
             SaveGame.Instance.Tile.rot = t.gameObject.transform.GetChild(0).eulerAngles;
             SaveGame.Instance.Tile.childPos = t.gameObject.transform.GetChild(0).position;
             SaveGame.Instance.Tile.hasChild = true;
-            Debug.Log(SaveGame.Instance.Tile.rot);
-            Debug.Log(name[0]);
         }
         else
         {
@@ -60,15 +62,12 @@ public class SaveHandler : MonoBehaviour
             string[] matName = mats[1].name.Split(' ');
             SaveGame.Instance.Tile.parentMat = matName[0];
 
-            Debug.Log(SaveGame.Instance.Tile.parentMat);
             SaveGame.Instance.Tile.matChanged = true;
         }
         else
         {
             SaveGame.Instance.Tile.matChanged = false;
         }
-
-
         for(int i =0; i < SaveGame.Instance.changedTile.Count; i++)
         {
             if(SaveGame.Instance.Tile.x == SaveGame.Instance.changedTile[i].x && SaveGame.Instance.Tile.y == SaveGame.Instance.changedTile[i].y)
@@ -79,23 +78,32 @@ public class SaveHandler : MonoBehaviour
 
         SaveGame.Instance.changedTile.Add(SaveGame.Instance.Tile);
 
-        Debug.Log(SaveGame.Instance.changedTile.Count);
         SaveGame.Save();
     }
 
-    public void savePaddock(EnvironmentTile[,] t, int w, int h, GameObject parent)
+    public void savePaddock(EnvironmentTile[,] tiles, int w, int h)
     {
-        for(int i =0; i < w; i++)
+        for (int i = 0; i < w; i++)
         {
-            for(int j =0; j < h; j++)
+            for (int j = 0; j < h; j++)
             {
-                SaveGame.Instance.newPaddock.tiles.Add(t[i, j].name);
+                string[] name = tiles[i, j].name.Split(',');
+                SaveGame.Instance.newPaddock.x = int.Parse(name[0]);
+                SaveGame.Instance.newPaddock.y = int.Parse(name[1]);
+                SaveGame.Instance.newPaddock.size = w * h;
+                SaveGame.Instance.newPaddock.width = w;
+                SaveGame.Instance.newPaddock.height = h;
+                SaveGame.Instance.newPaddock.identifier = identity;
+                Debug.Log("Loop");
+
+                SaveGame.Instance.paddock.Add(SaveGame.Instance.newPaddock);
             }
         }
 
-        SaveGame.Instance.newPaddock.parent = parent.name;
+        SaveGame.Instance.allPaddocks.Add(SaveGame.Instance.paddock);
+        Debug.Log(SaveGame.Instance.allPaddocks.Count);
 
-        SaveGame.Instance.paddocks.Add(SaveGame.Instance.newPaddock);
-
+        Debug.Log("Saved paddock");
+        SaveGame.Save();
     }
 }

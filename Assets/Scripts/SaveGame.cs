@@ -42,8 +42,26 @@ public class SaveGame
         public Vector3 rot;
         [SerializeField]
         public Vector3 childPos;
+        [SerializeField]
+        public List<Paddock> paddockTiles;
     }
 
+    [System.Serializable]
+    public struct Paddock
+    {
+        [SerializeField]
+        public int x;
+        [SerializeField]
+        public int y;
+        [SerializeField]
+        public int identifier;
+        [SerializeField]
+        public int size;
+        [SerializeField]
+        public int width;
+        [SerializeField]
+        public int height;
+    }
     public struct dog
     {
         [SerializeField]
@@ -55,22 +73,13 @@ public class SaveGame
         [SerializeField]
         int happiness;
     }
-    public struct paddock
-    {
-        [SerializeField]
-        public List<string> tiles;
-        [SerializeField]
-        public List<string> fences;
-        [SerializeField]
-        public string parent;
-        //[SerializeField]
-        //public List<dog> dogs;
-    }
 
     [SerializeField]
-    public List<paddock> paddocks = new List<paddock>();
+    public List<List<Paddock>> allPaddocks = new List<List<Paddock>>();
     [SerializeField]
-    public paddock newPaddock;
+    public List<Paddock> paddock = new List<Paddock>();
+    [SerializeField]
+    public Paddock newPaddock;
 
     [SerializeField]
     public List<mapTile> changedTile = new List<mapTile>();
