@@ -494,7 +494,8 @@ public class DogBehaviour : Character
             CameraControl.instance.followTransform = transform;
 
             profile.SetActive(true);
-            profile.transform.position = new Vector3(-70, 0, 0);
+            profile.transform.localScale = new Vector3(1, 1, 1);
+            profile.GetComponent<RectTransform>().anchoredPosition = new Vector2(1 - 70, 1);
 
             profile.transform.GetChild(1).GetComponent<Text>().text = "Gender: " + dog.gender;
             profile.transform.GetChild(2).GetComponent<Text>().text = "Age: " + dog.age.ToString();
