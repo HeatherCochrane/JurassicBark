@@ -58,7 +58,7 @@ public class DogHandler : MonoBehaviour
 
     }
 
-    public void spawnDog(Vector3 pos, Transform parent, EnvironmentTile current)
+    public void spawnDog(Vector3 pos, Transform parent, EnvironmentTile current, GameObject control)
     {
         if (dogObject != null && currency.sufficientFunds(cost))
         {
@@ -68,7 +68,7 @@ public class DogHandler : MonoBehaviour
             dog.transform.parent = parent;
 
             dog.GetComponent<DogBehaviour>().giveProfile(dogProfile, dogStats);
-            parent.GetComponentInChildren<PaddockControl>().addDog(dog, current);
+            control.GetComponentInChildren<PaddockControl>().addDog(dog, current);
 
 
             age = Random.Range(1, 4);

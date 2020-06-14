@@ -45,7 +45,8 @@ public class Environment : MonoBehaviour
     [SerializeField]
     CameraControl camera;
 
-
+    [SerializeField]
+    GameObject mapObject;
     private void Awake()
     {
         Random.InitState(10);
@@ -220,53 +221,70 @@ public class Environment : MonoBehaviour
 
     public void loadPaddocks()
     {
-        List<EnvironmentTile> paddock = new List<EnvironmentTile>();
+        Debug.Log("Paddocks Count: " + SaveGame.Instance.allPaddocks.Count);
 
-        GameObject newChild;
+        List<GameObject> paddock = new List<GameObject>();
 
         SaveGame.Load();
-        int identity = 0;
 
-        Debug.Log(SaveGame.Instance.paddock.Count);
-        for (int i = 0; i < Size.x; i++)
+        Debug.Log(SaveGame.Instance.allPaddocks.Count);
+        Debug.Log(SaveGame.Instance.allPaddocks[0].paddocks.Count);
+        Debug.Log(SaveGame.Instance.allPaddocks[1].paddocks.Count);
+
+
+        //Cycle through the environment object to find the tiles
+        for (int h = 0; h < SaveGame.Instance.allPaddocks.Count; h++)
         {
-            for (int j = 0; j < Size.y; j++)
+            paddock.Clear();
+            paddock = new List<GameObject>();
+            for (int k = 0; k < SaveGame.Instance.allPaddocks[h].paddocks.Count; k++)
             {
-                for (int k = 0; k < SaveGame.Instance.paddock.Count; k++)
-                {
-                    if (i == SaveGame.Instance.paddock[k].x && j == SaveGame.Instance.paddock[k].y)
-                    {
-                        paddock.Add(mMap[i][j]);
-                        Debug.Log(mMap[i][j].gameObject);
-                        spawnPaddock(paddock);
-                    }
-                }
+              
+                string[] name = SaveGame.Instance.allPaddocks[h].paddocks[k].name.Split(',');
 
+                Debug.Log(name[0] + " , " + name[1]);
 
+                paddock.Add(mMap[int.Parse(name[0])][int.Parse(name[1])].gameObject);
+                Debug.Log("Looped : " + k);
             }
+
+            Debug.Log("H : " + h);
+            spawnPaddock(paddock, h);
         }
     }
 
-    void spawnPaddock(List<EnvironmentTile> p)
+
+
+    void spawnPaddock(List<GameObject> p, int paddocks)
     {
-        EnvironmentTile[,] pad = new EnvironmentTile[SaveGame.Instance.paddock[0].width, SaveGame.Instance.paddock[0].height];
+        Debug.Log("Spawn new paddock: " + p.Count);
+
+        EnvironmentTile[,] pad = new EnvironmentTile[SaveGame.Instance.allPaddocks[paddocks].paddocks[0].width, SaveGame.Instance.allPaddocks[paddocks].paddocks[0].height];
 
         int space = 0;
-        for(int i =0; i < SaveGame.Instance.paddock[0].width; i++)
+
+        for(int i =0; i < SaveGame.Instance.allPaddocks[paddocks].paddocks[0].width; i++)
         {
-            for(int j =0; j < SaveGame.Instance.paddock[0].height; j++)
+            for(int j =0; j < SaveGame.Instance.allPaddocks[paddocks].paddocks[0].height; j++)
             {
-                pad[i,j] = p[space];
+                pad[i,j] = p[space].GetComponent<EnvironmentTile>();
             }
 
         }
 
-        Debug.Log("Paddock size " + p.Count);
+        Debug.Log(pad.Length);
+
        for(int i =0; i < p.Count; i++)
         {
             if(p[i].transform.GetComponentInChildren<PaddockControl>())
             {
-                p[i].transform.GetComponentInChildren<PaddockControl>().setTiles(pad, SaveGame.Instance.paddock[0].width, SaveGame.Instance.paddock[0].height);
+                p[i].transform.GetComponentInChildren<PaddockControl>().setTiles(pad, SaveGame.Instance.allPaddocks[paddocks].paddocks[0].width, SaveGame.Instance.allPaddocks[paddocks].paddocks[0].height);
+                p[i].transform.GetComponentInChildren<PaddockControl>().setControlObject(p[i]);
+
+                for(int j =0; j < p.Count; j++)
+                {
+                    p[j].GetComponent<EnvironmentTile>().setControlObject(p[i]);
+                }
             }
         }
     }

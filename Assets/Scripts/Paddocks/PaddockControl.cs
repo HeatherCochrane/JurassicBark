@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class PaddockControl : MonoBehaviour
 {
+
     EnvironmentTile[,] tiles;
+    [SerializeField]
     int width = 0;
+    [SerializeField]
     int height = 0;
 
     [SerializeField]
@@ -49,6 +52,8 @@ public class PaddockControl : MonoBehaviour
 
 
     AudioManager audioManager;
+
+    GameObject controlObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -213,4 +218,13 @@ public class PaddockControl : MonoBehaviour
         return dogsInPaddock;
     }
 
+    public void setControlObject(GameObject c)
+    {
+        controlObj = c;
+    }
+
+    public GameObject getControlObject()
+    {
+        return controlObj;
+    }
 }

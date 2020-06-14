@@ -50,9 +50,7 @@ public class SaveGame
     public struct Paddock
     {
         [SerializeField]
-        public int x;
-        [SerializeField]
-        public int y;
+        public string name;
         [SerializeField]
         public int identifier;
         [SerializeField]
@@ -62,6 +60,7 @@ public class SaveGame
         [SerializeField]
         public int height;
     }
+    [System.Serializable]
     public struct dog
     {
         [SerializeField]
@@ -74,8 +73,18 @@ public class SaveGame
         int happiness;
     }
 
+    [System.Serializable]
+    public class ListWrapper
+    {
+        [SerializeField]
+        public List<Paddock> paddocks = new List<Paddock>();
+    }
+
     [SerializeField]
-    public List<List<Paddock>> allPaddocks = new List<List<Paddock>>();
+    public ListWrapper paddockLists;
+
+    [SerializeField]
+    public List<ListWrapper> allPaddocks = new List<ListWrapper>();
     [SerializeField]
     public List<Paddock> paddock = new List<Paddock>();
     [SerializeField]

@@ -23,7 +23,7 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Instance.paddock.Clear();
 
         SaveGame.Instance.changedTile = new List<SaveGame.mapTile>();
-        SaveGame.Instance.allPaddocks = new List<List<SaveGame.Paddock>>();
+        SaveGame.Instance.allPaddocks = new List<SaveGame.ListWrapper>();
         SaveGame.Instance.paddock = new List<SaveGame.Paddock>();
     }
 
@@ -83,24 +83,29 @@ public class SaveHandler : MonoBehaviour
 
     public void savePaddock(EnvironmentTile[,] tiles, int w, int h)
     {
+        SaveGame.Instance.paddock.Clear();
+        SaveGame.Instance.paddock = new List<SaveGame.Paddock>();
+
+        SaveGame.Instance.newPaddock = new SaveGame.Paddock();
+        SaveGame.Instance.paddockLists = new SaveGame.ListWrapper();
+
         for (int i = 0; i < w; i++)
         {
             for (int j = 0; j < h; j++)
             {
-                string[] name = tiles[i, j].name.Split(',');
-                SaveGame.Instance.newPaddock.x = int.Parse(name[0]);
-                SaveGame.Instance.newPaddock.y = int.Parse(name[1]);
+                SaveGame.Instance.newPaddock.name = tiles[i, j].name;
                 SaveGame.Instance.newPaddock.size = w * h;
                 SaveGame.Instance.newPaddock.width = w;
                 SaveGame.Instance.newPaddock.height = h;
                 SaveGame.Instance.newPaddock.identifier = identity;
-                Debug.Log("Loop");
 
-                SaveGame.Instance.paddock.Add(SaveGame.Instance.newPaddock);
+                SaveGame.Instance.paddockLists.paddocks.Add(SaveGame.Instance.newPaddock);
             }
         }
 
-        SaveGame.Instance.allPaddocks.Add(SaveGame.Instance.paddock);
+        SaveGame.Instance.allPaddocks.Add(SaveGame.Instance.paddockLists);
+
+
         Debug.Log(SaveGame.Instance.allPaddocks.Count);
 
         Debug.Log("Saved paddock");

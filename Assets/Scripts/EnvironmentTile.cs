@@ -31,4 +31,15 @@ public class EnvironmentTile : MonoBehaviour
     }
 
     public bool hasPaint { get; set; }
+
+    GameObject controlObj;
+    public void setControlObject(GameObject c)
+    {
+        controlObj = c;
+    }
+
+    public GameObject getControlObj()
+    {
+        return controlObj;
+    }
 }
