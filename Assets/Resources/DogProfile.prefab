@@ -414,9 +414,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Age
-
-'
+  m_Text: 'Age: 0'
 --- !u!1 &5202553620008199675
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,9 +491,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Personality
-
-'
+  m_Text: 'Personality: '
 --- !u!1 &6607765422959597348
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,4 +645,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Gender
+  m_Text: 'Gender: '

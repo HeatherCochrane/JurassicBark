@@ -247,7 +247,7 @@ public class PaddockCreation : MonoBehaviour
                 {
                     for (int j = zPos; j < (int)heightTile; j++)
                     {
-                        if (mMap[i][j].isPaddock || mMap[i][j].isPath)
+                        if (mMap[i][j].isPaddock || mMap[i][j].isPath || !mMap[i][j].IsAccessible)
                         {
                             intersectingPaddock = true;
                         }
@@ -321,7 +321,6 @@ public class PaddockCreation : MonoBehaviour
                 {
                     Destroy(tiles[i, j].transform.GetChild(0).gameObject);
                     tiles[i, j].IsAccessible = true;
-                    tiles[i, j].isPaddock = true;
 
                 }
                 tiles[i, j].isPaddock = true;
@@ -412,8 +411,6 @@ public class PaddockCreation : MonoBehaviour
             }
         }
 
-        save.savePaddock(tiles, width, height);
-
         GameObject control = null;
         for (int i = 0; i < width; i++)
         {
@@ -434,6 +431,8 @@ public class PaddockCreation : MonoBehaviour
                 save.saveTile(tiles[i, j], false);
             }
         }
+
+        save.savePaddock(tiles, width, height);
 
 
         setMapColour();

@@ -38,6 +38,7 @@ public class SaveHandler : MonoBehaviour
         {
             string[] name = t.gameObject.transform.GetChild(0).name.Split('(');
             SaveGame.Instance.Tile.childModel = name[0];
+            Debug.Log(name[0]);
             SaveGame.Instance.Tile.rot = t.gameObject.transform.GetChild(0).eulerAngles;
             SaveGame.Instance.Tile.childPos = t.gameObject.transform.GetChild(0).position;
             SaveGame.Instance.Tile.hasChild = true;

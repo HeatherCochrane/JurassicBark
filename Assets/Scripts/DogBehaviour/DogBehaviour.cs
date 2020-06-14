@@ -129,6 +129,7 @@ public class DogBehaviour : Character
 
         profile = Instantiate(profile);
         profile.transform.parent = GameObject.Find("GameUI").transform;
+        profile.transform.position = new Vector3(-70, 0, 0);
 
         stats = Instantiate(stats);
         stats.transform.parent = GameObject.Find("GameUI").transform;
@@ -493,6 +494,7 @@ public class DogBehaviour : Character
             CameraControl.instance.followTransform = transform;
 
             profile.SetActive(true);
+            profile.transform.position = new Vector3(-70, 0, 0);
 
             profile.transform.GetChild(1).GetComponent<Text>().text = "Gender: " + dog.gender;
             profile.transform.GetChild(2).GetComponent<Text>().text = "Age: " + dog.age.ToString();

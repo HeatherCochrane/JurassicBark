@@ -178,12 +178,6 @@ public class Environment : MonoBehaviour
                     //Tile currently on equals one of the saved tiles
                     if (SaveGame.Instance.changedTile[k].x == i && SaveGame.Instance.changedTile[k].y == j)
                     {
-                        if (mMap[i][j].transform.childCount > 0)
-                        {
-                            Destroy(mMap[i][j].transform.GetChild(0).gameObject);
-                        }
-
-
                         mMap[i][j].IsAccessible = SaveGame.Instance.changedTile[k].isAccesible;
                         mMap[i][j].isPaddock = SaveGame.Instance.changedTile[k].isPaddock;
                         mMap[i][j].isPath = SaveGame.Instance.changedTile[k].isPath;
@@ -203,8 +197,18 @@ public class Environment : MonoBehaviour
                             mMap[i][j].setTerrainPaint(SaveGame.Instance.changedTile[k].parentMat);
                         }
 
+
+                        if (mMap[i][j].hasFence && mMap[i][j].transform.childCount > 0 || mMap[i][j].isPaddock && mMap[i][j].transform.childCount > 0)
+                        {
+                            GameObject.Destroy(mMap[i][j].transform.GetChild(0).gameObject);
+                        }
                         if (SaveGame.Instance.changedTile[k].hasChild)
                         {
+                            if (mMap[i][j].transform.childCount > 0)
+                            {
+                                Destroy(mMap[i][j].transform.GetChild(0).gameObject);
+                            }
+
                             newChild = Instantiate(Resources.Load(SaveGame.Instance.changedTile[k].childModel) as GameObject);
                             newChild.transform.parent = mMap[i][j].gameObject.transform;
                             newChild.transform.position = new Vector3(mMap[i][j].transform.position.x + 5, mMap[i][j].transform.position.y + 3, mMap[i][j].transform.position.z + 5);
