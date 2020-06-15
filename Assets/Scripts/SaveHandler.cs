@@ -114,7 +114,6 @@ public class SaveHandler : MonoBehaviour
                 SaveGame.Instance.paddockLists.paddocks.Add(SaveGame.Instance.newPaddock);
             }
         }
-
         SaveGame.Instance.allPaddocks.Add(SaveGame.Instance.paddockLists);
 
         SaveGame.Save();
@@ -142,22 +141,15 @@ public class SaveHandler : MonoBehaviour
 
         SaveGame.Instance.newDog.identifier = dogIdentity;
 
-        bool duplicate = false;
 
-        for(int i =0; i < SaveGame.Instance.dogs.Count; i++)
-        {
-            if(SaveGame.Instance.newDog.identifier == SaveGame.Instance.dogs[i].identifier)
-            {
-                duplicate = true;
-            }
-        }
-        if (!duplicate)
-        {
+
+       
             SaveGame.Instance.dogs.Add(SaveGame.Instance.newDog);
-        }
+        
 
         Debug.Log(SaveGame.Instance.dogs.Count);
         SaveGame.Save();
+
         dogIdentity += 1;
     }
 

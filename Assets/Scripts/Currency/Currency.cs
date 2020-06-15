@@ -21,6 +21,9 @@ public class Currency : MonoBehaviour
     {
         UIHandler.updateCurrency(playerCurrency);
         UIHandler.updatePoints(unlockPoints);
+
+        save.savePoints(unlockPoints);
+        save.saveCurrency(playerCurrency);
     }
 
     // Update is called once per frame

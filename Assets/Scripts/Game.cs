@@ -237,7 +237,7 @@ public class Game : MonoBehaviour
                         }
                         else if (placeDogs && tile.IsAccessible)
                         {
-                            if (tile.transform.parent.GetComponentInChildren<PaddockControl>().canPlaceDog())
+                            if (tile.getControlObj().GetComponentInChildren<PaddockControl>().canPlaceDog())
                             {
                                 dogHandle.spawnDog(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile.transform.parent, tile, tile.getControlObj());
                             }

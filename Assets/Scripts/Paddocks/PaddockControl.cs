@@ -95,7 +95,6 @@ public class PaddockControl : MonoBehaviour
         height = h;
         
         maxDogCount = (width + height) / 2;
-
     }
 
     void returnTiles()

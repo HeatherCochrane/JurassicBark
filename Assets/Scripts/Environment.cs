@@ -190,10 +190,8 @@ public class Environment : MonoBehaviour
                         if (SaveGame.Instance.changedTile[k].matChanged)
                         {
                             Material[] mats = mMap[i][j].GetComponent<MeshRenderer>().materials;
-                            Debug.Log(SaveGame.Instance.changedTile[k].parentMat);
 
                             Material newMat = Resources.Load(SaveGame.Instance.changedTile[k].parentMat, typeof(Material)) as Material;
-                            Debug.Log(newMat);
                             mats[1] = newMat;
 
                             mMap[i][j].GetComponent<MeshRenderer>().materials = mats;
@@ -239,6 +237,8 @@ public class Environment : MonoBehaviour
 
     public void loadPaddocks()
     {
+        Debug.Log(SaveGame.Instance.allPaddocks.Count);
+
         List<GameObject> paddock = new List<GameObject>();
 
         SaveGame.Load();
@@ -312,8 +312,10 @@ public class Environment : MonoBehaviour
     }
 
     void loadDogs()
-    { 
-        for(int i =0; i < SaveGame.Instance.dogs.Count; i++)
+    {
+        Debug.Log(SaveGame.Instance.dogs.Count);
+
+        for (int i =0; i < SaveGame.Instance.dogs.Count; i++)
         {
             GameObject dog = Instantiate(Resources.Load(SaveGame.Instance.dogs[i].breed) as GameObject);
             dog.GetComponent<DogBehaviour>().setIdentifier(SaveGame.Instance.dogs[i].paddockIdentifier);
