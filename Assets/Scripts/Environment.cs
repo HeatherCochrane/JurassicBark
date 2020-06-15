@@ -186,6 +186,8 @@ public class Environment : MonoBehaviour
                         mMap[i][j].isPath = SaveGame.Instance.changedTile[k].isPath;
                         mMap[i][j].hasPaint = SaveGame.Instance.changedTile[k].hasPaint;
                         mMap[i][j].hasFence = SaveGame.Instance.changedTile[k].hasFence;
+                        mMap[i][j].hasFoodBowl = SaveGame.Instance.changedTile[k].hasFood;
+                        mMap[i][j].hasWaterBowl = SaveGame.Instance.changedTile[k].hasWater;
 
                         if (SaveGame.Instance.changedTile[k].matChanged)
                         {
@@ -206,6 +208,8 @@ public class Environment : MonoBehaviour
                         {
                             GameObject.Destroy(mMap[i][j].transform.GetChild(0).gameObject);
                         }
+
+
                         if (SaveGame.Instance.changedTile[k].hasChild)
                         {
                             if (mMap[i][j].transform.childCount > 0)
@@ -218,6 +222,14 @@ public class Environment : MonoBehaviour
                             newChild.transform.position = new Vector3(mMap[i][j].transform.position.x + 5, mMap[i][j].transform.position.y + 3, mMap[i][j].transform.position.z + 5);
                             newChild.transform.Rotate(SaveGame.Instance.changedTile[k].rot);
                             newChild.transform.position = SaveGame.Instance.changedTile[k].childPos;
+
+                        }
+                        else
+                        {
+                            if (mMap[i][j].transform.childCount > 0)
+                            {
+                                Destroy(mMap[i][j].transform.GetChild(0).gameObject);
+                            }
                         }
                     }
                 }
@@ -298,7 +310,6 @@ public class Environment : MonoBehaviour
                 for (int j = 0; j < p.Count; j++)
                 {
                     p[j].GetComponent<EnvironmentTile>().setControlObject(p[i]);
-
                 }
             }
         }

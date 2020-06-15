@@ -221,6 +221,7 @@ public class Game : MonoBehaviour
                             {
                                 tile.IsAccessible = true;
                             }
+                            tile.transform.DetachChildren();
 
                             save.saveTile(tile,false);
                         }
@@ -228,7 +229,7 @@ public class Game : MonoBehaviour
 
                     if (tile.isPaddock)
                     {
-                        if (placePaddockItem)
+                        if (placePaddockItem && !tile.hasFence && !tile.hasFoodBowl && !tile.hasWaterBowl)
                         {
                             Transform parent = tile.transform.parent;
                             foodWaterHandle.spawnItem(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile, standInObject.transform.eulerAngles);

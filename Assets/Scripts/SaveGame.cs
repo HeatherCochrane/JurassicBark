@@ -31,6 +31,10 @@ public class SaveGame
         [SerializeField]
         public bool hasFence;
         [SerializeField]
+        public bool hasFood;
+        [SerializeField]
+        public bool hasWater;
+        [SerializeField]
         public bool matChanged;
         [SerializeField]
         public int x;

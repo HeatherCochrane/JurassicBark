@@ -10,6 +10,12 @@ public class Character : MonoBehaviour
 
     bool currentlyMoving = false;
     int foodWater = 0;
+
+
+    private void Start()
+    {
+
+    }
     private IEnumerator DoMove(Vector3 position, Vector3 destination)
     {
         // Move between the two specified positions over the specified amount of time
@@ -69,6 +75,7 @@ public class Character : MonoBehaviour
             Debug.Log("Taken resource");
             this.CurrentPosition.GetComponentInChildren<FoodWater>().removePiece();
             takeCount += 1;
+
         }
 
     }

@@ -34,6 +34,8 @@ public class SaveHandler : MonoBehaviour
     //Call this function when a tile is changed such as placing deco, removing objects, paddocks, paint etc;
     public void saveTile(EnvironmentTile t, bool paint)
     {
+        Debug.Log(t.transform.childCount);
+
         if (t.gameObject.transform.childCount > 0)
         {
             string[] name = t.gameObject.transform.GetChild(0).name.Split('(');
@@ -55,6 +57,8 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Instance.Tile.isPath = t.isPath;
         SaveGame.Instance.Tile.hasPaint = t.hasPaint;
         SaveGame.Instance.Tile.hasFence = t.hasFence;
+        SaveGame.Instance.Tile.hasFood = t.hasFoodBowl;
+        SaveGame.Instance.Tile.hasWater = t.hasWaterBowl;
 
         string[] pos = t.name.Split(',');
         SaveGame.Instance.Tile.x = int.Parse(pos[0]);

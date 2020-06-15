@@ -5,10 +5,14 @@ using UnityEngine;
 public class FoodWater : MonoBehaviour
 {
     int max = 3;
+
+    SaveHandler save;
+
+    GameObject p;
     // Start is called before the first frame update
     void Start()
     {
-        
+        save = GameObject.Find("SAVEHANDLER").GetComponent<SaveHandler>();
     }
 
     // Update is called once per frame
@@ -31,6 +35,13 @@ public class FoodWater : MonoBehaviour
             this.transform.parent.GetComponent<EnvironmentTile>().IsAccessible = true;
             this.transform.parent.GetComponent<EnvironmentTile>().hasFoodBowl = false;
             this.transform.parent.GetComponent<EnvironmentTile>().hasWaterBowl = false;
+
+            p = this.transform.parent.gameObject;
+            this.transform.parent.DetachChildren();
+
+            p.GetComponent<EnvironmentTile>().hasFoodBowl = false;
+            p.GetComponent<EnvironmentTile>().hasWaterBowl = false;
+            save.saveTile(p.GetComponent<EnvironmentTile>(), false);
 
             Destroy(this.gameObject);
         }
