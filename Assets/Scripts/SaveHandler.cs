@@ -29,6 +29,9 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Instance.paddock = new List<SaveGame.Paddock>();
         SaveGame.Instance.dogs = new List<SaveGame.dog>();
 
+        SaveGame.Instance.playerCurrency = "";
+        SaveGame.Instance.playerPoints = "";
+
         identity = 0;
         dogIdentity = 0;
     }
@@ -191,9 +194,29 @@ public class SaveHandler : MonoBehaviour
             if(SaveGame.Instance.dogs[i].paddockIdentifier == identifier)
             {
                 SaveGame.Instance.dogs.RemoveAt(i);
-                Debug.Log("Removed dog");
             }
         }
+        SaveGame.Save();
+    }
+
+    public void saveUnlocks(List<int> l, int screen)
+    {
+        switch(screen)
+        {
+            case 1: SaveGame.Instance.unlockables.dogScreen = l;
+                break;
+            case 2:SaveGame.Instance.unlockables.fenceScreen = l;
+                break;
+            case 3:SaveGame.Instance.unlockables.decorationsScreen= l;
+                break;
+            case 4:SaveGame.Instance.unlockables.paddockItemsScreen= l;
+                break;
+            case 5:SaveGame.Instance.unlockables.pathsScreen = l;
+                break;
+            case 6: SaveGame.Instance.unlockables.shopsScreen = l;
+                break;
+        }
+
         SaveGame.Save();
     }
 }

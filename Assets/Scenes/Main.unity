@@ -5154,6 +5154,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1051102468}
+        m_MethodName: loadUnlocks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &479090449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8249,7 +8260,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 391.49997, y: -30.999182}
+  m_AnchoredPosition: {x: 391.49997, y: -30.99919}
   m_SizeDelta: {x: 240, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734676108
@@ -9802,7 +9813,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2144839216}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.49999994
+  m_Size: 0.5469685
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11397,9 +11408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e535bc6826f61489ed15d215380b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCurrency: 10000
   UIHandler: {fileID: 538645414}
-  unlockPoints: 50
   audio: {fileID: 918794514}
   save: {fileID: 658630357}
 --- !u!224 &976179198 stripped
@@ -12309,6 +12318,7 @@ MonoBehaviour:
   unlockButtons: 
   UIhandler: {fileID: 538645414}
   audio: {fileID: 918794514}
+  save: {fileID: 0}
 --- !u!1 &1077555041
 GameObject:
   m_ObjectHideFlags: 0
@@ -16705,7 +16715,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\xA3"
+  m_Text: '
+
+'
 --- !u!222 &1601968962
 CanvasRenderer:
   m_ObjectHideFlags: 0

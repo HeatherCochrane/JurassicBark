@@ -9,8 +9,7 @@ public class Currency : MonoBehaviour
     [SerializeField]
     UIHandler UIHandler;
 
-    [SerializeField]
-    int unlockPoints = 5;
+    int unlockPoints = 50;
 
     [SerializeField]
     AudioManager audio;

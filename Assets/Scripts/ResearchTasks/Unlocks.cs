@@ -52,6 +52,10 @@ public class Unlocks : MonoBehaviour
 
     [SerializeField]
     AudioManager audio;
+
+    [SerializeField]
+    SaveHandler save;
+
     void Start()
     {
         setUnlocks(dogUnlocks);
@@ -79,6 +83,18 @@ public class Unlocks : MonoBehaviour
         
     }
 
+    public void loadUnlocks()
+    {
+        SaveGame.Load();
+
+        dogUnlocks = SaveGame.Instance.unlockables.dogScreen;
+        fenceUnlocks = SaveGame.Instance.unlockables.fenceScreen;
+        decoUnlocks = SaveGame.Instance.unlockables.decorationsScreen;
+        paddockItemUnlocks = SaveGame.Instance.unlockables.paddockItemsScreen;
+        pathUnlocks = SaveGame.Instance.unlockables.pathsScreen;
+        shopUnlocks = SaveGame.Instance.unlockables.shopsScreen;
+
+    }
     void setUnlocks(List<int> l)
     {
         l.Add(1);
@@ -131,6 +147,7 @@ public class Unlocks : MonoBehaviour
                 unlockButtonIcons[i].SetActive(false);
 
                 screenButtons[i].transform.GetChild(0).gameObject.SetActive(true);
+
                 if (screenButtons[i].transform.childCount > 1)
                 {
                     screenButtons[i].transform.GetChild(1).gameObject.SetActive(true);
@@ -194,5 +211,12 @@ public class Unlocks : MonoBehaviour
                 shopUnlocks = unlockButtons;
                 break;
         }
+
+        save.saveUnlocks(dogUnlocks, 1);
+        save.saveUnlocks(fenceUnlocks, 2);
+        save.saveUnlocks(decoUnlocks, 3);
+        save.saveUnlocks(paddockItemUnlocks, 4);
+        save.saveUnlocks(pathUnlocks, 5);
+        save.saveUnlocks(shopUnlocks, 6);
     }
 }

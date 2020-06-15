@@ -92,6 +92,26 @@ public class SaveGame
         public List<Paddock> paddocks = new List<Paddock>();
     }
 
+    [System.Serializable]
+    public struct unlocks
+    {
+        [SerializeField]
+        public List<int> dogScreen;
+        [SerializeField]
+        public List<int> fenceScreen;
+        [SerializeField]
+        public List<int> decorationsScreen;
+        [SerializeField]
+        public List<int> paddockItemsScreen;
+        [SerializeField]
+        public List<int> pathsScreen;
+        [SerializeField]
+        public List<int> shopsScreen;
+    }
+
+    [SerializeField]
+    public unlocks unlockables;
+
     [SerializeField]
     public string playerCurrency;
     [SerializeField]

@@ -54,7 +54,7 @@ public class VisitorHandler : MonoBehaviour
             }
             if (totalVisitors.Count < visitorMaxCount)
             {
-                currency.addMoney(admissionFee);
+                //currency.addMoney(admissionFee);
                 Invoke("spawnNewVisitor", Random.Range(2, 3));
             }
         }
