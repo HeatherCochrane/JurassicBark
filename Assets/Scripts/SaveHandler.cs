@@ -34,8 +34,6 @@ public class SaveHandler : MonoBehaviour
     //Call this function when a tile is changed such as placing deco, removing objects, paddocks, paint etc;
     public void saveTile(EnvironmentTile t, bool paint)
     {
-        Debug.Log(t.transform.childCount);
-
         if (t.gameObject.transform.childCount > 0)
         {
             string[] name = t.gameObject.transform.GetChild(0).name.Split('(');
@@ -78,13 +76,13 @@ public class SaveHandler : MonoBehaviour
             SaveGame.Instance.Tile.matChanged = false;
         }
 
-        //for(int i =0; i < SaveGame.Instance.changedTile.Count; i++)
-        //{
-        //    if(SaveGame.Instance.Tile.x == SaveGame.Instance.changedTile[i].x && SaveGame.Instance.Tile.y == SaveGame.Instance.changedTile[i].y && !SaveGame.Instance.Tile.hasChild)
-        //    {
-        //        SaveGame.Instance.changedTile.RemoveAt(i);
-        //    }
-        //}
+        for(int i =0; i < SaveGame.Instance.changedTile.Count; i++)
+        {
+            if(SaveGame.Instance.Tile.x == SaveGame.Instance.changedTile[i].x && SaveGame.Instance.Tile.y == SaveGame.Instance.changedTile[i].y)
+            {
+                SaveGame.Instance.changedTile.RemoveAt(i);
+            }
+        }
 
         SaveGame.Instance.changedTile.Add(SaveGame.Instance.Tile);
 
