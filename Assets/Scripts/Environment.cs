@@ -166,8 +166,6 @@ public class Environment : MonoBehaviour
 
     public void loadChangedTiles()
     {
-        Debug.Log("Called");
-
         GameObject newChild;
 
         SaveGame.Load();
@@ -241,8 +239,6 @@ public class Environment : MonoBehaviour
 
     public void loadPaddocks()
     {
-        Debug.Log("Paddocks Count: " + SaveGame.Instance.allPaddocks.Count);
-
         List<GameObject> paddock = new List<GameObject>();
 
         SaveGame.Load();
@@ -316,13 +312,12 @@ public class Environment : MonoBehaviour
     }
 
     void loadDogs()
-    {
-        Debug.Log(SaveGame.Instance.dogs.Count);
-
+    { 
         for(int i =0; i < SaveGame.Instance.dogs.Count; i++)
         {
             GameObject dog = Instantiate(Resources.Load(SaveGame.Instance.dogs[i].breed) as GameObject);
             dog.GetComponent<DogBehaviour>().setIdentifier(SaveGame.Instance.dogs[i].paddockIdentifier);
+            dog.GetComponent<DogBehaviour>().setDogIdentifier(SaveGame.Instance.dogs[i].identifier);
 
             string[] tile = SaveGame.Instance.dogs[i].tile.Split(',');
             dog.transform.position = new Vector3(mMap[int.Parse(tile[0])][int.Parse(tile[1])].transform.position.x + 5, mMap[int.Parse(tile[0])][int.Parse(tile[1])].transform.position.y + 3, mMap[int.Parse(tile[0])][int.Parse(tile[1])].transform.position.z + 5);

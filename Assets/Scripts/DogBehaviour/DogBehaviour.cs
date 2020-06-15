@@ -117,6 +117,7 @@ public class DogBehaviour : Character
     AnimationClip extra;
 
     int paddockIdentifier = 0;
+    int dogIdentifier = 0;
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
@@ -541,6 +542,10 @@ public class DogBehaviour : Character
         animator.Play(Anim);
     }
 
+    public void setDogIdentifier(int set)
+    {
+        dogIdentifier = set;
+    }
     public void setIdentifier(int set)
     {
         paddockIdentifier = set;
@@ -548,6 +553,11 @@ public class DogBehaviour : Character
     public int getIdentifier()
     {
         return paddockIdentifier;
+    }
+
+    public int getDogIdentifier()
+    {
+        return dogIdentifier;
     }
 
     public void setHunger(int h)

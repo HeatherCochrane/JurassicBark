@@ -51,10 +51,10 @@ public class VisitorHandler : MonoBehaviour
                 newVisitor.GetComponent<Visitor>().CurrentPosition = spawnTile;
                 newVisitor.transform.position = new Vector3(spawnTile.transform.position.x + 5, spawnTile.transform.position.y + 3, spawnTile.transform.position.z + 5);
                 totalVisitors.Add(newVisitor);
-                currency.addMoney(admissionFee);
             }
             if (totalVisitors.Count < visitorMaxCount)
             {
+                currency.addMoney(admissionFee);
                 Invoke("spawnNewVisitor", Random.Range(2, 3));
             }
         }

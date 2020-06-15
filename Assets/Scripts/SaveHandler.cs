@@ -40,7 +40,6 @@ public class SaveHandler : MonoBehaviour
         {
             string[] name = t.gameObject.transform.GetChild(0).name.Split('(');
             SaveGame.Instance.Tile.childModel = name[0];
-            Debug.Log(name[0]);
             SaveGame.Instance.Tile.rot = t.gameObject.transform.GetChild(0).eulerAngles;
             SaveGame.Instance.Tile.childPos = t.gameObject.transform.GetChild(0).position;
             SaveGame.Instance.Tile.hasChild = true;
@@ -115,10 +114,6 @@ public class SaveHandler : MonoBehaviour
 
         SaveGame.Instance.allPaddocks.Add(SaveGame.Instance.paddockLists);
 
-
-        Debug.Log(SaveGame.Instance.allPaddocks.Count);
-
-        Debug.Log("Saved paddock");
         SaveGame.Save();
 
         identity += 1;
@@ -158,7 +153,47 @@ public class SaveHandler : MonoBehaviour
             SaveGame.Instance.dogs.Add(SaveGame.Instance.newDog);
         }
 
+        Debug.Log(SaveGame.Instance.dogs.Count);
         SaveGame.Save();
         dogIdentity += 1;
+    }
+
+    public void savePoints(int points)
+    {
+        SaveGame.Instance.playerPoints = points.ToString();
+        SaveGame.Save();
+    }
+
+    public void saveCurrency(int currency)
+    {
+        SaveGame.Instance.playerCurrency = currency.ToString();
+        SaveGame.Save();
+    }
+
+    public void removePaddock(int identitifier)
+    {
+
+        for(int i =0; i < SaveGame.Instance.allPaddocks.Count; i++)
+        {
+            if(SaveGame.Instance.allPaddocks[i].paddocks[0].identifier == identitifier)
+            {
+                SaveGame.Instance.allPaddocks.RemoveAt(i);
+            }
+        }
+
+        SaveGame.Save();
+    }
+
+    public void removeDog(int identifier)
+    {
+        for(int i =0; i < SaveGame.Instance.dogs.Count; i++)
+        {
+            if(SaveGame.Instance.dogs[i].paddockIdentifier == identifier)
+            {
+                SaveGame.Instance.dogs.RemoveAt(i);
+                Debug.Log("Removed dog");
+            }
+        }
+        SaveGame.Save();
     }
 }

@@ -81,6 +81,7 @@ public class UIHandler : MonoBehaviour
 
     [SerializeField]
     GameObject currencyPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -118,6 +119,7 @@ public class UIHandler : MonoBehaviour
             pauseGame();
         }
     }
+
 
     void populateShopScreens(List<items> list, int child)
     {
@@ -161,7 +163,7 @@ public class UIHandler : MonoBehaviour
 
     public void updateCurrency(int currency)
     {
-        playerCurrency.text = "$" + currency.ToString();
+        playerCurrency.text = currency.ToString();
     }
 
     public void updatePoints(int points)

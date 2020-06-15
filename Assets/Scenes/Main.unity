@@ -5143,6 +5143,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 972362448}
+        m_MethodName: loadUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &479090449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8238,7 +8249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 391.49997, y: -30.999208}
+  m_AnchoredPosition: {x: 391.49997, y: -30.999182}
   m_SizeDelta: {x: 240, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734676108
@@ -9791,7 +9802,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2144839216}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.5469685
+  m_Size: 0.49999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11390,6 +11401,7 @@ MonoBehaviour:
   UIHandler: {fileID: 538645414}
   unlockPoints: 50
   audio: {fileID: 918794514}
+  save: {fileID: 658630357}
 --- !u!224 &976179198 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2783554840513072594, guid: a7f58fd3b7e84e0479c01859c856575a,

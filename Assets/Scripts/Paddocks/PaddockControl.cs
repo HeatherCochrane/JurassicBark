@@ -56,6 +56,8 @@ public class PaddockControl : MonoBehaviour
     GameObject controlObj;
 
     int paddockIdentifier = 0;
+
+    SaveHandler save;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +66,7 @@ public class PaddockControl : MonoBehaviour
         inventory = GameObject.Find("InventoryUI").GetComponent<Inventory>();
         paddockMap = GameObject.Find("PaddockHandler").GetComponent<PaddockCreation>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        save = GameObject.Find("SAVEHANDLER").GetComponent<SaveHandler>();
 
         //Show the paddock stats on the game canvas
         paddockui = Instantiate(paddockUI);
@@ -111,6 +114,10 @@ public class PaddockControl : MonoBehaviour
                 tiles[i, j].IsAccessible = true;
                 tiles[i, j].hasFoodBowl = false;
                 tiles[i, j].hasWaterBowl = false;
+                tiles[i, j].setControlObject(null);
+
+                tiles[i, j].transform.DetachChildren();
+                save.saveTile(tiles[i, j], false);
             }
         }
 
@@ -122,16 +129,27 @@ public class PaddockControl : MonoBehaviour
         {
             returnTiles();
 
+            Debug.Log("Dogs In Paddock: " + dogsInPaddock.Count);
+
             if (dogsInPaddock.Count > 0)
             {
                 for (int i = 0; i < dogsInPaddock.Count; i++)
                 {
-                    Destroy(dogsInPaddock[i].gameObject);
+                    save.removeDog(dogsInPaddock[i].GetComponent<DogBehaviour>().getIdentifier());
+                }
+
+                for (int i = 0; i < dogsInPaddock.Count; i++)
+                {
+                    Destroy(dogsInPaddock[i]);
                 }
             }
 
+            dogsInPaddock.Clear();
+
             audioManager.playDestroy();
             Destroy(paddockui);
+
+            save.removePaddock(paddockIdentifier);
 
         }
         else if (!game.getDeleting())

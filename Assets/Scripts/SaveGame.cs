@@ -4,14 +4,6 @@ using System.Collections.Generic;
 
 public class SaveGame
 {
-
-    //serialized
-    //public string PlayerName = "Player";
-    //public int XP = 0;
-    //public Vector3 PlayerPosition;
-    //public GameObject fullGame;
-
-
     //Changed tiles from the original map
     [System.Serializable]
     public struct mapTile
@@ -99,6 +91,12 @@ public class SaveGame
         [SerializeField]
         public List<Paddock> paddocks = new List<Paddock>();
     }
+
+    [SerializeField]
+    public string playerCurrency;
+    [SerializeField]
+    public string playerPoints;
+
 
     [SerializeField]
     public ListWrapper paddockLists;
