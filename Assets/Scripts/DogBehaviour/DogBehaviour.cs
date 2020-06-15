@@ -165,10 +165,15 @@ public class DogBehaviour : Character
         terrain = t;
         amount = a;
     }
-    public void giveProfile(GameObject prof, GameObject s)
+
+    public Material getTerrain()
     {
-        profile = prof;
-        stats = s;
+        return terrain;
+    }
+
+    public int getTerrainAmount()
+    {
+        return amount;
     }
 
     public void setPaddock(EnvironmentTile[,] t)
@@ -206,6 +211,21 @@ public class DogBehaviour : Character
         dog.thirstLevel = thirstLevel;
         dog.happinessLevel = happinessLevel;
 
+    }
+
+    public string getGender()
+    {
+        return dog.gender;
+    }
+
+    public int getAge()
+    {
+        return dog.age;
+    }
+
+    public string getPersonality()
+    {
+        return dog.personality;
     }
     void timer()
     {
@@ -404,9 +424,12 @@ public class DogBehaviour : Character
         {
             for (int j = 0; j < height; j++)
             {
-                if (paddock[i, j].getTerrainPaint() == terrain.name)
+                if (paddock[i, j].getTerrainPaint() != null)
                 {
-                    standIn += 1;
+                    if (paddock[i, j].getTerrainPaint() == terrain.name)
+                    {
+                        standIn += 1;
+                    }
                 }
             }
         }

@@ -15,9 +15,9 @@ public class ButtonHandler : MonoBehaviour
         
     }
 
-    public void setActive(bool set)
+    public void setActive(GameObject b)
     {
-        this.gameObject.SetActive(set);
+        b.gameObject.SetActive(false);
         CameraControl.instance.followTransform = null;
     }
 }

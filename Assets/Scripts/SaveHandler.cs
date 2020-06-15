@@ -34,7 +34,7 @@ public class SaveHandler : MonoBehaviour
     //Call this function when a tile is changed such as placing deco, removing objects, paddocks, paint etc;
     public void saveTile(EnvironmentTile t, bool paint)
     {
-        if (t.gameObject.transform.childCount > 0 && !paint)
+        if (t.gameObject.transform.childCount > 0)
         {
             string[] name = t.gameObject.transform.GetChild(0).name.Split('(');
             SaveGame.Instance.Tile.childModel = name[0];
@@ -73,13 +73,14 @@ public class SaveHandler : MonoBehaviour
         {
             SaveGame.Instance.Tile.matChanged = false;
         }
-        for(int i =0; i < SaveGame.Instance.changedTile.Count; i++)
-        {
-            if(SaveGame.Instance.Tile.x == SaveGame.Instance.changedTile[i].x && SaveGame.Instance.Tile.y == SaveGame.Instance.changedTile[i].y)
-            {
-                SaveGame.Instance.changedTile.RemoveAt(i);
-            }
-        }
+
+        //for(int i =0; i < SaveGame.Instance.changedTile.Count; i++)
+        //{
+        //    if(SaveGame.Instance.Tile.x == SaveGame.Instance.changedTile[i].x && SaveGame.Instance.Tile.y == SaveGame.Instance.changedTile[i].y && !SaveGame.Instance.Tile.hasChild)
+        //    {
+        //        SaveGame.Instance.changedTile.RemoveAt(i);
+        //    }
+        //}
 
         SaveGame.Instance.changedTile.Add(SaveGame.Instance.Tile);
 
@@ -129,6 +130,15 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Instance.newDog.thirst = dog.GetComponent<DogBehaviour>().getThirst();
         SaveGame.Instance.newDog.happiness = dog.GetComponent<DogBehaviour>().getHappiness();
         SaveGame.Instance.newDog.tile = t.name;
+
+        SaveGame.Instance.newDog.terrain = dog.GetComponent<DogBehaviour>().getTerrain().name;
+        SaveGame.Instance.newDog.terrainAmount = dog.GetComponent<DogBehaviour>().getTerrainAmount();
+
+        SaveGame.Instance.newDog.gender = dog.GetComponent<DogBehaviour>().getGender();
+        SaveGame.Instance.newDog.age = dog.GetComponent<DogBehaviour>().getAge().ToString();
+        SaveGame.Instance.newDog.personality = dog.GetComponent<DogBehaviour>().getPersonality();
+
+
         SaveGame.Instance.dogs.Add(SaveGame.Instance.newDog);
 
         SaveGame.Save();

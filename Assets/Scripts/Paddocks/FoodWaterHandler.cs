@@ -18,6 +18,9 @@ public class FoodWaterHandler : MonoBehaviour
     int b = 0;
 
     int max = 0;
+
+    [SerializeField]
+    SaveHandler save;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +59,7 @@ public class FoodWaterHandler : MonoBehaviour
 
             item.GetComponentInChildren<ParticleSystem>().Play();
 
+            save.saveTile(p, false);
         }
 
     }

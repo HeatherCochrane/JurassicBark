@@ -198,6 +198,7 @@ public class Environment : MonoBehaviour
 
                             mMap[i][j].GetComponent<MeshRenderer>().materials = mats;
                             mMap[i][j].setTerrainPaint(SaveGame.Instance.changedTile[k].parentMat);
+
                         }
 
 
@@ -321,6 +322,9 @@ public class Environment : MonoBehaviour
             dog.GetComponent<DogBehaviour>().setThirst(SaveGame.Instance.dogs[i].thirst);
             dog.GetComponent<DogBehaviour>().setHappiness(SaveGame.Instance.dogs[i].happiness);
 
+            dog.GetComponent<DogBehaviour>().setTerrain(Resources.Load(SaveGame.Instance.dogs[i].terrain) as Material, SaveGame.Instance.dogs[i].terrainAmount);
+
+            dog.GetComponent<DogBehaviour>().giveDogInfo(SaveGame.Instance.dogs[i].gender, SaveGame.Instance.dogs[i].personality, int.Parse(SaveGame.Instance.dogs[i].age));
         }
     }
     void setEntrance(int w)

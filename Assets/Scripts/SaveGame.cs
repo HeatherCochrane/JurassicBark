@@ -72,9 +72,19 @@ public class SaveGame
         [SerializeField]
         public int happiness;
         [SerializeField]
+        public string gender;
+        [SerializeField]
+        public string age;
+        [SerializeField]
+        public string personality;
+        [SerializeField]
         public int paddockIdentifier;
         [SerializeField]
         public string tile;
+        [SerializeField]
+        public string terrain;
+        [SerializeField]
+        public int terrainAmount;
     }
 
     [System.Serializable]

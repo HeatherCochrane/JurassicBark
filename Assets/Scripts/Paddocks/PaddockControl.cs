@@ -126,21 +126,12 @@ public class PaddockControl : MonoBehaviour
             {
                 for (int i = 0; i < dogsInPaddock.Count; i++)
                 {
-                    if (!inventory.isDogInventoryFull())
-                    {
-                        inventory.storeDog(dogsInPaddock[i]);
-                    }
-                    else
-                    {
-                        Debug.Log("INVENTORY NOW FULL");
-                        break;
-                    }
+                    Destroy(dogsInPaddock[i].gameObject);
                 }
             }
 
             audioManager.playDestroy();
             Destroy(paddockui);
-            Destroy(this.transform.parent.parent.gameObject);
 
         }
         else if (!game.getDeleting())
@@ -195,6 +186,7 @@ public class PaddockControl : MonoBehaviour
 
     public void addLoadedDog(GameObject d)
     {
+        d.GetComponent<DogBehaviour>().givePaddockSize(tiles, width, height, d.GetComponent<DogBehaviour>().CurrentPosition);
         dogsInPaddock.Add(d);
     }
     public void removeDog(GameObject d)

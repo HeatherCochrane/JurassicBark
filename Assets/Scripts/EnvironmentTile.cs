@@ -22,7 +22,6 @@ public class EnvironmentTile : MonoBehaviour
     {
         string[] fix = o.Split(' ');
         originalMat = fix[0];
-        Debug.Log(originalMat);
     }
 
     public string getOriginalMat()
