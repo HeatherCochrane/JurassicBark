@@ -192,6 +192,8 @@ public class PaddockControl : MonoBehaviour
         paddockui.transform.GetChild(2).GetComponent<Text>().text = "Overall Hunger: " + overallHunger.ToString();
         paddockui.transform.GetChild(3).GetComponent<Text>().text = "Overall Thirst: " + overallThirst.ToString();
 
+        save.savePaddock(tiles, width, height);
+
     }
     public void addDog(GameObject d, EnvironmentTile current)
     {

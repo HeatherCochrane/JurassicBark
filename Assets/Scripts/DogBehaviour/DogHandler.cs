@@ -72,7 +72,7 @@ public class DogHandler : MonoBehaviour
             personality = personalities[Random.Range(0, personalities.Count)];
             gender = genders[Random.Range(0, genders.Count)];
 
-            dog.GetComponent<DogBehaviour>().giveDogInfo(gender, personality, age);
+            dog.GetComponent<DogBehaviour>().giveDogInfo(gender, personality, age, false);
 
             dog.GetComponent<DogBehaviour>().setTerrain(getTerrain(), getTerrainAmount());
 

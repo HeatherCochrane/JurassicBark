@@ -20,12 +20,12 @@ public class DogBehaviour : Character
         {
             if (dog.hungerLevel >= 0)
             {
-                hungerLevel -= 20;
+                hungerLevel -= 10;
                 dog.hungerLevel = hungerLevel;
             }
             if (dog.thirstLevel >= 0)
             {
-                thirstLevel -= 20;
+                thirstLevel -= 10;
                 dog.thirstLevel = thirstLevel;
             }
 
@@ -39,9 +39,11 @@ public class DogBehaviour : Character
     {
         while (true)
         {
+            Debug.Log("Tracking Happiness");
+
             if (dog.thirstLevel >= 60)
             {
-                changeHappiness(10);
+                changeHappiness(5);
             }
             else if (dog.thirstLevel < 100)
             {
@@ -49,7 +51,7 @@ public class DogBehaviour : Character
             }
             if (dog.hungerLevel >= 60)
             {
-                changeHappiness(10);
+                changeHappiness(5);
             }
             else if (dog.hungerLevel < 100)
             {
@@ -118,6 +120,8 @@ public class DogBehaviour : Character
 
     int paddockIdentifier = 0;
     int dogIdentifier = 0;
+
+    SaveHandler save;
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
@@ -125,6 +129,7 @@ public class DogBehaviour : Character
         game = GameObject.Find("Game").GetComponent<Game>();
         animator = this.GetComponent<Animator>();
         dogHandler = GameObject.Find("DogHandler").GetComponent<DogHandler>();
+        save = GameObject.Find("SAVEHANDLER").GetComponent<SaveHandler>();
 
         timer();
 
@@ -138,7 +143,6 @@ public class DogBehaviour : Character
         profile.SetActive(false);
         stats.SetActive(false);
 
-        updateStats();
         StartCoroutine("decreaseStats");
         StartCoroutine("happinessTracker");
 
@@ -165,6 +169,7 @@ public class DogBehaviour : Character
     {
         terrain = t;
         amount = a;
+
     }
 
     public Material getTerrain()
@@ -200,7 +205,7 @@ public class DogBehaviour : Character
         this.CurrentPosition = current;
     }
 
-    public void giveDogInfo(string gender, string personality, int age)
+    public void giveDogInfo(string gender, string personality, int age, bool loaded)
     {
         dog.age = age;
 
@@ -208,9 +213,12 @@ public class DogBehaviour : Character
 
         dog.personality = personality;
 
-        dog.hungerLevel = hungerLevel;
-        dog.thirstLevel = thirstLevel;
-        dog.happinessLevel = happinessLevel;
+        if (!loaded)
+        {
+            dog.hungerLevel = hungerLevel;
+            dog.thirstLevel = thirstLevel;
+            dog.happinessLevel = happinessLevel;
+        }
 
     }
 
@@ -462,7 +470,7 @@ public class DogBehaviour : Character
             for (int j = 0; j < height; j++)
             {
                 if (paddock[i, j].getTerrainPaint() == terrain.name)
-                {
+                { 
                     standIn += 1;
                 }
             }
@@ -490,6 +498,10 @@ public class DogBehaviour : Character
         stats.transform.GetChild(1).GetComponent<Slider>().value = dog.hungerLevel;
         stats.transform.GetChild(2).GetComponent<Slider>().value = dog.thirstLevel;
         stats.transform.GetChild(3).GetComponent<Slider>().value = dog.happinessLevel;
+
+        save = GameObject.Find("SAVEHANDLER").GetComponent<SaveHandler>();
+        save.updateDogStats(dogIdentifier, this.gameObject);
+
     }
     private void OnMouseEnter()
     {

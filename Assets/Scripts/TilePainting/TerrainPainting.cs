@@ -24,13 +24,13 @@ public class TerrainPainting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void setPaint(Material p)
@@ -51,21 +51,16 @@ public class TerrainPainting : MonoBehaviour
         t.GetComponent<MeshRenderer>().materials = mats;
         t.setTerrainPaint(paint.name);
 
+
         t.hasPaint = true;
 
-        if (paddocks != null && paddocks.Count > 0)
-        {
-            for (int i = 0; i < paddocks.Count; i++)
-            {
-                dogs = paddocks[i].GetComponentInChildren<PaddockControl>().getDogs();
+        GameObject control = t.getControlObj();
 
-                if (dogs != null && dogs.Count > 0)
-                {
-                    for (int j = 0; j < dogs.Count; j++)
-                    {
-                        dogs[j].GetComponent<DogBehaviour>().checkTiles();
-                    }
-                }
+        if (control != null)
+        {
+            for (int i = 0; i < control.GetComponentInChildren<PaddockControl>().getDogs().Count; i++)
+            {
+                control.GetComponentInChildren<PaddockControl>().getDogs()[i].GetComponent<DogBehaviour>().checkTiles();
             }
         }
 

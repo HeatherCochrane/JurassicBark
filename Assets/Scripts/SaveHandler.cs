@@ -148,6 +148,20 @@ public class SaveHandler : MonoBehaviour
         dogIdentity += 1;
     }
 
+    public void updateDogStats(int identity, GameObject dog)
+    {
+        for(int i =0; i < SaveGame.Instance.dogs.Count; i++)
+        {
+            if(SaveGame.Instance.dogs[i].identifier == identity)
+            {
+                SaveGame.Instance.newDog.hunger = dog.GetComponent<DogBehaviour>().getHunger();
+                SaveGame.Instance.newDog.thirst = dog.GetComponent<DogBehaviour>().getThirst();
+                SaveGame.Instance.newDog.happiness = dog.GetComponent<DogBehaviour>().getHappiness();
+            }
+        }
+
+        SaveGame.Save();
+    }
     public void savePoints(int points)
     {
         SaveGame.Instance.playerPoints = points.ToString();
@@ -206,4 +220,5 @@ public class SaveHandler : MonoBehaviour
 
         SaveGame.Save();
     }
+
 }
