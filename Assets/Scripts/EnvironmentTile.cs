@@ -17,6 +17,18 @@ public class EnvironmentTile : MonoBehaviour
     public bool hasFoodBowl { get; set; }
     public bool isPath { get; set; }
 
+    string originalMat;
+    public void setOriginalMaterial(string o)
+    {
+        string[] fix = o.Split(' ');
+        originalMat = fix[0];
+        Debug.Log(originalMat);
+    }
+
+    public string getOriginalMat()
+    {
+        return originalMat;
+    }
 
     //Terrain Painting
     string terrainPaint;

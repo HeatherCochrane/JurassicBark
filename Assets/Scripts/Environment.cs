@@ -136,6 +136,9 @@ public class Environment : MonoBehaviour
                 tile.IsAccessible = isAccessible;
                 tile.gameObject.name = x.ToString() + "," + y.ToString();
                 mMap[x][y] = tile;
+                Material[] mat = mMap[x][y].GetComponent<MeshRenderer>().materials;
+                mMap[x][y].setOriginalMaterial(mat[1].name);
+
                 mAll.Add(tile);
 
                 if (start)
@@ -269,8 +272,6 @@ public class Environment : MonoBehaviour
 
         }
 
-        Debug.Log(pad.Length);
-
 
         EnvironmentTile[,] paddock = new EnvironmentTile[SaveGame.Instance.allPaddocks[paddocks].paddocks[0].width, SaveGame.Instance.allPaddocks[paddocks].paddocks[0].height];
         int value = 0;
@@ -331,9 +332,9 @@ public class Environment : MonoBehaviour
             for (int j = w; j < w + 5; j++)
             {
                 Material[] grass = mMap[j][i].GetComponent<MeshRenderer>().materials;
-
                 Material temp = entranceMat[0];
                 grass[1] = temp;
+                mMap[i][j].setOriginalMaterial(entranceMat[0].name);
 
                 mMap[j][i].GetComponent<MeshRenderer>().materials = grass;
                 mMap[j][i].isPath = true;

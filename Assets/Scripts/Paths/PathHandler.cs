@@ -42,6 +42,9 @@ public class PathHandler : MonoBehaviour
 
     [SerializeField]
     VisitorHandler visitorHandler;
+
+    [SerializeField]
+    SaveHandler save;
     // Start is called before the first frame update
     void Start()
     {
@@ -219,8 +222,9 @@ public class PathHandler : MonoBehaviour
                     {
                         mMap[i][j].isPath = true;
                         path[x, z] = mMap[i][j];
+                        
                         Material[] grass = path[x, z].GetComponent<MeshRenderer>().materials;
-
+                        path[x, z].setOriginalMaterial(grass[1].name);
                         pathType = path[x, z].GetComponent<MeshRenderer>().material;
                         pathType = UIhandler.getPathType(buttonPressed);
                         grass[1] = pathType;
@@ -247,6 +251,15 @@ public class PathHandler : MonoBehaviour
         else
         {
             cancelCreation();
+        }
+
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                save.saveTile(path[i, j], true);
+            }
         }
 
         pathCost.gameObject.SetActive(false);
@@ -282,6 +295,17 @@ public class PathHandler : MonoBehaviour
             }
         }
 
+    }
+
+    public void setTileColor(EnvironmentTile tile)
+    {
+        Material[] mat = tile.GetComponent<MeshRenderer>().materials;
+
+        temp = tile.GetComponent<MeshRenderer>().material.color;
+        temp.r = 0.6f;
+        mat[1].color = temp;
+
+        tile.GetComponent<MeshRenderer>().materials = mat;
     }
 
     public void setPathType(int button)

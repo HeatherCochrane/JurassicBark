@@ -203,7 +203,16 @@ public class Game : MonoBehaviour
                     }
                     else if (deleteObjects)
                     {
-                        if (tile.transform.childCount > 0 && !tile.hasFence)
+                        if(tile.isPath)
+                        {
+                            Material[] mat = tile.GetComponent<MeshRenderer>().materials;
+                            mat[1] = Resources.Load(tile.getOriginalMat()) as Material;
+                            tile.GetComponent<MeshRenderer>().materials = mat;
+                            tile.isPath = false;
+                            tile.IsAccessible = true;
+                            pathHandler.setTileColor(tile);
+                        }
+                        else if (tile.transform.childCount > 0 && !tile.hasFence)
                         {
                             Destroy(tile.transform.GetChild(0).gameObject);
                             audioManager.playDestroy();

@@ -111,7 +111,6 @@ public class PaddockControl : MonoBehaviour
                 tiles[i, j].IsAccessible = true;
                 tiles[i, j].hasFoodBowl = false;
                 tiles[i, j].hasWaterBowl = false;
-                tiles[i, j].transform.parent = GameObject.Find("Environment").transform;
             }
         }
 
@@ -139,7 +138,6 @@ public class PaddockControl : MonoBehaviour
                 }
             }
 
-            paddockMap.removePaddock(this.transform.parent.parent.gameObject);
             audioManager.playDestroy();
             Destroy(paddockui);
             Destroy(this.transform.parent.parent.gameObject);
