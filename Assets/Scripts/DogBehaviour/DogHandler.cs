@@ -80,6 +80,8 @@ public class DogHandler : MonoBehaviour
             currency.subtractMoney(cost);
 
             audioManager.playDogBark();
+
+            saveDog(dog);
         }
     }
 
@@ -104,11 +106,10 @@ public class DogHandler : MonoBehaviour
         return UIhandler.getTerrainAmount(but);
     }
 
-    public void saveDogs()
+    public void saveDog(GameObject d)
     {
-        for(int i =0; i < dogs.Count; i++)
-        {
-            save.saveDog(dogs[i], dogs[i].GetComponent<DogBehaviour>().getIdentifier(), dogs[i].GetComponent<DogBehaviour>().CurrentPosition);
-        }
+
+        save.saveDog(dog, dog.GetComponent<DogBehaviour>().getIdentifier(), dog.GetComponent<DogBehaviour>().CurrentPosition);
+
     }
 }

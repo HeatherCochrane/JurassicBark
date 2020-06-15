@@ -5,6 +5,7 @@ using UnityEngine;
 public class SaveHandler : MonoBehaviour
 {
     int identity = 0;
+    int dogIdentity = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Instance.dogs = new List<SaveGame.dog>();
 
         identity = 0;
+        dogIdentity = 0;
     }
 
     //Call this function when a tile is changed such as placing deco, removing objects, paddocks, paint etc;
@@ -140,9 +142,23 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Instance.newDog.age = dog.GetComponent<DogBehaviour>().getAge().ToString();
         SaveGame.Instance.newDog.personality = dog.GetComponent<DogBehaviour>().getPersonality();
 
+        SaveGame.Instance.newDog.identifier = dogIdentity;
 
-        SaveGame.Instance.dogs.Add(SaveGame.Instance.newDog);
+        bool duplicate = false;
+
+        for(int i =0; i < SaveGame.Instance.dogs.Count; i++)
+        {
+            if(SaveGame.Instance.newDog.identifier == SaveGame.Instance.dogs[i].identifier)
+            {
+                duplicate = true;
+            }
+        }
+        if (!duplicate)
+        {
+            SaveGame.Instance.dogs.Add(SaveGame.Instance.newDog);
+        }
 
         SaveGame.Save();
+        dogIdentity += 1;
     }
 }

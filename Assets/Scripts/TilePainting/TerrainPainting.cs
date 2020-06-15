@@ -20,6 +20,7 @@ public class TerrainPainting : MonoBehaviour
 
     [SerializeField]
     SaveHandler save;
+
     // Start is called before the first frame update
     void Start()
     {

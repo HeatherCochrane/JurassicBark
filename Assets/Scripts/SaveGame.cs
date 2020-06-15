@@ -68,6 +68,8 @@ public class SaveGame
     public struct dog
     {
         [SerializeField]
+        public int identifier;
+        [SerializeField]
         public string breed;
         [SerializeField]
         public int hunger;

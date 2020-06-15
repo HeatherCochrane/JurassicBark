@@ -317,6 +317,8 @@ public class Environment : MonoBehaviour
 
     void loadDogs()
     {
+        Debug.Log(SaveGame.Instance.dogs.Count);
+
         for(int i =0; i < SaveGame.Instance.dogs.Count; i++)
         {
             GameObject dog = Instantiate(Resources.Load(SaveGame.Instance.dogs[i].breed) as GameObject);
