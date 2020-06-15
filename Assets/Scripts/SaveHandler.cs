@@ -141,13 +141,8 @@ public class SaveHandler : MonoBehaviour
 
         SaveGame.Instance.newDog.identifier = dogIdentity;
 
+        SaveGame.Instance.dogs.Add(SaveGame.Instance.newDog);
 
-
-       
-            SaveGame.Instance.dogs.Add(SaveGame.Instance.newDog);
-        
-
-        Debug.Log(SaveGame.Instance.dogs.Count);
         SaveGame.Save();
 
         dogIdentity += 1;
