@@ -85,7 +85,7 @@ public class DogHandler : MonoBehaviour
             audioManager.playDogBark();
 
             saveDog(dog);
-            rating.addDog();
+            rating.addDog(dog.GetComponent<DogBehaviour>().getDogIdentifier(), dog.GetComponent<DogBehaviour>().getHappiness());
         }
     }
 

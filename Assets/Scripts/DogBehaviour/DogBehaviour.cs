@@ -14,54 +14,6 @@ public class DogBehaviour : Character
         public string personality;
     }
 
-    IEnumerator decreaseStats()
-    {
-        while (true)
-        {
-            if (dog.hungerLevel >= 0)
-            {
-                hungerLevel -= 10;
-                dog.hungerLevel = hungerLevel;
-            }
-            if (dog.thirstLevel >= 0)
-            {
-                thirstLevel -= 10;
-                dog.thirstLevel = thirstLevel;
-            }
-
-            updateStats();
-            yield return new WaitForSeconds(30);
-        }
-
-    }
-
-    IEnumerator happinessTracker()
-    {
-        while (true)
-        {
-            Debug.Log("Tracking Happiness");
-
-            if (dog.thirstLevel >= 60)
-            {
-                changeHappiness(5);
-            }
-            else if (dog.thirstLevel < 100)
-            {
-                changeHappiness(-10);
-            }
-            if (dog.hungerLevel >= 60)
-            {
-                changeHappiness(5);
-            }
-            else if (dog.hungerLevel < 100)
-            {
-                changeHappiness(-10);
-            }
-
-            updateStats();
-            yield return new WaitForSeconds(10);
-        }
-    }
     Dog dog;
 
     Animator animator;
@@ -122,6 +74,8 @@ public class DogBehaviour : Character
     int dogIdentifier = 0;
 
     SaveHandler save;
+
+    ParkRating rating;
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
@@ -130,6 +84,7 @@ public class DogBehaviour : Character
         animator = this.GetComponent<Animator>();
         dogHandler = GameObject.Find("DogHandler").GetComponent<DogHandler>();
         save = GameObject.Find("SAVEHANDLER").GetComponent<SaveHandler>();
+        rating = GameObject.Find("ParkRating").GetComponent<ParkRating>();
 
         timer();
 
@@ -143,10 +98,10 @@ public class DogBehaviour : Character
         profile.SetActive(false);
         stats.SetActive(false);
 
-        StartCoroutine("decreaseStats");
-        StartCoroutine("happinessTracker");
-
         this.transform.parent = this.CurrentPosition.transform.parent;
+
+        decreaseHappiness();
+        decreaseStats();
     }
 
     // Update is called once per frame
@@ -165,6 +120,46 @@ public class DogBehaviour : Character
         }
     }
 
+    public void decreaseHappiness()
+    {
+        if (dog.thirstLevel >= 60)
+        {
+            changeHappiness(5);
+        }
+        else if (dog.thirstLevel < 100)
+        {
+            changeHappiness(-10);
+        }
+        if (dog.hungerLevel >= 60)
+        {
+            changeHappiness(5);
+        }
+        else if (dog.hungerLevel < 100)
+        {
+            changeHappiness(-10);
+        }
+
+        updateStats();
+        Invoke("decreaseHappiness", 45/Time.timeScale);
+    }
+
+    public void decreaseStats()
+    {
+        if (hungerLevel > 0)
+        {
+            hungerLevel -= 10;
+            dog.hungerLevel = hungerLevel;
+        }
+        if (thirstLevel > 0)
+        {
+            thirstLevel -= 10;
+            dog.thirstLevel = thirstLevel;
+        }
+
+        updateStats();
+
+        Invoke("decreaseStats", 45/Time.timeScale);
+    }
     public void setTerrain(Material t, int a)
     {
         terrain = t;
@@ -458,6 +453,7 @@ public class DogBehaviour : Character
         }
 
         paddockHandler.updatePaddockInfo();
+        rating.updateDogHappiness(dogIdentifier, dog.happinessLevel);
 
     }
 

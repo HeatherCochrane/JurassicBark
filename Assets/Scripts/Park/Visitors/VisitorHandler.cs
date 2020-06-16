@@ -24,16 +24,23 @@ public class VisitorHandler : MonoBehaviour
     Currency currency;
 
     int admissionFee = 5;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        //spawnNewVisitor();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void setVisitorCount(int set)
+    {
+        visitorMaxCount = set;
     }
 
     public void setSpawnPoint(EnvironmentTile tile)

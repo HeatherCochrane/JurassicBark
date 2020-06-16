@@ -37,9 +37,9 @@ public class PaddockControl : MonoBehaviour
 
     [SerializeField]
     List<GameObject> dogsInPaddock = new List<GameObject>();
-    int overallHappiness = 0;
-    int overallHunger = 0;
-    int overallThirst = 0;
+    int overallHappiness = 70;
+    int overallHunger = 70;
+    int overallThirst = 70;
 
     Inventory inventory;
 
@@ -60,6 +60,9 @@ public class PaddockControl : MonoBehaviour
     SaveHandler save;
 
     DogHandler dogHandler;
+
+    ParkRating rating;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +78,7 @@ public class PaddockControl : MonoBehaviour
         paddockui = Instantiate(paddockUI);
         paddockui.transform.SetParent(UICanvas.transform);
         paddockui.SetActive(false);
+
     }
 
     // Update is called once per frame

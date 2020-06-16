@@ -1399,10 +1399,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d87dbcdac88f8b48b3edfbd4d8f84b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumDogs: 3
-  minimumShops: 3
-  minimumDeco: 3
-  minimumPaddockHappiness: 3
+  minimumDogs: 10
+  minimumShops: 5
+  minimumDeco: 10
+  minimumDogHappiness: 90
   stars:
   - {fileID: 21300000, guid: 04b81712f6b4a784d9d63d75bf1317ab, type: 3}
   - {fileID: 21300000, guid: 6bdb76e9522808b42897b1e232d1d9bb, type: 3}
@@ -1410,6 +1410,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9d6371b230df2084bac29692bfc04e83, type: 3}
   - {fileID: 21300000, guid: 22918268a6477024e80c2ffa0e7e7f93, type: 3}
   starObject: {fileID: 1996901453}
+  visitors: {fileID: 1218815163}
 --- !u!1 &148854431
 GameObject:
   m_ObjectHideFlags: 0
@@ -2668,7 +2669,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -2679,7 +2680,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -4574,7 +4575,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -4585,7 +4586,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -5672,7 +5673,7 @@ MonoBehaviour:
   paddockItemsScreen:
   - picture: {fileID: 21300000, guid: 602f25423f85c7b46b53145f6a59d26c, type: 3}
     cost: 10
-    obj: {fileID: 2766484955131164744, guid: a0d4b9e52347ea04da50120c093de654, type: 3}
+    obj: {fileID: 1101689233806114007, guid: 34f1d25c285247f4b82d81dc85669ba6, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 0}
@@ -5680,7 +5681,7 @@ MonoBehaviour:
     durability: 3
   - picture: {fileID: 21300000, guid: b03ceb913ccf57e4b92b16de2224e198, type: 3}
     cost: 15
-    obj: {fileID: 701579302331262685, guid: 64475590b591daa46aa3b420a01aabf9, type: 3}
+    obj: {fileID: 8294146970900821264, guid: 9d34d821d3f698f4e9640cd6126bdb55, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 0}
@@ -5688,7 +5689,7 @@ MonoBehaviour:
     durability: 5
   - picture: {fileID: 21300000, guid: c41f963283aab6842b1ebbcd886dd8a6, type: 3}
     cost: 15
-    obj: {fileID: 2766484955131164744, guid: a0d4b9e52347ea04da50120c093de654, type: 3}
+    obj: {fileID: 4140194246657068560, guid: a74fef7aeccdf014099913958d350cb0, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 0}
@@ -5696,7 +5697,7 @@ MonoBehaviour:
     durability: 5
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 20
-    obj: {fileID: 701579302331262685, guid: 64475590b591daa46aa3b420a01aabf9, type: 3}
+    obj: {fileID: 3638856121648106172, guid: 64605eb27a937bd439e027b829d473ed, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 0}
@@ -5704,7 +5705,7 @@ MonoBehaviour:
     durability: 5
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 30
-    obj: {fileID: 701579302331262685, guid: 64475590b591daa46aa3b420a01aabf9, type: 3}
+    obj: {fileID: 3606953813913186779, guid: 90b7c2afb133efb4a878963b1ce44c36, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 0}
@@ -5712,7 +5713,7 @@ MonoBehaviour:
     durability: 5
   - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
     cost: 30
-    obj: {fileID: 701579302331262685, guid: 64475590b591daa46aa3b420a01aabf9, type: 3}
+    obj: {fileID: 3088846201878795562, guid: 466ca1e3f656b644088804e7a89a52c8, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 0}
@@ -8411,7 +8412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 391.49997, y: -30.999222}
+  m_AnchoredPosition: {x: 391.49997, y: -30.999224}
   m_SizeDelta: {x: 240, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734676108
@@ -9964,7 +9965,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2144839216}
   m_Direction: 2
   m_Value: 0.00000010206521
-  m_Size: 0.49999994
+  m_Size: 0.5469685
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14158,7 +14159,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -14169,7 +14170,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -18122,7 +18123,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -18133,7 +18134,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1

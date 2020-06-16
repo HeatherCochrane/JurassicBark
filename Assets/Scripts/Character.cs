@@ -72,7 +72,7 @@ public class Character : MonoBehaviour
             {
                 this.GetComponent<DogBehaviour>().eatFood();
             }
-            Debug.Log("Taken resource");
+
             this.CurrentPosition.GetComponentInChildren<FoodWater>().removePiece();
             takeCount += 1;
 

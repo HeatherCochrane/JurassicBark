@@ -12,15 +12,24 @@ public class ParkRating : MonoBehaviour
     [SerializeField]
     int minimumDeco;
     [SerializeField]
-    int minimumPaddockHappiness;
+    int minimumDogHappiness;
 
 
     int decorationCount = 0;
     int dogCount = 0;
     int shopCount = 0;
+    int overallHappiness = 0;
 
-    int numPaddocks = 0;
-    int averagePaddockHappiness = 0;
+    public struct dog
+    {
+        [SerializeField]
+        public int happiness;
+        [SerializeField]
+        public int identity;
+    }
+
+    List<dog> dogs = new List<dog>();
+    dog newDog;
 
     int parkRating = 1;
 
@@ -29,6 +38,9 @@ public class ParkRating : MonoBehaviour
 
     [SerializeField]
     GameObject starObject;
+
+    [SerializeField]
+    VisitorHandler visitors;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,30 +50,37 @@ public class ParkRating : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void adjustRating()
     {
         parkRating = 1;
-        
+        visitors.setVisitorCount(20);
 
-        if(decorationCount >= minimumDeco)
+        if (decorationCount >= minimumDeco)
         {
             parkRating += 1;
+            visitors.setVisitorCount(30);
         }
-        if(dogCount >= minimumDogs)
+        if (dogCount >= minimumDogs)
         {
             parkRating += 1;
+            visitors.setVisitorCount(40);
         }
-        if(shopCount >= minimumShops)
+        if (shopCount >= minimumShops)
         {
             parkRating += 1;
+            visitors.setVisitorCount(50);
+        }
+        if(overallHappiness >= minimumDogHappiness)
+        {
+            parkRating += 1;
+            visitors.setVisitorCount(60);
         }
 
         starObject.GetComponent<Image>().sprite = stars[parkRating - 1];
-      
-        Debug.Log("Park Rating: " + parkRating);
+
     }
 
     public void addDecoration()
@@ -73,16 +92,23 @@ public class ParkRating : MonoBehaviour
     public void removeDecoration()
     {
         decorationCount -= 1;
-        if(decorationCount < 1)
+        if (decorationCount < 1)
         {
             decorationCount = 0;
         }
         adjustRating();
     }
 
-    public void addDog()
+    public void addDog(int identity, int happiness)
     {
+
+        newDog.identity = identity;
+        newDog.happiness = happiness;
+        dogs.Add(newDog);
+
         dogCount += 1;
+
+
         adjustRating();
     }
 
@@ -90,7 +116,7 @@ public class ParkRating : MonoBehaviour
     {
         dogCount -= 1;
 
-        if(dogCount < 1)
+        if (dogCount < 1)
         {
             dogCount = 0;
         }
@@ -106,38 +132,42 @@ public class ParkRating : MonoBehaviour
     public void removeShop()
     {
         shopCount -= 1;
-        if(shopCount < 0)
+
+        if (shopCount < 0)
         {
             shopCount = 0;
         }
+
         adjustRating();
     }
 
-    //public void addPaddock(int happiness)
-    //{
-    //    numPaddocks += 1;
-    //    averagePaddockHappiness += happiness;
+    void calculateDogHappiness()
+    {
+        overallHappiness = 0;
 
-    //    averagePaddockHappiness /= numPaddocks;
-    //}
+        for(int i =0; i < dogs.Count; i++)
+        {
+            int happy = dogs[i].happiness;
+            overallHappiness += happy;
+        }
 
-    //public void removePaddock(int happiness)
-    //{
-    //    numPaddocks -= 1;
-    //    averagePaddockHappiness -= happiness;
+        overallHappiness = overallHappiness / dogs.Count;
 
-    //    if(numPaddocks < 1)
-    //    {
-    //        numPaddocks = 0;
-    //    }
-    //    if(averagePaddockHappiness < 1)
-    //    {
-    //        averagePaddockHappiness = 0;
-    //    }
+        adjustRating();
+    }
+    public void updateDogHappiness(int identifier, int happiness)
+    {
+        for(int i =0; i < dogs.Count; i++)
+        {
+            if(dogs[i].identity == identifier)
+            {
+                newDog.identity = identifier;
+                newDog.happiness = happiness;
+                dogs[i] = newDog;
+            }
+        }
 
-    //    if(numPaddocks > 0 && averagePaddockHappiness > 0)
-    //    {
-    //        averagePaddockHappiness /= numPaddocks;
-    //    }
-    //}
+        calculateDogHappiness();
+    }
+
 }
