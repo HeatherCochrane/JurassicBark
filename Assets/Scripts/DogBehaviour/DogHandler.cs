@@ -43,6 +43,9 @@ public class DogHandler : MonoBehaviour
 
     [SerializeField]
     SaveHandler save;
+
+    [SerializeField]
+    ParkRating rating;
     void Start()
     {
         UIhandler = GameObject.Find("UIHandler").GetComponent<UIHandler>();
@@ -82,6 +85,7 @@ public class DogHandler : MonoBehaviour
             audioManager.playDogBark();
 
             saveDog(dog);
+            rating.addDog();
         }
     }
 

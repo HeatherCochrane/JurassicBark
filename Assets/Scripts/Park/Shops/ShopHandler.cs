@@ -28,6 +28,9 @@ public class ShopHandler : MonoBehaviour
 
     [SerializeField]
     SaveHandler save;
+
+    [SerializeField]
+    ParkRating rating;
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +69,7 @@ public class ShopHandler : MonoBehaviour
 
 
             save.saveTile(t1,false);
+            rating.addShop();
         }
     }
 

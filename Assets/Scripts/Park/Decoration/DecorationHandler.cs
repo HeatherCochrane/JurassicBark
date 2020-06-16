@@ -21,6 +21,9 @@ public class DecorationHandler : MonoBehaviour
 
     [SerializeField]
     SaveHandler save;
+
+    [SerializeField]
+    ParkRating rating;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +53,7 @@ public class DecorationHandler : MonoBehaviour
 
 
             save.saveTile(p,false);
+            rating.addDecoration();
         }
     }
 
