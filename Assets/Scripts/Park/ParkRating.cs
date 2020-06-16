@@ -131,7 +131,7 @@ public class ParkRating : MonoBehaviour
         adjustRating();
     }
 
-    public void removeDog()
+    public void removeDog(int identity)
     {
 
         dogCount -= 1;
@@ -139,6 +139,14 @@ public class ParkRating : MonoBehaviour
         if (dogCount < 1)
         {
             dogCount = 0;
+        }
+
+        for(int i =0; i < dogs.Count; i++)
+        {
+            if(dogs[i].identity == identity)
+            {
+                dogs.RemoveAt(i);
+            }
         }
         adjustRating();
     }

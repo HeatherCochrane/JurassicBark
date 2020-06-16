@@ -73,6 +73,7 @@ public class PaddockControl : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         save = GameObject.Find("SAVEHANDLER").GetComponent<SaveHandler>();
         dogHandler = GameObject.Find("DogHandler").GetComponent<DogHandler>();
+        rating = GameObject.Find("ParkRating").GetComponent<ParkRating>();
 
         //Show the paddock stats on the game canvas
         paddockui = Instantiate(paddockUI);
@@ -142,6 +143,7 @@ public class PaddockControl : MonoBehaviour
                 for (int i = 0; i < dogsInPaddock.Count; i++)
                 {
                     save.removeDog(dogsInPaddock[i].GetComponent<DogBehaviour>().getIdentifier());
+                    rating.removeDog(dogsInPaddock[i].GetComponent<DogBehaviour>().getDogIdentifier());
                 }
 
                 for (int i = 0; i < dogsInPaddock.Count; i++)

@@ -93,6 +93,9 @@ public class Game : MonoBehaviour
 
     [SerializeField]
     SaveHandler save;
+
+    [SerializeField]
+    ParkRating rating;
     void Start()
     {
         mRaycastHits = new RaycastHit[NumberOfRaycastHits];
@@ -214,6 +217,15 @@ public class Game : MonoBehaviour
                         }
                         else if (tile.transform.childCount > 0 && !tile.hasFence)
                         {
+                            if(tile.transform.GetChild(0).tag == "Shop")
+                            {
+                                rating.removeShop();
+                            }
+                            else if(tile.transform.GetChild(0).tag == "Decoration")
+                            {
+                                rating.removeDecoration();
+                            }
+
                             Destroy(tile.transform.GetChild(0).gameObject);
                             audioManager.playDestroy();
 
@@ -221,6 +233,7 @@ public class Game : MonoBehaviour
                             {
                                 tile.IsAccessible = true;
                             }
+
                             tile.transform.DetachChildren();
 
                             save.saveTile(tile,false);
