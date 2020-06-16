@@ -9,6 +9,8 @@ TagManager:
   - Tile
   - Paddock
   - Model
+  - Visitor
+  - Grass
   layers:
   - Default
   - TransparentFX

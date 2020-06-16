@@ -6487,8 +6487,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 538645414}
-        m_MethodName: closeGame
+      - m_Target: {fileID: 448926564}
+        m_MethodName: saveDogs
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6498,8 +6498,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 448926564}
-        m_MethodName: saveDogs
+      - m_Target: {fileID: 538645414}
+        m_MethodName: closeMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8271,7 +8271,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 391.49997, y: -30.99924}
+  m_AnchoredPosition: {x: 391.49997, y: -30.999228}
   m_SizeDelta: {x: 240, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734676108
@@ -9824,7 +9824,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2144839216}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.5469685
+  m_Size: 0.50000006
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -58,6 +58,8 @@ public class PaddockControl : MonoBehaviour
     int paddockIdentifier = 0;
 
     SaveHandler save;
+
+    DogHandler dogHandler;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +69,7 @@ public class PaddockControl : MonoBehaviour
         paddockMap = GameObject.Find("PaddockHandler").GetComponent<PaddockCreation>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         save = GameObject.Find("SAVEHANDLER").GetComponent<SaveHandler>();
+        dogHandler = GameObject.Find("DogHandler").GetComponent<DogHandler>();
 
         //Show the paddock stats on the game canvas
         paddockui = Instantiate(paddockUI);

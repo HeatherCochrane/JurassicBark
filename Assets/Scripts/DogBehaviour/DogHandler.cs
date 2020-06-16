@@ -108,8 +108,18 @@ public class DogHandler : MonoBehaviour
 
     public void saveDog(GameObject d)
     {
-
         save.saveDog(dog, dog.GetComponent<DogBehaviour>().getDogIdentifier(), dog.GetComponent<DogBehaviour>().CurrentPosition);
-
     }
+
+    public void saveDogs()
+    {
+        if (dogs.Count > 0)
+        {
+            for (int i = 0; i < dogs.Count; i++)
+            {
+                dogs[i].GetComponent<DogBehaviour>().saveDogDetails();
+            }
+        }
+    }
+
 }

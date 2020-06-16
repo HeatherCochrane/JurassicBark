@@ -329,20 +329,20 @@ public class PaddockCreation : MonoBehaviour
 
         //Spawn corner pieces first
         fencePiece = Instantiate(fenceSet[0]);
-        fencePiece.transform.position = new Vector3(tiles[0, height - 1].transform.position.x, tiles[0, height - 1].transform.position.y + 3, tiles[0, height - 1].transform.position.z);
+        fencePiece.transform.position = new Vector3(tiles[0, height - 1].transform.position.x, tiles[0, height - 1].transform.position.y + 3, tiles[0, height - 1].transform.position.z - 1);
         fencePiece.transform.parent = tiles[0, height - 1].transform;
         fencePiece.GetComponentInChildren<ParticleSystem>().Play();
         tiles[0, height - 1].hasFence = true;
 
         fencePiece = Instantiate(fenceSet[0]);
-        fencePiece.transform.position = new Vector3(tiles[width - 1, height - 1].transform.position.x, tiles[width - 1, height - 1].transform.position.y + 3, tiles[width - 1, height - 1].transform.position.z + 10);
+        fencePiece.transform.position = new Vector3(tiles[width - 1, height - 1].transform.position.x - 1, tiles[width - 1, height - 1].transform.position.y + 3, tiles[width - 1, height - 1].transform.position.z + 9);
         fencePiece.transform.Rotate(new Vector3(0, 1, 0), 90);
         fencePiece.transform.parent = tiles[width - 1, height - 1].transform;
         fencePiece.GetComponentInChildren<ParticleSystem>().Play();
         tiles[width - 1, height - 1].hasFence = true;
 
         fencePiece = Instantiate(fenceSet[0]);
-        fencePiece.transform.position = new Vector3(tiles[width - 1, 0].transform.position.x + 10, tiles[width - 1, 0].transform.position.y + 3, tiles[width - 1, 0].transform.position.z + 10);
+        fencePiece.transform.position = new Vector3(tiles[width - 1, 0].transform.position.x + 9, tiles[width - 1, 0].transform.position.y + 3, tiles[width - 1, 0].transform.position.z + 10);
         fencePiece.transform.Rotate(new Vector3(0, 1, 0), 180);
         fencePiece.transform.parent = tiles[width - 1, 0].transform;
         fencePiece.GetComponentInChildren<ParticleSystem>().Play();
@@ -376,7 +376,7 @@ public class PaddockCreation : MonoBehaviour
             {
                 //tiles[width - 1, i].transform.position = new Vector3(tiles[width - 1, i].transform.position.x, tiles[width - 1, i].transform.position.y + 1, tiles[width - 1, i].transform.position.z);
                 fencePiece = Instantiate(fenceSet[2]);
-                fencePiece.transform.position = new Vector3(tiles[width - 1, i].transform.position.x + 10, tiles[width - 1, i].transform.position.y + 3, tiles[width - 1, i].transform.position.z + 5);
+                fencePiece.transform.position = new Vector3(tiles[width - 1, i].transform.position.x + 9, tiles[width - 1, i].transform.position.y + 3, tiles[width - 1, i].transform.position.z + 5);
                 fencePiece.transform.Rotate(0, 90, 0);
                 fencePiece.transform.parent = tiles[width - 1, i].transform;
                 tiles[width - 1, i].hasFence = true;
@@ -402,7 +402,7 @@ public class PaddockCreation : MonoBehaviour
             {
                 //tiles[i, height - 1].transform.position = new Vector3(tiles[i, height - 1].transform.position.x, tiles[i, height - 1].transform.position.y + 1, tiles[i, height - 1].transform.position.z);
                 fencePiece = Instantiate(fenceSet[3]);
-                fencePiece.transform.position = new Vector3(tiles[i, height - 1].transform.position.x + 5, tiles[i, height - 1].transform.position.y + 3, tiles[i, height - 1].transform.position.z + 10);
+                fencePiece.transform.position = new Vector3(tiles[i, height - 1].transform.position.x + 5, tiles[i, height - 1].transform.position.y + 3, tiles[i, height - 1].transform.position.z + 9);
                 fencePiece.transform.parent = tiles[i, height - 1].transform;
                 tiles[i, height - 1].hasFence = true;
 

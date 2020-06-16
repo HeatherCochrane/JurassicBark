@@ -120,6 +120,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasicFenceH (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6347540370279167332, guid: 27d2b698579f5254c8b94e8075991e89,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.306
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347540370279167332, guid: 27d2b698579f5254c8b94e8075991e89,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5172
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347540370279167332, guid: 27d2b698579f5254c8b94e8075991e89,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6162
+      objectReference: {fileID: 0}
     - target: {fileID: 7158029473876635647, guid: 27d2b698579f5254c8b94e8075991e89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -194,6 +209,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BasicFenceH
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347540370279167332, guid: 27d2b698579f5254c8b94e8075991e89,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347540370279167332, guid: 27d2b698579f5254c8b94e8075991e89,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5226
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347540370279167332, guid: 27d2b698579f5254c8b94e8075991e89,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59880006
       objectReference: {fileID: 0}
     - target: {fileID: 7158029473876635647, guid: 27d2b698579f5254c8b94e8075991e89,
         type: 3}

@@ -221,6 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcd99c73b1ea4d45aa2a00f78a4e37c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  width: 0
+  height: 0
   grassColor:
   - {r: 0.3529412, g: 0.7686275, b: 0.7137255, a: 1}
   - {r: 0.3529412, g: 0.7686275, b: 0.7137255, a: 1}
@@ -231,10 +233,6 @@ MonoBehaviour:
   waterBowl: {fileID: 701579302331262685, guid: 64475590b591daa46aa3b420a01aabf9,
     type: 3}
   dogsInPaddock: []
-  dogProfile: {fileID: 5686231827625921636, guid: baae6ad864f515a4aa5c4ea9c3e7e564,
-    type: 3}
-  dogStats: {fileID: 1000632142987994968, guid: 9d0065a0b35ad4340a704263b7bb8995,
-    type: 3}
 --- !u!65 &7060863414148686898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -259,6 +257,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BasicFenceH
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347540370279167332, guid: 27d2b698579f5254c8b94e8075991e89,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347540370279167332, guid: 27d2b698579f5254c8b94e8075991e89,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.56286
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347540370279167332, guid: 27d2b698579f5254c8b94e8075991e89,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6190632
       objectReference: {fileID: 0}
     - target: {fileID: 7158029473876635647, guid: 27d2b698579f5254c8b94e8075991e89,
         type: 3}
@@ -409,6 +422,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BasicFenceH (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347540370279167332, guid: 27d2b698579f5254c8b94e8075991e89,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.486
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347540370279167332, guid: 27d2b698579f5254c8b94e8075991e89,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.55726683
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347540370279167332, guid: 27d2b698579f5254c8b94e8075991e89,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.61332124
       objectReference: {fileID: 0}
     - target: {fileID: 7158029473876635647, guid: 27d2b698579f5254c8b94e8075991e89,
         type: 3}

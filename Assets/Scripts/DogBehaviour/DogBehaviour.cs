@@ -499,10 +499,14 @@ public class DogBehaviour : Character
         stats.transform.GetChild(2).GetComponent<Slider>().value = dog.thirstLevel;
         stats.transform.GetChild(3).GetComponent<Slider>().value = dog.happinessLevel;
 
+    }
+
+    public void saveDogDetails()
+    {
         save = GameObject.Find("SAVEHANDLER").GetComponent<SaveHandler>();
         save.updateDogStats(dogIdentifier, this.gameObject);
-
     }
+
     private void OnMouseEnter()
     {
         if (!game.doingAction())
@@ -514,17 +518,6 @@ public class DogBehaviour : Character
 
     private void OnMouseDown()
     {
-        //if (!inventory.isDogInventoryFull())
-        //{
-        //    inventory.storeDog(this.gameObject);
-        //    paddockHandler.removeDog(this.gameObject);
-        //    Destroy(this.gameObject);
-        //}
-        //else
-        //{
-        //    Debug.Log("INVENTORY FULL");
-        //}
-
         if (!game.doingAction() && game.getMoveCamera())
         {
             CameraControl.instance.followTransform = transform;
