@@ -30,6 +30,7 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Instance.dogs = new List<SaveGame.dog>();
 
         SaveGame.Instance.UIelements = new SaveGame.UI();
+        SaveGame.Instance.parkRanking = new SaveGame.ParkRank();
 
         identity = 0;
         dogIdentity = 0;
@@ -224,4 +225,16 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Save();
     }
 
+    public void saveParkRanking(int dog, int shop, int deco, int happy)
+    {
+
+        SaveGame.Instance.parkRanking.dogCount = dog;
+        SaveGame.Instance.parkRanking.shopCount = shop;
+        SaveGame.Instance.parkRanking.decoCount = deco;
+        SaveGame.Instance.parkRanking.overallHappiness = happy;
+
+        
+        SaveGame.Save();
+
+    }
 }

@@ -118,6 +118,22 @@ public class SaveGame
         public int points;
     }
 
+    [System.Serializable]
+    public struct ParkRank
+    {
+        [SerializeField]
+        public int dogCount;
+        [SerializeField]
+        public int shopCount;
+        [SerializeField]
+        public int decoCount;
+        [SerializeField]
+        public int overallHappiness;
+    }
+
+    [SerializeField]
+    public ParkRank parkRanking;
+
     [SerializeField]
     public unlocks unlockables;
 

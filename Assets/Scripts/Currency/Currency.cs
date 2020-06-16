@@ -37,8 +37,6 @@ public class Currency : MonoBehaviour
         playerCurrency = SaveGame.Instance.UIelements.currency;
         unlockPoints = SaveGame.Instance.UIelements.points;
 
-        Debug.Log("Loaded UI: " + SaveGame.Instance.UIelements.currency + " " + SaveGame.Instance.UIelements.points);
-
         setMoney(playerCurrency);
         setPoints(unlockPoints);
     }

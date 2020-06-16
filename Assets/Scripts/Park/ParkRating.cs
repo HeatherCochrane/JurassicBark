@@ -41,16 +41,33 @@ public class ParkRating : MonoBehaviour
 
     [SerializeField]
     VisitorHandler visitors;
+
+    [SerializeField]
+    SaveHandler save;
     // Start is called before the first frame update
     void Start()
     {
-        adjustRating();
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void loadParkRating()
+    {
+        SaveGame.Load();
+
+
+        dogCount = SaveGame.Instance.parkRanking.dogCount;
+        decorationCount = SaveGame.Instance.parkRanking.decoCount;
+        shopCount = SaveGame.Instance.parkRanking.shopCount;
+        overallHappiness = SaveGame.Instance.parkRanking.overallHappiness;
+
+
+        adjustRating();
     }
 
     void adjustRating()
@@ -80,11 +97,12 @@ public class ParkRating : MonoBehaviour
         }
 
         starObject.GetComponent<Image>().sprite = stars[parkRating - 1];
-
+        save.saveParkRanking(dogCount, shopCount, decorationCount, overallHappiness);
     }
 
     public void addDecoration()
     {
+
         decorationCount += 1;
         adjustRating();
     }
@@ -96,6 +114,7 @@ public class ParkRating : MonoBehaviour
         {
             decorationCount = 0;
         }
+
         adjustRating();
     }
 
@@ -114,6 +133,7 @@ public class ParkRating : MonoBehaviour
 
     public void removeDog()
     {
+
         dogCount -= 1;
 
         if (dogCount < 1)
@@ -125,6 +145,7 @@ public class ParkRating : MonoBehaviour
 
     public void addShop()
     {
+
         shopCount += 1;
         adjustRating();
     }
@@ -143,21 +164,27 @@ public class ParkRating : MonoBehaviour
 
     void calculateDogHappiness()
     {
-        overallHappiness = 0;
 
-        for(int i =0; i < dogs.Count; i++)
+        if (dogs.Count > 0)
         {
-            int happy = dogs[i].happiness;
-            overallHappiness += happy;
-        }
+            overallHappiness = 0;
 
-        overallHappiness = overallHappiness / dogs.Count;
+
+            for (int i = 0; i < dogs.Count; i++)
+            {
+                int happy = dogs[i].happiness;
+                overallHappiness += happy;
+            }
+
+            overallHappiness = overallHappiness / dogs.Count;
+        }
 
         adjustRating();
     }
     public void updateDogHappiness(int identifier, int happiness)
     {
-        for(int i =0; i < dogs.Count; i++)
+
+        for (int i =0; i < dogs.Count; i++)
         {
             if(dogs[i].identity == identifier)
             {

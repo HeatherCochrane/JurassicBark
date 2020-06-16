@@ -1411,6 +1411,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 22918268a6477024e80c2ffa0e7e7f93, type: 3}
   starObject: {fileID: 1996901453}
   visitors: {fileID: 1218815163}
+  save: {fileID: 658630357}
 --- !u!1 &148854431
 GameObject:
   m_ObjectHideFlags: 0
@@ -5295,6 +5296,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 120514979}
+        m_MethodName: loadParkRating
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &479090449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8412,7 +8424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 391.49997, y: -30.999224}
+  m_AnchoredPosition: {x: 391.49997, y: -30.999176}
   m_SizeDelta: {x: 240, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734676108
@@ -9964,7 +9976,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2144839217}
   m_HandleRect: {fileID: 2144839216}
   m_Direction: 2
-  m_Value: 0.00000010206521
+  m_Value: -0.00000020413042
   m_Size: 0.5469685
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -21150,7 +21162,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 22918268a6477024e80c2ffa0e7e7f93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04b81712f6b4a784d9d63d75bf1317ab, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
