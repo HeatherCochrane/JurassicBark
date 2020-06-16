@@ -44,10 +44,15 @@ public class ParkRating : MonoBehaviour
 
     [SerializeField]
     SaveHandler save;
+
+    [SerializeField]
+    GameObject ratingHelp;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        adjustRating();
+        ratingHelp.SetActive(false);
     }
 
     // Update is called once per frame
@@ -60,12 +65,10 @@ public class ParkRating : MonoBehaviour
     {
         SaveGame.Load();
 
-
         dogCount = SaveGame.Instance.parkRanking.dogCount;
         decorationCount = SaveGame.Instance.parkRanking.decoCount;
         shopCount = SaveGame.Instance.parkRanking.shopCount;
         overallHappiness = SaveGame.Instance.parkRanking.overallHappiness;
-
 
         adjustRating();
     }
@@ -79,25 +82,51 @@ public class ParkRating : MonoBehaviour
         {
             parkRating += 1;
             visitors.setVisitorCount(30);
+            ratingHelp.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        else
+        {
+            ratingHelp.transform.GetChild(0).gameObject.SetActive(true);
+            ratingHelp.transform.GetChild(0).GetComponent<Text>().text = "Visitors would like to see more decorations!";
         }
         if (dogCount >= minimumDogs)
         {
             parkRating += 1;
             visitors.setVisitorCount(40);
+            ratingHelp.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        else
+        {
+            ratingHelp.transform.GetChild(1).gameObject.SetActive(true);
+            ratingHelp.transform.GetChild(1).GetComponent<Text>().text = "Visitors would like to see more dogs!";
         }
         if (shopCount >= minimumShops)
         {
             parkRating += 1;
             visitors.setVisitorCount(50);
+            ratingHelp.transform.GetChild(2).gameObject.SetActive(false);
+        }
+        else
+        {
+            ratingHelp.transform.GetChild(2).gameObject.SetActive(true);
+            ratingHelp.transform.GetChild(2).GetComponent<Text>().text = "Visitors would like to have more shops!";
         }
         if(overallHappiness >= minimumDogHappiness)
         {
             parkRating += 1;
             visitors.setVisitorCount(60);
+            ratingHelp.transform.GetChild(3).gameObject.SetActive(false);
+        }
+        else
+        {
+            ratingHelp.transform.GetChild(3).gameObject.SetActive(true);
+            ratingHelp.transform.GetChild(3).GetComponent<Text>().text = "The dogs look unhappy, the visitors are unhappy!";
         }
 
         starObject.GetComponent<Image>().sprite = stars[parkRating - 1];
         save.saveParkRanking(dogCount, shopCount, decorationCount, overallHappiness);
+
+        
     }
 
     public void addDecoration()
@@ -205,4 +234,9 @@ public class ParkRating : MonoBehaviour
         calculateDogHappiness();
     }
 
+
+    public void showRatingHelp(bool set)
+    {
+        ratingHelp.SetActive(set);
+    }
 }

@@ -11,6 +11,8 @@ TagManager:
   - Model
   - Visitor
   - Grass
+  - Shop
+  - Decoration
   layers:
   - Default
   - TransparentFX
