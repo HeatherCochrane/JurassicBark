@@ -51,7 +51,6 @@ public class ParkRating : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        adjustRating();
         ratingHelp.SetActive(false);
     }
 
@@ -123,6 +122,11 @@ public class ParkRating : MonoBehaviour
             ratingHelp.transform.GetChild(3).GetComponent<Text>().text = "The dogs look unhappy, the visitors are unhappy!";
         }
 
+        if(parkRating == 5)
+        {
+            ratingHelp.transform.GetChild(0).gameObject.SetActive(true);
+            ratingHelp.transform.GetChild(0).GetComponent<Text>().text = "Wow! Your park has reached a 5 star rating, well done!";
+        }
         starObject.GetComponent<Image>().sprite = stars[parkRating - 1];
         save.saveParkRanking(dogCount, shopCount, decorationCount, overallHappiness);
 

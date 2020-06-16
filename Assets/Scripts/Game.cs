@@ -163,7 +163,7 @@ public class Game : MonoBehaviour
                         else if (clicks == 1)
                         {
                             paddock.setEndTile(tile);
-                            creatingPaddocks = false;
+                            //creatingPaddocks = false;
                             clicks = -1;
                             startingTile = null;
                             audioManager.playWood();
@@ -182,7 +182,7 @@ public class Game : MonoBehaviour
                         else if (clicks == 1)
                         {
                             pathHandler.setEndTile(tile);
-                            placePath = false;
+                            //placePath = false;
                             clicks = -1;
                             startingTile = null;
                             audioManager.playStone();
@@ -342,6 +342,16 @@ public class Game : MonoBehaviour
     public void setCreatingPaddocks(bool set)
     {
         creatingPaddocks = set;
+
+        if (set)
+        {
+            actionIcon.GetComponent<Image>().sprite = actionSprites[2];
+            actionIcon.SetActive(true);
+        }
+        else
+        {
+            actionIcon.SetActive(false);
+        }
     }
     public void setDeleting(bool set)
     {
@@ -374,6 +384,16 @@ public class Game : MonoBehaviour
     public void setPlacingPaths(bool set)
     {
         placePath = set;
+
+        if (set)
+        {
+            actionIcon.GetComponent<Image>().sprite = actionSprites[2];
+            actionIcon.SetActive(true);
+        }
+        else
+        {
+            actionIcon.SetActive(false);
+        }
     }
     public void setPlacingDeco(bool set)
     {

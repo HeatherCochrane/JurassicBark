@@ -82,7 +82,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     GameObject currencyPoints;
 
-
+    bool inMainMenu = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -286,24 +286,32 @@ public class UIHandler : MonoBehaviour
 
     public void changePauseMenu(GameObject c)
     {
-        for(int i =0; i < pauseMenus.Count; i++)
+        if (!inMainMenu)
         {
-            if(pauseMenus[i] == c)
+            for (int i = 0; i < pauseMenus.Count; i++)
             {
-                pauseMenus[i].SetActive(true);
-
-                if(pauseMenus[i].transform.childCount > 0)
+                if (pauseMenus[i] == c)
                 {
-                    if(pauseMenus[i].GetComponentInChildren<Scrollbar>())
+                    pauseMenus[i].SetActive(true);
+
+                    if (pauseMenus[i].transform.childCount > 0)
                     {
-                        pauseMenus[i].GetComponentInChildren<Scrollbar>().value = 1;
+                        if (pauseMenus[i].GetComponentInChildren<Scrollbar>())
+                        {
+                            pauseMenus[i].GetComponentInChildren<Scrollbar>().value = 1;
+                        }
                     }
                 }
+                else
+                {
+                    pauseMenus[i].SetActive(false);
+                }
             }
-            else
-            {
-                pauseMenus[i].SetActive(false);
-            }
+        }
+        else
+        {
+            pauseMenus[1].SetActive(false);
+            inMainMenu = false;
         }
     }
 
@@ -324,4 +332,11 @@ public class UIHandler : MonoBehaviour
         Application.Quit();
     }
 
+    public void showTutorial()
+    {
+        pauseMenus[1].SetActive(true);
+        pauseMenus[1].GetComponentInChildren<Scrollbar>().value = 1;
+
+        inMainMenu = true;
+    }
 }
