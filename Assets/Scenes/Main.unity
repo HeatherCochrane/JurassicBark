@@ -5656,8 +5656,8 @@ MonoBehaviour:
     terrainAmount: 0
     durability: 0
   - picture: {fileID: 0}
-    cost: 100
-    obj: {fileID: 3860962035033249691, guid: b81ffd82f608a4646867fc90a9126813, type: 3}
+    cost: 50
+    obj: {fileID: 5784082692550936684, guid: a45275352e2868646990751e175d1042, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 0}
@@ -5665,7 +5665,7 @@ MonoBehaviour:
     durability: 0
   - picture: {fileID: 0}
     cost: 100
-    obj: {fileID: 3860962035033249691, guid: b81ffd82f608a4646867fc90a9126813, type: 3}
+    obj: {fileID: 5784082692550936684, guid: a45275352e2868646990751e175d1042, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 0}
@@ -6478,6 +6478,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 448926564}
         m_MethodName: saveDogs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 972362448}
+        m_MethodName: saveCurrency
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8271,7 +8282,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 391.49997, y: -30.99917}
+  m_AnchoredPosition: {x: 391.49997, y: -30.999228}
   m_SizeDelta: {x: 240, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734676108
@@ -9823,8 +9834,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2144839217}
   m_HandleRect: {fileID: 2144839216}
   m_Direction: 2
-  m_Value: -0.00000010206525
-  m_Size: 0.5000002
+  m_Value: 0
+  m_Size: 0.50000006
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9987,11 +9998,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tasks:
   - reward: 10
-    time: 5
+    time: 30
     cost: 100
-  - reward: 30
-    time: 10
-    cost: 100
+  - reward: 25
+    time: 60
+    cost: 170
   taskParent: {fileID: 2024550567}
   taskScreen: {fileID: 244313453}
   taskPrefab: {fileID: 2953704157826912554, guid: 3745ec5b0c76ff944ae30bb33f8f9a17,

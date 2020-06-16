@@ -44,6 +44,7 @@ public class Task : MonoBehaviour
     {
 
         inprogress = true;
+
         if (timer < taskLength)
         {
             timer += 1;
