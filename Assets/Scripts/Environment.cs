@@ -237,8 +237,6 @@ public class Environment : MonoBehaviour
 
     public void loadPaddocks()
     {
-        Debug.Log(SaveGame.Instance.allPaddocks.Count);
-
         List<GameObject> paddock = new List<GameObject>();
 
         SaveGame.Load();

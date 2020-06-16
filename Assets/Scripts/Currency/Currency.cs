@@ -22,8 +22,6 @@ public class Currency : MonoBehaviour
         UIHandler.updateCurrency(playerCurrency);
         UIHandler.updatePoints(unlockPoints);
 
-        save.savePoints(unlockPoints);
-        save.saveCurrency(playerCurrency);
     }
 
     // Update is called once per frame
@@ -36,10 +34,10 @@ public class Currency : MonoBehaviour
     {
         SaveGame.Load();
 
-        playerCurrency = int.Parse(SaveGame.Instance.playerCurrency);
-        unlockPoints = int.Parse(SaveGame.Instance.playerPoints);
+        playerCurrency = SaveGame.Instance.UIelements.currency;
+        unlockPoints = SaveGame.Instance.UIelements.points;
 
-        Debug.Log("Loaded UI: " + SaveGame.Instance.playerCurrency + " " + SaveGame.Instance.playerPoints);
+        Debug.Log("Loaded UI: " + SaveGame.Instance.UIelements.currency + " " + SaveGame.Instance.UIelements.points);
 
         setMoney(playerCurrency);
         setPoints(unlockPoints);
@@ -50,7 +48,7 @@ public class Currency : MonoBehaviour
         playerCurrency -= cost;
         UIHandler.updateCurrency(playerCurrency);
 
-        save.saveCurrency(playerCurrency);
+        saveUI();
     }
 
     public void addMoney(int cost)
@@ -59,8 +57,7 @@ public class Currency : MonoBehaviour
 
         UIHandler.updateCurrency(playerCurrency);
 
-        save.saveCurrency(playerCurrency);
-
+        saveUI();
     }
 
     public void setMoney(int set)
@@ -72,6 +69,10 @@ public class Currency : MonoBehaviour
     {
         unlockPoints = set;
         UIHandler.updatePoints(unlockPoints);
+    }
+    void saveUI()
+    {
+        save.saveUI(playerCurrency, unlockPoints);
     }
 
     public bool sufficientFunds(int cost)
@@ -92,7 +93,7 @@ public class Currency : MonoBehaviour
         UIHandler.updatePoints(unlockPoints);
         audio.playPointsGained();
 
-        save.savePoints(unlockPoints);
+        saveUI();
     }
 
     public void takePoints(int p)
@@ -100,7 +101,7 @@ public class Currency : MonoBehaviour
         unlockPoints -= p;
         UIHandler.updatePoints(unlockPoints);
 
-        save.savePoints(unlockPoints);
+        saveUI();
     }
 
     public bool sufficientPoints(int p)
@@ -113,5 +114,10 @@ public class Currency : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void saveCurrency()
+    {
+        save.saveUI(playerCurrency, unlockPoints);
     }
 }

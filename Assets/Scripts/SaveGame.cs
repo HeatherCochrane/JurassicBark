@@ -109,14 +109,20 @@ public class SaveGame
         public List<int> shopsScreen;
     }
 
+    [System.Serializable]
+    public struct UI
+    {
+        [SerializeField]
+        public int currency;
+        [SerializeField]
+        public int points;
+    }
+
     [SerializeField]
     public unlocks unlockables;
 
     [SerializeField]
-    public string playerCurrency;
-    [SerializeField]
-    public string playerPoints;
-
+    public UI UIelements;
 
     [SerializeField]
     public ListWrapper paddockLists;

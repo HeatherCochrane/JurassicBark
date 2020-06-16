@@ -29,8 +29,7 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Instance.paddock = new List<SaveGame.Paddock>();
         SaveGame.Instance.dogs = new List<SaveGame.dog>();
 
-        SaveGame.Instance.playerCurrency = "";
-        SaveGame.Instance.playerPoints = "";
+        SaveGame.Instance.UIelements = new SaveGame.UI();
 
         identity = 0;
         dogIdentity = 0;
@@ -169,18 +168,15 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Save();
     }
 
-    public void savePoints(int points)
+   public void saveUI(int c, int p)
     {
-        SaveGame.Instance.playerPoints = points.ToString();
+        SaveGame.Instance.UIelements.currency = c;
+        SaveGame.Instance.UIelements.points = p;
+
+        Debug.Log("Currency: " + c + " Points: " + p);
+
         SaveGame.Save();
     }
-
-    public void saveCurrency(int currency)
-    {
-        SaveGame.Instance.playerCurrency = currency.ToString();
-        SaveGame.Save();
-    }
-
     public void removePaddock(int identitifier)
     {
 
