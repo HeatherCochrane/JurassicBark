@@ -505,7 +505,7 @@ public class DogBehaviour : Character
 
     private void OnMouseEnter()
     {
-        if (!game.doingAction())
+        if (!game.doingAction() && game.canMoveCamera())
         {
             stats.SetActive(true);
             updateStats();

@@ -160,7 +160,7 @@ public class PaddockControl : MonoBehaviour
             save.removePaddock(paddockIdentifier);
 
         }
-        else if (!game.getDeleting())
+        else if (!game.getDeleting() && game.canMoveCamera())
         {
             showPaddockUI = true;
         }

@@ -206,16 +206,8 @@ public class Game : MonoBehaviour
                     }
                     else if (deleteObjects)
                     {
-                        if(tile.isPath)
-                        {
-                            Material[] mat = tile.GetComponent<MeshRenderer>().materials;
-                            mat[1] = Resources.Load("Grass2") as Material;
-                            tile.GetComponent<MeshRenderer>().materials = mat;
-                            tile.isPath = false;
-                            tile.IsAccessible = true;
-                            pathHandler.setTileColor(tile);
-                        }
-                        else if (tile.transform.childCount > 0 && !tile.hasFence)
+                       
+                        if (tile.transform.childCount > 0 && !tile.hasFence)
                         {
                             if(tile.transform.GetChild(0).tag == "Shop")
                             {
@@ -237,6 +229,15 @@ public class Game : MonoBehaviour
                             tile.transform.DetachChildren();
 
                             save.saveTile(tile,false);
+                        }
+                        else if (tile.isPath)
+                        {
+                            Material[] mat = tile.GetComponent<MeshRenderer>().materials;
+                            mat[1] = Resources.Load("Grass2") as Material;
+                            tile.GetComponent<MeshRenderer>().materials = mat;
+                            tile.isPath = false;
+                            tile.IsAccessible = true;
+                            pathHandler.setTileColor(tile);
                         }
                     }
 
@@ -451,6 +452,10 @@ public class Game : MonoBehaviour
         }
     }
 
+    public bool canMoveCamera()
+    {
+        return moveCamera;
+    }
     public void setStandInButton(int button)
     {
         standInButton = button;
