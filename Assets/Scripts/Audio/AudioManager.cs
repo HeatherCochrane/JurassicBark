@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField]
+    AudioSource music;
+
     [SerializeField]
     AudioSource money;
 
@@ -39,17 +43,32 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     AudioClip unlock;
+
+    bool musicOff = false;
+    bool soundEffectsOff = false;
+
+    [SerializeField]
+    Slider musicVolume;
+
+    [SerializeField]
+    Slider soundEffectVolume;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        musicVolume.value = 0.5f;
+        soundEffectVolume.value = 0.5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        music.volume = musicVolume.value;
+        money.volume = soundEffectVolume.value;
+        soundEffectsOff = soundEffectVolume;
     }
+
+   
 
     public void playPop()
     {
@@ -146,10 +165,10 @@ public class AudioManager : MonoBehaviour
 
     public void playMenuMusic()
     {
-        money.Stop();
-        money.clip = menuMusic;
-        money.loop = true;
-        money.Play();
+        music.Stop();
+        music.clip = menuMusic;
+        music.loop = true;
+        music.Play();
     }
 
     public void stopSecondPlayBack()

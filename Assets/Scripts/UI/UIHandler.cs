@@ -91,6 +91,11 @@ public class UIHandler : MonoBehaviour
             shopScreens[i].SetActive(false);
         }
 
+        for (int i = 0; i < pauseMenus.Count; i++)
+        {
+            pauseMenus[i].SetActive(false);
+        }
+
         shopParent.SetActive(false);
         game.setRayOnButton(false);
 
@@ -105,8 +110,6 @@ public class UIHandler : MonoBehaviour
         populateShopScreens(pathItemsScreen, 4);
         populateShopScreens(shopItemScreen, 5);
 
-        pauseMenus[0].SetActive(false);
-        pauseMenus[1].SetActive(false);
 
         currencyPoints.SetActive(false);
 
@@ -310,7 +313,10 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            pauseMenus[1].SetActive(false);
+            for (int i = 0; i < pauseMenus.Count; i++)
+            {
+                pauseMenus[i].SetActive(false);
+            }
             inMainMenu = false;
         }
     }
@@ -336,6 +342,13 @@ public class UIHandler : MonoBehaviour
     {
         pauseMenus[1].SetActive(true);
         pauseMenus[1].GetComponentInChildren<Scrollbar>().value = 1;
+
+        inMainMenu = true;
+    }
+
+    public void showSoundSettings()
+    {
+        pauseMenus[2].SetActive(true);
 
         inMainMenu = true;
     }
