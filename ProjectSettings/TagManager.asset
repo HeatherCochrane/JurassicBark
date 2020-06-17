@@ -13,6 +13,7 @@ TagManager:
   - Grass
   - Shop
   - Decoration
+  - DogProfile
   layers:
   - Default
   - TransparentFX

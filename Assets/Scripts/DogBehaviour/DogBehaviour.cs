@@ -518,6 +518,10 @@ public class DogBehaviour : Character
         {
             CameraControl.instance.followTransform = transform;
 
+            if(GameObject.Find("DogProfile(Clone)"))
+            {
+                GameObject.Find("DogProfile(Clone)").SetActive(false);
+            }
             profile.SetActive(true);
             profile.transform.localScale = new Vector3(1, 1, 1);
             profile.GetComponent<RectTransform>().anchoredPosition = new Vector2(1 - 70, 1);

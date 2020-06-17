@@ -209,7 +209,7 @@ public class Game : MonoBehaviour
                         if(tile.isPath)
                         {
                             Material[] mat = tile.GetComponent<MeshRenderer>().materials;
-                            mat[1] = Resources.Load(tile.getOriginalMat()) as Material;
+                            mat[1] = Resources.Load("Grass2") as Material;
                             tile.GetComponent<MeshRenderer>().materials = mat;
                             tile.isPath = false;
                             tile.IsAccessible = true;
