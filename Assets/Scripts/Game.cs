@@ -190,7 +190,7 @@ public class Game : MonoBehaviour
                     }
                     else if (placingDeco)
                     {
-                        if (!tile.isPath && tile.IsAccessible)
+                        if (tile.IsAccessible)
                         {
                             decoration.spawnDecoration(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile, standInObject.transform.eulerAngles);
                             audioManager.playStone();
@@ -198,7 +198,7 @@ public class Game : MonoBehaviour
                     }
                     else if (placingShop)
                     {
-                        if (!tile.isPath && tile.IsAccessible)
+                        if (tile.IsAccessible)
                         {
                             shopHandler.spawnShop(new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5), tile, standInObject.transform.eulerAngles, standInButton);
                             audioManager.playWood();

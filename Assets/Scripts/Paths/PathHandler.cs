@@ -149,12 +149,22 @@ public class PathHandler : MonoBehaviour
             {
                 if (i < xPos || i > xPos + width || j < zPos || j > zPos + height)
                 {
-                    if (!mMap[i][j].isPath && !mMap[i][j].hasPaint)
+                    if (!mMap[i][j].hasPaint)
                     {
                         Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 
                         temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
                         temp.r = 0.6f;
+                        mat[1].color = temp;
+
+                        mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+                    }
+                    if (mMap[i][j].isPath)
+                    {
+                        Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
+
+                        temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
+                        temp = Color.white;
                         mat[1].color = temp;
 
                         mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
@@ -281,12 +291,22 @@ public class PathHandler : MonoBehaviour
         {
             for (int j = 0; j < mapSize.y; j++)
             {
-                if (!mMap[i][j].isPath && !mMap[i][j].hasPaint)
+                if (!mMap[i][j].hasPaint)
                 {
                     Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
 
                     temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
                     temp.r = 0.6f;
+                    mat[1].color = temp;
+
+                    mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
+                }
+                if(mMap[i][j].isPath)
+                {
+                    Material[] mat = mMap[i][j].GetComponent<MeshRenderer>().materials;
+
+                    temp = mMap[i][j].GetComponent<MeshRenderer>().material.color;
+                    temp = Color.white;
                     mat[1].color = temp;
 
                     mMap[i][j].GetComponent<MeshRenderer>().materials = mat;
