@@ -70,6 +70,11 @@ public class ParkRating : MonoBehaviour
         overallHappiness = SaveGame.Instance.parkRanking.overallHappiness;
 
         adjustRating();
+
+        ratingHelp.transform.GetChild(0).GetComponent<Text>().text = "Visitors would like to see more decorations!";
+        ratingHelp.transform.GetChild(1).GetComponent<Text>().text = "Visitors would like to see more dogs!";
+        ratingHelp.transform.GetChild(2).GetComponent<Text>().text = "Visitors would like to have more shops!";
+        ratingHelp.transform.GetChild(3).GetComponent<Text>().text = "The dogs look unhappy, the visitors are unhappy!";
     }
 
     void adjustRating()
