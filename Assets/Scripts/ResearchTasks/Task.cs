@@ -33,7 +33,7 @@ public class Task : MonoBehaviour
 
     public void startTask()
     {
-        if (pointHandler.sufficientFunds(cost))
+        if (pointHandler.sufficientFunds(cost) && !inprogress)
         {
             pointHandler.subtractMoney(cost);
             doTask();
@@ -42,12 +42,11 @@ public class Task : MonoBehaviour
 
     public void doTask()
     {
-
         inprogress = true;
-
-        if (timer < taskLength)
+        
+        if (taskLength > 0)
         {
-            timer += 1;
+            taskLength -= 1;
         }
         else
         {
@@ -58,8 +57,7 @@ public class Task : MonoBehaviour
             }
         }
 
-        Debug.Log("Timer: " + timer);
-        this.transform.GetChild(1).GetComponent<Text>().text = "Time: " + timer.ToString();
+        this.transform.GetChild(1).GetComponent<Text>().text = "Time: " + taskLength.ToString();
 
         Invoke("doTask", 1);
 
