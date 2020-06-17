@@ -126,19 +126,18 @@ public class PathHandler : MonoBehaviour
         {
             for (int j = zPos; j < (int)heightTile; j++)
             {
-                if (!mMap[i][j].isPath  && !mMap[i][j].hasPaint)
-                {
-                    path[x, z] = mMap[i][j];
-                    Material[] grass = path[x, z].GetComponent<MeshRenderer>().materials;
 
-                    temp = path[x, z].GetComponent<MeshRenderer>().material.color;
-                    temp.r -= 0.8f;
-                    grass[1].color = temp;
+                path[x, z] = mMap[i][j];
+                Material[] grass = path[x, z].GetComponent<MeshRenderer>().materials;
 
-                    path[x, z].GetComponent<MeshRenderer>().materials = grass;
-                    z++;
-                    standIn = z;
-                }
+                temp = path[x, z].GetComponent<MeshRenderer>().material.color;
+                temp.r -= 0.8f;
+                grass[1].color = temp;
+
+                path[x, z].GetComponent<MeshRenderer>().materials = grass;
+                z++;
+                standIn = z;
+
             }
             x++;
             z = 0;
