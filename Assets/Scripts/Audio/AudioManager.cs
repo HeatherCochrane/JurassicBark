@@ -163,7 +163,7 @@ public class AudioManager : MonoBehaviour
         cashSpent();
     }
 
-    public void playMenuMusic()
+    public void playMusic()
     {
         music.Stop();
         music.clip = menuMusic;

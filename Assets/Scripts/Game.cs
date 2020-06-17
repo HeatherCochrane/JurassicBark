@@ -313,14 +313,13 @@ public class Game : MonoBehaviour
                // mCharacter.transform.position = CharacterStart.position;
                 //mCharacter.transform.rotation = CharacterStart.rotation;
                 //mMap.CleanUpWorld();
-                audioManager.playMenuMusic();
+                audioManager.playMusic();
             }
             else
             {
                 //mCharacter.transform.position = mMap.Start.Position;
                 //mCharacter.transform.rotation = Quaternion.identity;
                 //mCharacter.CurrentPosition = mMap.Start;
-                audioManager.stopSecondPlayBack();
             }
         }
     }
