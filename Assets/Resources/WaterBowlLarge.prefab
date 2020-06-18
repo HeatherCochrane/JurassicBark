@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7051957684397219087}
   - component: {fileID: 3666245991010329078}
   - component: {fileID: 4451656558483558265}
-  - component: {fileID: 4936824775174293486}
   m_Layer: 0
   m_Name: WaterBowlLarge
   m_TagString: Untagged
@@ -95,19 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f4b45d9e78a994bbadfdc3ad3091fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &4936824775174293486
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3088846201878795562}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.6855543, y: 2.8966053, z: 2.6855543}
-  m_Center: {x: 0, y: 1.4391793, z: -0.0005649328}
 --- !u!1001 &7525750418312783253
 PrefabInstance:
   m_ObjectHideFlags: 0

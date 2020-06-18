@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4042796358006291765}
   - component: {fileID: 7720978137948799436}
   - component: {fileID: 1229361866426902671}
-  - component: {fileID: 7908799327660125160}
   m_Layer: 0
   m_Name: WaterBowlSmall
   m_TagString: Untagged
@@ -95,19 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f4b45d9e78a994bbadfdc3ad3091fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &7908799327660125160
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8294146970900821264}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 1.8612808, z: 2}
-  m_Center: {x: 0, y: 0.9306404, z: 2.8971703e-16}
 --- !u!1001 &1498981942310997704
 PrefabInstance:
   m_ObjectHideFlags: 0
