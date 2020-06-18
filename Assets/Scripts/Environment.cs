@@ -213,11 +213,14 @@ public class Environment : MonoBehaviour
                                 Destroy(mMap[i][j].transform.GetChild(0).gameObject);
                             }
 
-                            newChild = Instantiate(Resources.Load(SaveGame.Instance.changedTile[k].childModel) as GameObject);
-                            newChild.transform.parent = mMap[i][j].gameObject.transform;
-                            newChild.transform.position = new Vector3(mMap[i][j].transform.position.x + 5, mMap[i][j].transform.position.y + 3, mMap[i][j].transform.position.z + 5);
-                            newChild.transform.Rotate(SaveGame.Instance.changedTile[k].rot);
-                            newChild.transform.position = SaveGame.Instance.changedTile[k].childPos;
+                            for (int f = 0; f < SaveGame.Instance.changedTile[k].childModels.Count; f++)
+                            {
+                                newChild = Instantiate(Resources.Load(SaveGame.Instance.changedTile[k].childModels[f]) as GameObject);
+                                newChild.transform.parent = mMap[i][j].gameObject.transform;
+                                newChild.transform.position = new Vector3(mMap[i][j].transform.position.x + 5, mMap[i][j].transform.position.y + 3, mMap[i][j].transform.position.z + 5);
+                                newChild.transform.Rotate(SaveGame.Instance.changedTile[k].rot[f]);
+                                newChild.transform.position = SaveGame.Instance.changedTile[k].childPos[f];
+                            }
 
                         }
                         else

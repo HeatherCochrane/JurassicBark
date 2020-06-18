@@ -39,17 +39,24 @@ public class SaveHandler : MonoBehaviour
     //Call this function when a tile is changed such as placing deco, removing objects, paddocks, paint etc;
     public void saveTile(EnvironmentTile t, bool paint)
     {
+        SaveGame.Instance.Tile.childModels = new List<string>();
+        SaveGame.Instance.Tile.rot = new List<Vector3>();
+        SaveGame.Instance.Tile.childPos = new List<Vector3>();
+
         if (t.gameObject.transform.childCount > 0)
         {
-            string[] name = t.gameObject.transform.GetChild(0).name.Split('(');
-            SaveGame.Instance.Tile.childModel = name[0];
-            SaveGame.Instance.Tile.rot = t.gameObject.transform.GetChild(0).eulerAngles;
-            SaveGame.Instance.Tile.childPos = t.gameObject.transform.GetChild(0).position;
-            SaveGame.Instance.Tile.hasChild = true;
+            for (int i = 0; i < t.gameObject.transform.childCount; i++)
+            {
+                string[] name = t.gameObject.transform.GetChild(i).name.Split('(');
+                SaveGame.Instance.Tile.childModels.Add(name[0]);
+                SaveGame.Instance.Tile.rot.Add(t.gameObject.transform.GetChild(i).eulerAngles);
+                SaveGame.Instance.Tile.childPos.Add(t.gameObject.transform.GetChild(i).position);
+                SaveGame.Instance.Tile.hasChild = true;
+            }
         }
         else
         {
-            SaveGame.Instance.Tile.childModel = null;
+            SaveGame.Instance.Tile.childModels = null;
             SaveGame.Instance.Tile.hasChild = false;
         }
 

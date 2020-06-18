@@ -9,7 +9,7 @@ public class SaveGame
     public struct mapTile
     {
         [SerializeField]
-        public string childModel;
+        public List<string> childModels;
         [SerializeField]
         public bool hasChild;
         [SerializeField]
@@ -35,9 +35,9 @@ public class SaveGame
         [SerializeField]
         public string parentMat;
         [SerializeField]
-        public Vector3 rot;
+        public List<Vector3> rot;
         [SerializeField]
-        public Vector3 childPos;
+        public List<Vector3> childPos;
         [SerializeField]
         public List<Paddock> paddockTiles;
     }
