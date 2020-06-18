@@ -21,6 +21,9 @@ public class TerrainPainting : MonoBehaviour
     [SerializeField]
     SaveHandler save;
 
+    [SerializeField]
+    DogHandler dogHandler;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,13 +57,12 @@ public class TerrainPainting : MonoBehaviour
 
         t.hasPaint = true;
 
-        GameObject control = t.getControlObj();
-
-        if (control != null)
+        List<GameObject> dogs = dogHandler.getDogs();
+        if (dogs.Count > 0)
         {
-            for (int i = 0; i < control.GetComponentInChildren<PaddockControl>().getDogs().Count; i++)
+            for (int i = 0; i < dogs.Count; i++)
             {
-                control.GetComponentInChildren<PaddockControl>().getDogs()[i].GetComponent<DogBehaviour>().checkTiles();
+                dogs[i].GetComponent<DogBehaviour>().checkTiles();
             }
         }
 

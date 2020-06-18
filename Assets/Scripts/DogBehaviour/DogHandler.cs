@@ -126,4 +126,9 @@ public class DogHandler : MonoBehaviour
         }
     }
 
+    public List<GameObject> getDogs()
+    {
+        return dogs;
+    }
+
 }

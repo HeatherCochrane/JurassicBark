@@ -412,13 +412,17 @@ public class PaddockCreation : MonoBehaviour
         }
 
         GameObject control = null;
+
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
             {
-                if (tiles[i, j].GetComponentInChildren<PaddockControl>())
+                if (tiles[i, j].transform.childCount > 0)
                 {
-                    control = tiles[i, j].gameObject;
+                    if (tiles[i, j].transform.GetChild(0).GetComponentInChildren<PaddockControl>())
+                    {
+                        control = tiles[i, j].gameObject;
+                    }
                 }
             }
         }

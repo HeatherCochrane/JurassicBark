@@ -366,7 +366,7 @@ public class Environment : MonoBehaviour
 
         //Spawn Front entrance
         spawner = Instantiate(archway);
-        spawner.transform.position = new Vector3(entranceTiles[2].transform.position.x + 5, entranceTiles[2].transform.position.y + 3, entranceTiles[2].transform.position.z - 5);
+        spawner.transform.position = new Vector3(entranceTiles[2].transform.position.x + 5, entranceTiles[2].transform.position.y + 3, entranceTiles[2].transform.position.z - 7);
 
     }
 

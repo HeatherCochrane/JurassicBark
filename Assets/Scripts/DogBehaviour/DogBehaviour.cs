@@ -443,9 +443,9 @@ public class DogBehaviour : Character
         dog.happinessLevel = happinessLevel;
 
         //If terrain needs are met, set the baseline at 60
-        if (standIn >= amount)
+        if (standIn >= amount && dog.hungerLevel > 60 && dog.thirstLevel > 60)
         {
-            dog.happinessLevel = Mathf.Clamp(dog.happinessLevel, 60, 100);
+            dog.happinessLevel = Mathf.Clamp(dog.happinessLevel, 70, 100);
         }
         else
         {
@@ -477,7 +477,13 @@ public class DogBehaviour : Character
         //If terrain needs are met, set the baseline at 60
         if (standIn >= amount)
         {
+            if(dog.happinessLevel < 70)
+            {
+                happinessLevel = 70;
+                dog.happinessLevel = happinessLevel;
+            }
             dog.happinessLevel = Mathf.Clamp(dog.happinessLevel, 70, 100);
+            Debug.Log("Tiles Met");
         }
         else
         {
