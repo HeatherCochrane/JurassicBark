@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9686275, g: 0.56078434, b: 0.7019608, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1742,7 +1742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2392157, g: 0.7568628, b: 0.82745105, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3666,7 +3666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2392157, g: 0.7568628, b: 0.82745105, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3897,7 +3897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9686275, g: 0.56078434, b: 0.7019608, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5249,7 +5249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2392157, g: 0.7568628, b: 0.82745105, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6167,7 +6167,7 @@ MonoBehaviour:
   playerPoints: {fileID: 1279139211}
   game: {fileID: 896303071}
   dogScreen:
-  - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - picture: {fileID: 21300000, guid: 8ec2ef26b51b19e41a68839837327f31, type: 3}
     cost: 10
     obj: {fileID: 3029195321135253949, guid: d7bbe7d11e17a064cb5202ab016c5052, type: 3}
     pieces: []
@@ -6175,7 +6175,7 @@ MonoBehaviour:
     terrain: {fileID: 2100000, guid: ae7f1eaca984a2c4380415f20d6c862f, type: 2}
     terrainAmount: 3
     durability: 0
-  - picture: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - picture: {fileID: 21300000, guid: c62284946a21a754084f113138139391, type: 3}
     cost: 20
     obj: {fileID: 8010103158118142340, guid: 7703e48578d5c8f4587e863dd2aea638, type: 3}
     pieces: []
@@ -6183,7 +6183,7 @@ MonoBehaviour:
     terrain: {fileID: 2100000, guid: 39cf0b85276a8b64da7174711ee66e16, type: 2}
     terrainAmount: 3
     durability: 0
-  - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
+  - picture: {fileID: 21300000, guid: bc0cf68edb2be4543a709d321996fd48, type: 3}
     cost: 30
     obj: {fileID: 5017817214007532295, guid: 42385296bff18a94bb8d473ba01a614a, type: 3}
     pieces: []
@@ -6191,7 +6191,7 @@ MonoBehaviour:
     terrain: {fileID: 2100000, guid: 2bd86c0a861d9094393618483646a8dd, type: 2}
     terrainAmount: 3
     durability: 0
-  - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
+  - picture: {fileID: 21300000, guid: 9ff58a9a30f29954abfd743371e1111f, type: 3}
     cost: 40
     obj: {fileID: 2441680492159540123, guid: 731751f0f1b49a84c959933b7a1273fc, type: 3}
     pieces: []
@@ -6424,7 +6424,7 @@ MonoBehaviour:
     terrainAmount: 0
     durability: 0
   shopItemScreen:
-  - picture: {fileID: 0}
+  - picture: {fileID: 21300000, guid: 3bb92d42ed92c004da4660f6358f44bf, type: 3}
     cost: 50
     obj: {fileID: 5784082692550936684, guid: a45275352e2868646990751e175d1042, type: 3}
     pieces: []
@@ -6432,7 +6432,7 @@ MonoBehaviour:
     terrain: {fileID: 0}
     terrainAmount: 0
     durability: 0
-  - picture: {fileID: 0}
+  - picture: {fileID: 21300000, guid: a70ed3d22d500eb498fce58223f9f445, type: 3}
     cost: 60
     obj: {fileID: 6756351875371152074, guid: f259b963eb577c74fb56e5cd1015ca33, type: 3}
     pieces: []
@@ -6440,7 +6440,7 @@ MonoBehaviour:
     terrain: {fileID: 0}
     terrainAmount: 0
     durability: 0
-  - picture: {fileID: 0}
+  - picture: {fileID: 21300000, guid: 9e34f21ca1624074ca29ebf8b5ce9aa1, type: 3}
     cost: 100
     obj: {fileID: 700464413800497990, guid: ffc9669530b937643b1fcefdea104757, type: 3}
     pieces: []
@@ -6448,7 +6448,7 @@ MonoBehaviour:
     terrain: {fileID: 0}
     terrainAmount: 0
     durability: 0
-  - picture: {fileID: 0}
+  - picture: {fileID: 21300000, guid: 72c8354b8cf8f394291e95515729b8b5, type: 3}
     cost: 120
     obj: {fileID: 3860962035033249691, guid: b81ffd82f608a4646867fc90a9126813, type: 3}
     pieces: []
@@ -11719,7 +11719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2392157, g: 0.7568628, b: 0.82745105, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -13229,7 +13229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9686275, g: 0.56078434, b: 0.7019608, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -14490,7 +14490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9686275, g: 0.56078434, b: 0.7019608, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -17262,7 +17262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9686275, g: 0.56078434, b: 0.7019608, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -21095,7 +21095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2392157, g: 0.7568628, b: 0.82745105, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -26173,7 +26173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9686275, g: 0.56078434, b: 0.7019608, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -27358,7 +27358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23921569, g: 0.75686276, b: 0.827451, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
