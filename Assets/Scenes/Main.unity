@@ -6201,7 +6201,7 @@ MonoBehaviour:
     durability: 0
   - picture: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     cost: 50
-    obj: {fileID: 8550689018691712045, guid: 795edcbfa1bbc86488a6c972bbd4baa8, type: 3}
+    obj: {fileID: 2788895670832204235, guid: 82dea87d648ff30419397f5b914150f1, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 2100000, guid: b04422b2f572d6a4e8027e4cda24bc98, type: 2}
