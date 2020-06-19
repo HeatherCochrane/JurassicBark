@@ -35,6 +35,8 @@ public class PathHandler : MonoBehaviour
     Text pathCost;
     int pathTypeCost = 0;
 
+    int finalPathCost = 0;
+
     [SerializeField]
     UIHandler UIhandler;
 
@@ -45,6 +47,9 @@ public class PathHandler : MonoBehaviour
 
     [SerializeField]
     SaveHandler save;
+
+    [SerializeField]
+    Currency currency;
 
     // Start is called before the first frame update
     void Start()
@@ -186,7 +191,7 @@ public class PathHandler : MonoBehaviour
         width += 1;
         height += 1;
 
-        //finalPaddockCost = (width * height) * fenceCost;
+        finalPathCost = (width * height) * pathTypeCost;
 
         if (width >= 1 && height >= 1)// && currency.sufficientFunds(finalPaddockCost))
         {
@@ -250,7 +255,7 @@ public class PathHandler : MonoBehaviour
                 }
                 x = 0;
                 z = 0;
-                //currency.subtractMoney(finalPaddockCost);
+                currency.subtractMoney(finalPathCost);
             }
             else
             {

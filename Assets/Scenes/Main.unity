@@ -6207,9 +6207,9 @@ MonoBehaviour:
     terrain: {fileID: 2100000, guid: b04422b2f572d6a4e8027e4cda24bc98, type: 2}
     terrainAmount: 3
     durability: 0
-  - picture: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - picture: {fileID: 21300000, guid: 71c23c19dc7438849af37f33940e38b8, type: 3}
     cost: 60
-    obj: {fileID: 3971743951542406022, guid: cb837778fd565be4da705c11baab2fa3, type: 3}
+    obj: {fileID: 3522851045221519737, guid: 643320747b9915e498733f501406d5a6, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 2100000, guid: ae7f1eaca984a2c4380415f20d6c862f, type: 2}
@@ -6317,9 +6317,9 @@ MonoBehaviour:
     terrain: {fileID: 0}
     terrainAmount: 0
     durability: 0
-  - picture: {fileID: 21300000, guid: 0c956a5d42c89014f854f088aa35bf89, type: 3}
+  - picture: {fileID: 21300000, guid: 3b1eebc78b713774f9254b6f089731ca, type: 3}
     cost: 20
-    obj: {fileID: -927199367670048503, guid: e9aeb4e10e8a61b45925afb1be2adeee, type: 3}
+    obj: {fileID: 2074560671831657319, guid: b7a80f5f3de8f194da100e13073ac241, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 0}
@@ -17772,6 +17772,7 @@ MonoBehaviour:
   UIhandler: {fileID: 538645414}
   visitorHandler: {fileID: 1218815163}
   save: {fileID: 658630357}
+  currency: {fileID: 972362448}
 --- !u!1 &1499493891
 GameObject:
   m_ObjectHideFlags: 0
