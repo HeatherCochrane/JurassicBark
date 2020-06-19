@@ -6424,7 +6424,7 @@ MonoBehaviour:
     terrainAmount: 0
     durability: 0
   shopItemScreen:
-  - picture: {fileID: 21300000, guid: 3bb92d42ed92c004da4660f6358f44bf, type: 3}
+  - picture: {fileID: 21300000, guid: 7cdec944db386e04597cc90376d241e7, type: 3}
     cost: 50
     obj: {fileID: 8504862298235991371, guid: a0c4013aeed4cb14f8f8bf669e6e9cbd, type: 3}
     pieces: []
@@ -6432,7 +6432,7 @@ MonoBehaviour:
     terrain: {fileID: 0}
     terrainAmount: 0
     durability: 0
-  - picture: {fileID: 21300000, guid: a70ed3d22d500eb498fce58223f9f445, type: 3}
+  - picture: {fileID: 21300000, guid: 8bb29ece1617fd84c9c308f960dd4a15, type: 3}
     cost: 60
     obj: {fileID: 4136494286604894601, guid: effa496ab8c36724d97fe35c20d90d5d, type: 3}
     pieces: []
@@ -11206,7 +11206,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2144839216}
   m_Direction: 2
   m_Value: -0.00000010206521
-  m_Size: 0.5469685
+  m_Size: 0.50000006
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
