@@ -16,16 +16,20 @@ public class Visitor : Character
     bool leavingPark = false;
 
     VisitorHandler handler;
+
+    Currency currency;
     // Start is called before the first frame update
     void Start()
     {
         pathHandler = GameObject.Find("PathHandler").GetComponent<PathHandler>();
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
         handler = GameObject.Find("VisitorHandler").GetComponent<VisitorHandler>();
-
+        currency = GameObject.Find("CurrencyHandler").GetComponent<Currency>();
         map = mMap.getMap();
         mapSize = mMap.getMapSize();
         movement();
+
+        currency.addMoney(5);
     }
 
     // Update is called once per frame
