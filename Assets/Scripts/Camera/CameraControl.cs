@@ -69,8 +69,16 @@ public class CameraControl : MonoBehaviour
 
 	void HandleZoom()
 	{
-
 		newZoom += Input.mouseScrollDelta.y * zoomAmount;
+
+		if (Input.GetKey("-"))
+		{
+			newZoom -= zoomAmount;
+		}
+		else if(Input.GetKey("="))
+		{
+			newZoom += zoomAmount;
+		}
 
 		newZoom = new Vector3(newZoom.x, Mathf.Clamp(newZoom.y, 60, 660), Mathf.Clamp(newZoom.z, -660, -60));
 		cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
@@ -103,7 +111,23 @@ public class CameraControl : MonoBehaviour
 			newPosition += (transform.right * -movementSpeed);
 		}
 
-		//transform.position = new Vector3(Mathf.Clamp(transform.position.x, -200, 200), transform.position.y, transform.position.z);
+		if (Input.GetKey(KeyCode.W))
+		{
+			newPosition += (transform.forward * movementSpeed);
+		}
+		else if (Input.GetKey(KeyCode.S))
+		{
+			newPosition += (transform.forward * -movementSpeed);
+		}
+		if (Input.GetKey(KeyCode.D))
+		{
+			newPosition += (transform.right * movementSpeed);
+		}
+		else if (Input.GetKey(KeyCode.A))
+		{
+			newPosition += (transform.right * -movementSpeed);
+		}
+
 
 		transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
 
@@ -129,8 +153,6 @@ public class CameraControl : MonoBehaviour
 			transform.position = new Vector3(transform.position.x, transform.position.y, -250);
 		}
 
-
-
 		//if(Input.GetKey(KeyCode.Q))
 		//{
 		//	newRotation *= Quaternion.Euler(Vector3.up * rotationAmount);
@@ -141,8 +163,6 @@ public class CameraControl : MonoBehaviour
 		//}
 
 		//transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
-
-
 
 	}
 

@@ -21,7 +21,7 @@ public class Game : MonoBehaviour
     [SerializeField]
     PaddockCreation paddock;
 
-    int clicks = - 1;
+    int clicks = -1;
 
     EnvironmentTile standIn;
 
@@ -118,8 +118,8 @@ public class Game : MonoBehaviour
 
         //List<EnvironmentTile> route = mMap.Solve(mCharacter.CurrentPosition, tile);
         //mCharacter.GoTo(route);
-        
-        if(speedUpTime)
+
+        if (speedUpTime)
         {
             Time.timeScale = 2;
         }
@@ -128,8 +128,8 @@ public class Game : MonoBehaviour
             Time.timeScale = 1;
         }
 
-            actionIcon.transform.position = Input.mousePosition;
-        
+        actionIcon.transform.position = Input.mousePosition;
+
 
         if (!rayOnButton)
         {
@@ -206,14 +206,14 @@ public class Game : MonoBehaviour
                     }
                     else if (deleteObjects)
                     {
-                       
+
                         if (tile.transform.childCount > 0 && !tile.hasFence)
                         {
-                            if(tile.transform.GetChild(0).tag == "Shop")
+                            if (tile.transform.GetChild(0).tag == "Shop")
                             {
                                 rating.removeShop();
                             }
-                            else if(tile.transform.GetChild(0).tag == "Decoration")
+                            else if (tile.transform.GetChild(0).tag == "Decoration")
                             {
                                 rating.removeDecoration();
                             }
@@ -228,7 +228,7 @@ public class Game : MonoBehaviour
 
                             tile.transform.DetachChildren();
 
-                            save.saveTile(tile,false);
+                            save.saveTile(tile, false);
                         }
                         else if (tile.isPath)
                         {
@@ -262,15 +262,12 @@ public class Game : MonoBehaviour
 
                 if (standInObject != null)
                 {
-
                     standInObject.transform.position = new Vector3(tile.transform.position.x + 5, tile.transform.position.y + 3, tile.transform.position.z + 5);
-
                 }
-                if (Input.GetMouseButtonDown(2) && standInObject != null)
+                if (Input.GetMouseButtonDown(2) && standInObject != null || Input.GetKeyDown(KeyCode.Space) && standInObject != null)
                 {
                     standInObject.transform.Rotate(0, 45, 0);
                 }
-
             }
 
             if (creatingPaddocks && paddock.getStartingTile() != null && startingTile == paddock.getStartingTile())
@@ -309,9 +306,9 @@ public class Game : MonoBehaviour
             Menu.SetActive(show);
             Hud.enabled = !show;
 
-            if( show )
+            if (show)
             {
-               // mCharacter.transform.position = CharacterStart.position;
+                // mCharacter.transform.position = CharacterStart.position;
                 //mCharacter.transform.rotation = CharacterStart.rotation;
                 //mMap.CleanUpWorld();
                 audioManager.playMusic();
@@ -356,7 +353,7 @@ public class Game : MonoBehaviour
     public void setDeleting(bool set)
     {
         deleteObjects = set;
-        if(set)
+        if (set)
         {
             actionIcon.GetComponent<Image>().sprite = actionSprites[0];
             actionIcon.SetActive(true);
@@ -416,7 +413,7 @@ public class Game : MonoBehaviour
     {
         clicks = -1;
         creatingPaddocks = false;
-        placePaddockItem= false;
+        placePaddockItem = false;
         placeDogs = false;
         placePath = false;
         placingDeco = false;
@@ -442,7 +439,7 @@ public class Game : MonoBehaviour
 
     public bool doingAction()
     {
-        if(creatingPaddocks || placePaddockItem || placeDogs || placePath || placingDeco || placingShop)
+        if (creatingPaddocks || placePaddockItem || placeDogs || placePath || placingDeco || placingShop)
         {
             return true;
         }
@@ -462,18 +459,22 @@ public class Game : MonoBehaviour
     }
     public void getStandIn(int type)
     {
-        switch(type)
+        switch (type)
         {
             //Dogs
-            case 1: standInObject = Instantiate(dogHandle.getStandIn(standInButton));
+            case 1:
+                standInObject = Instantiate(dogHandle.getStandIn(standInButton));
                 Destroy(standInObject.GetComponent<DogBehaviour>());
                 break;
             //Decorations
-            case 2: standInObject = Instantiate(decoration.getStandIn(standInButton));
+            case 2:
+                standInObject = Instantiate(decoration.getStandIn(standInButton));
                 break;
-            case 3: standInObject = Instantiate(foodWaterHandle.getStandIn(standInButton));
+            case 3:
+                standInObject = Instantiate(foodWaterHandle.getStandIn(standInButton));
                 break;
-            case 4: standInObject = Instantiate(shopHandler.getStandIn(standInButton));
+            case 4:
+                standInObject = Instantiate(shopHandler.getStandIn(standInButton));
                 Destroy(standInObject.GetComponent<Shop>());
                 break;
         }
@@ -494,7 +495,7 @@ public class Game : MonoBehaviour
         }
 
         for (int i = 0; i < standInObject.transform.childCount; i++)
-        { 
+        {
             if (standIn.transform.GetChild(i).tag == "Model")
             {
                 standInObject.transform.GetChild(i).GetComponent<SkinnedMeshRenderer>().materials[0].color = standInColours[i];
@@ -528,7 +529,7 @@ public class Game : MonoBehaviour
 
     public void setSpeedUp()
     {
-        if(speedUpTime)
+        if (speedUpTime)
         {
             speedUpTime = false;
         }
@@ -540,7 +541,7 @@ public class Game : MonoBehaviour
 
     public void togglePaints()
     {
-        if(showTerrainPaints)
+        if (showTerrainPaints)
         {
             showTerrainPaints = false;
             terrainPalette.SetActive(false);
