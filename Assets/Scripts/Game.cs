@@ -544,6 +544,7 @@ public class Game : MonoBehaviour
         {
             showTerrainPaints = false;
             terrainPalette.SetActive(false);
+
         }
         else
         {
