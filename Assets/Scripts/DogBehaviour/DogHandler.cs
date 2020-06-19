@@ -29,7 +29,6 @@ public class DogHandler : MonoBehaviour
     List<string> genders = new List<string>();
 
     string personality;
-    string gender;
     int age = 0;
 
     Material terrain;
@@ -46,10 +45,13 @@ public class DogHandler : MonoBehaviour
 
     [SerializeField]
     ParkRating rating;
+
+    TextAsset dogNames;
+    string dogName;
+
     void Start()
     {
         UIhandler = GameObject.Find("UIHandler").GetComponent<UIHandler>();
-
     }
 
     // Update is called once per frame
@@ -73,9 +75,12 @@ public class DogHandler : MonoBehaviour
 
             age = Random.Range(1, 4);
             personality = personalities[Random.Range(0, personalities.Count)];
-            gender = genders[Random.Range(0, genders.Count)];
 
-            dog.GetComponent<DogBehaviour>().giveDogInfo(gender, personality, age, false);
+            dogNames = Resources.Load("DogNames") as TextAsset;
+            List<string> names = new List<string>(dogNames.text.Split('\n'));
+            dogName = names[Random.Range(0, names.Count - 1)];
+
+            dog.GetComponent<DogBehaviour>().giveDogInfo(personality, age, dogName, false);
 
             dog.GetComponent<DogBehaviour>().setTerrain(getTerrain(), getTerrainAmount());
 

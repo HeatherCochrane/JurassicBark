@@ -73,7 +73,7 @@ public class Unlocks : MonoBehaviour
         for(int j = 0; j < unlockButtonIcons.Count; j++)
         {
             unlockButtonIcons[j].transform.GetChild(0).GetComponent<Text>().text = "Cost: " + pointsNeeded.ToString() + " points";
-            pointsNeeded += 10;
+            pointsNeeded += 15;
         }
     }
 

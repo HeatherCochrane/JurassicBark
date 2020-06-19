@@ -9,9 +9,9 @@ public class DogBehaviour : Character
         public int hungerLevel;
         public int thirstLevel;
         public int happinessLevel;
-        public string gender;
         public int age;
         public string personality;
+        public string name;
     }
 
     Dog dog;
@@ -76,6 +76,8 @@ public class DogBehaviour : Character
     SaveHandler save;
 
     ParkRating rating;
+
+  
     void Start()
     {
         mMap = GameObject.Find("Environment").GetComponent<Environment>();
@@ -200,13 +202,13 @@ public class DogBehaviour : Character
         this.CurrentPosition = current;
     }
 
-    public void giveDogInfo(string gender, string personality, int age, bool loaded)
+    public void giveDogInfo(string personality, int age, string name, bool loaded)
     {
         dog.age = age;
 
-        dog.gender = gender;
-
         dog.personality = personality;
+
+        dog.name = name;
 
         if (!loaded)
         {
@@ -215,11 +217,6 @@ public class DogBehaviour : Character
             dog.happinessLevel = happinessLevel;
         }
 
-    }
-
-    public string getGender()
-    {
-        return dog.gender;
     }
 
     public int getAge()
@@ -528,11 +525,12 @@ public class DogBehaviour : Character
             {
                 GameObject.Find("DogProfile(Clone)").SetActive(false);
             }
+
             profile.SetActive(true);
             profile.transform.localScale = new Vector3(1, 1, 1);
             profile.GetComponent<RectTransform>().anchoredPosition = new Vector2(1 - 70, 1);
 
-            profile.transform.GetChild(1).GetComponent<Text>().text = "Gender: " + dog.gender;
+            profile.transform.GetChild(1).GetComponent<Text>().text = "Name: " + dog.name;
             profile.transform.GetChild(2).GetComponent<Text>().text = "Age: " + dog.age.ToString();
             profile.transform.GetChild(3).GetComponent<Text>().text = "Personality: " + dog.personality;
         }
@@ -590,5 +588,15 @@ public class DogBehaviour : Character
         happinessLevel = h;
         dog.happinessLevel = happinessLevel;
         updateStats();
+    }
+
+    public void setDogName(string n)
+    {
+        dog.name = n;
+    }
+
+    public string getDogName()
+    {
+        return dog.name;
     }
 }

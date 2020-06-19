@@ -133,7 +133,7 @@ public class SaveHandler : MonoBehaviour
         string[] name = dog.name.Split('(');
         SaveGame.Instance.newDog.breed = name[0];
         SaveGame.Instance.newDog.paddockIdentifier = identifier;
-
+        SaveGame.Instance.newDog.dogName = dog.GetComponent<DogBehaviour>().getDogName();
         SaveGame.Instance.newDog.hunger = dog.GetComponent<DogBehaviour>().getHunger();
         SaveGame.Instance.newDog.thirst = dog.GetComponent<DogBehaviour>().getThirst();
         SaveGame.Instance.newDog.happiness = dog.GetComponent<DogBehaviour>().getHappiness();
@@ -142,7 +142,6 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Instance.newDog.terrain = dog.GetComponent<DogBehaviour>().getTerrain().name;
         SaveGame.Instance.newDog.terrainAmount = dog.GetComponent<DogBehaviour>().getTerrainAmount();
 
-        SaveGame.Instance.newDog.gender = dog.GetComponent<DogBehaviour>().getGender();
         SaveGame.Instance.newDog.age = dog.GetComponent<DogBehaviour>().getAge().ToString();
         SaveGame.Instance.newDog.personality = dog.GetComponent<DogBehaviour>().getPersonality();
 
