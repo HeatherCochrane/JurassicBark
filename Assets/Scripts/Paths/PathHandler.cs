@@ -32,7 +32,7 @@ public class PathHandler : MonoBehaviour
     Material pathType;
 
     [SerializeField]
-    Text pathCost;
+    GameObject pathCost;
     int pathTypeCost = 0;
 
     int finalPathCost = 0;
@@ -100,11 +100,11 @@ public class PathHandler : MonoBehaviour
 
         pathCost.gameObject.SetActive(true);
         pathCost.gameObject.transform.position = Input.mousePosition;
-        pathCost.text = "£" + ((width * height) * pathTypeCost).ToString() + " " + width + "X" + height;
+        pathCost.transform.GetChild(0).GetComponent<Text>().text = "£" + ((width * height) * pathTypeCost).ToString() + " " + width + "X" + height;
 
         if (width < 0 || height < 0)
         {
-            pathCost.text = "INVALID";
+            pathCost.transform.GetChild(0).GetComponent<Text>().text = "INVALID";
         }
 
         for (int y = 0; y < mapSize.x; y++)

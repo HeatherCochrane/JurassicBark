@@ -48,7 +48,7 @@ public class PaddockCreation : MonoBehaviour
     GameObject pParent;
 
     [SerializeField]
-    Text paddockCost;
+    GameObject paddockCost;
 
     [SerializeField]
     Color[] grassColor;
@@ -79,7 +79,7 @@ public class PaddockCreation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        paddockCost.gameObject.SetActive(false);
+        paddockCost.SetActive(false);
     }
 
     // Update is called once per frame
@@ -134,13 +134,13 @@ public class PaddockCreation : MonoBehaviour
         width += 1;
         height += 1;
 
-        paddockCost.gameObject.SetActive(true);
+        paddockCost.SetActive(true);
         paddockCost.gameObject.transform.position = Input.mousePosition;
-        paddockCost.text = "£" + ((width * height) * fenceCost).ToString() + " " + width + "X" + height;
+        paddockCost.transform.GetChild(0).GetComponent<Text>().text = "£" + ((width * height) * fenceCost).ToString() + " " + width + "X" + height;
 
         if(width < 0 || height < 0)
         {
-            paddockCost.text = "INVALID";
+            paddockCost.transform.GetChild(0).GetComponent<Text>().text = "INVALID";
         }
 
         for (int y = 0; y < mapSize.x; y++)
@@ -179,6 +179,10 @@ public class PaddockCreation : MonoBehaviour
                     paddock[x, z].GetComponent<MeshRenderer>().materials = grass;
                     z++;
                     standIn = z;
+                }
+                if(!mMap[i][j].IsAccessible)
+                {
+                    paddockCost.transform.GetChild(0).GetComponent<Text>().text = "INVALID";
                 }
             }
             x++;

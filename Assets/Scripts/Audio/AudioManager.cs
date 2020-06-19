@@ -44,6 +44,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     AudioClip unlock;
 
+   
+
     bool musicOff = false;
     bool soundEffectsOff = false;
 

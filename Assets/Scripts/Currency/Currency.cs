@@ -16,12 +16,15 @@ public class Currency : MonoBehaviour
 
     [SerializeField]
     SaveHandler save;
+
+    [SerializeField]
+    GameObject fundsAlert;
     // Start is called before the first frame update
     void Start()
     {
         UIHandler.updateCurrency(playerCurrency);
         UIHandler.updatePoints(unlockPoints);
-
+        fundsAlert.SetActive(false);
     }
 
     // Update is called once per frame
@@ -81,6 +84,7 @@ public class Currency : MonoBehaviour
         }
         else
         {
+            showInsufficientFunds();
             return false;
         }
     }
@@ -117,5 +121,16 @@ public class Currency : MonoBehaviour
     public void saveCurrency()
     {
         save.saveUI(playerCurrency, unlockPoints);
+    }
+
+    public void showInsufficientFunds()
+    {
+        fundsAlert.SetActive(true);
+        Invoke("hideInsufficientFunds", 3);
+    }
+
+    public void hideInsufficientFunds()
+    {
+        fundsAlert.SetActive(false);
     }
 }

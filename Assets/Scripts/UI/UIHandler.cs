@@ -83,6 +83,7 @@ public class UIHandler : MonoBehaviour
     GameObject currencyPoints;
 
     bool inMainMenu = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -164,6 +165,7 @@ public class UIHandler : MonoBehaviour
 
         audioManager.playOpen();
     }
+
 
     public void updateCurrency(int currency)
     {
