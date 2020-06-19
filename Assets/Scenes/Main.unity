@@ -6199,7 +6199,7 @@ MonoBehaviour:
     terrain: {fileID: 2100000, guid: b04422b2f572d6a4e8027e4cda24bc98, type: 2}
     terrainAmount: 3
     durability: 0
-  - picture: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - picture: {fileID: 21300000, guid: d3d0a0fd2397b4e479262f1587a8d35d, type: 3}
     cost: 50
     obj: {fileID: 2788895670832204235, guid: 82dea87d648ff30419397f5b914150f1, type: 3}
     pieces: []
@@ -6426,7 +6426,7 @@ MonoBehaviour:
   shopItemScreen:
   - picture: {fileID: 21300000, guid: 3bb92d42ed92c004da4660f6358f44bf, type: 3}
     cost: 50
-    obj: {fileID: 5784082692550936684, guid: a45275352e2868646990751e175d1042, type: 3}
+    obj: {fileID: 8504862298235991371, guid: a0c4013aeed4cb14f8f8bf669e6e9cbd, type: 3}
     pieces: []
     mat: {fileID: 0}
     terrain: {fileID: 0}
@@ -6434,6 +6434,22 @@ MonoBehaviour:
     durability: 0
   - picture: {fileID: 21300000, guid: a70ed3d22d500eb498fce58223f9f445, type: 3}
     cost: 60
+    obj: {fileID: 4136494286604894601, guid: effa496ab8c36724d97fe35c20d90d5d, type: 3}
+    pieces: []
+    mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
+    durability: 0
+  - picture: {fileID: 21300000, guid: 3bb92d42ed92c004da4660f6358f44bf, type: 3}
+    cost: 100
+    obj: {fileID: 5784082692550936684, guid: a45275352e2868646990751e175d1042, type: 3}
+    pieces: []
+    mat: {fileID: 0}
+    terrain: {fileID: 0}
+    terrainAmount: 0
+    durability: 0
+  - picture: {fileID: 21300000, guid: a70ed3d22d500eb498fce58223f9f445, type: 3}
+    cost: 120
     obj: {fileID: 6756351875371152074, guid: f259b963eb577c74fb56e5cd1015ca33, type: 3}
     pieces: []
     mat: {fileID: 0}
@@ -6441,7 +6457,7 @@ MonoBehaviour:
     terrainAmount: 0
     durability: 0
   - picture: {fileID: 21300000, guid: 9e34f21ca1624074ca29ebf8b5ce9aa1, type: 3}
-    cost: 100
+    cost: 150
     obj: {fileID: 700464413800497990, guid: ffc9669530b937643b1fcefdea104757, type: 3}
     pieces: []
     mat: {fileID: 0}
@@ -6449,23 +6465,7 @@ MonoBehaviour:
     terrainAmount: 0
     durability: 0
   - picture: {fileID: 21300000, guid: 72c8354b8cf8f394291e95515729b8b5, type: 3}
-    cost: 120
-    obj: {fileID: 3860962035033249691, guid: b81ffd82f608a4646867fc90a9126813, type: 3}
-    pieces: []
-    mat: {fileID: 0}
-    terrain: {fileID: 0}
-    terrainAmount: 0
-    durability: 0
-  - picture: {fileID: 0}
-    cost: 100
-    obj: {fileID: 3860962035033249691, guid: b81ffd82f608a4646867fc90a9126813, type: 3}
-    pieces: []
-    mat: {fileID: 0}
-    terrain: {fileID: 0}
-    terrainAmount: 0
-    durability: 0
-  - picture: {fileID: 0}
-    cost: 100
+    cost: 170
     obj: {fileID: 3860962035033249691, guid: b81ffd82f608a4646867fc90a9126813, type: 3}
     pieces: []
     mat: {fileID: 0}
@@ -9578,7 +9578,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 391.49997, y: -30.999187}
+  m_AnchoredPosition: {x: 391.49997, y: -30.99919}
   m_SizeDelta: {x: 240, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734676108
@@ -11206,7 +11206,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2144839216}
   m_Direction: 2
   m_Value: -0.00000010206521
-  m_Size: 0.50000006
+  m_Size: 0.5469685
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
