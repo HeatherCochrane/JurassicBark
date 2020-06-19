@@ -56,6 +56,7 @@ public class TerrainPainting : MonoBehaviour
 
 
         t.hasPaint = true;
+        t.isPath = false;
 
         List<GameObject> dogs = dogHandler.getDogs();
         if (dogs.Count > 0)

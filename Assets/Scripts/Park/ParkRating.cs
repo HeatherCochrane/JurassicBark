@@ -52,6 +52,11 @@ public class ParkRating : MonoBehaviour
     void Start()
     {
         ratingHelp.SetActive(false);
+
+        ratingHelp.transform.GetChild(0).GetComponent<Text>().text = "Visitors would like to see more decorations!";
+        ratingHelp.transform.GetChild(1).GetComponent<Text>().text = "Visitors would like to see more dogs!";
+        ratingHelp.transform.GetChild(2).GetComponent<Text>().text = "Visitors would like to have more shops!";
+        ratingHelp.transform.GetChild(3).GetComponent<Text>().text = "The dogs look unhappy, the visitors are unhappy!";
     }
 
     // Update is called once per frame
