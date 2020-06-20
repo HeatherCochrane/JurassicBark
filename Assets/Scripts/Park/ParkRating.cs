@@ -48,6 +48,10 @@ public class ParkRating : MonoBehaviour
     [SerializeField]
     GameObject ratingHelp;
 
+    [SerializeField]
+    GameObject wellDoneBanner;
+    bool ratingMaxed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,12 +61,17 @@ public class ParkRating : MonoBehaviour
         ratingHelp.transform.GetChild(1).GetComponent<Text>().text = "Visitors would like to see more dogs!";
         ratingHelp.transform.GetChild(2).GetComponent<Text>().text = "Visitors would like to have more shops!";
         ratingHelp.transform.GetChild(3).GetComponent<Text>().text = "The dogs look unhappy, the visitors are unhappy!";
+
+        wellDoneBanner.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            adjustRating();
+        }
     }
 
     public void loadParkRating()
@@ -136,6 +145,12 @@ public class ParkRating : MonoBehaviour
         {
             ratingHelp.transform.GetChild(0).gameObject.SetActive(true);
             ratingHelp.transform.GetChild(0).GetComponent<Text>().text = "Wow! Your park has reached a 5 star rating, well done!";
+
+            if(ratingMaxed == false)
+            {
+                wellDoneBanner.SetActive(true);
+                ratingMaxed = true;
+            }
         }
         starObject.GetComponent<Image>().sprite = stars[parkRating - 1];
         save.saveParkRanking(dogCount, shopCount, decorationCount, overallHappiness);
@@ -252,5 +267,10 @@ public class ParkRating : MonoBehaviour
     public void showRatingHelp(bool set)
     {
         ratingHelp.SetActive(set);
+    }
+
+    public void hideBanner()
+    {
+        wellDoneBanner.SetActive(false);
     }
 }
