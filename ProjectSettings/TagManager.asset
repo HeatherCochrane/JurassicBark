@@ -14,6 +14,9 @@ TagManager:
   - Shop
   - Decoration
   - DogProfile
+  - Fence
+  - Food
+  - Water
   layers:
   - Default
   - TransparentFX

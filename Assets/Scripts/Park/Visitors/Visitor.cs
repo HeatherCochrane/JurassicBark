@@ -53,10 +53,6 @@ public class Visitor : Character
                 List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goalTile, 1);
                 this.GoTo(route, -1);
             }
-            else
-            {
-                Debug.Log("NO PATHS FOUND");
-            }
 
             Invoke("movement", Random.Range(5, 10) / Time.timeScale);
         }
@@ -71,6 +67,12 @@ public class Visitor : Character
     {
         EnvironmentTile goal = t;
         List<EnvironmentTile> route = mMap.Solve(this.CurrentPosition, goal, 0);
+
+        if(route == null)
+        {
+            Destroy(this.gameObject);
+        }
+
         this.GoTo(route, -1);
     }
 

@@ -52,7 +52,7 @@ public class DecorationHandler : MonoBehaviour
             deco.GetComponentInChildren<ParticleSystem>().Play();
 
 
-            save.saveTile(p,false);
+            save.saveTile(p,true);
             rating.addDecoration();
         }
     }

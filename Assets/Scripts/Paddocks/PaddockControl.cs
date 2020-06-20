@@ -35,7 +35,7 @@ public class PaddockControl : MonoBehaviour
 
     GameObject bowl;
 
-    [SerializeField]
+
     List<GameObject> dogsInPaddock = new List<GameObject>();
     int overallHappiness = 70;
     int overallHunger = 70;

@@ -276,8 +276,6 @@ MonoBehaviour:
     type: 3}
   waterBowl: {fileID: 701579302331262685, guid: 64475590b591daa46aa3b420a01aabf9,
     type: 3}
-  dogsInPaddock:
-  - {fileID: 0}
 --- !u!65 &3441946536226730625
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -302,7 +300,7 @@ GameObject:
   - component: {fileID: 1582015840204057344}
   m_Layer: 0
   m_Name: HedgeCornerTarget
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

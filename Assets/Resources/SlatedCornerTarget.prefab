@@ -9915,7 +9915,6 @@ MonoBehaviour:
     type: 3}
   waterBowl: {fileID: 701579302331262685, guid: 64475590b591daa46aa3b420a01aabf9,
     type: 3}
-  dogsInPaddock: []
 --- !u!65 &4108705558209065889
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10164,7 +10163,7 @@ GameObject:
   - component: {fileID: 8465002659715273160}
   m_Layer: 0
   m_Name: SlatedCornerTarget
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

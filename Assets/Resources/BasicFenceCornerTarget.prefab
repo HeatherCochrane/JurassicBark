@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5272057091293574275}
   m_Layer: 0
   m_Name: BasicFenceCornerTarget
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,7 +232,6 @@ MonoBehaviour:
     type: 3}
   waterBowl: {fileID: 701579302331262685, guid: 64475590b591daa46aa3b420a01aabf9,
     type: 3}
-  dogsInPaddock: []
 --- !u!65 &7060863414148686898
 BoxCollider:
   m_ObjectHideFlags: 0

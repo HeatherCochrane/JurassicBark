@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1382348689921352690}
   m_Layer: 0
   m_Name: GlassFence
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2698869040493613537}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.15, y: 0, z: -0.12}
   m_LocalScale: {x: 1, y: 1, z: 0.91083026}
   m_Children:
@@ -32,7 +32,7 @@ Transform:
   - {fileID: 8674720469391753732}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2918240877353685065
 GameObject:
   m_ObjectHideFlags: 0

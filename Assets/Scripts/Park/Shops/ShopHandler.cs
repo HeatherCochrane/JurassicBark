@@ -56,15 +56,6 @@ public class ShopHandler : MonoBehaviour
 
             currency.subtractMoney(cost);
 
-            if (button == 0)
-            {
-                shop.GetComponent<Shop>().setProductCost(10);
-            }
-            else
-            {
-                shop.GetComponent<Shop>().setProductCost(20);
-            }
-
             shop.GetComponentInChildren<ParticleSystem>().Play();
 
 

@@ -13,6 +13,9 @@ public class Shop : MonoBehaviour
     int cost = 0;
 
     AudioManager audioManager;
+
+    [SerializeField]
+    int incomeProduced;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,15 +29,11 @@ public class Shop : MonoBehaviour
         
     }
 
-    public void setProductCost(int c)
-    {
-        cost = c;
-    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject != previous && other.tag == "Visitor")
         {
-            currency.addMoney(cost);
+            currency.addMoney(incomeProduced);
             previous = other.gameObject;
             audioManager.playIncomeGained();
         }

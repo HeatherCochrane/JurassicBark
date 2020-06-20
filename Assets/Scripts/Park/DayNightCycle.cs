@@ -43,6 +43,9 @@ public class DayNightCycle : MonoBehaviour
 
 	[SerializeField]
 	GameObject speedObject;
+
+	[SerializeField]
+	GameObject visitorButton;
 	// Start is called before the first frame update
 	void Start()
     {
@@ -58,7 +61,7 @@ public class DayNightCycle : MonoBehaviour
 	public void dayCycle()
 	{
 		StopAllCoroutines();
-		visitorHandler.parkOpen();
+		visitorButton.SetActive(true);
 		StartCoroutine(UpdateLightColor(new Color32(56, 24, 77, 1), new Color32(255, 255, 255, 1)));
 		StartCoroutine("dayTimer");
 		skip.SetActive(false);
@@ -79,6 +82,11 @@ public class DayNightCycle : MonoBehaviour
 	public void showSkipButton()
 	{
 		skip.SetActive(true);
+	}
+
+	public void hideVisitorButton()
+	{
+		visitorButton.SetActive(false);
 	}
 
 }

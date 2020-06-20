@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 1252556150225876857}
   m_Layer: 0
   m_Name: IronCornerTarget
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -285,6 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcd99c73b1ea4d45aa2a00f78a4e37c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  width: 0
+  height: 0
   grassColor:
   - {r: 0.3529412, g: 0.7686275, b: 0.7137255, a: 1}
   - {r: 0.3529412, g: 0.7686275, b: 0.7137255, a: 1}
@@ -294,7 +296,6 @@ MonoBehaviour:
     type: 3}
   waterBowl: {fileID: 701579302331262685, guid: 64475590b591daa46aa3b420a01aabf9,
     type: 3}
-  dogsInPaddock: []
 --- !u!65 &2747288978868174441
 BoxCollider:
   m_ObjectHideFlags: 0

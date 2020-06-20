@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5633797969111922481}
   m_Layer: 0
   m_Name: IronFenceV
-  m_TagString: Untagged
+  m_TagString: Fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

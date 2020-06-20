@@ -206,28 +206,45 @@ public class Game : MonoBehaviour
                     }
                     else if (deleteObjects)
                     {
-                        if (tile.transform.childCount > 0 && !tile.hasFence)
+                        if (tile.transform.childCount > 0)
                         {
-                            if (tile.transform.GetChild(0).tag == "Shop")
+                            for (int i = 0; i < tile.transform.childCount; i++)
                             {
-                                rating.removeShop();
+                                if (tile.transform.GetChild(i).tag != "Fence")
+                                {
+                                    if (tile.transform.GetChild(i).tag == "Shop")
+                                    {
+                                        rating.removeShop();
+
+                                    }
+                                    else if (tile.transform.GetChild(i).tag == "Decoration")
+                                    {
+                                        rating.removeDecoration();
+                                    }
+                                    else if(tile.transform.GetChild(i).tag == "Food")
+                                    {
+                                        tile.hasFoodBowl = false;
+                                    }
+                                    else if(tile.transform.GetChild(i).tag == "Water")
+                                    {
+                                        tile.hasWaterBowl = false;
+                                    }
+
+                                    GameObject child = null;
+                                    child = tile.transform.GetChild(i).gameObject;
+                                    child.transform.parent = null;
+                                    Destroy(child.gameObject);
+
+                                    audioManager.playDestroy();
+
+                                    if (!tile.IsAccessible)
+                                    {
+                                        tile.IsAccessible = true;
+                                    }
+
+                                    save.saveTile(tile, false);
+                                }
                             }
-                            else if (tile.transform.GetChild(0).tag == "Decoration")
-                            {
-                                rating.removeDecoration();
-                            }
-
-                            Destroy(tile.transform.GetChild(0).gameObject);
-                            audioManager.playDestroy();
-
-                            if (!tile.IsAccessible)
-                            {
-                                tile.IsAccessible = true;
-                            }
-
-                            tile.transform.DetachChildren();
-
-                            save.saveTile(tile, false);
                         }
                         else if (tile.isPath)
                         {
