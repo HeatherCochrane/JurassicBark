@@ -16,13 +16,18 @@ public class Task : MonoBehaviour
     Currency pointHandler;
 
     ResearchTaskHandler taskHandler;
+
+    [SerializeField]
+    Slider progressBar;
     // Start is called before the first frame update
     void Start()
     {
         taskHandler = GameObject.Find("ResearchTaskHandler").GetComponent<ResearchTaskHandler>();
         pointHandler = GameObject.Find("CurrencyHandler").GetComponent<Currency>();
+        
 
         this.gameObject.transform.GetChild(3).gameObject.SetActive(false);
+        progressBar.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,6 +41,9 @@ public class Task : MonoBehaviour
         if (pointHandler.sufficientFunds(cost) && !inprogress)
         {
             pointHandler.subtractMoney(cost);
+            progressBar.maxValue = taskLength;
+            this.transform.GetChild(1).gameObject.SetActive(false);
+            progressBar.gameObject.SetActive(true);
             doTask();
         }
     }
@@ -47,6 +55,7 @@ public class Task : MonoBehaviour
         if (taskLength > 0)
         {
             taskLength -= 1;
+            progressBar.value -= 1;
         }
         else
         {
@@ -54,6 +63,7 @@ public class Task : MonoBehaviour
             if (GameObject.Find("ResearchTasksButton"))
             {
                 GameObject.Find("ResearchTasksButton").transform.GetChild(1).gameObject.SetActive(true);
+                progressBar.gameObject.SetActive(false);
             }
         }
 

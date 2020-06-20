@@ -6477,17 +6477,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2116099837}
-        m_MethodName: cancelCreation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1525767066}
         m_MethodName: dayCycle
         m_Mode: 1
@@ -6590,6 +6579,17 @@ MonoBehaviour:
       - m_Target: {fileID: 896303071}
         m_MethodName: ShowMenu
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2116099837}
+        m_MethodName: cancelCreation
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -28383,7 +28383,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AccessibleTiles:
   - {fileID: 3966080093396558795, guid: 4f89dc5847e72574cb4160f035f2d2e0, type: 3}
-  - {fileID: 2448186258066008671, guid: 47457caa668d36d45bada59702335e34, type: 3}
   InaccessibleTiles:
   - {fileID: 7228575818001999334, guid: d85ca6f08a4ef8848b08ae4126b05734, type: 3}
   - {fileID: 4499036324842488966, guid: cd048cafd4c60d14d81bdb56cdb167ef, type: 3}
