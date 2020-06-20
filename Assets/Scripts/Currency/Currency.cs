@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Currency : MonoBehaviour
 {
-    int playerCurrency = 600;
+    int playerCurrency = 100600;
 
     [SerializeField]
     UIHandler UIHandler;
 
-    int unlockPoints = 200;
+    int unlockPoints = 11200;
 
     [SerializeField]
     AudioManager audio;

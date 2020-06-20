@@ -37,7 +37,7 @@ public class SaveHandler : MonoBehaviour
     }
 
     //Call this function when a tile is changed such as placing deco, removing objects, paddocks, paint etc;
-    public void saveTile(EnvironmentTile t, bool paint)
+    public void saveTile(EnvironmentTile t)
     {
         SaveGame.Instance.Tile.childModels = new List<string>();
         SaveGame.Instance.Tile.rot = new List<Vector3>();
@@ -73,23 +73,18 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Instance.Tile.x = int.Parse(pos[0]);
         SaveGame.Instance.Tile.y = int.Parse(pos[1]);
 
-        if (paint)
-        {
-            Material[] mats = t.GetComponent<MeshRenderer>().materials;
 
-            string[] matName = mats[1].name.Split(' ');
-            SaveGame.Instance.Tile.parentMat = matName[0];
+        Material[] mats = t.GetComponent<MeshRenderer>().materials;
 
-            SaveGame.Instance.Tile.matChanged = true;
-        }
-        else
-        {
-            SaveGame.Instance.Tile.matChanged = false;
-        }
+        string[] matName = mats[1].name.Split(' ');
+        SaveGame.Instance.Tile.parentMat = matName[0];
 
-        for(int i =0; i < SaveGame.Instance.changedTile.Count; i++)
+        SaveGame.Instance.Tile.matChanged = true;
+
+
+        for (int i = 0; i < SaveGame.Instance.changedTile.Count; i++)
         {
-            if(SaveGame.Instance.Tile.x == SaveGame.Instance.changedTile[i].x && SaveGame.Instance.Tile.y == SaveGame.Instance.changedTile[i].y)
+            if (SaveGame.Instance.Tile.x == SaveGame.Instance.changedTile[i].x && SaveGame.Instance.Tile.y == SaveGame.Instance.changedTile[i].y)
             {
                 SaveGame.Instance.changedTile.RemoveAt(i);
             }

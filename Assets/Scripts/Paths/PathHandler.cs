@@ -268,12 +268,13 @@ public class PathHandler : MonoBehaviour
             cancelCreation();
         }
 
+        cancelCreation();
 
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
             {
-                save.saveTile(path[i, j], true);
+                save.saveTile(path[i, j]);
             }
         }
 

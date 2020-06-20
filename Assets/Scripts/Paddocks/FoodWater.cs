@@ -41,7 +41,7 @@ public class FoodWater : MonoBehaviour
 
             p.GetComponent<EnvironmentTile>().hasFoodBowl = false;
             p.GetComponent<EnvironmentTile>().hasWaterBowl = false;
-            save.saveTile(p.GetComponent<EnvironmentTile>(), false);
+            save.saveTile(p.GetComponent<EnvironmentTile>());
 
             Destroy(this.gameObject);
         }

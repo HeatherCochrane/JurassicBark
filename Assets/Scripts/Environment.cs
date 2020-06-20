@@ -47,12 +47,19 @@ public class Environment : MonoBehaviour
 
     [SerializeField]
     GameObject mapObject;
+
+    [SerializeField]
+    GameObject loadingScreen;
+
+    [SerializeField]
+    AudioManager audio;
     private void Awake()
     {
         Random.InitState(10);
 
         mAll = new List<EnvironmentTile>();
         mToBeTested = new List<EnvironmentTile>();
+        loadingScreen.SetActive(false);
     }
 
     private void Update()
@@ -164,78 +171,86 @@ public class Environment : MonoBehaviour
         setEntrance(halfWidth);
     }
 
+    public void startLoading()
+    {
+        loadingScreen.SetActive(true);
+        Invoke("loadChangedTiles", 0.5f);
+    }
     public void loadChangedTiles()
     {
         GameObject newChild;
 
-        SaveGame.Load();
-
-        for (int i = 0; i < Size.x; i++)
+        if (loadingScreen.activeSelf)
         {
-            for (int j = 0; j < Size.y; j++)
+            SaveGame.Load();
+
+            for (int i = 0; i < Size.x; i++)
             {
-                for (int k = 0; k < SaveGame.Instance.changedTile.Count; k++)
+                for (int j = 0; j < Size.y; j++)
                 {
-                    //Tile currently on equals one of the saved tiles
-                    if (SaveGame.Instance.changedTile[k].x == i && SaveGame.Instance.changedTile[k].y == j)
+                    for (int k = 0; k < SaveGame.Instance.changedTile.Count; k++)
                     {
-                        mMap[i][j].IsAccessible = SaveGame.Instance.changedTile[k].isAccesible;
-                        mMap[i][j].isPaddock = SaveGame.Instance.changedTile[k].isPaddock;
-                        mMap[i][j].isPath = SaveGame.Instance.changedTile[k].isPath;
-                        mMap[i][j].hasPaint = SaveGame.Instance.changedTile[k].hasPaint;
-                        mMap[i][j].hasFence = SaveGame.Instance.changedTile[k].hasFence;
-                        mMap[i][j].hasFoodBowl = SaveGame.Instance.changedTile[k].hasFood;
-                        mMap[i][j].hasWaterBowl = SaveGame.Instance.changedTile[k].hasWater;
-
-                        if (SaveGame.Instance.changedTile[k].matChanged)
+                        //Tile currently on equals one of the saved tiles
+                        if (SaveGame.Instance.changedTile[k].x == i && SaveGame.Instance.changedTile[k].y == j)
                         {
-                            Material[] mats = mMap[i][j].GetComponent<MeshRenderer>().materials;
+                            mMap[i][j].IsAccessible = SaveGame.Instance.changedTile[k].isAccesible;
+                            mMap[i][j].isPaddock = SaveGame.Instance.changedTile[k].isPaddock;
+                            mMap[i][j].isPath = SaveGame.Instance.changedTile[k].isPath;
+                            mMap[i][j].hasPaint = SaveGame.Instance.changedTile[k].hasPaint;
+                            mMap[i][j].hasFence = SaveGame.Instance.changedTile[k].hasFence;
+                            mMap[i][j].hasFoodBowl = SaveGame.Instance.changedTile[k].hasFood;
+                            mMap[i][j].hasWaterBowl = SaveGame.Instance.changedTile[k].hasWater;
 
-                            Material newMat = Resources.Load(SaveGame.Instance.changedTile[k].parentMat, typeof(Material)) as Material;
-                            mats[1] = newMat;
-
-                            mMap[i][j].GetComponent<MeshRenderer>().materials = mats;
-                            mMap[i][j].setTerrainPaint(SaveGame.Instance.changedTile[k].parentMat);
-
-                        }
-
-
-                        if (mMap[i][j].hasFence && mMap[i][j].transform.childCount > 0 || mMap[i][j].isPaddock && mMap[i][j].transform.childCount > 0)
-                        {
-                            GameObject.Destroy(mMap[i][j].transform.GetChild(0).gameObject);
-                        }
-
-
-                        if (SaveGame.Instance.changedTile[k].hasChild)
-                        {
-                            if (mMap[i][j].transform.childCount > 0)
+                            if (SaveGame.Instance.changedTile[k].matChanged)
                             {
-                                Destroy(mMap[i][j].transform.GetChild(0).gameObject);
+                                Material[] mats = mMap[i][j].GetComponent<MeshRenderer>().materials;
+
+                                Material newMat = Resources.Load(SaveGame.Instance.changedTile[k].parentMat, typeof(Material)) as Material;
+                                mats[1] = newMat;
+
+                                mMap[i][j].GetComponent<MeshRenderer>().materials = mats;
+                                mMap[i][j].setTerrainPaint(SaveGame.Instance.changedTile[k].parentMat);
+
                             }
 
-                            for (int f = 0; f < SaveGame.Instance.changedTile[k].childModels.Count; f++)
+
+                            if (mMap[i][j].hasFence && mMap[i][j].transform.childCount > 0 || mMap[i][j].isPaddock && mMap[i][j].transform.childCount > 0)
                             {
-                                newChild = Instantiate(Resources.Load(SaveGame.Instance.changedTile[k].childModels[f]) as GameObject);
-                                newChild.transform.parent = mMap[i][j].gameObject.transform;
-                                newChild.transform.position = new Vector3(mMap[i][j].transform.position.x + 5, mMap[i][j].transform.position.y + 3, mMap[i][j].transform.position.z + 5);
-                                newChild.transform.Rotate(SaveGame.Instance.changedTile[k].rot[f]);
-                                newChild.transform.position = SaveGame.Instance.changedTile[k].childPos[f];
+                                GameObject.Destroy(mMap[i][j].transform.GetChild(0).gameObject);
                             }
 
-                        }
-                        else
-                        {
-                            if (mMap[i][j].transform.childCount > 0)
+
+                            if (SaveGame.Instance.changedTile[k].hasChild)
                             {
-                                Destroy(mMap[i][j].transform.GetChild(0).gameObject);
+                                if (mMap[i][j].transform.childCount > 0)
+                                {
+                                    Destroy(mMap[i][j].transform.GetChild(0).gameObject);
+                                }
+
+                                for (int f = 0; f < SaveGame.Instance.changedTile[k].childModels.Count; f++)
+                                {
+                                    newChild = Instantiate(Resources.Load(SaveGame.Instance.changedTile[k].childModels[f]) as GameObject);
+                                    newChild.transform.parent = mMap[i][j].gameObject.transform;
+                                    newChild.transform.position = new Vector3(mMap[i][j].transform.position.x + 5, mMap[i][j].transform.position.y + 3, mMap[i][j].transform.position.z + 5);
+                                    newChild.transform.Rotate(SaveGame.Instance.changedTile[k].rot[f]);
+                                    newChild.transform.position = SaveGame.Instance.changedTile[k].childPos[f];
+                                }
+
+                            }
+                            else
+                            {
+                                if (mMap[i][j].transform.childCount > 0)
+                                {
+                                    Destroy(mMap[i][j].transform.GetChild(0).gameObject);
+                                }
                             }
                         }
                     }
                 }
             }
-        }
 
-        loadPaddocks();
+            loadPaddocks();
+        }
     }
 
     public void loadPaddocks()
@@ -335,7 +350,11 @@ public class Environment : MonoBehaviour
 
             dog.GetComponent<DogBehaviour>().giveDogInfo(SaveGame.Instance.dogs[i].personality, int.Parse(SaveGame.Instance.dogs[i].age), SaveGame.Instance.dogs[i].dogName, true);
         }
+
+        loadingScreen.SetActive(false);
+        audio.playOpen();
     }
+
     void setEntrance(int w)
     {
         w -= 2;
@@ -575,5 +594,10 @@ public class Environment : MonoBehaviour
         mLastSolution = result;
 
         return result;
+    }
+
+    public void showLoadingScreen()
+    {
+        loadingScreen.SetActive(true);
     }
 }

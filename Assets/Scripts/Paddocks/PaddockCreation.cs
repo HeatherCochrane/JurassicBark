@@ -436,7 +436,7 @@ public class PaddockCreation : MonoBehaviour
             for (int j = 0; j < height; j++)
             {
                 tiles[i, j].setControlObject(control);
-                save.saveTile(tiles[i, j], false);
+                save.saveTile(tiles[i, j]);
             }
         }
 

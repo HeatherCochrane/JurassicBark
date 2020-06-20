@@ -124,7 +124,7 @@ public class PaddockControl : MonoBehaviour
                 tiles[i, j].setControlObject(null);
 
                 tiles[i, j].transform.DetachChildren();
-                save.saveTile(tiles[i, j], false);
+                save.saveTile(tiles[i, j]);
             }
         }
 

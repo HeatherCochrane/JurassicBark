@@ -59,7 +59,7 @@ public class ShopHandler : MonoBehaviour
             shop.GetComponentInChildren<ParticleSystem>().Play();
 
 
-            save.saveTile(t1,false);
+            save.saveTile(t1);
             rating.addShop();
         }
     }

@@ -60,7 +60,7 @@ public class FoodWaterHandler : MonoBehaviour
 
             item.GetComponentInChildren<ParticleSystem>().Play();
 
-            save.saveTile(p, false);
+            save.saveTile(p);
         }
 
     }

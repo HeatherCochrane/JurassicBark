@@ -242,7 +242,7 @@ public class Game : MonoBehaviour
                                         tile.IsAccessible = true;
                                     }
 
-                                    save.saveTile(tile, false);
+                                    save.saveTile(tile);
                                 }
                             }
                         }
@@ -254,7 +254,7 @@ public class Game : MonoBehaviour
                             tile.isPath = false;
                             tile.IsAccessible = true;
                             pathHandler.setTileColor(tile);
-                            save.saveTile(tile, false);
+                            save.saveTile(tile);
                         }
                     }
 
@@ -419,6 +419,7 @@ public class Game : MonoBehaviour
     }
     public void Generate()
     {
+        audioManager.playOpen();
         mMap.GenerateWorld();
     }
 
