@@ -206,7 +206,6 @@ public class Game : MonoBehaviour
                     }
                     else if (deleteObjects)
                     {
-
                         if (tile.transform.childCount > 0 && !tile.hasFence)
                         {
                             if (tile.transform.GetChild(0).tag == "Shop")
@@ -238,6 +237,7 @@ public class Game : MonoBehaviour
                             tile.isPath = false;
                             tile.IsAccessible = true;
                             pathHandler.setTileColor(tile);
+                            save.saveTile(tile, false);
                         }
                     }
 

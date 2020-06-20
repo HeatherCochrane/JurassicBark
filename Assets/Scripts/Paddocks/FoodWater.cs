@@ -37,7 +37,7 @@ public class FoodWater : MonoBehaviour
             this.transform.parent.GetComponent<EnvironmentTile>().hasWaterBowl = false;
 
             p = this.transform.parent.gameObject;
-            this.transform.parent.DetachChildren();
+            this.transform.parent = null;
 
             p.GetComponent<EnvironmentTile>().hasFoodBowl = false;
             p.GetComponent<EnvironmentTile>().hasWaterBowl = false;
