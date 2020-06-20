@@ -348,6 +348,11 @@ public class UIHandler : MonoBehaviour
         inMainMenu = true;
     }
 
+    public void moveToSpecificTutorial(float i)
+    {
+        pauseMenus[1].GetComponentInChildren<Scrollbar>().value = i;
+    }
+
     public void showSoundSettings()
     {
         pauseMenus[2].SetActive(true);
