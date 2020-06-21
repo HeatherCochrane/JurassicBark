@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3151529224214985837}
   - component: {fileID: 4596931532637926533}
   - component: {fileID: 8509857453829579399}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 864223172094529417}
   - component: {fileID: 2696977617914848343}
   - component: {fileID: 4461887750959947902}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WaterVendingMachine
   m_TagString: Shop
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 1058101313470291752}
   - component: {fileID: 6105116763187523872}
   - component: {fileID: 6663807797241414595}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,6 +306,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652614100104334, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652615268849340, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c267217cbd137c408607d957ca3681b, type: 3}

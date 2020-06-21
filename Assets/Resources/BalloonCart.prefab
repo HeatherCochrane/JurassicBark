@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 33862936085003244}
   - component: {fileID: 1445551951865557764}
   - component: {fileID: 6763601027125323014}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7490675332185430809}
   - component: {fileID: 2035272978765576331}
   - component: {fileID: 4741736359452561484}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Icosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 2704665545108228869}
   - component: {fileID: 8390205642948190897}
   - component: {fileID: 6825808835796811273}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BalloonCart
   m_TagString: Shop
   m_Icon: {fileID: 0}
@@ -212,8 +212,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20.01, y: 8.573444, z: 25.4}
-  m_Center: {x: 1.3171854, y: 3.7867222, z: -0.35153913}
+  m_Size: {x: 30.242962, y: 8.573444, z: 34.54559}
+  m_Center: {x: 3.175558, y: 3.7867222, z: -0.39793587}
 --- !u!54 &8390205642948190897
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -309,6 +309,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652614100104334, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652615268849340, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c267217cbd137c408607d957ca3681b, type: 3}

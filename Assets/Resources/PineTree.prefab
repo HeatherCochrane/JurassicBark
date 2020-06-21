@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2453681174044705140}
   - component: {fileID: 6869745042642221890}
   - component: {fileID: 894727395053619131}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PineTree
   m_TagString: Decoration
   m_Icon: {fileID: 0}
@@ -147,6 +147,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652614100104334, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652615268849340, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c267217cbd137c408607d957ca3681b, type: 3}

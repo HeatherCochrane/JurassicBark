@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8754873684445790873}
   - component: {fileID: 3045284714807393888}
   - component: {fileID: 4031329560824658004}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WaterBowlMedium
   m_TagString: Water
   m_Icon: {fileID: 0}
@@ -160,6 +160,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652614100104334, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652615268849340, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c267217cbd137c408607d957ca3681b, type: 3}

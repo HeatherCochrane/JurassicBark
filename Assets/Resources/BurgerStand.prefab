@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8147286700898593061}
   - component: {fileID: 3100271800391911213}
   - component: {fileID: 2577539470028699086}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6979213689214571955}
   - component: {fileID: 9021055263931335697}
   - component: {fileID: 3214162892495279836}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BurgerStand
   m_TagString: Shop
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 6053859064219093600}
   - component: {fileID: 4644424255582929544}
   - component: {fileID: 695469533614216330}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,6 +323,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652614100104334, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652615268849340, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7373652615268849343, guid: 5c267217cbd137c408607d957ca3681b,
         type: 3}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2550406857381679462}
   - component: {fileID: 2550406857381679463}
   - component: {fileID: 8524357194494225347}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cart
   m_TagString: Shop
   m_Icon: {fileID: 0}
@@ -127,8 +127,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20.452232, y: 9.739142, z: 17.668594}
-  m_Center: {x: 1.2666817, y: 4.8698335, z: -0.21651983}
+  m_Size: {x: 23.95417, y: 10.437022, z: 26.14367}
+  m_Center: {x: -0.48428726, y: 5.2187734, z: -0.80404854}
 --- !u!1001 &2135257037529793094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -195,6 +195,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652614100104334, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652615268849340, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c267217cbd137c408607d957ca3681b, type: 3}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4112531230848995012}
   - component: {fileID: 3283845151412077063}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FoodBowlSmall
   m_TagString: Food
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 5977069005529019889}
   - component: {fileID: 5081537478783515929}
   - component: {fileID: 1105561081103624987}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,10 +193,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dust
       objectReference: {fileID: 0}
+    - target: {fileID: 7373652614100104334, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7373652614100104335, guid: 5c267217cbd137c408607d957ca3681b,
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652615268849340, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7373652614100104335, guid: 5c267217cbd137c408607d957ca3681b, type: 3}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5233425558449495879}
   - component: {fileID: 3889942870741362033}
   - component: {fileID: 7405979393506531720}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bin
   m_TagString: Decoration
   m_Icon: {fileID: 0}
@@ -147,6 +147,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dust (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652614100104334, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652615268849340, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c267217cbd137c408607d957ca3681b, type: 3}

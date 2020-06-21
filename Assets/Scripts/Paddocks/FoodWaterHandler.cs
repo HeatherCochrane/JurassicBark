@@ -44,7 +44,7 @@ public class FoodWaterHandler : MonoBehaviour
             item.transform.parent = p.transform;
 
             GameObject control = p.getControlObj();
-            if (b == 0)
+            if (b == 0 || b == 2 || b == 3)
             {
                 control.GetComponentInChildren<PaddockControl>().hasFood = true;
                 p.hasFoodBowl = true;

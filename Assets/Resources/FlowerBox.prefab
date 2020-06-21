@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4715688695874372161}
   - component: {fileID: 6126744992105794217}
   - component: {fileID: 2077303504171080875}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6132692496607774427}
   - component: {fileID: 7105286429537138587}
   - component: {fileID: 8414312606411510835}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 8414766169438675767}
   - component: {fileID: 2893857292174236581}
   - component: {fileID: 4321479337869969053}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 5191514476533268336}
   - component: {fileID: 4273115239560662713}
   - component: {fileID: 3760731370429081394}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 7233387151595348228}
   - component: {fileID: 4500430397282275084}
   - component: {fileID: 3942794963112164847}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3067241790887393652}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FlowerBox
   m_TagString: Decoration
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 931176422297937903}
   - component: {fileID: 336899614385135145}
   - component: {fileID: 159580947765716227}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 6790737833653809247}
   - component: {fileID: 2155347240189687509}
   - component: {fileID: 2917165837410063050}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -620,7 +620,7 @@ GameObject:
   - component: {fileID: 6058350590106202744}
   - component: {fileID: 6901425008729427276}
   - component: {fileID: 8384516801488551521}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 461137643029135642}
   - component: {fileID: 2060375348225956180}
   - component: {fileID: 1262796324210781418}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 2862735551252946196}
   - component: {fileID: 641447079699859682}
   - component: {fileID: 2326661193045483859}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -861,7 +861,7 @@ GameObject:
   - component: {fileID: 18965203555085219}
   - component: {fileID: 5023303070940469530}
   - component: {fileID: 468177449515266681}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -997,6 +997,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652614100104334, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652615268849340, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c267217cbd137c408607d957ca3681b, type: 3}

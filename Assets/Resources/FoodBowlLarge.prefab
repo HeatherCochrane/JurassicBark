@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8140718697614478051}
   - component: {fileID: 3687740523131653225}
   - component: {fileID: 486373697502308470}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 6486144084243208587}
   - component: {fileID: 499093948949897497}
   - component: {fileID: 1530328997003705377}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 8926024268879117415}
   - component: {fileID: 5503157737421950247}
   - component: {fileID: 6485619070073007759}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 8049433851990538493}
   - component: {fileID: 8917895333775814677}
   - component: {fileID: 3607444966160606743}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 312191736436736968}
   - component: {fileID: 1934313743188065243}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FoodBowlLarge
   m_TagString: Food
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 5379004228947385272}
   - component: {fileID: 1202624964321998256}
   - component: {fileID: 1761953861149607763}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 3352727965010153759}
   - component: {fileID: 7742377247134557094}
   - component: {fileID: 2935050059193518277}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,6 +597,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652614100104334, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373652615268849340, guid: 5c267217cbd137c408607d957ca3681b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c267217cbd137c408607d957ca3681b, type: 3}
