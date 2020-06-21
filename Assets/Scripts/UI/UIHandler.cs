@@ -359,4 +359,10 @@ public class UIHandler : MonoBehaviour
 
         inMainMenu = true;
     }
+
+    public void showCredits()
+    {
+        pauseMenus[3].SetActive(true);
+        inMainMenu = true;
+    }
 }
