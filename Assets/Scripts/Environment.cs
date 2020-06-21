@@ -202,8 +202,7 @@ public class Environment : MonoBehaviour
                             mMap[i][j].hasFoodBowl = SaveGame.Instance.changedTile[k].hasFood;
                             mMap[i][j].hasWaterBowl = SaveGame.Instance.changedTile[k].hasWater;
 
-                            if (SaveGame.Instance.changedTile[k].matChanged)
-                            {
+                           
                                 Material[] mats = mMap[i][j].GetComponent<MeshRenderer>().materials;
 
                                 Material newMat = Resources.Load(SaveGame.Instance.changedTile[k].parentMat, typeof(Material)) as Material;
@@ -212,7 +211,7 @@ public class Environment : MonoBehaviour
                                 mMap[i][j].GetComponent<MeshRenderer>().materials = mats;
                                 mMap[i][j].setTerrainPaint(SaveGame.Instance.changedTile[k].parentMat);
 
-                            }
+                            
 
 
                             if (mMap[i][j].hasFence && mMap[i][j].transform.childCount > 0 || mMap[i][j].isPaddock && mMap[i][j].transform.childCount > 0)
