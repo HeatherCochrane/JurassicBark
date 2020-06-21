@@ -77,12 +77,6 @@ public class Unlocks : MonoBehaviour
             pointsNeeded += 15;
         }
 
-        save.saveUnlocks(dogUnlocks, 1);
-        save.saveUnlocks(fenceUnlocks, 2);
-        save.saveUnlocks(decoUnlocks, 3);
-        save.saveUnlocks(paddockItemUnlocks, 4);
-        save.saveUnlocks(pathUnlocks, 5);
-        save.saveUnlocks(shopUnlocks, 6);
     }
 
     // Update is called once per frame
