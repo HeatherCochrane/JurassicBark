@@ -62,13 +62,14 @@ public class TerrainPainting : MonoBehaviour
 
         if (t.getControlObj() != null)
         {
-            List<GameObject> dogs = t.getControlObj().GetComponentInChildren<PaddockControl>().getDogs();
+            List<GameObject> dogs = dogHandler.getDogTypes();
 
             if (dogs.Count > 0)
             {
-               
-                    dogs[0].GetComponent<DogBehaviour>().checkTiles();
-                
+                for (int i = 0; i < dogs.Count; i++)
+                {
+                    dogs[i].GetComponent<DogBehaviour>().checkTiles();
+                }   
             }
         }
 

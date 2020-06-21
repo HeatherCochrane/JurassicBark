@@ -49,6 +49,7 @@ public class DogHandler : MonoBehaviour
     TextAsset dogNames;
     string dogName;
 
+    List<GameObject> dogTypes = new List<GameObject>();
     void Start()
     {
         UIhandler = GameObject.Find("UIHandler").GetComponent<UIHandler>();
@@ -89,6 +90,23 @@ public class DogHandler : MonoBehaviour
 
             audioManager.playDogBark();
 
+            
+            bool duplicateModel = false;
+            if (dogTypes.Count > 0)
+            {
+                for (int i = 0; i < dogTypes.Count; i++)
+                {
+                    if (dog.name == dogTypes[i].name)
+                    {
+                        duplicateModel = true;
+                    }
+                }
+            }
+
+            if(!duplicateModel)
+            {
+                dogTypes.Add(dog);
+            }
             saveDog(dog);
             rating.addDog(dog.GetComponent<DogBehaviour>().getDogIdentifier(), dog.GetComponent<DogBehaviour>().getHappiness());
         }
@@ -136,4 +154,8 @@ public class DogHandler : MonoBehaviour
         return dogs;
     }
 
+    public List<GameObject> getDogTypes()
+    {
+        return dogTypes;
+    }
 }

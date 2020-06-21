@@ -26,7 +26,6 @@ public class Currency : MonoBehaviour
         UIHandler.updatePoints(unlockPoints);
         fundsAlert.SetActive(false);
 
-        save.saveUI(playerCurrency, unlockPoints);
     }
 
     // Update is called once per frame
@@ -44,6 +43,7 @@ public class Currency : MonoBehaviour
 
         setMoney(playerCurrency);
         setPoints(unlockPoints);
+        saveUI();
     }
 
     public void subtractMoney(int cost)
@@ -67,13 +67,15 @@ public class Currency : MonoBehaviour
     {
         playerCurrency = set;
         UIHandler.updateCurrency(playerCurrency);
+        saveUI();
     }
     public void setPoints(int set)
     {
         unlockPoints = set;
         UIHandler.updatePoints(unlockPoints);
+        saveUI();
     }
-    void saveUI()
+    public void saveUI()
     {
         save.saveUI(playerCurrency, unlockPoints);
     }

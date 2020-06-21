@@ -226,13 +226,14 @@ public class SaveHandler : MonoBehaviour
         SaveGame.Save();
     }
 
-    public void saveParkRanking(int dog, int shop, int deco, int happy)
+    public void saveParkRanking(int dog, int shop, int deco, int happy, bool max)
     {
 
         SaveGame.Instance.parkRanking.dogCount = dog;
         SaveGame.Instance.parkRanking.shopCount = shop;
         SaveGame.Instance.parkRanking.decoCount = deco;
         SaveGame.Instance.parkRanking.overallHappiness = happy;
+        SaveGame.Instance.parkRanking.maxed = max;
 
         
         SaveGame.Save();

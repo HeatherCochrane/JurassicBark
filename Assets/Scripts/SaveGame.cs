@@ -129,6 +129,8 @@ public class SaveGame
         public int decoCount;
         [SerializeField]
         public int overallHappiness;
+        [SerializeField]
+        public bool maxed;
     }
 
     [SerializeField]

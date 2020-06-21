@@ -82,6 +82,7 @@ public class ParkRating : MonoBehaviour
         decorationCount = SaveGame.Instance.parkRanking.decoCount;
         shopCount = SaveGame.Instance.parkRanking.shopCount;
         overallHappiness = SaveGame.Instance.parkRanking.overallHappiness;
+        ratingMaxed = SaveGame.Instance.parkRanking.maxed;
 
         adjustRating();
 
@@ -152,8 +153,9 @@ public class ParkRating : MonoBehaviour
                 ratingMaxed = true;
             }
         }
+
         starObject.GetComponent<Image>().sprite = stars[parkRating - 1];
-        save.saveParkRanking(dogCount, shopCount, decorationCount, overallHappiness);
+        save.saveParkRanking(dogCount, shopCount, decorationCount, overallHappiness, ratingMaxed);
 
         
     }

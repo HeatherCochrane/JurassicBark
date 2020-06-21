@@ -43,6 +43,7 @@ public class Unlocks : MonoBehaviour
     [SerializeField]
     UIHandler UIhandler;
 
+    [SerializeField]
     List<int> dogUnlocks = new List<int>();
     List<int> fenceUnlocks = new List<int>();
     List<int> decoUnlocks = new List<int>();
@@ -75,6 +76,13 @@ public class Unlocks : MonoBehaviour
             unlockButtonIcons[j].transform.GetChild(0).GetComponent<Text>().text = "Cost: " + pointsNeeded.ToString() + " points";
             pointsNeeded += 15;
         }
+
+        save.saveUnlocks(dogUnlocks, 1);
+        save.saveUnlocks(fenceUnlocks, 2);
+        save.saveUnlocks(decoUnlocks, 3);
+        save.saveUnlocks(paddockItemUnlocks, 4);
+        save.saveUnlocks(pathUnlocks, 5);
+        save.saveUnlocks(shopUnlocks, 6);
     }
 
     // Update is called once per frame
