@@ -64,6 +64,7 @@ public class Environment : MonoBehaviour
 
     private void Update()
     {
+
     }
 
     public Vector2 getMapSize()
