@@ -763,7 +763,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 181790867c875b74ab9420fbb6d4c880,
+        type: 3}
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Bottom
@@ -777,7 +778,7 @@ PrefabInstance:
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Left
-      value: -325
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2783554840513072594, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
@@ -2276,7 +2277,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 181790867c875b74ab9420fbb6d4c880,
+        type: 3}
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Bottom
@@ -2290,7 +2292,7 @@ PrefabInstance:
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Left
-      value: -325
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2783554840513072594, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
@@ -6790,6 +6792,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1763420439}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 918794514}
+        m_MethodName: playClose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -15888,7 +15901,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 181790867c875b74ab9420fbb6d4c880,
+        type: 3}
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Bottom
@@ -15902,7 +15916,7 @@ PrefabInstance:
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Left
-      value: -325
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2783554840513072594, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
@@ -16125,7 +16139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8235295, g: 0.9450981, b: 0.9058824, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -17349,7 +17363,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 181790867c875b74ab9420fbb6d4c880,
+        type: 3}
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Bottom
@@ -17363,7 +17378,7 @@ PrefabInstance:
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Left
-      value: -325
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2783554840513072594, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
@@ -17583,7 +17598,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 181790867c875b74ab9420fbb6d4c880,
+        type: 3}
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Bottom
@@ -17597,7 +17613,7 @@ PrefabInstance:
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Left
-      value: -325
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2783554840513072594, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
@@ -17901,7 +17917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.69803923}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -19009,8 +19025,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -293.8, y: 127.2}
-  m_SizeDelta: {x: 110, y: 40}
+  m_AnchoredPosition: {x: -284.8, y: 127.2}
+  m_SizeDelta: {x: 110, y: 34.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1239154324
 MonoBehaviour:
@@ -24211,7 +24227,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 181790867c875b74ab9420fbb6d4c880,
+        type: 3}
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Bottom
@@ -24225,7 +24242,7 @@ PrefabInstance:
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Left
-      value: -325
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2783554840513072594, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
@@ -24340,7 +24357,7 @@ PrefabInstance:
     - target: {fileID: 2783554841070494502, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Text
-      value: To place an object, it must firstb selected from the shop menu. Then
+      value: To place an object, it must first selected from the shop menu. Then
         by clicking on a vacant tile the item will be bought and placed. To rotate
         the object before buying, simply click the middle mouse button or space and
         this will rotate the object 45 degrees each time it is clicked.
@@ -30971,7 +30988,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 181790867c875b74ab9420fbb6d4c880,
+        type: 3}
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Bottom
@@ -30985,7 +31003,7 @@ PrefabInstance:
     - target: {fileID: 2783554840513072593, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
       propertyPath: m_Padding.m_Left
-      value: -325
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2783554840513072594, guid: a7f58fd3b7e84e0479c01859c856575a,
         type: 3}
@@ -31106,16 +31124,16 @@ PrefabInstance:
         or
 
         use the WASD keys to move the camera in
-        the direction you would like
-
-
-        To zoom with the camera either use
-        the scroll on your mouse or use the - and = buttons on your keyboard
+        the direction you would like, hold left shft to move faster
 
 
         To
-        cancel an action such as placing a paddock or a decoration simply click the
-        right mouse button.
+        zoom with the camera either use the scroll on your mouse or use the - and
+        = buttons on your keyboard
+
+
+        To cancel an action such as placing
+        a paddock or a decoration simply click the right mouse button.
 
 '
       objectReference: {fileID: 0}

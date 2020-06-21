@@ -58,8 +58,10 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        musicVolume.value = 0.5f;
-        soundEffectVolume.value = 0.5f;
+        musicVolume.value = 0.3f;
+        soundEffectVolume.value = 0.3f;
+        musicVolume.value = 0.3f;
+        soundEffectVolume.value = 0.3f;
     }
 
     // Update is called once per frame
@@ -70,7 +72,6 @@ public class AudioManager : MonoBehaviour
         soundEffectsOff = soundEffectVolume;
     }
 
-   
 
     public void playPop()
     {

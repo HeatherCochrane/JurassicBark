@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Currency : MonoBehaviour
 {
-    int playerCurrency = 100600;
+    int playerCurrency = 600;
 
     [SerializeField]
     UIHandler UIHandler;
 
-    int unlockPoints = 11200;
+    int unlockPoints = 50;
 
     [SerializeField]
     AudioManager audio;
@@ -25,6 +25,8 @@ public class Currency : MonoBehaviour
         UIHandler.updateCurrency(playerCurrency);
         UIHandler.updatePoints(unlockPoints);
         fundsAlert.SetActive(false);
+
+        save.saveUI(playerCurrency, unlockPoints);
     }
 
     // Update is called once per frame
